@@ -7,7 +7,11 @@ import org.jsoup.nodes.Document;
  */
 public class EspnTeamsPageFixture {
 
-    public static Document getEspnTeamsPageAsDocument(){
+    public static Document getEspnTeamsPage(){
         return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/espn-teams-page.html");
+    }
+
+    public static Document getEspnBostonStadiumPage(){
+        return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/espn-team-pages/espn-boston-stadium-page.html");
     }
 }

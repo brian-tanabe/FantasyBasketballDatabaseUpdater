@@ -1,18 +1,20 @@
 package com.btanabe2.fbdu.dm.models;
 
+import javax.persistence.*;
+
 /**
- * Created by brian on 11/5/14.
+ * Created by brian on 11/6/14.
  */
-@javax.persistence.Entity
-@javax.persistence.Table(name = "nba_team", schema = "public", catalog = "FANTASY_BASKETBALL")
+@Entity
+@Table(name = "nba_team", schema = "public", catalog = "FANTASY_BASKETBALL")
 public class NbaTeamEntity {
     private int id;
     private int location;
-    private int abbreviation;
-    private int name;
+    private String abbreviation;
+    private String name;
 
-    @javax.persistence.Id
-    @javax.persistence.Column(name = "id")
+    @Id
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -21,8 +23,8 @@ public class NbaTeamEntity {
         this.id = id;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "location")
+    @Basic
+    @Column(name = "location")
     public int getLocation() {
         return location;
     }
@@ -31,23 +33,23 @@ public class NbaTeamEntity {
         this.location = location;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "abbreviation")
-    public int getAbbreviation() {
+    @Basic
+    @Column(name = "abbreviation")
+    public String getAbbreviation() {
         return abbreviation;
     }
 
-    public void setAbbreviation(int abbreviation) {
+    public void setAbbreviation(String abbreviation) {
         this.abbreviation = abbreviation;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "name")
-    public int getName() {
+    @Basic
+    @Column(name = "name")
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -58,10 +60,10 @@ public class NbaTeamEntity {
 
         NbaTeamEntity that = (NbaTeamEntity) o;
 
-        if (abbreviation != that.abbreviation) return false;
         if (id != that.id) return false;
         if (location != that.location) return false;
-        if (name != that.name) return false;
+        if (abbreviation != null ? !abbreviation.equals(that.abbreviation) : that.abbreviation != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;
     }
@@ -70,8 +72,8 @@ public class NbaTeamEntity {
     public int hashCode() {
         int result = id;
         result = 31 * result + location;
-        result = 31 * result + abbreviation;
-        result = 31 * result + name;
+        result = 31 * result + (abbreviation != null ? abbreviation.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
 }

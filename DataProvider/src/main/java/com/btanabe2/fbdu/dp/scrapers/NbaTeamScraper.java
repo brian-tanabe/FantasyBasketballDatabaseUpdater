@@ -22,7 +22,9 @@ public class NbaTeamScraper {
     public static List<NbaTeamEntity> getAllNbaTeams(WebRequest webRequest) throws IOException {
         List<NbaTeamEntity> nbaTeams = new ArrayList<>(30);
 
-        nbaTeams.addAll(getTeamPageUrls(webRequest.getPageAsDocument(ESPN_TEAMS_PAGE_URL)).stream().map(NbaTeamScraper::scrapeNbaTeamPage).collect(Collectors.toList()));
+        for(String teamPageUrl : getTeamPageUrls(webRequest.getPageAsDocument(ESPN_TEAMS_PAGE_URL))){
+            nbaTeams.add(scrapeNbaTeamPage(webRequest, teamPageUrl.replace("http://espn.go.com/nba/team/_/", "http://espn.go.com/nba/team/stadium/_/")));
+        }
 
         return nbaTeams;
     }
@@ -36,8 +38,14 @@ public class NbaTeamScraper {
         return new ArrayList<>(nbaTeamPageUrlsSet);
     }
 
-    private static NbaTeamEntity scrapeNbaTeamPage(String nbaTeamPageUrl){
+    private static NbaTeamEntity scrapeNbaTeamPage(WebRequest webRequest, String nbaTeamPageUrl) throws IOException {
+        Document teamStadiumPage = webRequest.getPageAsDocument(nbaTeamPageUrl);
 
+        String teamName = teamStadiumPage.select("a.sub-brand-title").text();
+
+
+        NbaTeamEntity team = new NbaTeamEntity();
+        team.setName(teamName);
 
         return null;
     }
