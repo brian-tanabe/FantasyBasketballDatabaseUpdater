@@ -41,11 +41,14 @@ public class NbaTeamScraper {
     private static NbaTeamEntity scrapeNbaTeamPage(WebRequest webRequest, String nbaTeamPageUrl) throws IOException {
         Document teamStadiumPage = webRequest.getPageAsDocument(nbaTeamPageUrl);
 
-        String teamName = teamStadiumPage.select("a.sub-brand-title").text();
+        String addressString = teamStadiumPage.select("ul.stadium-info").select("li.name").text();
+        String stadiumName = teamStadiumPage.select("ul.stadium-info").select("h3").text();
+        String stadiumAddressAndZipCode = addressString.replace(stadiumName, "");
+
 
 
         NbaTeamEntity team = new NbaTeamEntity();
-        team.setName(teamName);
+        team.setName("");
 
         return null;
     }
