@@ -35,6 +35,9 @@ public class MockWebRequest {
     public static WebRequest getBasketballReferenceStandingsPageMockWebRequest(){
         Map<String, Document> urlToDocumentMap = new LinkedHashMap<>();
         urlToDocumentMap.put(BASKETBALL_REFERENCE_STANDINGS_PAGE_URL, getBasketballReferenceStandingsPage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_ATL_PAGE_URL, getBasketballReferenceAtlantaFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_TOR_PAGE_URL, getBasketballReferenceTorontoFranchisePage());
+
         return getMockWebRequest(urlToDocumentMap);
     }
 

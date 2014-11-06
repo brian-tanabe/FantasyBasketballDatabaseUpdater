@@ -3,6 +3,7 @@ package com.btanabe2.fbdu.dp.scrapers;
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.btanabe2.fbdu.dp.web.WebConstants.*;
+import static com.btanabe2.fbdu.dp.web.WebConstants.BASKETBALL_REFERENCE_STANDINGS_PAGE_URL;
 
 /**
  * Created by brian on 11/6/14.
@@ -41,15 +42,18 @@ public class NbaTeamScraper {
     private static NbaTeamEntity scrapeNbaTeamPage(WebRequest webRequest, String nbaTeamPageUrl) throws IOException {
         Document teamStadiumPage = webRequest.getPageAsDocument(nbaTeamPageUrl);
 
-        String addressString = teamStadiumPage.select("ul.stadium-info").select("li.name").text();
-        String stadiumName = teamStadiumPage.select("ul.stadium-info").select("h3").text();
-        String stadiumAddressAndZipCode = addressString.replace(stadiumName, "");
+        Element dashboardElements = teamStadiumPage.select("div.stw").select("span:contains(Location:)").parents().select("p").get(0);
+        String dashboardString = dashboardElements.text();
 
-
+        String locationString = dashboardString.substring(dashboardString.indexOf("Location: ") + "Location: ".length(), dashboardString.indexOf("Team Name:")).trim();
+        String teamName = dashboardString.substring(dashboardString.indexOf("Team Name: ") + "Team Name: ".length()).trim();
+        String abbreviation = nbaTeamPageUrl.replaceAll("http://www.basketball-reference.com/teams/", "").replaceAll("/", "");
 
         NbaTeamEntity team = new NbaTeamEntity();
-        team.setName("");
+        team.setName(teamName);
+//        team.setLocation(locationString);
+        team.setAbbreviation(abbreviation);
 
-        return null;
+        return team;
     }
 }
