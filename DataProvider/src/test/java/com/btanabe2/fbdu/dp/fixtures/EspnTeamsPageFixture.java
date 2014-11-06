@@ -8,7 +8,7 @@ import org.jsoup.nodes.Document;
 public class EspnTeamsPageFixture {
 
     public static Document getEspnTeamsPage(){
-        return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/espn-teams-page.html");
+        return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/espn-team-pages/espn-teams-page.html");
     }
 
     public static Document getEspnBostonStadiumPage(){

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.btanabe2.fbdu.dp.web.WebConstants.ESPN_TEAMS_PAGE_URL;
+import static com.btanabe2.fbdu.dp.web.WebConstants.*;
 
 /**
  * Created by brian on 11/6/14.
@@ -22,8 +22,8 @@ public class NbaTeamScraper {
     public static List<NbaTeamEntity> getAllNbaTeams(WebRequest webRequest) throws IOException {
         List<NbaTeamEntity> nbaTeams = new ArrayList<>(30);
 
-        for(String teamPageUrl : getTeamPageUrls(webRequest.getPageAsDocument(ESPN_TEAMS_PAGE_URL))){
-            nbaTeams.add(scrapeNbaTeamPage(webRequest, teamPageUrl.replace("http://espn.go.com/nba/team/_/", "http://espn.go.com/nba/team/stadium/_/")));
+        for(String teamPageUrl : getTeamPageUrls(webRequest.getPageAsDocument(BASKETBALL_REFERENCE_STANDINGS_PAGE_URL))){
+            nbaTeams.add(scrapeNbaTeamPage(webRequest, String.format("http://www.basketball-reference.com%s", teamPageUrl.replace("/2015.html", "/"))));
         }
 
         return nbaTeams;
@@ -32,7 +32,7 @@ public class NbaTeamScraper {
     private static List<String> getTeamPageUrls(Document nbaTeamsDocument){
         Set<String> nbaTeamPageUrlsSet = new LinkedHashSet<>(30);
 
-        Elements nbaTeamPageLinks = nbaTeamsDocument.select("a[href^=http://espn.go.com/nba/team/_/name/]");
+        Elements nbaTeamPageLinks = nbaTeamsDocument.select("tr.full_table").select("a[href^=/teams/]");
         nbaTeamPageUrlsSet.addAll(nbaTeamPageLinks.stream().map(nbaTeamElement -> nbaTeamElement.attr("href")).collect(Collectors.toList()));
 
         return new ArrayList<>(nbaTeamPageUrlsSet);

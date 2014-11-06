@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static com.btanabe2.fbdu.dp.mocks.MockWebRequest.getEspnTeamsPageScraperMockWebRequest;
+import static com.btanabe2.fbdu.dp.mocks.MockWebRequest.*;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
 
@@ -19,7 +19,7 @@ public class NbaTeamScraperTests {
     @Test
     public void shouldBeAbleToFindThirtyTeams(){
         try {
-            WebRequest webRequest = getEspnTeamsPageScraperMockWebRequest();
+            WebRequest webRequest = getBasketballReferenceStandingsPageMockWebRequest();
             List<NbaTeamEntity> nbaTeams = NbaTeamScraper.getAllNbaTeams(webRequest);
             assertEquals("Did not find 30 teams", 30, nbaTeams.size());
         } catch (Exception ex){

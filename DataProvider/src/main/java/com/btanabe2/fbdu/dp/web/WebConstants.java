@@ -8,4 +8,7 @@ public class WebConstants {
 
     public static final String ESPN_TEAMS_PAGE_URL = "http://espn.go.com/nba/teams";
     public static final String ESPN_TEAMS_BOS_URL = "http://espn.go.com/nba/team/stadium/_/name/bos/boston-celtics";
+
+    public static final String BASKETBALL_REFERENCE_TEAM_PAGE_URL = "http://www.basketball-reference.com/teams/";
+    public static final String BASKETBALL_REFERENCE_STANDINGS_PAGE_URL = "http://www.basketball-reference.com/leagues/NBA_2015_standings.html";
 }
