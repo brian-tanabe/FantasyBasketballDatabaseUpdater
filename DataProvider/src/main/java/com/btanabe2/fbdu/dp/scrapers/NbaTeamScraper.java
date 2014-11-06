@@ -40,6 +40,8 @@ public class NbaTeamScraper {
     }
 
     private static NbaTeamEntity scrapeNbaTeamPage(WebRequest webRequest, String nbaTeamPageUrl) throws IOException {
+        System.out.println(nbaTeamPageUrl);
+
         Document teamStadiumPage = webRequest.getPageAsDocument(nbaTeamPageUrl);
 
         Element dashboardElements = teamStadiumPage.select("div.stw").select("span:contains(Location:)").parents().select("p").get(0);

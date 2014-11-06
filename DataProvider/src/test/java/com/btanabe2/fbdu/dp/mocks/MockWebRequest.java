@@ -36,7 +36,35 @@ public class MockWebRequest {
         Map<String, Document> urlToDocumentMap = new LinkedHashMap<>();
         urlToDocumentMap.put(BASKETBALL_REFERENCE_STANDINGS_PAGE_URL, getBasketballReferenceStandingsPage());
         urlToDocumentMap.put(BASKETBALL_REFERENCE_ATL_PAGE_URL, getBasketballReferenceAtlantaFranchisePage());
-        urlToDocumentMap.put(BASKETBALL_REFERENCE_TOR_PAGE_URL, getBasketballReferenceTorontoFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_BOS_PAGE_URL, getBasketballReferenceBrooklynFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_BKN_PAGE_URL, getBasketballReferenceBostonFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_CHA_PAGE_URL, getBasketballReferenceCharlotteFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_CHI_PAGE_URL, getBasketballReferenceChicagoFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_CLE_PAGE_URL, getBasketballReferenceClevelandFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_DAL_PAGE_URL, getBasketballReferenceDallasFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_DEN_PAGE_URL, getBasketballReferenceDenverFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_DET_PAGE_URL, getBasketballReferenceDetroitFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_GSW_PAGE_URL, getBasketballReferenceGoldenStateFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_HOU_PAGE_URL, getBasketballReferenceHoustonFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_IND_PAGE_URL, getBasketballReferenceIndianaFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_LAC_PAGE_URL, getBasketballReferenceClippersFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_LAL_PAGE_URL, getBasketballReferenceLakersFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_MEM_PAGE_URL, getBasketballReferenceMemphisFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_MIA_PAGE_URL, getBasketballReferenceMiamiFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_MIL_PAGE_URL, getBasketballReferenceMilwaukeeFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_MIN_PAGE_URL, getBasketballReferenceMinnesotaFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_NOH_PAGE_URL, getBasketballReferenceNewOrleansFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_NYK_PAGE_URL, getBasketballReferenceKnicksFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_OKC_PAGE_URL, getBasketballReferenceOklahomaFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_ORL_PAGE_URL, getBasketballReferenceOrlandoFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_PHI_PAGE_URL, getBasketballReferencePhiladelphiaFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_PHX_PAGE_URL, getBasketballReferencePhoenixFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_POR_PAGE_URL, getBasketballReferencePortlandFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_SAC_PAGE_URL, getBasketballReferenceSacramentoFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_SAS_PAGE_URL, getBasketballReferenceSanAntonioFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_TOR_PAGE_URL, getBasketballReferenceUtahFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_UTA_PAGE_URL, getBasketballReferenceWashingtonFranchisePage());
+        urlToDocumentMap.put(BASKETBALL_REFERENCE_WAS_PAGE_URL, getBasketballReferenceTorontoFranchisePage());
 
         return getMockWebRequest(urlToDocumentMap);
     }
