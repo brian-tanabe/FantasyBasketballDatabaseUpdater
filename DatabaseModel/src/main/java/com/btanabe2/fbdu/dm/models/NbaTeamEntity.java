@@ -3,13 +3,13 @@ package com.btanabe2.fbdu.dm.models;
 import javax.persistence.*;
 
 /**
- * Created by brian on 11/6/14.
+ * Created by brian on 11/7/14.
  */
 @Entity
 @Table(name = "nba_team", schema = "public", catalog = "FANTASY_BASKETBALL")
 public class NbaTeamEntity {
     private int id;
-    private int location;
+    private String location;
     private String abbreviation;
     private String name;
 
@@ -25,11 +25,11 @@ public class NbaTeamEntity {
 
     @Basic
     @Column(name = "location")
-    public int getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(int location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
@@ -61,8 +61,8 @@ public class NbaTeamEntity {
         NbaTeamEntity that = (NbaTeamEntity) o;
 
         if (id != that.id) return false;
-        if (location != that.location) return false;
         if (abbreviation != null ? !abbreviation.equals(that.abbreviation) : that.abbreviation != null) return false;
+        if (location != null ? !location.equals(that.location) : that.location != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;
@@ -71,7 +71,7 @@ public class NbaTeamEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + location;
+        result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (abbreviation != null ? abbreviation.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;

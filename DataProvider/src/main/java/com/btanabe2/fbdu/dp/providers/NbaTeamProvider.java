@@ -1,8 +1,9 @@
 package com.btanabe2.fbdu.dp.providers;
 
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
+import com.btanabe2.fbdu.dp.scrapers.NbaTeamJsonParser;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -10,10 +11,7 @@ import java.util.List;
  */
 public class NbaTeamProvider {
 
-    public static List<NbaTeamEntity> getAllCurrentNbaTeams(){
-        List<NbaTeamEntity> teams = new ArrayList<>();
-
-
-        return teams;
+    public static List<NbaTeamEntity> getAllNbaTeamEntities() throws IOException {
+        return NbaTeamJsonParser.getAllNbaTeams();
     }
 }
