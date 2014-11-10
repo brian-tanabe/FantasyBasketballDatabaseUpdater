@@ -1,0 +1,1282 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <script type="text/javascript">(window.NREUM || (NREUM = {})).loader_config = {xpid: "VwIBVVNSGwIIXVdXBQk="};
+    window.NREUM || (NREUM = {}), __nr_require = function (t, e, n) {
+        function r(n) {
+            if (!e[n]) {
+                var o = e[n] = {exports: {}};
+                t[n][0].call(o.exports, function (e) {
+                    var o = t[n][1][e];
+                    return r(o ? o : e)
+                }, o, o.exports)
+            }
+            return e[n].exports
+        }
+
+        if ("function" == typeof __nr_require)return __nr_require;
+        for (var o = 0; o < n.length; o++)r(n[o]);
+        return r
+    }({QJf3ax: [function (t, e) {
+        function n(t) {
+            function e(e, n, a) {
+                t && t(e, n, a), a || (a = {});
+                for (var c = s(e), u = c.length, f = i(a, o, r), d = 0; u > d; d++)c[d].apply(f, n);
+                return f
+            }
+
+            function a(t, e) {
+                u[t] = s(t).concat(e)
+            }
+
+            function s(t) {
+                return u[t] || []
+            }
+
+            function c() {
+                return n(e)
+            }
+
+            var u = {};
+            return{on: a, emit: e, create: c, listeners: s, _events: u}
+        }
+
+        function r() {
+            return{}
+        }
+
+        var o = "nr@context", i = t("gos");
+        e.exports = n()
+    }, {gos: "7eSDFh"}], ee: [function (t, e) {
+        e.exports = t("QJf3ax")
+    }, {}], 3: [function (t) {
+        function e(t, e, n, i, s) {
+            try {
+                c ? c -= 1 : r("err", [s || new UncaughtException(t, e, n)])
+            } catch (u) {
+                try {
+                    r("ierr", [u, (new Date).getTime(), !0])
+                } catch (f) {
+                }
+            }
+            return"function" == typeof a ? a.apply(this, o(arguments)) : !1
+        }
+
+        function UncaughtException(t, e, n) {
+            this.message = t || "Uncaught error with no additional information", this.sourceURL = e, this.line = n
+        }
+
+        function n(t) {
+            r("err", [t, (new Date).getTime()])
+        }
+
+        var r = t("handle"), o = t(4), i = t("ee"), a = window.onerror, s = !1, c = 0;
+        t("loader").features.err = !0, window.onerror = e, NREUM.noticeError = n;
+        try {
+            throw new Error
+        } catch (u) {
+            "stack"in u && (t(5), t(3), "addEventListener"in window && t(1), window.XMLHttpRequest && XMLHttpRequest.prototype && XMLHttpRequest.prototype.addEventListener && t(2), s = !0)
+        }
+        i.on("fn-start", function () {
+            s && (c += 1)
+        }), i.on("fn-err", function (t, e, r) {
+            s && (this.thrown = !0, n(r))
+        }), i.on("fn-end", function () {
+            s && !this.thrown && c > 0 && (c -= 1)
+        }), i.on("internal-error", function (t) {
+            r("ierr", [t, (new Date).getTime(), !0])
+        })
+    }, {1: 4, 2: 7, 3: 5, 4: 18, 5: 6, ee: "QJf3ax", handle: "D5DuLP", loader: "G9z0Bl"}], 4: [function (t, e) {
+        function n(t) {
+            i.inPlace(t, ["addEventListener", "removeEventListener"], "-", r)
+        }
+
+        function r(t) {
+            return t[1]
+        }
+
+        var o = (t(1), t("ee").create()), i = t(2)(o), a = t("gos");
+        if (e.exports = o, n(window), "getPrototypeOf"in Object) {
+            for (var s = document; s && !s.hasOwnProperty("addEventListener");)s = Object.getPrototypeOf(s);
+            s && n(s);
+            for (var c = XMLHttpRequest.prototype; c && !c.hasOwnProperty("addEventListener");)c = Object.getPrototypeOf(c);
+            c && n(c)
+        } else XMLHttpRequest.prototype.hasOwnProperty("addEventListener") && n(XMLHttpRequest.prototype);
+        o.on("addEventListener-start", function (t) {
+            if (t[1]) {
+                var e = t[1];
+                "function" == typeof e ? this.wrapped = t[1] = a(e, "nr@wrapped", function () {
+                    return i(e, "fn-", null, e.name || "anonymous")
+                }) : "function" == typeof e.handleEvent && i.inPlace(e, ["handleEvent"], "fn-")
+            }
+        }), o.on("removeEventListener-start", function (t) {
+            var e = this.wrapped;
+            e && (t[1] = e)
+        })
+    }, {1: 18, 2: 19, ee: "QJf3ax", gos: "7eSDFh"}], 5: [function (t, e) {
+        var n = (t(2), t("ee").create()), r = t(1)(n);
+        e.exports = n, r.inPlace(window, ["requestAnimationFrame", "mozRequestAnimationFrame", "webkitRequestAnimationFrame", "msRequestAnimationFrame"], "raf-"), n.on("raf-start", function (t) {
+            t[0] = r(t[0], "fn-")
+        })
+    }, {1: 19, 2: 18, ee: "QJf3ax"}], 6: [function (t, e) {
+        function n(t, e, n) {
+            var r = t[0];
+            "string" == typeof r && (r = new Function(r)), t[0] = o(r, "fn-", null, n)
+        }
+
+        var r = (t(2), t("ee").create()), o = t(1)(r);
+        e.exports = r, o.inPlace(window, ["setTimeout", "setInterval", "setImmediate"], "setTimer-"), r.on("setTimer-start", n)
+    }, {1: 19, 2: 18, ee: "QJf3ax"}], 7: [function (t, e) {
+        function n() {
+            c.inPlace(this, d, "fn-")
+        }
+
+        function r(t, e) {
+            c.inPlace(e, ["onreadystatechange"], "fn-")
+        }
+
+        function o(t, e) {
+            return e
+        }
+
+        var i = t("ee").create(), a = t(1), s = t(2), c = s(i), u = s(a), f = window.XMLHttpRequest, d = ["onload", "onerror", "onabort", "onloadstart", "onloadend", "onprogress", "ontimeout"];
+        e.exports = i, window.XMLHttpRequest = function (t) {
+            var e = new f(t);
+            try {
+                i.emit("new-xhr", [], e), u.inPlace(e, ["addEventListener", "removeEventListener"], "-", function (t, e) {
+                    return e
+                }), e.addEventListener("readystatechange", n, !1)
+            } catch (r) {
+                try {
+                    i.emit("internal-error", [r])
+                } catch (o) {
+                }
+            }
+            return e
+        }, window.XMLHttpRequest.prototype = f.prototype, c.inPlace(XMLHttpRequest.prototype, ["open", "send"], "-xhr-", o), i.on("send-xhr-start", r), i.on("open-xhr-start", r)
+    }, {1: 4, 2: 19, ee: "QJf3ax"}], 8: [function (t) {
+        function e(t) {
+            if ("string" == typeof t && t.length)return t.length;
+            if ("object" != typeof t)return void 0;
+            if ("undefined" != typeof ArrayBuffer && t instanceof ArrayBuffer && t.byteLength)return t.byteLength;
+            if ("undefined" != typeof Blob && t instanceof Blob && t.size)return t.size;
+            if ("undefined" != typeof FormData && t instanceof FormData)return void 0;
+            try {
+                return JSON.stringify(t).length
+            } catch (e) {
+                return void 0
+            }
+        }
+
+        function n(t) {
+            var n = this.params, r = this.metrics;
+            if (!this.ended) {
+                this.ended = !0;
+                for (var i = 0; c > i; i++)t.removeEventListener(s[i], this.listener, !1);
+                if (!n.aborted) {
+                    if (r.duration = (new Date).getTime() - this.startTime, 4 === t.readyState) {
+                        n.status = t.status;
+                        var a = t.responseType, u = "arraybuffer" === a || "blob" === a || "json" === a ? t.response : t.responseText, f = e(u);
+                        if (f && (r.rxSize = f), this.sameOrigin) {
+                            var d = t.getResponseHeader("X-NewRelic-App-Data");
+                            d && (n.cat = d.split(", ").pop())
+                        }
+                    } else n.status = 0;
+                    r.cbTime = this.cbTime, o("xhr", [n, r, this.startTime])
+                }
+            }
+        }
+
+        function r(t, e) {
+            var n = i(e), r = t.params;
+            r.host = n.hostname + ":" + n.port, r.pathname = n.pathname, t.sameOrigin = n.sameOrigin
+        }
+
+        if (window.XMLHttpRequest && XMLHttpRequest.prototype && XMLHttpRequest.prototype.addEventListener && !/CriOS/.test(navigator.userAgent)) {
+            t("loader").features.xhr = !0;
+            var o = t("handle"), i = t(2), a = t("ee"), s = ["load", "error", "abort", "timeout"], c = s.length, u = t(1);
+            t(4), t(3), a.on("new-xhr", function () {
+                this.totalCbs = 0, this.called = 0, this.cbTime = 0, this.end = n, this.ended = !1, this.xhrGuids = {}
+            }), a.on("open-xhr-start", function (t) {
+                this.params = {method: t[0]}, r(this, t[1]), this.metrics = {}
+            }), a.on("open-xhr-end", function (t, e) {
+                "loader_config"in NREUM && "xpid"in NREUM.loader_config && this.sameOrigin && e.setRequestHeader("X-NewRelic-ID", NREUM.loader_config.xpid)
+            }), a.on("send-xhr-start", function (t, n) {
+                var r = this.metrics, o = t[0], i = this;
+                if (r && o) {
+                    var u = e(o);
+                    u && (r.txSize = u)
+                }
+                this.startTime = (new Date).getTime(), this.listener = function (t) {
+                    try {
+                        "abort" === t.type && (i.params.aborted = !0), ("load" !== t.type || i.called === i.totalCbs && (i.onloadCalled || "function" != typeof n.onload)) && i.end(n)
+                    } catch (e) {
+                        try {
+                            a.emit("internal-error", [e])
+                        } catch (r) {
+                        }
+                    }
+                };
+                for (var f = 0; c > f; f++)n.addEventListener(s[f], this.listener, !1)
+            }), a.on("xhr-cb-time", function (t, e, n) {
+                this.cbTime += t, e ? this.onloadCalled = !0 : this.called += 1, this.called !== this.totalCbs || !this.onloadCalled && "function" == typeof n.onload || this.end(n)
+            }), a.on("xhr-load-added", function (t, e) {
+                var n = "" + u(t) + !!e;
+                this.xhrGuids && !this.xhrGuids[n] && (this.xhrGuids[n] = !0, this.totalCbs += 1)
+            }), a.on("xhr-load-removed", function (t, e) {
+                var n = "" + u(t) + !!e;
+                this.xhrGuids && this.xhrGuids[n] && (delete this.xhrGuids[n], this.totalCbs -= 1)
+            }), a.on("addEventListener-end", function (t, e) {
+                e instanceof XMLHttpRequest && "load" === t[0] && a.emit("xhr-load-added", [t[1], t[2]], e)
+            }), a.on("removeEventListener-end", function (t, e) {
+                e instanceof XMLHttpRequest && "load" === t[0] && a.emit("xhr-load-removed", [t[1], t[2]], e)
+            }), a.on("fn-start", function (t, e, n) {
+                e instanceof XMLHttpRequest && ("onload" === n && (this.onload = !0), ("load" === (t[0] && t[0].type) || this.onload) && (this.xhrCbStart = (new Date).getTime()))
+            }), a.on("fn-end", function (t, e) {
+                this.xhrCbStart && a.emit("xhr-cb-time", [(new Date).getTime() - this.xhrCbStart, this.onload, e], e)
+            })
+        }
+    }, {1: "XL7HBI", 2: 9, 3: 7, 4: 4, ee: "QJf3ax", handle: "D5DuLP", loader: "G9z0Bl"}], 9: [function (t, e) {
+        e.exports = function (t) {
+            var e = document.createElement("a"), n = window.location, r = {};
+            e.href = t, r.port = e.port;
+            var o = e.href.split("://");
+            return!r.port && o[1] && (r.port = o[1].split("/")[0].split(":")[1]), r.port && "0" !== r.port || (r.port = "https" === o[0] ? "443" : "80"), r.hostname = e.hostname || n.hostname, r.pathname = e.pathname, "/" !== r.pathname.charAt(0) && (r.pathname = "/" + r.pathname), r.sameOrigin = !e.hostname || e.hostname === document.domain && e.port === n.port && e.protocol === n.protocol, r
+        }
+    }, {}], gos: [function (t, e) {
+        e.exports = t("7eSDFh")
+    }, {}], "7eSDFh": [function (t, e) {
+        function n(t, e, n) {
+            if (r.call(t, e))return t[e];
+            var o = n();
+            if (Object.defineProperty && Object.keys)try {
+                return Object.defineProperty(t, e, {value: o, writable: !0, enumerable: !1}), o
+            } catch (i) {
+            }
+            return t[e] = o, o
+        }
+
+        var r = Object.prototype.hasOwnProperty;
+        e.exports = n
+    }, {}], D5DuLP: [function (t, e) {
+        function n(t, e, n) {
+            return r.listeners(t).length ? r.emit(t, e, n) : (o[t] || (o[t] = []), void o[t].push(e))
+        }
+
+        var r = t("ee").create(), o = {};
+        e.exports = n, n.ee = r, r.q = o
+    }, {ee: "QJf3ax"}], handle: [function (t, e) {
+        e.exports = t("D5DuLP")
+    }, {}], XL7HBI: [function (t, e) {
+        function n(t) {
+            var e = typeof t;
+            return!t || "object" !== e && "function" !== e ? -1 : t === window ? 0 : i(t, o, function () {
+                return r++
+            })
+        }
+
+        var r = 1, o = "nr@id", i = t("gos");
+        e.exports = n
+    }, {gos: "7eSDFh"}], id: [function (t, e) {
+        e.exports = t("XL7HBI")
+    }, {}], loader: [function (t, e) {
+        e.exports = t("G9z0Bl")
+    }, {}], G9z0Bl: [function (t, e) {
+        function n() {
+            var t = p.info = NREUM.info;
+            if (t && t.agent && t.licenseKey && t.applicationID && c && c.body) {
+                p.proto = "https" === d.split(":")[0] || t.sslForHttp ? "https://" : "http://", a("mark", ["onload", i()]);
+                var e = c.createElement("script");
+                e.src = p.proto + t.agent, c.body.appendChild(e)
+            }
+        }
+
+        function r() {
+            "complete" === c.readyState && o()
+        }
+
+        function o() {
+            a("mark", ["domContent", i()])
+        }
+
+        function i() {
+            return(new Date).getTime()
+        }
+
+        var a = t("handle"), s = window, c = s.document, u = "addEventListener", f = "attachEvent", d = ("" + location).split("?")[0], p = e.exports = {offset: i(), origin: d, features: {}};
+        c[u] ? (c[u]("DOMContentLoaded", o, !1), s[u]("load", n, !1)) : (c[f]("onreadystatechange", r), s[f]("onload", n)), a("mark", ["firstbyte", i()])
+    }, {handle: "D5DuLP"}], 18: [function (t, e) {
+        function n(t, e, n) {
+            e || (e = 0), "undefined" == typeof n && (n = t ? t.length : 0);
+            for (var r = -1, o = n - e || 0, i = Array(0 > o ? 0 : o); ++r < o;)i[r] = t[e + r];
+            return i
+        }
+
+        e.exports = n
+    }, {}], 19: [function (t, e) {
+        function n(t) {
+            return!(t && "function" == typeof t && t.apply && !t[i])
+        }
+
+        var r = t("ee"), o = t(1), i = "nr@wrapper", a = Object.prototype.hasOwnProperty;
+        e.exports = function (t) {
+            function e(t, e, r, a) {
+                function nrWrapper() {
+                    var n, i, s, u;
+                    try {
+                        i = this, n = o(arguments), s = r && r(n, i) || {}
+                    } catch (d) {
+                        f([d, "", [n, i, a], s])
+                    }
+                    c(e + "start", [n, i, a], s);
+                    try {
+                        return u = t.apply(i, n)
+                    } catch (p) {
+                        throw c(e + "err", [n, i, p], s), p
+                    } finally {
+                        c(e + "end", [n, i, u], s)
+                    }
+                }
+
+                return n(t) ? t : (e || (e = ""), nrWrapper[i] = !0, u(t, nrWrapper), nrWrapper)
+            }
+
+            function s(t, r, o, i) {
+                o || (o = "");
+                var a, s, c, u = "-" === o.charAt(0);
+                for (c = 0; c < r.length; c++)s = r[c], a = t[s], n(a) || (t[s] = e(a, u ? s + o : o, i, s, t))
+            }
+
+            function c(e, n, r) {
+                try {
+                    t.emit(e, n, r)
+                } catch (o) {
+                    f([o, e, n, r])
+                }
+            }
+
+            function u(t, e) {
+                if (Object.defineProperty && Object.keys)try {
+                    var n = Object.keys(t);
+                    return n.forEach(function (n) {
+                        Object.defineProperty(e, n, {get: function () {
+                            return t[n]
+                        }, set: function (e) {
+                            return t[n] = e, e
+                        }})
+                    }), e
+                } catch (r) {
+                    f([r])
+                }
+                for (var o in t)a.call(t, o) && (e[o] = t[o]);
+                return e
+            }
+
+            function f(e) {
+                try {
+                    t.emit("internal-error", e)
+                } catch (n) {
+                }
+            }
+
+            return t || (t = r), e.inPlace = s, e.flag = i, e
+        }
+    }, {1: 18, ee: "QJf3ax"}]}, {}, ["G9z0Bl", 3, 8]);</script>
+    <meta name="robots" content="index, follow"/>
+    <meta name="title" content="Fantasy Basketball Rankings"/>
+    <meta name="author" content="numberFire, Inc.">
+
+
+    <meta name="description"
+          content="numberFire uses the powers of quantitative analysis to be the world's most accurate predictor of sports performance."/>
+    <title>Fantasy Basketball Rankings</title>
+    <meta name="google-site-verification" content="msBGELE8fxr0wulpL7zwPetSi3Njb1mvPSZpodL_iyM"/>
+    <meta name="tinfoil-site-verification" content="8686b5104c26e5458c1486868a468e4e85b5f97f"/>
+
+    <link rel="shortcut icon" href="https://d1tjohjvimcqgl.cloudfront.net/website/global/favicon.ico"
+          type="image/x-icon"/>
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/news/feed"/>
+
+    <link rel="stylesheet" href="/css-new/style.min.css?v=54">
+    <link rel="stylesheet" href="/css-new/colorbox.min.css?v=54">
+
+
+    <script type="text/javascript">
+        var NF_DATA = {"is_logged_in": true, "FACEBOOK_APP_NAMESPACE": "numberfire", "FACEBOOK_APP_ID": "103292676390270", "players": [
+            {"id": "195", "name": "Stephen Curry", "slug": "stephen-curry", "first_name": "Stephen", "last_name": "Curry", "race": "5", "position": "G", "position_group": "3", "team_id": "9", "number": "30", "height": "6'3", "weight": "185", "age": "23", "experience": "2", "dob": "1988-03-14", "url": "", "yahoo_id": "4612", "espn_id": "3975", "league_id": "", "sports_reference_id": "curryst01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "195", "fgpct": "0.95", "threep": "2.64", "ftpct": "2.46", "trb": "0.38", "ast": "2.05", "stl": "4.10", "blk": "-0.87", "tov": "-3.22", "pts": "2.57", "zscore": "11.06", "fantasy": "10.31"},
+            {"id": "2137", "name": "Anthony Davis", "slug": "anthony-davis", "first_name": "", "last_name": "", "race": "0", "position": "FC", "position_group": "0", "team_id": "38", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "0", "espn_id": "6583", "league_id": "", "sports_reference_id": "davisan02", "role_id": "1", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "1", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "2137", "fgpct": "0.95", "threep": "-1.11", "ftpct": "0.85", "trb": "1.91", "ast": "-0.62", "stl": "1.42", "blk": "4.56", "tov": "0.77", "pts": "1.27", "zscore": "10.00", "fantasy": "9.06"},
+            {"id": "78", "name": "James Harden", "slug": "james-harden", "first_name": "James", "last_name": "Harden", "race": "5", "position": "GF", "position_group": "3", "team_id": "10", "number": "13", "height": "6'5", "weight": "220", "age": "22", "experience": "2", "dob": "1989-08-26", "url": "", "yahoo_id": "4563", "espn_id": "3992", "league_id": "", "sports_reference_id": "hardeja01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "78", "fgpct": "-1.29", "threep": "1.70", "ftpct": "3.00", "trb": "0.91", "ast": "2.60", "stl": "1.15", "blk": "1.10", "tov": "-3.58", "pts": "2.92", "zscore": "8.52", "fantasy": "7.53"},
+            {"id": "22", "name": "Chris Paul", "slug": "chris-paul", "first_name": "Chris", "last_name": "Paul", "race": "5", "position": "PG", "position_group": "3", "team_id": "12", "number": "3", "height": "6'0", "weight": "175", "age": "26", "experience": "6", "dob": "1985-05-06", "url": "", "yahoo_id": "3930", "espn_id": "2779", "league_id": "", "sports_reference_id": "paulch01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "22", "fgpct": "-0.18", "threep": "0.01", "ftpct": "0.39", "trb": "-0.27", "ast": "3.62", "stl": "2.76", "blk": "0.12", "tov": "1.14", "pts": "0.62", "zscore": "8.22", "fantasy": "7.47"},
+            {"id": "362", "name": "Chris Bosh", "slug": "chris-bosh", "first_name": "Chris", "last_name": "Bosh", "race": "4", "position": "FC", "position_group": "2", "team_id": "15", "number": "1", "height": "6'10", "weight": "235", "age": "27", "experience": "8", "dob": "1984-03-24", "url": "", "yahoo_id": "3707", "espn_id": "1977", "league_id": "", "sports_reference_id": "boshch01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "362", "fgpct": "0.76", "threep": "0.58", "ftpct": "1.16", "trb": "2.38", "ast": "0.32", "stl": "0.61", "blk": "-0.62", "tov": "-0.86", "pts": "2.54", "zscore": "6.87", "fantasy": "5.93"},
+            {"id": "68", "name": "Gordon Hayward", "slug": "gordon-hayward", "first_name": "Gordon", "last_name": "Hayward", "race": "3", "position": "GF", "position_group": "2", "team_id": "29", "number": "20", "height": "6'9", "weight": "207", "age": "21", "experience": "1", "dob": "1990-03-23", "url": "", "yahoo_id": "4724", "espn_id": "4249", "league_id": "", "sports_reference_id": "haywago01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "68", "fgpct": "0.26", "threep": "1.52", "ftpct": "1.94", "trb": "0.62", "ast": "1.50", "stl": "0.35", "blk": "-0.38", "tov": "-0.68", "pts": "1.36", "zscore": "6.48", "fantasy": "5.49"},
+            {"id": "136", "name": "DeMarcus Cousins", "slug": "demarcus-cousins", "first_name": "DeMarcus", "last_name": "Cousins", "race": "4", "position": "FC", "position_group": "2", "team_id": "26", "number": "15", "height": "6'11", "weight": "270", "age": "21", "experience": "1", "dob": "1990-08-13", "url": "", "yahoo_id": "4720", "espn_id": "4258", "league_id": "", "sports_reference_id": "couside01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "136", "fgpct": "0.93", "threep": "-1.11", "ftpct": "0.64", "trb": "2.74", "ast": "-0.54", "stl": "1.15", "blk": "1.60", "tov": "-1.59", "pts": "2.42", "zscore": "6.24", "fantasy": "5.30"},
+            {"id": "2135", "name": "Damian Lillard", "slug": "damian-lillard", "first_name": "", "last_name": "", "race": "0", "position": "PG", "position_group": "0", "team_id": "25", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "0", "espn_id": "6606", "league_id": "", "sports_reference_id": "lillada01", "role_id": "1", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "1", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "2135", "fgpct": "-0.89", "threep": "2.45", "ftpct": "1.86", "trb": "0.38", "ast": "1.82", "stl": "-0.19", "blk": "-0.38", "tov": "-0.50", "pts": "1.27", "zscore": "5.83", "fantasy": "5.08"},
+            {"id": "61", "name": "Dirk Nowitzki", "slug": "dirk-nowitzki", "first_name": "Dirk", "last_name": "Nowitzki", "race": "1", "position": "FC", "position_group": "2", "team_id": "6", "number": "41", "height": "7'0", "weight": "245", "age": "33", "experience": "13", "dob": "1978-06-19", "url": "", "yahoo_id": "3252", "espn_id": "609", "league_id": "", "sports_reference_id": "nowitdi01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "61", "fgpct": "1.50", "threep": "1.70", "ftpct": "0.39", "trb": "0.56", "ast": "-0.07", "stl": "-0.46", "blk": "-0.13", "tov": "0.23", "pts": "1.92", "zscore": "5.63", "fantasy": "4.69"},
+            {"id": "18", "name": "Trevor Ariza", "slug": "trevor-ariza", "first_name": "Trevor", "last_name": "Ariza", "race": "4", "position": "GF", "position_group": "2", "team_id": "10", "number": "1", "height": "6'8", "weight": "210", "age": "26", "experience": "7", "dob": "1985-06-30", "url": "", "yahoo_id": "0", "espn_id": "2426", "league_id": "", "sports_reference_id": "arizatr01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "18", "fgpct": "-0.06", "threep": "3.02", "ftpct": "0.45", "trb": "0.56", "ast": "0.24", "stl": "1.96", "blk": "-0.87", "tov": "-0.32", "pts": "0.68", "zscore": "5.67", "fantasy": "4.68"},
+            {"id": "226", "name": "Nikola Vucevic", "slug": "nikola-vucevic", "first_name": "Nikola", "last_name": "Vucevic", "race": "3", "position": "FC", "position_group": "2", "team_id": "22", "number": "44", "height": "6'10", "weight": "260", "age": "21", "experience": "0", "dob": "1990-10-24", "url": "", "yahoo_id": "0", "espn_id": "6478", "league_id": "", "sports_reference_id": "vucevni01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "226", "fgpct": "1.77", "threep": "-0.74", "ftpct": "-0.21", "trb": "3.21", "ast": "0.01", "stl": "0.35", "blk": "1.10", "tov": "-1.59", "pts": "1.51", "zscore": "5.40", "fantasy": "4.46"},
+            {"id": "347", "name": "John Wall", "slug": "john-wall", "first_name": "John", "last_name": "Wall", "race": "4", "position": "PG", "position_group": "3", "team_id": "30", "number": "2", "height": "6'4", "weight": "195", "age": "21", "experience": "1", "dob": "1990-09-06", "url": "", "yahoo_id": "4716", "espn_id": "4237", "league_id": "", "sports_reference_id": "walljo01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "347", "fgpct": "0.04", "threep": "-0.36", "ftpct": "0.26", "trb": "-0.27", "ast": "3.47", "stl": "3.30", "blk": "-0.38", "tov": "-2.68", "pts": "1.60", "zscore": "4.98", "fantasy": "4.23"},
+            {"id": "29", "name": "Rudy Gay", "slug": "rudy-gay", "first_name": "Rudy", "last_name": "Gay", "race": "4", "position": "F", "position_group": "2", "team_id": "26", "number": "22", "height": "6'8", "weight": "230", "age": "25", "experience": "5", "dob": "1986-08-17", "url": "", "yahoo_id": "4136", "espn_id": "3005", "league_id": "", "sports_reference_id": "gayru01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "29", "fgpct": "0.11", "threep": "0.58", "ftpct": "1.66", "trb": "1.09", "ast": "0.16", "stl": "0.61", "blk": "0.12", "tov": "-1.22", "pts": "2.27", "zscore": "5.38", "fantasy": "4.20"},
+            {"id": "28", "name": "Marc Gasol", "slug": "marc-gasol", "first_name": "Marc", "last_name": "Gasol", "race": "1", "position": "C", "position_group": "1", "team_id": "14", "number": "33", "height": "7'1", "weight": "265", "age": "26", "experience": "3", "dob": "1985-01-29", "url": "", "yahoo_id": "4325", "espn_id": "3206", "league_id": "", "sports_reference_id": "gasolma01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "28", "fgpct": "1.00", "threep": "-1.11", "ftpct": "0.86", "trb": "1.20", "ast": "0.16", "stl": "1.15", "blk": "2.09", "tov": "-1.95", "pts": "1.62", "zscore": "5.03", "fantasy": "4.09"},
+            {"id": "282", "name": "Roy Hibbert", "slug": "roy-hibbert", "first_name": "Roy", "last_name": "Hibbert", "race": "4", "position": "C", "position_group": "1", "team_id": "11", "number": "55", "height": "7'2", "weight": "278", "age": "25", "experience": "3", "dob": "1986-12-11", "url": "", "yahoo_id": "4479", "espn_id": "3436", "league_id": "", "sports_reference_id": "hibbero01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "282", "fgpct": "0.40", "threep": "-1.11", "ftpct": "0.55", "trb": "1.56", "ast": "-0.54", "stl": "-1.53", "blk": "5.54", "tov": "-0.13", "pts": "0.27", "zscore": "4.99", "fantasy": "4.05"},
+            {"id": "79", "name": "Serge Ibaka", "slug": "serge-ibaka", "first_name": "Serge", "last_name": "Ibaka", "race": "6", "position": "FC", "position_group": "2", "team_id": "21", "number": "9", "height": "6'10", "weight": "240", "age": "22", "experience": "2", "dob": "1989-09-18", "url": "", "yahoo_id": "4486", "espn_id": "3439", "league_id": "", "sports_reference_id": "ibakase01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "79", "fgpct": "1.41", "threep": "1.52", "ftpct": "-0.14", "trb": "1.38", "ast": "-0.54", "stl": "-1.00", "blk": "2.09", "tov": "-1.04", "pts": "1.21", "zscore": "4.89", "fantasy": "3.95"},
+            {"id": "294", "name": "Brandon Knight", "slug": "brandon-knight", "first_name": "Brandon", "last_name": "Knight", "race": "6", "position": "G", "position_group": "3", "team_id": "16", "number": "8", "height": "6'3", "weight": "185", "age": "20", "experience": "0", "dob": "1991-02-02", "url": "", "yahoo_id": "4889", "espn_id": "6448", "league_id": "", "sports_reference_id": "knighbr03", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "294", "fgpct": "-0.38", "threep": "0.76", "ftpct": "1.58", "trb": "0.79", "ast": "2.68", "stl": "1.15", "blk": "-0.62", "tov": "-2.68", "pts": "1.30", "zscore": "4.59", "fantasy": "3.84"},
+            {"id": "33", "name": "Zach Randolph", "slug": "zach-randolph", "first_name": "Zach", "last_name": "Randolph", "race": "4", "position": "FC", "position_group": "2", "team_id": "14", "number": "50", "height": "6'9", "weight": "260", "age": "30", "experience": "10", "dob": "1981-07-16", "url": "", "yahoo_id": "3531", "espn_id": "1017", "league_id": "", "sports_reference_id": "randoza01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "33", "fgpct": "0.98", "threep": "-0.92", "ftpct": "1.13", "trb": "2.62", "ast": "-0.62", "stl": "1.15", "blk": "-0.62", "tov": "-0.32", "pts": "1.27", "zscore": "4.66", "fantasy": "3.72"},
+            {"id": "98", "name": "Wesley Matthews", "slug": "wesley-matthews", "first_name": "Wesley", "last_name": "Matthews", "race": "6", "position": "GF", "position_group": "2", "team_id": "25", "number": "2", "height": "6'5", "weight": "200", "age": "25", "experience": "2", "dob": "1986-10-14", "url": "", "yahoo_id": "4694", "espn_id": "4032", "league_id": "", "sports_reference_id": "matthwe02", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "98", "fgpct": "0.96", "threep": "2.83", "ftpct": "-0.28", "trb": "-0.15", "ast": "-0.39", "stl": "0.08", "blk": "-0.38", "tov": "0.59", "pts": "1.33", "zscore": "4.60", "fantasy": "3.61"},
+            {"id": "45", "name": "Kyle Lowry", "slug": "kyle-lowry", "first_name": "Kyle", "last_name": "Lowry", "race": "5", "position": "PG", "position_group": "3", "team_id": "28", "number": "7", "height": "6'0", "weight": "205", "age": "25", "experience": "5", "dob": "1986-03-25", "url": "", "yahoo_id": "0", "espn_id": "3012", "league_id": "", "sports_reference_id": "lowryky01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "45", "fgpct": "0.47", "threep": "0.20", "ftpct": "0.34", "trb": "-0.03", "ast": "1.74", "stl": "0.61", "blk": "-0.62", "tov": "0.23", "pts": "1.36", "zscore": "4.30", "fantasy": "3.55"},
+            {"id": "171", "name": "Pau Gasol", "slug": "pau-gasol", "first_name": "Pau", "last_name": "Gasol", "race": "3", "position": "FC", "position_group": "2", "team_id": "4", "number": "16", "height": "7'0", "weight": "250", "age": "31", "experience": "10", "dob": "1980-07-06", "url": "", "yahoo_id": "3513", "espn_id": "996", "league_id": "", "sports_reference_id": "gasolpa01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "171", "fgpct": "0.85", "threep": "-1.11", "ftpct": "0.40", "trb": "2.50", "ast": "-0.39", "stl": "-1.00", "blk": "2.83", "tov": "-1.22", "pts": "1.51", "zscore": "4.37", "fantasy": "3.43"},
+            {"id": "66", "name": "Derrick Favors", "slug": "derrick-favors", "first_name": "Derrick", "last_name": "Favors", "race": "4", "position": "FC", "position_group": "2", "team_id": "29", "number": "15", "height": "6'10", "weight": "246", "age": "20", "experience": "1", "dob": "1991-07-15", "url": "", "yahoo_id": "4718", "espn_id": "4257", "league_id": "", "sports_reference_id": "favorde01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "66", "fgpct": "1.83", "threep": "-1.11", "ftpct": "0.03", "trb": "1.62", "ast": "-0.47", "stl": "0.08", "blk": "1.60", "tov": "-0.50", "pts": "1.04", "zscore": "4.11", "fantasy": "3.17"},
+            {"id": "89", "name": "LaMarcus Aldridge", "slug": "lamarcus-aldridge", "first_name": "LaMarcus", "last_name": "Aldridge", "race": "5", "position": "FC", "position_group": "2", "team_id": "25", "number": "12", "height": "6'11", "weight": "246", "age": "26", "experience": "5", "dob": "1985-07-19", "url": "", "yahoo_id": "4130", "espn_id": "2983", "league_id": "", "sports_reference_id": "aldrila01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "89", "fgpct": "0.32", "threep": "-0.36", "ftpct": "0.70", "trb": "1.09", "ast": "-0.23", "stl": "-0.46", "blk": "0.61", "tov": "0.05", "pts": "2.39", "zscore": "4.10", "fantasy": "3.16"},
+            {"id": "278", "name": "Darren Collison", "slug": "darren-collison", "first_name": "Darren", "last_name": "Collison", "race": "6", "position": "PG", "position_group": "3", "team_id": "26", "number": "2", "height": "6'0", "weight": "160", "age": "24", "experience": "2", "dob": "1987-08-23", "url": "", "yahoo_id": "0", "espn_id": "3973", "league_id": "", "sports_reference_id": "collida01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "278", "fgpct": "-0.75", "threep": "-0.55", "ftpct": "0.40", "trb": "-0.21", "ast": "2.13", "stl": "2.22", "blk": "-0.13", "tov": "-0.13", "pts": "0.71", "zscore": "3.70", "fantasy": "2.95"},
+            {"id": "370", "name": "Dwyane Wade", "slug": "dwyane-wade", "first_name": "Dwyane", "last_name": "Wade", "race": "4", "position": "G", "position_group": "3", "team_id": "15", "number": "3", "height": "6'4", "weight": "220", "age": "29", "experience": "8", "dob": "1982-01-17", "url": "", "yahoo_id": "3708", "espn_id": "1987", "league_id": "", "sports_reference_id": "wadedw01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "370", "fgpct": "1.22", "threep": "-0.36", "ftpct": "0.03", "trb": "-0.45", "ast": "2.44", "stl": "0.88", "blk": "0.12", "tov": "-1.95", "pts": "1.74", "zscore": "3.68", "fantasy": "2.93"},
+            {"id": "257", "name": "Jeff Green", "slug": "jeff-green", "first_name": "Jeff", "last_name": "Green", "race": "0", "position": "GF", "position_group": "2", "team_id": "2", "number": "8", "height": "6'9", "weight": "235", "age": "25", "experience": "4", "dob": "1986-08-28", "url": "", "yahoo_id": "4247", "espn_id": "3209", "league_id": "", "sports_reference_id": "greenje02", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "257", "fgpct": "0.06", "threep": "1.70", "ftpct": "0.46", "trb": "0.03", "ast": "-0.15", "stl": "0.08", "blk": "0.36", "tov": "0.23", "pts": "1.15", "zscore": "3.92", "fantasy": "2.93"},
+            {"id": "381", "name": "Kemba Walker", "slug": "kemba-walker", "first_name": "Kemba", "last_name": "Walker", "race": "4", "position": "PG", "position_group": "3", "team_id": "35", "number": "11", "height": "6'1", "weight": "172", "age": "21", "experience": "0", "dob": "1990-05-08", "url": "", "yahoo_id": "4890", "espn_id": "6479", "league_id": "", "sports_reference_id": "walkeke02", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "381", "fgpct": "-0.87", "threep": "0.95", "ftpct": "-0.48", "trb": "-0.09", "ast": "1.34", "stl": "1.42", "blk": "-0.13", "tov": "0.59", "pts": "0.86", "zscore": "3.59", "fantasy": "2.84"},
+            {"id": "186", "name": "DeAndre Jordan", "slug": "deandre-jordan", "first_name": "DeAndre", "last_name": "Jordan", "race": "4", "position": "C", "position_group": "2", "team_id": "12", "number": "9", "height": "6'11", "weight": "265", "age": "23", "experience": "3", "dob": "1988-07-21", "url": "", "yahoo_id": "4497", "espn_id": "3442", "league_id": "", "sports_reference_id": "jordade01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "186", "fgpct": "1.79", "threep": "-1.11", "ftpct": "-0.58", "trb": "1.91", "ast": "-0.94", "stl": "1.42", "blk": "1.35", "tov": "0.59", "pts": "-0.73", "zscore": "3.70", "fantasy": "2.76"},
+            {"id": "211", "name": "DeMar DeRozan", "slug": "demar-derozan", "first_name": "DeMar", "last_name": "DeRozan", "race": "4", "position": "GF", "position_group": "2", "team_id": "28", "number": "10", "height": "6'7", "weight": "220", "age": "22", "experience": "2", "dob": "1989-08-07", "url": "", "yahoo_id": "4614", "espn_id": "3978", "league_id": "", "sports_reference_id": "derozde01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "211", "fgpct": "-0.22", "threep": "-0.74", "ftpct": "1.09", "trb": "0.14", "ast": "0.01", "stl": "2.76", "blk": "-0.62", "tov": "-1.04", "pts": "2.36", "zscore": "3.73", "fantasy": "2.74"},
+            {"id": "69", "name": "Al Jefferson", "slug": "al-jefferson", "first_name": "Al", "last_name": "Jefferson", "race": "4", "position": "FC", "position_group": "2", "team_id": "35", "number": "25", "height": "6'10", "weight": "280", "age": "26", "experience": "7", "dob": "1985-01-04", "url": "", "yahoo_id": "3832", "espn_id": "2389", "league_id": "", "sports_reference_id": "jeffeal01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "69", "fgpct": "1.14", "threep": "-1.11", "ftpct": "-2.16", "trb": "1.20", "ast": "-0.39", "stl": "0.08", "blk": "2.34", "tov": "0.05", "pts": "2.36", "zscore": "3.51", "fantasy": "2.57"},
+            {"id": "328", "name": "Kyle Korver", "slug": "kyle-korver", "first_name": "Kyle", "last_name": "Korver", "race": "2", "position": "GF", "position_group": "2", "team_id": "1", "number": "26", "height": "6'7", "weight": "212", "age": "30", "experience": "8", "dob": "1981-03-17", "url": "", "yahoo_id": "0", "espn_id": "2011", "league_id": "", "sports_reference_id": "korveky01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "328", "fgpct": "0.76", "threep": "2.45", "ftpct": "0.45", "trb": "-0.98", "ast": "-0.47", "stl": "-0.46", "blk": "0.86", "tov": "0.77", "pts": "0.12", "zscore": "3.52", "fantasy": "2.53"},
+            {"id": "251", "name": "Deron Williams", "slug": "deron-williams", "first_name": "Deron", "last_name": "Williams", "race": "5", "position": "PG", "position_group": "3", "team_id": "37", "number": "8", "height": "6'3", "weight": "207", "age": "27", "experience": "6", "dob": "1984-06-26", "url": "", "yahoo_id": "3929", "espn_id": "2798", "league_id": "", "sports_reference_id": "willide01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "251", "fgpct": "0.62", "threep": "0.20", "ftpct": "1.06", "trb": "-0.98", "ast": "1.97", "stl": "0.08", "blk": "-0.13", "tov": "-0.68", "pts": "1.12", "zscore": "3.27", "fantasy": "2.52"},
+            {"id": "2095", "name": "Tony Wroten", "slug": "tony-wroten", "first_name": "", "last_name": "", "race": "0", "position": "PG", "position_group": "0", "team_id": "23", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "0", "espn_id": "6630", "league_id": "", "sports_reference_id": "wroteto01", "role_id": "3", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "1", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "2095", "fgpct": "-0.22", "threep": "1.14", "ftpct": "-1.85", "trb": "-0.09", "ast": "2.37", "stl": "3.57", "blk": "-0.13", "tov": "-3.77", "pts": "2.18", "zscore": "3.19", "fantasy": "2.44"},
+            {"id": "158", "name": "Robin Lopez", "slug": "robin-lopez", "first_name": "Robin", "last_name": "Lopez", "race": "6", "position": "C", "position_group": "1", "team_id": "25", "number": "15", "height": "7'0", "weight": "255", "age": "23", "experience": "3", "dob": "1988-04-01", "url": "", "yahoo_id": "4477", "espn_id": "3447", "league_id": "", "sports_reference_id": "lopezro01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "158", "fgpct": "1.06", "threep": "-1.11", "ftpct": "0.24", "trb": "1.44", "ast": "-0.70", "stl": "-0.46", "blk": "2.34", "tov": "0.23", "pts": "0.30", "zscore": "3.33", "fantasy": "2.39"},
+            {"id": "156", "name": "Marcin Gortat", "slug": "marcin-gortat", "first_name": "Marcin", "last_name": "Gortat", "race": "3", "position": "C", "position_group": "1", "team_id": "30", "number": "4", "height": "6'11", "weight": "240", "age": "27", "experience": "4", "dob": "1984-02-17", "url": "", "yahoo_id": "3983", "espn_id": "2758", "league_id": "", "sports_reference_id": "gortama01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "156", "fgpct": "1.84", "threep": "-1.11", "ftpct": "-0.27", "trb": "1.79", "ast": "-0.86", "stl": "-0.19", "blk": "1.10", "tov": "0.41", "pts": "0.56", "zscore": "3.28", "fantasy": "2.34"},
+            {"id": "276", "name": "Larry Sanders", "slug": "larry-sanders", "first_name": "Larry", "last_name": "Sanders", "race": "5", "position": "FC", "position_group": "2", "team_id": "16", "number": "8", "height": "6'11", "weight": "235", "age": "23", "experience": "1", "dob": "1988-11-21", "url": "", "yahoo_id": "4730", "espn_id": "4265", "league_id": "", "sports_reference_id": "sandela01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "276", "fgpct": "-0.60", "threep": "-1.11", "ftpct": "-0.07", "trb": "1.62", "ast": "-0.70", "stl": "1.96", "blk": "2.83", "tov": "0.41", "pts": "-1.06", "zscore": "3.28", "fantasy": "2.34"},
+            {"id": "92", "name": "Nicolas Batum", "slug": "nicolas-batum", "first_name": "Nicolas", "last_name": "Batum", "race": "6", "position": "GF", "position_group": "2", "team_id": "25", "number": "88", "height": "6'8", "weight": "210", "age": "23", "experience": "3", "dob": "1988-12-14", "url": "", "yahoo_id": "4487", "espn_id": "3416", "league_id": "", "sports_reference_id": "batumni01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "92", "fgpct": "-0.97", "threep": "0.76", "ftpct": "0.45", "trb": "1.32", "ast": "1.82", "stl": "0.35", "blk": "0.61", "tov": "-0.86", "pts": "-0.47", "zscore": "3.01", "fantasy": "2.02"},
+            {"id": "394", "name": "Tyson Chandler", "slug": "tyson-chandler", "first_name": "Tyson", "last_name": "Chandler", "race": "4", "position": "C", "position_group": "1", "team_id": "6", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "3512", "espn_id": "984", "league_id": "", "sports_reference_id": "chandty01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "394", "fgpct": "2.01", "threep": "-1.11", "ftpct": "-0.13", "trb": "2.09", "ast": "-0.78", "stl": "-0.73", "blk": "2.09", "tov": "-0.50", "pts": "-0.05", "zscore": "2.89", "fantasy": "1.95"},
+            {"id": "472", "name": "Garrett Temple", "slug": "garrett-temple", "first_name": "Garrett", "last_name": "Temple", "race": "0", "position": "G", "position_group": "3", "team_id": "30", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "4682", "espn_id": "4023", "league_id": "", "sports_reference_id": "templga01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "472", "fgpct": "-0.50", "threep": "1.70", "ftpct": "0.23", "trb": "-0.15", "ast": "-0.23", "stl": "1.15", "blk": "0.12", "tov": "0.41", "pts": "-0.11", "zscore": "2.62", "fantasy": "1.87"},
+            {"id": "406", "name": "Mike Dunleavy", "slug": "mike-dunleavy", "first_name": "Mike", "last_name": "Dunleavy", "race": "1", "position": "GF", "position_group": "2", "team_id": "4", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "3601", "espn_id": "1708", "league_id": "", "sports_reference_id": "dunlemi02", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "406", "fgpct": "0.17", "threep": "2.08", "ftpct": "0.16", "trb": "-0.39", "ast": "0.32", "stl": "-0.46", "blk": "0.12", "tov": "0.59", "pts": "0.09", "zscore": "2.69", "fantasy": "1.70"},
+            {"id": "146", "name": "Isaiah Thomas", "slug": "isaiah-thomas", "first_name": "Isaiah", "last_name": "Thomas", "race": "5", "position": "PG", "position_group": "3", "team_id": "24", "number": "22", "height": "5'9", "weight": "185", "age": "22", "experience": "0", "dob": "1989-02-07", "url": "", "yahoo_id": "4942", "espn_id": "6472", "league_id": "", "sports_reference_id": "thomais02", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "2", "nba_player_id": "146", "fgpct": "0.40", "threep": "0.95", "ftpct": "0.63", "trb": "-1.04", "ast": "1.11", "stl": "-0.19", "blk": "-0.87", "tov": "0.23", "pts": "1.15", "zscore": "2.37", "fantasy": "1.62"},
+            {"id": "325", "name": "Jimmy Butler", "slug": "jimmy-butler", "first_name": "Jimmy", "last_name": "Butler", "race": "0", "position": "GF", "position_group": "2", "team_id": "4", "number": "21", "height": "6'7", "weight": "220", "age": "22", "experience": "0", "dob": "1989-09-14", "url": "", "yahoo_id": "4912", "espn_id": "6430", "league_id": "", "sports_reference_id": "butleji01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "325", "fgpct": "0.63", "threep": "-0.55", "ftpct": "0.40", "trb": "-0.03", "ast": "0.16", "stl": "0.88", "blk": "0.12", "tov": "0.41", "pts": "0.56", "zscore": "2.59", "fantasy": "1.60"},
+            {"id": "2126", "name": "Jared Sullinger", "slug": "jared-sullinger", "first_name": "", "last_name": "", "race": "0", "position": "FC", "position_group": "0", "team_id": "2", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "0", "espn_id": "6624", "league_id": "", "sports_reference_id": "sullija01", "role_id": "2", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "1", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "2126", "fgpct": "0.26", "threep": "-0.74", "ftpct": "0.38", "trb": "1.09", "ast": "0.01", "stl": "-1.00", "blk": "0.86", "tov": "1.32", "pts": "0.24", "zscore": "2.42", "fantasy": "1.48"},
+            {"id": "237", "name": "Iman Shumpert", "slug": "iman-shumpert", "first_name": "Iman", "last_name": "Shumpert", "race": "6", "position": "GF", "position_group": "3", "team_id": "20", "number": "15", "height": "6'5", "weight": "209", "age": "21", "experience": "0", "dob": "1990-06-26", "url": "", "yahoo_id": "4898", "espn_id": "6468", "league_id": "", "sports_reference_id": "shumpim01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "237", "fgpct": "0.39", "threep": "1.52", "ftpct": "-0.05", "trb": "-0.45", "ast": "0.56", "stl": "0.08", "blk": "-0.38", "tov": "0.23", "pts": "0.51", "zscore": "2.40", "fantasy": "1.41"},
+            {"id": "440", "name": "Shawne Williams", "slug": "shawne-williams", "first_name": "Shawne", "last_name": "Williams", "race": "5", "position": "F", "position_group": "2", "team_id": "15", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "4145", "espn_id": "3038", "league_id": "", "sports_reference_id": "willish03", "role_id": "0", "category_id": "0", "college": "", "is_active": "0", "is_rookie": "0", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "440", "fgpct": "0.02", "threep": "1.52", "ftpct": "0.01", "trb": "0.14", "ast": "-0.47", "stl": "-0.46", "blk": "0.36", "tov": "1.68", "pts": "-0.23", "zscore": "2.58", "fantasy": "1.40"},
+            {"id": "44", "name": "Courtney Lee", "slug": "courtney-lee", "first_name": "Courtney", "last_name": "Lee", "race": "5", "position": "GF", "position_group": "2", "team_id": "14", "number": "5", "height": "6'5", "weight": "200", "age": "26", "experience": "3", "dob": "1985-10-03", "url": "", "yahoo_id": "0", "espn_id": "3445", "league_id": "", "sports_reference_id": "leeco01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "44", "fgpct": "0.93", "threep": "1.14", "ftpct": "0.67", "trb": "-0.74", "ast": "-0.39", "stl": "0.08", "blk": "-0.38", "tov": "1.14", "pts": "-0.08", "zscore": "2.37", "fantasy": "1.38"},
+            {"id": "196", "name": "Monta Ellis", "slug": "monta-ellis", "first_name": "Monta", "last_name": "Ellis", "race": "4", "position": "G", "position_group": "3", "team_id": "6", "number": "8", "height": "6'3", "weight": "180", "age": "26", "experience": "6", "dob": "1985-10-26", "url": "", "yahoo_id": "3966", "espn_id": "2751", "league_id": "", "sports_reference_id": "ellismo01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "196", "fgpct": "0.58", "threep": "-0.55", "ftpct": "0.83", "trb": "-0.68", "ast": "1.26", "stl": "0.08", "blk": "-0.38", "tov": "-0.32", "pts": "1.24", "zscore": "2.07", "fantasy": "1.32"},
+            {"id": "159", "name": "Markieff Morris", "slug": "markieff-morris", "first_name": "Markieff", "last_name": "Morris", "race": "4", "position": "FC", "position_group": "2", "team_id": "24", "number": "34", "height": "6'10", "weight": "245", "age": "22", "experience": "0", "dob": "1989-09-02", "url": "", "yahoo_id": "4894", "espn_id": "6461", "league_id": "", "sports_reference_id": "morrima02", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "159", "fgpct": "1.14", "threep": "-0.17", "ftpct": "-0.42", "trb": "0.85", "ast": "-0.39", "stl": "0.35", "blk": "0.36", "tov": "-0.50", "pts": "0.98", "zscore": "2.20", "fantasy": "1.26"},
+            {"id": "200", "name": "Klay Thompson", "slug": "klay-thompson", "first_name": "Klay", "last_name": "Thompson", "race": "4", "position": "GF", "position_group": "3", "team_id": "9", "number": "23", "height": "6'6", "weight": "202", "age": "21", "experience": "0", "dob": "1990-02-08", "url": "", "yahoo_id": "4892", "espn_id": "6475", "league_id": "", "sports_reference_id": "thompkl01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "200", "fgpct": "0.31", "threep": "1.33", "ftpct": "0.98", "trb": "-1.09", "ast": "-0.07", "stl": "-0.19", "blk": "0.12", "tov": "-0.32", "pts": "1.18", "zscore": "2.24", "fantasy": "1.25"},
+            {"id": "150", "name": "Aaron Brooks", "slug": "aaron-brooks", "first_name": "Aaron", "last_name": "Brooks", "race": "0", "position": "PG", "position_group": "3", "team_id": "4", "number": "0", "height": "6'0", "weight": "161", "age": "26", "experience": "4", "dob": "1985-01-14", "url": "", "yahoo_id": "0", "espn_id": "3192", "league_id": "", "sports_reference_id": "brookaa01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "2", "nba_player_id": "150", "fgpct": "0.89", "threep": "1.52", "ftpct": "0.60", "trb": "-1.21", "ast": "1.34", "stl": "-0.73", "blk": "-0.13", "tov": "-0.68", "pts": "0.36", "zscore": "1.96", "fantasy": "1.21"},
+            {"id": "111", "name": "Kevin Love", "slug": "kevin-love", "first_name": "Kevin", "last_name": "Love", "race": "1", "position": "FC", "position_group": "2", "team_id": "5", "number": "42", "height": "6'10", "weight": "260", "age": "23", "experience": "3", "dob": "1988-09-07", "url": "", "yahoo_id": "4391", "espn_id": "3449", "league_id": "", "sports_reference_id": "loveke01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "111", "fgpct": "-1.17", "threep": "0.76", "ftpct": "1.20", "trb": "1.44", "ast": "-0.62", "stl": "-0.19", "blk": "-0.62", "tov": "0.96", "pts": "0.33", "zscore": "2.09", "fantasy": "1.15"},
+            {"id": "386", "name": "Joe Johnson", "slug": "joe-johnson", "first_name": "Joe", "last_name": "Johnson", "race": "5", "position": "GF", "position_group": "2", "team_id": "37", "number": "2", "height": "6'7", "weight": "240", "age": "30", "experience": "10", "dob": "1981-06-29", "url": "", "yahoo_id": "0", "espn_id": "1007", "league_id": "", "sports_reference_id": "johnsjo02", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "386", "fgpct": "0.52", "threep": "1.33", "ftpct": "-0.05", "trb": "0.20", "ast": "0.48", "stl": "-0.73", "blk": "-0.87", "tov": "0.05", "pts": "1.18", "zscore": "2.11", "fantasy": "1.12"},
+            {"id": "220", "name": "Jrue Holiday", "slug": "jrue-holiday", "first_name": "Jrue", "last_name": "Holiday", "race": "4", "position": "PG", "position_group": "3", "team_id": "38", "number": "11", "height": "6'4", "weight": "180", "age": "21", "experience": "2", "dob": "1990-06-12", "url": "", "yahoo_id": "4622", "espn_id": "3995", "league_id": "", "sports_reference_id": "holidjr01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "220", "fgpct": "-0.23", "threep": "0.01", "ftpct": "0.67", "trb": "-1.09", "ast": "1.50", "stl": "0.88", "blk": "-0.13", "tov": "0.41", "pts": "-0.17", "zscore": "1.85", "fantasy": "1.10"},
+            {"id": "43", "name": "Jordan Hill", "slug": "jordan-hill", "first_name": "Jordan", "last_name": "Hill", "race": "5", "position": "FC", "position_group": "2", "team_id": "13", "number": "27", "height": "6'10", "weight": "235", "age": "24", "experience": "2", "dob": "1987-07-27", "url": "", "yahoo_id": "0", "espn_id": "3994", "league_id": "", "sports_reference_id": "hilljo01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "43", "fgpct": "0.91", "threep": "-1.11", "ftpct": "0.24", "trb": "1.20", "ast": "-0.07", "stl": "-1.26", "blk": "1.10", "tov": "0.77", "pts": "0.21", "zscore": "2.00", "fantasy": "1.06"},
+            {"id": "508", "name": "Amar'e Stoudemire", "slug": "amare-stoudemire", "first_name": "Amar'e", "last_name": "Stoudemire", "race": "4", "position": "FC", "position_group": "2", "team_id": "20", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "0", "espn_id": "1727", "league_id": "", "sports_reference_id": "stoudam01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "2", "nba_player_id": "508", "fgpct": "0.80", "threep": "-1.11", "ftpct": "0.02", "trb": "1.56", "ast": "-0.62", "stl": "0.08", "blk": "0.36", "tov": "0.59", "pts": "0.21", "zscore": "1.88", "fantasy": "0.94"},
+            {"id": "27", "name": "Mike Conley", "slug": "mike-conley", "first_name": "Mike", "last_name": "Conley", "race": "4", "position": "PG", "position_group": "3", "team_id": "14", "number": "11", "height": "6'1", "weight": "185", "age": "24", "experience": "4", "dob": "1987-10-11", "url": "", "yahoo_id": "4246", "espn_id": "3195", "league_id": "", "sports_reference_id": "conlemi01", "role_id": "0", "category_id": "0", "college": "", "is_active": "0", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "27", "fgpct": "-1.15", "threep": "0.76", "ftpct": "0.10", "trb": "-1.04", "ast": "1.97", "stl": "1.15", "blk": "-0.38", "tov": "-0.50", "pts": "0.74", "zscore": "1.67", "fantasy": "0.92"},
+            {"id": "67", "name": "Devin Harris", "slug": "devin-harris", "first_name": "Devin", "last_name": "Harris", "race": "5", "position": "G", "position_group": "3", "team_id": "6", "number": "5", "height": "6'3", "weight": "190", "age": "28", "experience": "7", "dob": "1983-02-27", "url": "", "yahoo_id": "0", "espn_id": "2382", "league_id": "", "sports_reference_id": "harride01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "2", "nba_player_id": "67", "fgpct": "-0.21", "threep": "0.76", "ftpct": "-0.05", "trb": "-1.15", "ast": "1.19", "stl": "0.88", "blk": "-0.62", "tov": "1.14", "pts": "-0.29", "zscore": "1.65", "fantasy": "0.90"},
+            {"id": "367", "name": "LeBron James", "slug": "lebron-james", "first_name": "LeBron", "last_name": "James", "race": "6", "position": "F", "position_group": "2", "team_id": "5", "number": "6", "height": "6'8", "weight": "250", "age": "27", "experience": "8", "dob": "1984-12-30", "url": "", "yahoo_id": "3704", "espn_id": "1966", "league_id": "", "sports_reference_id": "jamesle01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "367", "fgpct": "-0.57", "threep": "0.39", "ftpct": "1.43", "trb": "-0.09", "ast": "1.03", "stl": "0.88", "blk": "-0.38", "tov": "-1.77", "pts": "1.12", "zscore": "2.04", "fantasy": "0.86"},
+            {"id": "2164", "name": "Kelly Olynyk", "slug": "kelly-olynyk", "first_name": "Kelly", "last_name": "Olynyk", "race": "0", "position": "C", "position_group": "1", "team_id": "2", "number": "41", "height": "7-0", "weight": "238", "age": "22", "experience": "0", "dob": "1991-04-19", "url": "", "yahoo_id": "5164", "espn_id": "2489663", "league_id": "", "sports_reference_id": "olynyke01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "1", "depth_position": "C", "depth_rank": "1", "nba_player_id": "2164", "fgpct": "1.55", "threep": "0.39", "ftpct": "0.30", "trb": "0.73", "ast": "-0.62", "stl": "0.08", "blk": "-0.38", "tov": "-0.32", "pts": "0.03", "zscore": "1.78", "fantasy": "0.84"},
+            {"id": "326", "name": "Luol Deng", "slug": "luol-deng", "first_name": "Luol", "last_name": "Deng", "race": "5", "position": "F", "position_group": "2", "team_id": "15", "number": "9", "height": "6'9", "weight": "220", "age": "26", "experience": "7", "dob": "1985-04-16", "url": "", "yahoo_id": "3824", "espn_id": "2429", "league_id": "", "sports_reference_id": "denglu01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "326", "fgpct": "1.63", "threep": "0.39", "ftpct": "-1.23", "trb": "-0.45", "ast": "-0.31", "stl": "0.88", "blk": "-0.38", "tov": "0.59", "pts": "0.89", "zscore": "2.02", "fantasy": "0.84"},
+            {"id": "2114", "name": "Draymond Green", "slug": "draymond-green", "first_name": "", "last_name": "", "race": "0", "position": "SF", "position_group": "0", "team_id": "9", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "0", "espn_id": "6589", "league_id": "", "sports_reference_id": "greendr01", "role_id": "3", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "1", "depth_position": "PF", "depth_rank": "2", "nba_player_id": "2114", "fgpct": "0.31", "threep": "0.95", "ftpct": "0.02", "trb": "0.85", "ast": "-0.31", "stl": "0.35", "blk": "1.10", "tov": "-1.59", "pts": "0.21", "zscore": "1.90", "fantasy": "0.72"},
+            {"id": "354", "name": "Dwight Howard", "slug": "dwight-howard", "first_name": "Dwight", "last_name": "Howard", "race": "5", "position": "FC", "position_group": "1", "team_id": "10", "number": "12", "height": "6'11", "weight": "265", "age": "26", "experience": "7", "dob": "1985-12-08", "url": "", "yahoo_id": "3818", "espn_id": "2384", "league_id": "", "sports_reference_id": "howardw01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "354", "fgpct": "2.43", "threep": "-1.11", "ftpct": "-3.00", "trb": "2.21", "ast": "-0.70", "stl": "0.08", "blk": "1.84", "tov": "-1.40", "pts": "1.15", "zscore": "1.49", "fantasy": "0.55"},
+            {"id": "261", "name": "Paul Pierce", "slug": "paul-pierce", "first_name": "Paul", "last_name": "Pierce", "race": "4", "position": "F", "position_group": "2", "team_id": "30", "number": "34", "height": "6'7", "weight": "235", "age": "34", "experience": "13", "dob": "1977-10-13", "url": "", "yahoo_id": "3253", "espn_id": "662", "league_id": "", "sports_reference_id": "piercpa01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "261", "fgpct": "-1.71", "threep": "0.20", "ftpct": "1.06", "trb": "0.20", "ast": "0.16", "stl": "0.61", "blk": "-0.13", "tov": "1.14", "pts": "0.12", "zscore": "1.66", "fantasy": "0.48"},
+            {"id": "49", "name": "Patrick Patterson", "slug": "patrick-patterson", "first_name": "Patrick", "last_name": "Patterson", "race": "5", "position": "FC", "position_group": "2", "team_id": "28", "number": "54", "height": "6'9", "weight": "235", "age": "22", "experience": "1", "dob": "1989-03-14", "url": "", "yahoo_id": "4729", "espn_id": "4264", "league_id": "", "sports_reference_id": "pattepa01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "49", "fgpct": "-0.27", "threep": "0.58", "ftpct": "0.30", "trb": "0.03", "ast": "-0.31", "stl": "0.35", "blk": "0.12", "tov": "1.50", "pts": "-0.88", "zscore": "1.41", "fantasy": "0.47"},
+            {"id": "474", "name": "Jamal Crawford", "slug": "jamal-crawford", "first_name": "Jamal", "last_name": "Crawford", "race": "4", "position": "G", "position_group": "3", "team_id": "12", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "3407", "espn_id": "165", "league_id": "", "sports_reference_id": "crawfja01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "474", "fgpct": "-0.27", "threep": "1.33", "ftpct": "0.91", "trb": "-1.33", "ast": "-0.23", "stl": "0.35", "blk": "-0.87", "tov": "0.59", "pts": "0.65", "zscore": "1.13", "fantasy": "0.38"},
+            {"id": "2085", "name": "Mirza Teletovic", "slug": "mirza-teletovic", "first_name": "", "last_name": "", "race": "0", "position": "F", "position_group": "0", "team_id": "37", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "0", "espn_id": "4385", "league_id": "", "sports_reference_id": "teletmi01", "role_id": "3", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "1", "depth_position": "PF", "depth_rank": "2", "nba_player_id": "2085", "fgpct": "0.69", "threep": "1.89", "ftpct": "0.30", "trb": "-0.15", "ast": "-0.78", "stl": "-1.26", "blk": "0.12", "tov": "0.77", "pts": "-0.14", "zscore": "1.43", "fantasy": "0.25"},
+            {"id": "385", "name": "Al Horford", "slug": "al-horford", "first_name": "Al", "last_name": "Horford", "race": "5", "position": "FC", "position_group": "2", "team_id": "1", "number": "15", "height": "6'10", "weight": "245", "age": "25", "experience": "4", "dob": "1986-06-03", "url": "", "yahoo_id": "4245", "espn_id": "3213", "league_id": "", "sports_reference_id": "horfoal01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "385", "fgpct": "0.30", "threep": "-1.11", "ftpct": "0.08", "trb": "0.50", "ast": "-0.07", "stl": "0.08", "blk": "0.86", "tov": "0.77", "pts": "-0.20", "zscore": "1.19", "fantasy": "0.25"},
+            {"id": "2045", "name": "Donald Sloan", "slug": "donald-sloan", "first_name": "Donald", "last_name": "Sloan", "race": "0", "position": "G", "position_group": "3", "team_id": "11", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "0", "espn_id": "4303", "league_id": "", "sports_reference_id": "sloando01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "2045", "fgpct": "-0.77", "threep": "1.33", "ftpct": "0.32", "trb": "0.20", "ast": "1.66", "stl": "-0.46", "blk": "-0.87", "tov": "-1.22", "pts": "0.80", "zscore": "0.98", "fantasy": "0.23"},
+            {"id": "253", "name": "Brandan Wright", "slug": "brandan-wright", "first_name": "Brandan", "last_name": "Wright", "race": "5", "position": "FC", "position_group": "2", "team_id": "6", "number": "34", "height": "6'10", "weight": "220", "age": "24", "experience": "4", "dob": "1987-10-05", "url": "", "yahoo_id": "4286", "espn_id": "3242", "league_id": "", "sports_reference_id": "wrighbr03", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "2", "nba_player_id": "253", "fgpct": "2.09", "threep": "-1.11", "ftpct": "-0.21", "trb": "-0.15", "ast": "-1.17", "stl": "-1.00", "blk": "1.60", "tov": "1.68", "pts": "-0.55", "zscore": "1.17", "fantasy": "0.23"},
+            {"id": "228", "name": "Thaddeus Young", "slug": "thaddeus-young", "first_name": "Thaddeus", "last_name": "Young", "race": "6", "position": "F", "position_group": "2", "team_id": "17", "number": "21", "height": "6'8", "weight": "220", "age": "23", "experience": "4", "dob": "1988-06-21", "url": "", "yahoo_id": "4290", "espn_id": "3244", "league_id": "", "sports_reference_id": "youngth01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "228", "fgpct": "0.33", "threep": "-0.17", "ftpct": "-0.14", "trb": "-0.03", "ast": "-0.54", "stl": "1.15", "blk": "-0.38", "tov": "0.77", "pts": "0.39", "zscore": "1.38", "fantasy": "0.20"},
+            {"id": "46", "name": "Kevin Martin", "slug": "kevin-martin", "first_name": "Kevin", "last_name": "Martin", "race": "4", "position": "GF", "position_group": "3", "team_id": "17", "number": "12", "height": "6'7", "weight": "185", "age": "28", "experience": "7", "dob": "1983-02-01", "url": "", "yahoo_id": "3843", "espn_id": "2394", "league_id": "", "sports_reference_id": "martike02", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "46", "fgpct": "-0.59", "threep": "1.52", "ftpct": "1.86", "trb": "-0.68", "ast": "-0.39", "stl": "-0.73", "blk": "-0.87", "tov": "0.41", "pts": "0.62", "zscore": "1.16", "fantasy": "0.17"},
+            {"id": "180", "name": "Eric Bledsoe", "slug": "eric-bledsoe", "first_name": "Eric", "last_name": "Bledsoe", "race": "0", "position": "G", "position_group": "3", "team_id": "24", "number": "12", "height": "6'1", "weight": "195", "age": "22", "experience": "1", "dob": "1989-12-09", "url": "", "yahoo_id": "4749", "espn_id": "4238", "league_id": "", "sports_reference_id": "bledser01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "180", "fgpct": "-0.07", "threep": "0.20", "ftpct": "0.40", "trb": "-0.15", "ast": "1.50", "stl": "-0.19", "blk": "0.36", "tov": "-1.77", "pts": "0.59", "zscore": "0.88", "fantasy": "0.13"},
+            {"id": "32", "name": "O.J. Mayo", "slug": "oj-mayo", "first_name": "O.J.", "last_name": "Mayo", "race": "4", "position": "G", "position_group": "3", "team_id": "16", "number": "32", "height": "6'4", "weight": "210", "age": "24", "experience": "3", "dob": "1987-11-05", "url": "", "yahoo_id": "4389", "espn_id": "3450", "league_id": "", "sports_reference_id": "mayooj01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "2", "nba_player_id": "32", "fgpct": "-0.62", "threep": "1.14", "ftpct": "0.45", "trb": "-0.86", "ast": "0.79", "stl": "0.61", "blk": "-0.38", "tov": "-0.32", "pts": "-0.02", "zscore": "0.80", "fantasy": "0.05"},
+            {"id": "25", "name": "Tony Allen", "slug": "tony-allen", "first_name": "Tony", "last_name": "Allen", "race": "4", "position": "GF", "position_group": "2", "team_id": "14", "number": "9", "height": "6'4", "weight": "213", "age": "29", "experience": "7", "dob": "1982-01-11", "url": "", "yahoo_id": "3842", "espn_id": "2367", "league_id": "", "sports_reference_id": "allento01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "2", "nba_player_id": "25", "fgpct": "0.17", "threep": "-0.92", "ftpct": "-0.65", "trb": "-0.03", "ast": "0.01", "stl": "3.30", "blk": "-0.62", "tov": "0.41", "pts": "-0.67", "zscore": "0.99", "fantasy": "0.00"},
+            {"id": "327", "name": "Taj Gibson", "slug": "taj-gibson", "first_name": "Taj", "last_name": "Gibson", "race": "6", "position": "FC", "position_group": "2", "team_id": "4", "number": "22", "height": "6'9", "weight": "225", "age": "26", "experience": "2", "dob": "1985-06-24", "url": "", "yahoo_id": "4631", "espn_id": "3986", "league_id": "", "sports_reference_id": "gibsota01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "2", "nba_player_id": "327", "fgpct": "1.88", "threep": "-1.11", "ftpct": "-1.08", "trb": "0.03", "ast": "-0.54", "stl": "-0.73", "blk": "0.86", "tov": "1.32", "pts": "0.33", "zscore": "0.94", "fantasy": "0.00"},
+            {"id": "115", "name": "Chandler Parsons", "slug": "chandler-parsons", "first_name": "Chandler", "last_name": "Parsons", "race": "1", "position": "F", "position_group": "2", "team_id": "6", "number": "33", "height": "6'10", "weight": "218", "age": "23", "experience": "0", "dob": "1988-10-25", "url": "", "yahoo_id": "4920", "espn_id": "6466", "league_id": "", "sports_reference_id": "parsoch01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "115", "fgpct": "-1.01", "threep": "0.39", "ftpct": "0.76", "trb": "-0.03", "ast": "-0.54", "stl": "0.61", "blk": "0.12", "tov": "0.41", "pts": "0.48", "zscore": "1.18", "fantasy": "0.00"},
+            {"id": "41", "name": "Goran Dragic", "slug": "goran-dragic", "first_name": "Goran", "last_name": "Dragic", "race": "1", "position": "G", "position_group": "3", "team_id": "24", "number": "3", "height": "6'3", "weight": "190", "age": "25", "experience": "3", "dob": "1986-05-06", "url": "", "yahoo_id": "0", "espn_id": "3423", "league_id": "", "sports_reference_id": "dragigo01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "41", "fgpct": "-0.06", "threep": "-0.36", "ftpct": "1.12", "trb": "-0.39", "ast": "0.08", "stl": "0.35", "blk": "-0.87", "tov": "0.23", "pts": "0.65", "zscore": "0.75", "fantasy": "0.00"},
+            {"id": "391", "name": "Jeff Teague", "slug": "jeff-teague", "first_name": "Jeff", "last_name": "Teague", "race": "6", "position": "PG", "position_group": "3", "team_id": "1", "number": "0", "height": "6'2", "weight": "180", "age": "23", "experience": "2", "dob": "1988-06-10", "url": "", "yahoo_id": "4624", "espn_id": "4015", "league_id": "", "sports_reference_id": "teaguje01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "391", "fgpct": "0.08", "threep": "-0.55", "ftpct": "0.47", "trb": "-1.09", "ast": "1.89", "stl": "0.61", "blk": "-0.13", "tov": "-1.04", "pts": "0.36", "zscore": "0.60", "fantasy": "-0.15"},
+            {"id": "2131", "name": "Terrence Ross", "slug": "terrence-ross", "first_name": "", "last_name": "", "race": "0", "position": "GF", "position_group": "0", "team_id": "28", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "0", "espn_id": "6619", "league_id": "", "sports_reference_id": "rosste01", "role_id": "1", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "1", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "2131", "fgpct": "-0.34", "threep": "1.52", "ftpct": "0.15", "trb": "-0.56", "ast": "-0.70", "stl": "-0.19", "blk": "0.36", "tov": "0.59", "pts": "-0.11", "zscore": "0.71", "fantasy": "-0.28"},
+            {"id": "210", "name": "Ed Davis", "slug": "ed-davis", "first_name": "Ed", "last_name": "Davis", "race": "4", "position": "FC", "position_group": "2", "team_id": "13", "number": "32", "height": "6'10", "weight": "215", "age": "22", "experience": "1", "dob": "1989-06-05", "url": "", "yahoo_id": "4728", "espn_id": "4259", "league_id": "", "sports_reference_id": "davised01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "2", "nba_player_id": "210", "fgpct": "1.92", "threep": "-1.11", "ftpct": "-1.60", "trb": "0.56", "ast": "-0.94", "stl": "0.08", "blk": "1.10", "tov": "1.14", "pts": "-0.50", "zscore": "0.65", "fantasy": "-0.29"},
+            {"id": "2110", "name": "Hollis Thompson", "slug": "hollis-thompson", "first_name": "", "last_name": "", "race": "0", "position": "F", "position_group": "2", "team_id": "23", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "0", "espn_id": "6634", "league_id": "", "sports_reference_id": "thompho01", "role_id": "3", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "1", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "2110", "fgpct": "-0.87", "threep": "0.76", "ftpct": "-0.57", "trb": "-0.45", "ast": "-0.54", "stl": "1.69", "blk": "0.36", "tov": "0.77", "pts": "-0.38", "zscore": "0.78", "fantasy": "-0.40"},
+            {"id": "185", "name": "Blake Griffin", "slug": "blake-griffin", "first_name": "Blake", "last_name": "Griffin", "race": "5", "position": "FC", "position_group": "2", "team_id": "12", "number": "32", "height": "6'10", "weight": "251", "age": "22", "experience": "2", "dob": "1989-03-16", "url": "", "yahoo_id": "4561", "espn_id": "3989", "league_id": "", "sports_reference_id": "griffbl01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "1", "nba_player_id": "185", "fgpct": "0.29", "threep": "-0.74", "ftpct": "0.26", "trb": "0.38", "ast": "0.16", "stl": "-1.26", "blk": "-0.13", "tov": "-0.50", "pts": "2.01", "zscore": "0.47", "fantasy": "-0.47"},
+            {"id": "166", "name": "Kobe Bryant", "slug": "kobe-bryant", "first_name": "Kobe", "last_name": "Bryant", "race": "5", "position": "G", "position_group": "3", "team_id": "13", "number": "24", "height": "6'6", "weight": "205", "age": "33", "experience": "15", "dob": "1978-08-23", "url": "", "yahoo_id": "3118", "espn_id": "110", "league_id": "", "sports_reference_id": "bryanko01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "166", "fgpct": "-1.56", "threep": "0.39", "ftpct": "0.27", "trb": "0.03", "ast": "0.08", "stl": "0.88", "blk": "-0.62", "tov": "-1.59", "pts": "2.36", "zscore": "0.24", "fantasy": "-0.51"},
+            {"id": "2172", "name": "Gorgui Dieng", "slug": "gorgui-dieng", "first_name": "Gorgui", "last_name": "Dieng", "race": "0", "position": "C", "position_group": "1", "team_id": "17", "number": "5", "height": "6-11", "weight": "245", "age": "23", "experience": "0", "dob": "1990-01-18", "url": "", "yahoo_id": "5191", "espn_id": "2534781", "league_id": "", "sports_reference_id": "dienggo01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "1", "depth_position": "C", "depth_rank": "2", "nba_player_id": "2172", "fgpct": "0.68", "threep": "-1.11", "ftpct": "0.38", "trb": "0.62", "ast": "-1.17", "stl": "-1.00", "blk": "1.60", "tov": "1.32", "pts": "-1.00", "zscore": "0.31", "fantasy": "-0.63"},
+            {"id": "182", "name": "Randy Foye", "slug": "randy-foye", "first_name": "Randy", "last_name": "Foye", "race": "4", "position": "G", "position_group": "3", "team_id": "7", "number": "4", "height": "6'4", "weight": "213", "age": "28", "experience": "5", "dob": "1983-09-24", "url": "", "yahoo_id": "4135", "espn_id": "3003", "league_id": "", "sports_reference_id": "foyera01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "2", "nba_player_id": "182", "fgpct": "0.04", "threep": "1.33", "ftpct": "0.52", "trb": "-1.33", "ast": "0.01", "stl": "-1.00", "blk": "-0.62", "tov": "1.32", "pts": "-0.17", "zscore": "0.10", "fantasy": "-0.65"},
+            {"id": "14", "name": "Gary Neal", "slug": "gary-neal", "first_name": "Gary", "last_name": "Neal", "race": "5", "position": "G", "position_group": "3", "team_id": "35", "number": "14", "height": "6'4", "weight": "210", "age": "27", "experience": "1", "dob": "1984-11-03", "url": "", "yahoo_id": "4796", "espn_id": "4300", "league_id": "", "sports_reference_id": "nealga01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "3", "nba_player_id": "14", "fgpct": "-0.37", "threep": "0.76", "ftpct": "0.83", "trb": "-0.39", "ast": "-0.31", "stl": "-0.46", "blk": "-0.87", "tov": "0.41", "pts": "0.48", "zscore": "0.10", "fantasy": "-0.65"},
+            {"id": "62", "name": "Jason Terry", "slug": "jason-terry", "first_name": "Jason", "last_name": "Terry", "race": "5", "position": "G", "position_group": "3", "team_id": "10", "number": "31", "height": "6'2", "weight": "180", "age": "34", "experience": "12", "dob": "1977-09-15", "url": "", "yahoo_id": "3333", "espn_id": "841", "league_id": "", "sports_reference_id": "terryja01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "2", "nba_player_id": "62", "fgpct": "0.19", "threep": "1.70", "ftpct": "0.59", "trb": "-1.63", "ast": "-0.86", "stl": "0.35", "blk": "-0.38", "tov": "0.59", "pts": "-0.53", "zscore": "0.04", "fantasy": "-0.71"},
+            {"id": "215", "name": "Jonas Valanciunas", "slug": "jonas-valanciunas", "first_name": "Jonas", "last_name": "Valanciunas", "race": "0", "position": "C", "position_group": "1", "team_id": "28", "number": "18", "height": "7'0", "weight": "240", "age": "19", "experience": "0", "dob": "1992-05-06", "url": "", "yahoo_id": "4886", "espn_id": "6477", "league_id": "", "sports_reference_id": "valanjo01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "215", "fgpct": "0.49", "threep": "-1.11", "ftpct": "0.84", "trb": "0.67", "ast": "-1.02", "stl": "-1.26", "blk": "1.35", "tov": "0.59", "pts": "-0.32", "zscore": "0.23", "fantasy": "-0.71"},
+            {"id": "216", "name": "Lavoy Allen", "slug": "lavoy-allen", "first_name": "Lavoy", "last_name": "Allen", "race": "6", "position": "FC", "position_group": "2", "team_id": "11", "number": "7", "height": "6'9", "weight": "225", "age": "22", "experience": "0", "dob": "1989-02-04", "url": "", "yahoo_id": "4932", "espn_id": "6424", "league_id": "", "sports_reference_id": "allenla01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PF", "depth_rank": "3", "nba_player_id": "216", "fgpct": "0.62", "threep": "-1.11", "ftpct": "0.15", "trb": "0.97", "ast": "-0.54", "stl": "-1.00", "blk": "0.86", "tov": "1.14", "pts": "-0.91", "zscore": "0.17", "fantasy": "-0.77"},
+            {"id": "263", "name": "Andrew Bogut", "slug": "andrew-bogut", "first_name": "Andrew", "last_name": "Bogut", "race": "2", "position": "C", "position_group": "1", "team_id": "9", "number": "6", "height": "7'0", "weight": "260", "age": "27", "experience": "6", "dob": "1984-11-28", "url": "", "yahoo_id": "3927", "espn_id": "2747", "league_id": "", "sports_reference_id": "bogutan01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "263", "fgpct": "0.27", "threep": "-1.11", "ftpct": "-0.36", "trb": "2.09", "ast": "-0.23", "stl": "-0.46", "blk": "2.34", "tov": "-1.22", "pts": "-1.17", "zscore": "0.14", "fantasy": "-0.80"},
+            {"id": "1374", "name": "Gerald Green", "slug": "gerald-green", "first_name": "Gerald", "last_name": "Green", "race": "0", "position": "GF", "position_group": "2", "team_id": "24", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "0", "espn_id": "2761", "league_id": "", "sports_reference_id": "greenge01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "2", "nba_player_id": "1374", "fgpct": "-0.70", "threep": "1.14", "ftpct": "0.75", "trb": "-0.74", "ast": "-1.10", "stl": "0.61", "blk": "-0.87", "tov": "0.59", "pts": "0.39", "zscore": "0.08", "fantasy": "-0.91"},
+            {"id": "2174", "name": "Solomon Hill", "slug": "solomon-hill", "first_name": "Solomon", "last_name": "Hill", "race": "0", "position": "SF", "position_group": "2", "team_id": "11", "number": "9", "height": "6-7", "weight": "225", "age": "22", "experience": "0", "dob": "1991-03-18", "url": "", "yahoo_id": "5193", "espn_id": "2488958", "league_id": "", "sports_reference_id": "hillso01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "1", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "2174", "fgpct": "0.31", "threep": "0.58", "ftpct": "-0.20", "trb": "0.26", "ast": "-0.47", "stl": "0.61", "blk": "-0.13", "tov": "-0.86", "pts": "0.15", "zscore": "0.26", "fantasy": "-0.92"},
+            {"id": "2100", "name": "Miles Plumlee", "slug": "miles-plumlee", "first_name": "", "last_name": "", "race": "0", "position": "FC", "position_group": "0", "team_id": "24", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "0", "espn_id": "6616", "league_id": "", "sports_reference_id": "plumlmi01", "role_id": "3", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "1", "depth_position": "C", "depth_rank": "1", "nba_player_id": "2100", "fgpct": "0.47", "threep": "-1.11", "ftpct": "0.15", "trb": "0.79", "ast": "-1.10", "stl": "0.08", "blk": "0.86", "tov": "0.77", "pts": "-1.00", "zscore": "-0.08", "fantasy": "-1.02"},
+            {"id": "269", "name": "Tobias Harris", "slug": "tobias-harris", "first_name": "Tobias", "last_name": "Harris", "race": "4", "position": "F", "position_group": "2", "team_id": "22", "number": "14", "height": "6'8", "weight": "226", "age": "19", "experience": "0", "dob": "1992-07-15", "url": "", "yahoo_id": "4901", "espn_id": "6440", "league_id": "", "sports_reference_id": "harrito02", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "269", "fgpct": "-0.53", "threep": "-0.36", "ftpct": "0.18", "trb": "1.50", "ast": "-0.62", "stl": "0.61", "blk": "0.36", "tov": "-2.13", "pts": "1.12", "zscore": "0.13", "fantasy": "-1.05"},
+            {"id": "513", "name": "DeMarre Carroll", "slug": "demarre-carroll", "first_name": "", "last_name": "", "race": "0", "position": "F", "position_group": "2", "team_id": "1", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "4632", "espn_id": "3970", "league_id": "", "sports_reference_id": "carrode01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SF", "depth_rank": "1", "nba_player_id": "513", "fgpct": "0.62", "threep": "0.76", "ftpct": "-0.14", "trb": "-0.21", "ast": "-0.78", "stl": "0.08", "blk": "-0.87", "tov": "1.14", "pts": "-0.47", "zscore": "0.13", "fantasy": "-1.05"},
+            {"id": "2113", "name": "Evan Fournier", "slug": "evan-fournier", "first_name": "", "last_name": "", "race": "0", "position": "SG", "position_group": "0", "team_id": "22", "number": "0", "height": "", "weight": "0", "age": "0", "experience": "0", "dob": "0000-00-00", "url": "", "yahoo_id": "0", "espn_id": "6588", "league_id": "", "sports_reference_id": "fournev01", "role_id": "3", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "1", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "2113", "fgpct": "0.85", "threep": "1.33", "ftpct": "-0.12", "trb": "-0.74", "ast": "-0.15", "stl": "-1.26", "blk": "-0.87", "tov": "-0.13", "pts": "0.98", "zscore": "-0.13", "fantasy": "-1.12"},
+            {"id": "314", "name": "Kyrie Irving", "slug": "kyrie-irving", "first_name": "Kyrie", "last_name": "Irving", "race": "5", "position": "G", "position_group": "3", "team_id": "5", "number": "2", "height": "6'2", "weight": "180", "age": "19", "experience": "0", "dob": "1992-03-23", "url": "", "yahoo_id": "4840", "espn_id": "6442", "league_id": "", "sports_reference_id": "irvinky01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "314", "fgpct": "-0.66", "threep": "0.20", "ftpct": "0.98", "trb": "-1.15", "ast": "0.32", "stl": "-0.19", "blk": "-0.62", "tov": "0.05", "pts": "0.62", "zscore": "-0.45", "fantasy": "-1.20"},
+            {"id": "272", "name": "Brandon Jennings", "slug": "brandon-jennings", "first_name": "Brandon", "last_name": "Jennings", "race": "4", "position": "PG", "position_group": "3", "team_id": "8", "number": "3", "height": "6'1", "weight": "169", "age": "22", "experience": "2", "dob": "1989-09-23", "url": "", "yahoo_id": "4615", "espn_id": "3997", "league_id": "", "sports_reference_id": "jennibr01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "PG", "depth_rank": "1", "nba_player_id": "272", "fgpct": "-0.22", "threep": "0.39", "ftpct": "0.68", "trb": "-1.04", "ast": "1.26", "stl": "-0.46", "blk": "-0.87", "tov": "-0.13", "pts": "-0.08", "zscore": "-0.47", "fantasy": "-1.22"},
+            {"id": "64", "name": "Alec Burks", "slug": "alec-burks", "first_name": "Alec", "last_name": "Burks", "race": "5", "position": "G", "position_group": "3", "team_id": "29", "number": "23", "height": "6'6", "weight": "195", "age": "20", "experience": "0", "dob": "1991-07-20", "url": "", "yahoo_id": "4893", "espn_id": "6429", "league_id": "", "sports_reference_id": "burksal01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "SG", "depth_rank": "1", "nba_player_id": "64", "fgpct": "-0.55", "threep": "0.20", "ftpct": "1.28", "trb": "-0.51", "ast": "0.40", "stl": "-0.46", "blk": "-0.62", "tov": "-0.86", "pts": "0.56", "zscore": "-0.55", "fantasy": "-1.30"},
+            {"id": "116", "name": "Nikola Pekovic", "slug": "nikola-pekovic", "first_name": "Nikola", "last_name": "Pekovic", "race": "3", "position": "C", "position_group": "1", "team_id": "17", "number": "14", "height": "6'11", "weight": "290", "age": "25", "experience": "1", "dob": "1986-01-03", "url": "", "yahoo_id": "4493", "espn_id": "3453", "league_id": "", "sports_reference_id": "pekovni01", "role_id": "0", "category_id": "0", "college": "", "is_active": "1", "is_rookie": "0", "depth_position": "C", "depth_rank": "1", "nba_player_id": "116", "fgpct": "0.00", "threep": "-1.11", "ftpct": "1.06", "trb": "1.15", "ast": "-0.94", "stl": "-0.46", "blk": "-0.62", "tov": "0.23", "pts": "0.33", "zscore": "-0.37", "fantasy": "-1.31"}
+        ], "teams": {"1": {"id": "1", "name": "Atlanta Hawks", "city": "Atlanta ", "short": "Atlanta", "abbrev": "ATL", "slug": "atlanta-hawks", "espn_id": "1", "league_id": "0", "is_active": "1", "conference": "E", "division": "SE"}, "2": {"id": "2", "name": "Boston Celtics", "city": "Boston ", "short": "Boston", "abbrev": "BOS", "slug": "boston-celtics", "espn_id": "2", "league_id": "0", "is_active": "1", "conference": "E", "division": "A"}, "37": {"id": "37", "name": "Brooklyn Nets", "city": "Brooklyn", "short": "Brooklyn", "abbrev": "BKN", "slug": "brooklyn-nets", "espn_id": "17", "league_id": "0", "is_active": "1", "conference": "E", "division": "A"}, "35": {"id": "35", "name": "Charlotte Hornets", "city": "Charlotte ", "short": "Charlotte", "abbrev": "CHA", "slug": "charlotte-hornets", "espn_id": "3", "league_id": "0", "is_active": "1", "conference": "E", "division": "SE"}, "4": {"id": "4", "name": "Chicago Bulls", "city": "Chicago ", "short": "Chicago", "abbrev": "CHI", "slug": "chicago-bulls", "espn_id": "4", "league_id": "0", "is_active": "1", "conference": "E", "division": "C"}, "5": {"id": "5", "name": "Cleveland Cavaliers", "city": "Cleveland ", "short": "Cleveland", "abbrev": "CLE", "slug": "cleveland-cavaliers", "espn_id": "5", "league_id": "0", "is_active": "1", "conference": "E", "division": "C"}, "6": {"id": "6", "name": "Dallas Mavericks", "city": "Dallas ", "short": "Dallas", "abbrev": "DAL", "slug": "dallas-mavericks", "espn_id": "6", "league_id": "0", "is_active": "1", "conference": "W", "division": "SW"}, "7": {"id": "7", "name": "Denver Nuggets", "city": "Denver ", "short": "Denver", "abbrev": "DEN", "slug": "denver-nuggets", "espn_id": "7", "league_id": "0", "is_active": "1", "conference": "W", "division": "NW"}, "8": {"id": "8", "name": "Detroit Pistons", "city": "Detroit ", "short": "Detroit", "abbrev": "DET", "slug": "detroit-pistons", "espn_id": "8", "league_id": "0", "is_active": "1", "conference": "E", "division": "C"}, "9": {"id": "9", "name": "Golden State Warriors", "city": "Golden State", "short": "Golden State", "abbrev": "GS", "slug": "golden-state-warriors", "espn_id": "9", "league_id": "0", "is_active": "1", "conference": "W", "division": "P"}, "10": {"id": "10", "name": "Houston Rockets", "city": "Houston ", "short": "Houston", "abbrev": "HOU", "slug": "houston-rockets", "espn_id": "10", "league_id": "0", "is_active": "1", "conference": "W", "division": "SW"}, "11": {"id": "11", "name": "Indiana Pacers", "city": "Indiana ", "short": "Indiana", "abbrev": "IND", "slug": "indiana-pacers", "espn_id": "11", "league_id": "0", "is_active": "1", "conference": "E", "division": "C"}, "12": {"id": "12", "name": "Los Angeles Clippers", "city": "Los Angeles", "short": "LA Clippers", "abbrev": "LAC", "slug": "los-angeles-clippers", "espn_id": "12", "league_id": "0", "is_active": "1", "conference": "W", "division": "P"}, "13": {"id": "13", "name": "Los Angeles Lakers", "city": "Los Angeles", "short": "LA Lakers", "abbrev": "LAL", "slug": "los-angeles-lakers", "espn_id": "13", "league_id": "0", "is_active": "1", "conference": "W", "division": "P"}, "14": {"id": "14", "name": "Memphis Grizzlies", "city": "Memphis ", "short": "Memphis", "abbrev": "MEM", "slug": "memphis-grizzlies", "espn_id": "29", "league_id": "0", "is_active": "1", "conference": "W", "division": "SW"}, "15": {"id": "15", "name": "Miami Heat", "city": "Miami ", "short": "Miami", "abbrev": "MIA", "slug": "miami-heat", "espn_id": "14", "league_id": "0", "is_active": "1", "conference": "E", "division": "SE"}, "16": {"id": "16", "name": "Milwaukee Bucks", "city": "Milwaukee ", "short": "Milwaukee", "abbrev": "MIL", "slug": "milwaukee-bucks", "espn_id": "15", "league_id": "0", "is_active": "1", "conference": "E", "division": "C"}, "17": {"id": "17", "name": "Minnesota Timberwolves", "city": "Minnesota ", "short": "Minnesota", "abbrev": "MIN", "slug": "minnesota-timberwolves", "espn_id": "16", "league_id": "0", "is_active": "1", "conference": "W", "division": "NW"}, "38": {"id": "38", "name": "New Orleans Pelicans", "city": "New Orleans", "short": "New Orleans", "abbrev": "NO", "slug": "new-orleans-pelicans", "espn_id": "3", "league_id": "0", "is_active": "1", "conference": "W", "division": "SW"}, "20": {"id": "20", "name": "New York Knicks", "city": "New York", "short": "New York", "abbrev": "NY", "slug": "new-york-knicks", "espn_id": "18", "league_id": "0", "is_active": "1", "conference": "E", "division": "A"}, "21": {"id": "21", "name": "Oklahoma City Thunder", "city": "Oklahoma City", "short": "Oklahoma City", "abbrev": "OKC", "slug": "oklahoma-city-thunder", "espn_id": "25", "league_id": "0", "is_active": "1", "conference": "W", "division": "NW"}, "22": {"id": "22", "name": "Orlando Magic", "city": "Orlando ", "short": "Orlando", "abbrev": "ORL", "slug": "orlando-magic", "espn_id": "19", "league_id": "0", "is_active": "1", "conference": "E", "division": "SE"}, "23": {"id": "23", "name": "Philadelphia 76ers", "city": "Philadelphia ", "short": "Philadelphia", "abbrev": "PHI", "slug": "philadelphia-76ers", "espn_id": "20", "league_id": "0", "is_active": "1", "conference": "E", "division": "A"}, "24": {"id": "24", "name": "Phoenix Suns", "city": "Phoenix ", "short": "Phoenix", "abbrev": "PHX", "slug": "phoenix-suns", "espn_id": "21", "league_id": "0", "is_active": "1", "conference": "W", "division": "P"}, "25": {"id": "25", "name": "Portland Trail Blazers", "city": "Portland ", "short": "Portland", "abbrev": "POR", "slug": "portland-trail-blazers", "espn_id": "22", "league_id": "0", "is_active": "1", "conference": "W", "division": "NW"}, "26": {"id": "26", "name": "Sacramento Kings", "city": "Sacramento ", "short": "Sacramento", "abbrev": "SAC", "slug": "sacramento-kings", "espn_id": "23", "league_id": "0", "is_active": "1", "conference": "W", "division": "P"}, "27": {"id": "27", "name": "San Antonio Spurs", "city": "San Antonio", "short": "San Antonio", "abbrev": "SA", "slug": "san-antonio-spurs", "espn_id": "24", "league_id": "0", "is_active": "1", "conference": "W", "division": "SW"}, "28": {"id": "28", "name": "Toronto Raptors", "city": "Toronto ", "short": "Toronto", "abbrev": "TOR", "slug": "toronto-raptors", "espn_id": "28", "league_id": "0", "is_active": "1", "conference": "E", "division": "A"}, "29": {"id": "29", "name": "Utah Jazz", "city": "Utah ", "short": "Utah", "abbrev": "UTAH", "slug": "utah-jazz", "espn_id": "26", "league_id": "0", "is_active": "1", "conference": "W", "division": "NW"}, "30": {"id": "30", "name": "Washington Wizards", "city": "Washington ", "short": "Washington", "abbrev": "WSH", "slug": "washington-wizards", "espn_id": "27", "league_id": "0", "is_active": "1", "conference": "E", "division": "SE"}}};
+        var GAQ_PUSH = [];
+    </script>
+
+
+    <script type="text/javascript">
+        window.heap = window.heap || [], heap.load = function (t, e) {
+            window.heap.appid = t, window.heap.config = e;
+            var a = document.createElement("script");
+            a.type = "text/javascript", a.async = !0, a.src = ("https:" === document.location.protocol ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap.js";
+            var n = document.getElementsByTagName("script")[0];
+            n.parentNode.insertBefore(a, n);
+            for (var o = function (t) {
+                return function () {
+                    heap.push([t].concat(Array.prototype.slice.call(arguments, 0)))
+                }
+            }, p = ["identify", "track"], c = 0; c < p.length; c++)heap[p[c]] = o(p[c])
+        };
+        heap.load("2584406338");
+    </script>
+
+    <script src="//cdn.taboola.com/libtrc/numberfire14-sc/tfa.js"></script>
+
+</head>
+
+<!-- Begin comScore Tag -->
+<script>
+    var _comscore = _comscore || [];
+    _comscore.push({ c1: "2", c2: "17442977" });
+    (function () {
+        var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
+        s.async = true;
+        s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+        el.parentNode.insertBefore(s, el);
+    })();
+</script>
+<noscript>
+    <img src="http://b.scorecardresearch.com/p?c1=2&c2=17442977&cv=2.0&cj=1"/>
+</noscript>
+<!-- End comScore Tag -->
+
+
+<body class="red">
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function () {
+        // init the FB JS SDK
+        FB.init({
+            appId: '103292676390270', // App ID from the App Dashboard
+            status: true, // check the login status upon init?
+            cookie: true, // set sessions cookies to allow your server to access the session?
+            xfbml: true
+        });
+    };
+
+    // Load the SDK's source Asynchronously
+    // Note that the debug version is being actively developed and might
+    // contain some type checks that are overly strict.
+    // Please report such bugs using the bugs tool.
+    (function (d, debug) {
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement('script');
+        js.id = id;
+        js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document, /*debug*/ false));
+    function postToFeed(title, desc, url, image) {
+        var obj = {method: 'feed', link: url, picture: image, name: title, description: desc};
+
+        function callback(response) {
+        }
+
+        FB.ui(obj, callback);
+    }
+</script>
+
+<script type="text/javascript">var hasoffers_domain = "https://numberfire.go2cloud.org";</script>
+<script type="text/javascript" src="https://media.go2speed.org/assets/js/dl.js"></script>
+
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a
+    different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a>
+    to experience this site.</p><![endif]-->
+
+<style type="text/css">
+
+    li#premium {
+        background-color: #257eb9;
+    }
+
+    li#premium a.top-level {
+        color: #fff !important;
+    }
+
+    li#premium a.top-level:hover, li#premium.hover a.top-level {
+        background-color: #2c3d50 !important;
+    }
+
+    li.hover b.caret {
+        opacity: 1;
+    }
+
+
+</style>
+
+<header id="logged-out-nav">
+    <div class="alpha">
+        <nav id="primary-nav" class="pr">
+            <a href="/" title="numberFire" id="mark">numberFire</a>
+            <ul id="primary" class="pa clearfix">
+                <li class=""><a class="top-level sport" href="/nfl" title="NFL Fantasy Projections">NFL</a></li>
+                <li class=""><a class="top-level sport" href="/nhl" title="NHL Fantasy Projections">NHL</a></li>
+                <li class=""><a class="top-level sport" href="/mlb" title="MLB Fantasy Projections">MLB</a></li>
+                <!--<li class=""><a class="top-level sport" href="/soccer/world-cup" title="2014 FIFA World Cup Analysis and News">WORLD CUP</a></li>-->
+                <!--<li class=""><a class="top-level sport" href="/ncaab" title="NCAA Bracketology">NCAAB</a></li>-->
+                <li class="active nba"><a class="top-level sport" href="/nba" title="NBA Fantasy Projections">NBA</a>
+                </li>
+                <li id="premium" class="">
+                    <a href="/premium" class="top-level">PREMIUM<b class="caret"></b></a>
+
+                    <div class="wrapper clearfix dn">
+                        <nav id="secondary-premium">
+                            <div class="dropdown-main">
+
+
+                                <h4 class="xsmall light-gray">PROJECTIONS</h4>
+                                <ul class="clearfix sub-nav br">
+                                    <li><a href="/nfl/games/" title="NFL Game Projections">NFL Game Projections</a></li>
+                                    <li><a href="/nhl/games/" title="NHL Game Projections">NHL Game Projections</a></li>
+                                    <li><a href="/nba/games/" title="NBA Game Projections">NBA Game Projections</a></li>
+                                    <!-- <li><a href="/ncaab/games/" title="NCAAB Game Projections">NCAAB Game Projections</a></li> -->
+                                    <li><a href="/ncaaf/games/" title="NCAAF Game Projections">NCAAF Game
+                                        Projections</a></li>
+                                    <li><a href="/mlb/games/" title="MLB Game Projections">MLB Game Projections</a></li>
+                                    <!--<li><a href="/soccer/games/" title="World Cup Game Projections">World Cup Game Projections</a></li>-->
+                                </ul>
+                                <!-- <h4 class="xsmall light-gray">MARCH MADNESS</h4>
+                                <ul class="clearfix sub-nav br">
+                                    <li><a href="/ncaab/march-madness/bracket-picks/" title="March Madness Bracket Picks">March Madness Bracket Picks</a></li>
+                                    <li><a href="/ncaab/march-madness/game-simulator/" title="March Madness Game Simulator">March Madness Game Simulator</a></li>
+                                </ul> -->
+                                <h4 class="xsmall light-gray">ANALYTICS</h4>
+                                <ul class="clearfix sub-nav br">
+                                    <li><a href="/nfl/players/analytics" title="NFL Player Analytics">NFL Player
+                                        Analytics</a></li>
+                                </ul>
+                                <h4 class="xsmall light-gray">DAILY FANTASY</h4>
+                                <ul class="clearfix sub-nav br">
+                                    <li><a href="/nfl/daily-fantasy/custom-optimal-lineup"
+                                           title="NFL Custom Optimal Lineups">NFL Custom Optimal Lineups</a></li>
+                                    <li><a href="/nfl/daily-fantasy/optimal-lineups" title="NFL Optimal Lineups">NFL
+                                        Optimal Lineups</a></li>
+                                    <li><a href="/nba/daily-fantasy/custom-optimal-lineup"
+                                           title="NBA Custom Optimal Lineups">NBA Custom Optimal Lineups</a></li>
+                                    <li><a href="/nba/daily-fantasy/optimal-lineups" title="NBA Optimal Lineups">NBA
+                                        Optimal Lineups</a></li>
+                                    <li><a href="/mlb/daily-fantasy/custom-optimal-lineup"
+                                           title="MLB Custom Optimal Lineups">MLB Custom Optimal Lineups</a></li>
+                                    <li><a href="/mlb/daily-fantasy/optimal-lineups" title="MLB Optimal Lineups">MLB
+                                        Optimal Lineups</a></li>
+                                </ul>
+                                <h4 class="xsmall light-gray">MORE INFO</h4>
+                                <ul class="clearfix sub-nav">
+                                    <li><a href="/premium/" title="What is numberFire Premium?">What Is Premium?</a>
+                                    </li>
+                                    <li><a href="/premium/results" title="Premium Results">Premium Results</a></li>
+                                </ul>
+
+
+                                <!--
+                                <p class="gray sb">Want to dominate DFS, Vegas, and March Madness? <span class="strong dark-gray">Start your ree trial of numberFire Premium today!</span></p>
+                                <p class="gray br">Sign up in seconds, cancel anytime.</span></p>
+                                <ul class="clearfix sub-nav">
+                                    <li><a class="strong" href="/premium/" title="What is numberFire Premium?">&#8594; Learn More</a></li>
+                                </ul>
+                                -->
+
+
+                            </div>
+
+
+                        </nav>
+                    </div>
+                </li>
+                <li>
+                    <a href="/nfl/fantasy/fantasy-football-projections" class="top-level"
+                       title="Week 10 Fantasy Football Projections">PROJECTIONS<b class="caret"></b></a>
+
+                    <div class="wrapper clearfix dn" style="width: 250px">
+                        <nav id="secondary-projections">
+                            <div class="dropdown-main" style="width: 250px">
+                                <h4 class="xsmall gray">FANTASY</h4>
+                                <ul class="clearfix sub-nav">
+                                    <!--<li><a href="/nfl/fantasy/fantasy-football-cheat-sheet" title="Fantasy Football 2014 Draft Kit" style="width: 250px">Fantasy Football Draft Kit</a></li>-->
+                                    <li><a href="/nfl/fantasy/fantasy-football-projections"
+                                           title="Week 10 Fantasy Football Projections" style="width: 250px">Week 10
+                                        Fantasy Football Projections</a></li>
+                                    <li><a href="/nhl/fantasy/fantasy-hockey-projections"
+                                           title="Fantasy Hockey Projections" style="width: 250px">Daily Fantasy Hockey
+                                        Projections</a></li>
+                                    <li><a href="/mlb/fantasy/fantasy-baseball-projections"
+                                           title="Fantasy Baseball Projections" style="width: 250px">Daily Fantasy
+                                        Baseball Projections</a></li>
+                                    <li><a href="/nba/fantasy/fantasy-basketball-projections"
+                                           title="Fantasy Basketball Projections" style="width: 250px">Daily Fantasy
+                                        Basketball Projections</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </li>
+                <li>
+                    <a href="/nfl/fantasy/fantasy-football-rankings/" class="top-level"
+                       title="Fantasy Football Rankings">RANKINGS<b class="caret"></b></a>
+
+                    <div class="wrapper clearfix dn">
+                        <nav id="secondary-projections">
+                            <div class="dropdown-main">
+                                <h4 class="xsmall gray">FANTASY</h4>
+                                <ul class="clearfix sub-nav br">
+                                    <li><a href="/nfl/fantasy/fantasy-football-rankings/"
+                                           title="Fantasy Football Rankings">Week 10 Fantasy Football Rankings</a></li>
+                                    <li><a href="/mlb/fantasy/fantasy-baseball-rankings/"
+                                           title="Fantasy Baseball Projections">Fantasy Baseball Rankings</a></li>
+                                    <li><a href="/nba/fantasy/fantasy-basketball-rankings/"
+                                           title="Fantasy Basketball Projections">Fantasy Basketball Rankings</a></li>
+                                </ul>
+                                <h4 class="xsmall gray">POWER RANKINGS</h4>
+                                <ul class="clearfix sub-nav">
+                                    <li><a href="/nfl/players/analytics/" title="NFL Player Analytics">NFL Player
+                                        Rankings</a></li>
+                                    <li class="sep"><a href="/nfl/teams/power-rankings/" title="NFL Team Rankings">NFL
+                                        Team Rankings</a></li>
+
+                                    <li><a href="/mlb/players/power-rankings/" title="MLB Player Rankings">MLB Player
+                                        Rankings</a></li>
+                                    <li class="sep"><a href="/mlb/teams/power-rankings/" title="MLB Team Rankings">MLB
+                                        Team Rankings</a></li>
+
+                                    <li><a href="/nba/players/power-rankings/" title="NBA Player Rankings">NBA Player
+                                        Rankings</a></li>
+                                    <li class="sep"><a href="/nba/teams/power-rankings/" title="NBA Team Rankings">NBA
+                                        Team Rankings</a></li>
+
+                                    <!--<li><a href="/nhl/players/power-rankings/" title="NBA Player Rankings">NHL Player Rankings</a></li>-->
+                                    <li><a href="/nhl/teams/power-rankings/" title="NBA Team Rankings">NHL Team
+                                        Rankings</a></li>
+                                    <!--
+                                    <li class="sep" style="margin-bottom: 10px"><a href="/soccer/world-cup/team-rankings/" title="Soccer International Team Rankings">World Cup Team Rankings</a></li>
+                                    <li><a href="/ncaab/power-rankings/" title="NCAAB Team Rankings">NCAAB Team Rankings</a></li>
+                                    -->
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </li>
+                <li class="" id="questions-menu"><a href="/questions" class="top-level"
+                                                    title="Answer Questions And Climb The Leaderboard">QUESTIONS</a>
+                </li>
+                <li class="" id="news-menu"><a href="/news/list" class="top-level"
+                                               title="Latest News and Articles">NEWS</a></li>
+            </ul>
+            <div id="search-bar" class="pa" style="left: 869px !important">
+                <input placeholder="Search" type="text" id="search-box" name="search-box"
+                       class="ui-autocomplete-input placeholder" autocomplete="off" role="textbox"
+                       aria-autocomplete="list" aria-haspopup="true">
+            </div>
+            <div id="signup" class="pa clearfix">
+                <ul id="signup">
+                    <li><a href="/users/view/donna-tanabe" id="register-button" class="cta mr0">My Account</a></li>
+                    <li><a href="/account/logout" id="signin-button" class="cta" style="margin-right: 7px">Sign Out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="breadcrumb upper-wrap clearfix" style="background-color: #465da3; border-bottom: none">
+    <div class="alpha" style="height: 24px; padding: 10px 0">
+        <nav class="section-nav pr">
+            <a href="/nba/"
+               style="color: #838fbc; font-size: 24px; line-height: 24px; font-weight: bold; text-shadow: 0 0 2px #036">NBA</a>
+            <ul class="section-subnav pa" style="left: 80px; top: 2px">
+                <li><a href="/nba" title="Fantasy Basketball Help">Home</a></li>
+                <li><a href="/nba/fantasy/fantasy-basketball-projections" title="NBA Daily Basketball Projections">Daily
+                    Basketball Projections</a></li>
+                <li class="active"><a href="/nba/fantasy/fantasy-basketball-rankings"
+                                      title="NBA Fantasy Basketball Rankings">Fantasy Basketball Rankings</a></li>
+                <li><a href="/nba/fantasy/who-do-i-start" title="NBA Daily Fantasy Who Do I Start">Who Do I Start?</a>
+                </li>
+                <li><a href="/nba/games" title="NBA Betting Advice">Game Projections</a></li>
+                <li><a href="/nba/teams/power-rankings" title="NBA Power Rankings">Power Rankings</a></li>
+                <li><a href="/nba/news" title="NBA Fantasy Baseball News">News</a></li>
+                <li><a href="/questions/nba" title="Fantasy Football Help">Questions</a></li>
+                <li><a href="/nba/players/" title="NBA Fantasy Players">Players</a></li>
+                <li><a href="/nba/teams/" title="NBA Team Statistics">Teams</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<style type="text/css">
+    .daily {
+        background: url("/images-new/global/daily-bg.png") repeat-y;
+    }
+
+    .daily-subnav h4 {
+        margin-left: 0 !important;
+    }
+
+    .daily-subnav ul li a {
+        padding: 5px 8px !important;
+        width: 209px !important;
+    }
+
+    .daily-subnav ul li a.active:hover {
+        background-color: #fff;
+    }
+
+    .subselect {
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    select.filter-box {
+        background-color: #FFFFFF;
+        border: 1px solid #DDDDDD;
+        padding: 5px;
+        width: 200px;
+    }
+</style>
+
+<div id="container" role="main" class="pt0">
+    <div class="wrapper clearfix">
+        <div class="daily clearfix pr">
+
+            <img src="/images-new/nba/daily-notch.png" width="47" height="47" class="pa" style="top: 25px; left: -30px">
+
+            <div class="fl clearfix"
+                 style="width: 225px; padding: 25px 0 25px 25px; background-color: #e9e9e9; height: 1000px">
+                <h2 style="font-size: 30px !important; font-weight: 900 !important; line-height: 30px; text-shadow: 1px 0 0 #fff; margin: 0 0 25px 0; padding-bottom: 14px; border-bottom: 1px solid #ccc; text-transform: uppercase"
+                    class="strong">Daily Cheat<br/>Sheet</h2>
+
+                <div class="daily-subnav" id="info">
+
+                    <h4 class="strong sb mt0">Tools</h4>
+                    <ul style="margin-bottom: 25px" class="sub-nav">
+                        <li><a href="/nba/daily-fantasy/optimal-lineups">Optimal Lineups <img width="13" height="13"
+                                                                                              style="vertical-align: middle; margin-bottom: 1px"
+                                                                                              src="/images-new/global/premium.png"></a>
+                        </li>
+                        <li><a href="/nba/daily-fantasy/custom-optimal-lineup">Custom Optimal Lineups <img width="13"
+                                                                                                           height="13"
+                                                                                                           style="vertical-align: middle; margin-bottom: 1px"
+                                                                                                           src="/images-new/global/premium.png"></a>
+                        </li>
+                        <li><a href="/nba/fantasy/who-do-i-start">Who Do I Start?</a></li>
+                    </ul>
+
+                    <h4 class="strong sb mt0">Lineups</h4>
+                    <ul style="margin-bottom: 25px" class="sub-nav">
+                        <li><a href="/nba/daily-fantasy/">Most Used/Best Values</a></li>
+                        <li><a href="/nba/daily-fantasy/lineups">View Submitted Lineups</a></li>
+                        <li><a href="/nba/daily-fantasy/submit-lineup">Submit Lineup</a></li>
+                    </ul>
+
+                    <h4 class="strong sb mt0">Projections/Rankings</h4>
+                    <ul style="margin-bottom: 25px" class="sub-nav">
+                        <li><a href="/nba/fantasy/fantasy-basketball-projections">Daily Basketball Projections</a></li>
+                        <li><a href="/nba/fantasy/season-stats">Season Stats</a></li>
+                        <li><a href="/nba/fantasy/fantasy-basketball-rankings" class="active">Fantasy Basketball
+                            Rankings</a></li>
+                        <li><a href="/nba/fantasy/yearly-projections">Yearly Projections</a></li>
+                        <li><a href="/nba/fantasy/remaining-projections">Remaining Projections</a></li>
+                        <li><a href="/nba/fantasy/weekly-projections">Weekly Projections</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="fl clearfix" style="width: 900px; padding: 25px">
+                <div class="clearfix" style="width: 880px !important; padding: 10px; background-color: #eef">
+                    <div class="fl clearfix" style="width: 600px"><h3 class="xlarge strong"
+                                                                      style="text-shadow: 0px 1px 0px #fff">Want to
+                        dominate daily fantasy? Check out our new tools!</h3></div>
+                    <div class="fr clearfix"><a href="/nba/daily-fantasy/custom-optimal-lineup" id="show-askw"
+                                                class="cta mr0" style="font-size: 1em">Customize</a></div>
+                </div>
+
+                <div class="wrapper clearfix" style="padding-top: 25px; border-top: 1px solid #ddd; margin-top: 25px">
+                    <div class="fl clearfix" style="width: 580px">
+                        <h2 style="font-size: 30px !important; font-weight: 900 !important; line-height: 30px;">NBA
+                            Fantasy Basketball Rankings</h2>
+                        <span class="xsmall gray">Updated daily</span>
+                    </div>
+                    <div class="fr clearfix tar pr" style="width: 300px">
+
+                        <div class="pa" style="top: 0; right: 53px">
+                            <!-- Place this tag where you want the +1 button to render. -->
+                            <div class="g-plusone" data-size="medium"></div>
+
+                            <!-- Place this tag after the last +1 button tag. -->
+                            <script type="text/javascript">
+                                (function () {
+                                    var po = document.createElement('script');
+                                    po.type = 'text/javascript';
+                                    po.async = true;
+                                    po.src = 'https://apis.google.com/js/plusone.js';
+                                    var s = document.getElementsByTagName('script')[0];
+                                    s.parentNode.insertBefore(po, s);
+                                })();
+                            </script>
+                        </div>
+                        <div class="fb-like"
+                             data-href="https://www.numberfire.com/nba/fantasy/fantasy-basketball-rankings"
+                             data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"
+                             data-font="arial"></div>
+                    </div>
+                </div>
+
+                <div class="alpha-box clearfix alpha-tab" style="margin-top: 25px">
+                    <div class="subselect wrapper clearfix" style="border-bottom: 3px solid #ccc">
+                        <div class="fl clearfix" style="width: 70px">
+                            <span class="gray">Positions:</span>
+                        </div>
+                        <div class="fl clearfix">
+                            <a href="/nba/fantasy/fantasy-basketball-rankings" class="strong">All</a> &middot; <a
+                                href="/nba/fantasy/fantasy-basketball-rankings/guards">Guards</a> &middot; <a
+                                href="/nba/fantasy/fantasy-basketball-rankings/forwards">Forwards</a> &middot; <a
+                                href="/nba/fantasy/fantasy-basketball-rankings/centers">Centers</a>
+                        </div>
+                    </div>
+                    <div class="content layout clearfix db">
+                        <table width="100%" class="data-table">
+                            <thead class="xsmall">
+                            <tr valign="middle">
+                                <th class="upper">Rank</th>
+                                <th class="upper">Player</th>
+                                <th colspan="9" class="upper sep">Statistics</th>
+                                <th colspan="2" class="upper sep">Fantasy</th>
+                            </tr>
+                            <tr valign="middle" class="bottom">
+                                <th class="tal">&nbsp;</th>
+                                <th class="tal">&nbsp;</th>
+                                <th class="sep "><a href="/nba/fantasy/fantasy-basketball-rankings/?s=trb">REB</a></th>
+                                <th class=""><a href="/nba/fantasy/fantasy-basketball-rankings/?s=ast">AST</a></th>
+                                <th class=""><a href="/nba/fantasy/fantasy-basketball-rankings/?s=pts">PTS</a></th>
+                                <th class=""><a href="/nba/fantasy/fantasy-basketball-rankings/?s=stl">STL</a></th>
+                                <th class=""><a href="/nba/fantasy/fantasy-basketball-rankings/?s=blk">BLK</a></th>
+                                <th class=""><a href="/nba/fantasy/fantasy-basketball-rankings/?s=tov">TOV</a></th>
+                                <th class=""><a href="/nba/fantasy/fantasy-basketball-rankings/?s=fgpct">FG%</a></th>
+                                <th class=""><a href="/nba/fantasy/fantasy-basketball-rankings/?s=threep">3PM</a></th>
+                                <th class=""><a href="/nba/fantasy/fantasy-basketball-rankings/?s=ftpct">FT%</a></th>
+                                <th class="sep "><a
+                                        href="/nba/fantasy/fantasy-basketball-rankings/?s=zscore">Z-Score</a></th>
+                                <th class="active"><a
+                                        href="/nba/fantasy/fantasy-basketball-rankings/?s=fantasy">Fantasy</a></th>
+                            </tr>
+                            </thead>
+                            <tbody class="small" id="player-data"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<textarea id="player-row-template" class="dn">
+    <tr valign="middle">
+        <td width="30">#${rank}</td>
+        <td class="tal">
+            <a title="${name} Fantasy Player Page" href="/nba/players/${slug}">${name} (${position}, ${team.abbrev})</a>
+        </td>
+        <td width="40" class="sep ">${trb}</td>
+        <td width="40" class="">${ast}</td>
+        <td width="40" class="">${pts}</td>
+        <td width="40" class="">${stl}</td>
+        <td width="40" class="">${blk}</td>
+        <td width="40" class="">${tov}</td>
+        <td width="40" class="">${fgpct}</td>
+        <td width="40" class="">${threep}</td>
+        <td width="40" class="">${ftpct}</td>
+        <td width="60" class="sep ">${zscore}</td>
+        <td width="60" class="strong nf">${fantasy}</td>
+    </tr>
+</textarea>
+
+<footer>
+    <nav id="tertiary">
+        <ul class="tertiary-nav clearfix">
+            <li class="clearfix">
+                <ul>
+                    <li><h5>Sports</h5></li>
+                    <li><a href="/nfl" title="Fantasy Football Who To Start">NFL Home</a></li>
+                    <li><a href="/nfl/fantasy/fantasy-football-projections" title="Fantasy Football Projections">Fantasy
+                        Football Projections</a></li>
+                    <li><a href="/nfl/fantasy/who-do-i-start" title="Fantasy Football Who Do I Start">Fantasy Football
+                        Sit/Start Advice</a></li>
+                    <li><a href="/nfl/fantasy/fantasy-football-rankings" title="Fantasy Football Rankings">Fantasy
+                        Football Rankings</a></li>
+                    <li><a href="/nfl/teams/power-rankings" title="NFL Team Rankings">NFL Team Rankings</a></li>
+                    <li><a href="/nfl/games" title="NFL Betting Game Picks and Simulations">NFL Game Projections</a>
+                    </li>
+                    <li><a href="/nfl/players" title="NFL Player Projections">NFL Players</a></li>
+                    <hr/>
+                    <li><a href="/nba" title="Fantasy Basketball Who To Start">NBA Home</a></li>
+                    <li><a href="/nba/fantasy/fantasy-basketball-projections" title="Fantasy Basketball Projections">Fantasy
+                        Basketball Projections</a></li>
+                    <li><a href="/nba/fantasy/fantasy-basketball-rankings" title="NBA Player Power Rankings">Fantasy
+                        Basketball Rankings</a></li>
+                    <li><a href="/nba/teams/power-rankings" title="NBA Team Rankings">NBA Team Rankings</a></li>
+                    <li><a href="/nba/players/power-rankings" title="NBA Player Rankings">NBA Player Rankings</a></li>
+                    <li><a href="/nba/games" title="NBA Betting Game Picks and Simulations">NBA Game Projections</a>
+                    </li>
+                    <li><a href="/nba/players" title="NBA Player Projections">NBA Players</a></li>
+                    <hr/>
+                    <li><a href="/mlb" title="Fantasy Baseball Who To Start">MLB Home</a></li>
+                    <li><a href="/mlb/fantasy/fantasy-baseball-projections" title="Fantasy Baseball Projections">Fantasy
+                        Baseball Projections</a></li>
+                    <li><a href="/mlb/fantasy/fantasy-baseball-rankings" title="MLB Player Power Rankings">Fantasy
+                        Baseball Rankings</a></li>
+                    <li><a href="/mlb/teams/power-rankings" title="MLB Team Rankings">MLB Team Rankings</a></li>
+                    <li><a href="/mlb/players/power-rankings" title="MLB Player Rankings">MLB Player Rankings</a></li>
+                    <li><a href="/mlb/games/" title="MLB Betting Game Picks and Simulations">MLB Game Projections</a>
+                    </li>
+                    <li><a href="/mlb/players" title="MLB Player Projections">MLB Players</a></li>
+                    <hr/>
+                    <li><a href="/news/all" title="Articles and Advice">Articles</a></li>
+                    <li><a href="/questions/all" title="Questions and Sports Debate">Questions</a></li>
+                    <li><a href="/users/all" title="Users on numberFire">Users</a></li>
+                </ul>
+            </li>
+            <li class="clearfix">
+                <ul>
+                    <li><h5>Projections</h5></li>
+                    <li><a href="/nfl/players/ben-roethlisberger" title="Ben Roethlisberger Fantasy Projection">Ben
+                        Roethlisberger Fantasy Projection</a></li>
+                    <li><a href="/nfl/players/andrew-luck" title="Andrew Luck Fantasy Projection">Andrew Luck Fantasy
+                        Projection</a></li>
+                    <li><a href="/nfl/players/peyton-manning" title="Peyton Manning Fantasy Projection">Peyton Manning
+                        Fantasy Projection</a></li>
+                    <li><a href="/nfl/players/drew-brees" title="Drew Brees Fantasy Projection">Drew Brees Fantasy
+                        Projection</a></li>
+                    <li><a href="/nfl/players/tom-brady" title="Tom Brady Fantasy Projection">Tom Brady Fantasy
+                        Projection</a></li>
+                    <hr/>
+                    <li><a href="/nba/players/quincy-acy" title="Quincy Acy Fantasy Projection">Quincy Acy Fantasy
+                        Projection</a></li>
+                    <li><a href="/nba/players/luc-mbah-a-moute" title="Luc Mbah a Moute Fantasy Projection">Luc Mbah a
+                        Moute Fantasy Projection</a></li>
+                    <li><a href="/nba/players/reggie-jackson" title="Reggie Jackson Fantasy Projection">Reggie Jackson
+                        Fantasy Projection</a></li>
+                    <li><a href="/nba/players/dion-waiters" title="Dion Waiters Fantasy Projection">Dion Waiters Fantasy
+                        Projection</a></li>
+                    <li><a href="/nba/players/enes-kanter" title="Enes Kanter Fantasy Projection">Enes Kanter Fantasy
+                        Projection</a></li>
+                    <hr/>
+                    <li><a href="/mlb/players/cole-hamels" title="Cole Hamels Fantasy Projection">Cole Hamels Fantasy
+                        Projection</a></li>
+                    <li><a href="/mlb/players/jered-weaver" title="Jered Weaver Fantasy Projection">Jered Weaver Fantasy
+                        Projection</a></li>
+                    <li><a href="/mlb/players/ra-dickey" title="R.A. Dickey Fantasy Projection">R.A. Dickey Fantasy
+                        Projection</a></li>
+                    <li><a href="/mlb/players/sonny-gray" title="Sonny Gray Fantasy Projection">Sonny Gray Fantasy
+                        Projection</a></li>
+                    <li><a href="/mlb/players/ervin-santana" title="Ervin Santana Fantasy Projection">Ervin Santana
+                        Fantasy Projection</a></li>
+                </ul>
+            </li>
+            <li class="clearfix">
+                <ul>
+                    <li><h5>Questions</h5></li>
+                    <li>
+                        <a href="/questions/view/51039/should-i-trade-marshawn-lynch-for-lamar-miller-and-brandon-marshall"
+                           title="Should I trade Marshawn Lynch for Lamar Miller and Brandon Marshall?">Should I trade
+                            Marshawn Lynch for Lamar Miller and Brandon Marshall?</a></li>
+                    <li><a href="/questions/view/51140/trade-advice-julio-beckham-jr-vs-antonio-brown"
+                           title="Trade advice! Julio + beckham jr vs Antonio brown">Trade advice! Julio + beckham jr vs
+                        Antonio brown</a></li>
+                    <li><a href="/questions/view/51117/need-1-wr-and-1-flex-non-ppr-who-s-in-who-sits-the-pine"
+                           title="Need 1 WR and 1 Flex (non-ppr) Who's in? Who sits the pine?">Need 1 WR and 1 Flex
+                        (non-ppr) Who's in? Who sits the pine?</a></li>
+                    <li><a href="/questions/view/51146/chances-maclin-and-benjamin-combine-for-21-points"
+                           title="Chances Maclin and Benjamin combine for 21 points?">Chances Maclin and Benjamin
+                        combine for 21 points?</a></li>
+                    <hr/>
+                    <li><a href="/questions/view/51087/drop-perry-jones-thinking-about-picking-up-courtney-lee"
+                           title="Drop Perry Jones? Thinking about picking up Courtney Lee">Drop Perry Jones? Thinking
+                        about picking up Courtney Lee</a></li>
+                    <li>
+                        <a href="/questions/view/50532/hi-i-am-new-to-fantasty-basketball-and-need-help-with-these-trade-offers-im-getting"
+                           title="Hi, I am new to fantasty basketball and need help with these trade offers im getting">Hi,
+                            I am new to fantasty basketball and need help with these trade offers im getting</a></li>
+                    <hr/>
+                    <li><a href="/questions/view/39292/limping-into-the-playoffs" title="Limping into the playoffs?">Limping
+                        into the playoffs?</a></li>
+                    <li><a href="/questions/view/42363/peavy-vs-collmeter" title="Peavy vs Collmeter">Peavy vs
+                        Collmeter</a></li>
+                </ul>
+            </li>
+            <li class="clearfix">
+                <ul class="br">
+                    <li><h5>About / Legal</h5></li>
+
+                    <li><a href="/info/how-it-works/">How It Works</a></li>
+                    <li><a href="/info/premium-products/">Premium Products</a></li>
+                    <li><a href="/info/widgets/">Widgets</a></li>
+
+                    <hr/>
+
+                    <li><a href="/info/about-us/">About Us</a></li>
+                    <li><a href="/info/partners/">Partners</a></li>
+                    <li><a href="/info/advertise/">Advertise With Us</a></li>
+                    <li><a href="/info/how-it-works/">How It Works</a></li>
+                    <li><a href="/info/jobs/">Jobs</a></li>
+                    <li><a href="/info/the-team/">The Team</a></li>
+                    <li><a href="/author/">Contributors</a></li>
+
+                    <hr/>
+
+                    <li><a href="/info/fair-use/">Fair Use Rationale</a></li>
+                    <li><a href="/info/privacy-policy/">Privacy Policy</a></li>
+                    <li><a href="/info/terms-of-service/">Terms of Service</a></li>
+
+                    <hr/>
+
+                    <li><a href="/info/faq/">FAQ</a></li>
+                    <li><a href="/info/glossary/">Glossary</a></li>
+                    <li><a href="mailto:connect@numberfire.com">Suggestions/Bug Fixes</a></li>
+
+                    <hr/>
+
+                    <li><a href="http://twitter.com/numberfire/">Follow us on Twitter</a></li>
+                    <li><a href="http://www.facebook.com/numberfire/">Add us on Facebook</a></li>
+                    <li><a href="/info/contact-us">Contact Us</a></li>
+
+                </ul>
+            </li>
+        </ul>
+
+        <p class="mb0">
+            &copy; 2009-2014 numberFire, Inc.<br/>
+            All rights reserved. Stop stealing our stuff and ripping off our features, please.
+        </p>
+
+    </nav>
+</footer>
+<script type="text/javascript" src="//use.typekit.net/hvg3qyl.js"></script>
+<script type="text/javascript">try {
+    Typekit.load();
+} catch (e) {
+}</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+<script src="/js-new/plugins.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.3.1/jquery.cookie.min.js"></script>
+<script src="/js-new/jquery.timeago.js" type="text/javascript"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.3.20.1/jquery.colorbox-min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+<script src="/js/jquery.livequery.js" type="text/javascript"></script>
+<script src="/js/trimpath/template-1.0.38.js" type="text/javascript"></script>
+<script src="/js-new/script.js?v=157"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+<script>
+    var _gaq = [
+        ['_setAccount', 'UA-16532199-1'],
+        ['_trackPageview']
+    ]; // Change UA-XXXXX-X to be your site's ID
+    (function (d, t) {
+        var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        g.async = 1;
+        g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g, s)
+    }(document, 'script'));
+</script>
+
+
+<script type="text/javascript">
+    var _sf_async_config = {uid: 13588, domain: "numberfire.com"};
+    (function () {
+        function loadChartbeat() {
+            window._sf_endpt = (new Date()).getTime();
+            var e = document.createElement('script');
+            e.setAttribute('language', 'javascript');
+            e.setAttribute('type', 'text/javascript');
+            e.setAttribute('src',
+                            (("https:" == document.location.protocol) ? "https://s3.amazonaws.com/" : "http://") +
+                            "static.chartbeat.com/js/chartbeat.js");
+            document.body.appendChild(e);
+        }
+
+        var oldonload = window.onload;
+        window.onload = (typeof window.onload != 'function') ?
+                loadChartbeat : function () {
+            oldonload();
+            loadChartbeat();
+        };
+    })();
+</script>
+
+<!-- Sailthru Horizon -->
+<script type="text/javascript" src="https://ak.sail-horizon.com/horizon/v1.js"></script>
+<!-- if loading for secure domain, use: https://ak.sail-horizon.com/horizon/v1.js -->
+<script type="text/javascript">
+    $(function () {
+        // Sailthru Concierge
+        if (window.Sailthru) {
+            Sailthru.setup({
+                domain: 'horizon.numberfire.com'
+            });
+        }
+    });
+</script>
+
+<script src="/js-new/nba/fantasybasketballrankings.js?v=157"></script>
+
+
+<script>
+    window.intercomSettings = {
+        name: "Donna Tanabe",
+        email: "d2tanabe@gmail.com",
+        created_at: 1311213030,
+        app_id: "kr5gpvrs"
+    };
+</script>
+<script>(function () {
+    var w = window;
+    var ic = w.Intercom;
+    if (typeof ic === "function") {
+        ic('reattach_activator');
+        ic('update', intercomSettings);
+    } else {
+        var d = document;
+        var i = function () {
+            i.c(arguments)
+        };
+        i.q = [];
+        i.c = function (args) {
+            i.q.push(args)
+        };
+        w.Intercom = i;
+        function l() {
+            var s = d.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'https://widget.intercom.io/widget/4be1ffin';
+            var x = d.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+        }
+
+        if (w.attachEvent) {
+            w.attachEvent('onload', l);
+        } else {
+            w.addEventListener('load', l, false);
+        }
+    }
+})()</script>
+<script type="text/javascript">window.NREUM || (NREUM = {});
+NREUM.info = {"beacon": "beacon-2.newrelic.com", "licenseKey": "3da06e65a6", "applicationID": "1896528", "transactionName": "YwBSZxBTW0FWAUwLDFpKc0YRRlpfGCxaA0ByBF5HA0FM", "queueTime": 0, "applicationTime": 52, "ttGuid": "", "agentToken": "", "userAttributes": "", "errorBeacon": "bam.nr-data.net", "agent": "js-agent.newrelic.com\/nr-476.min.js"}</script>
+</body>
+</html>
