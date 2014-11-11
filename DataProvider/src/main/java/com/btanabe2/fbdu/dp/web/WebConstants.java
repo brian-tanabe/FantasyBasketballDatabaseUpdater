@@ -42,4 +42,13 @@ public class WebConstants {
     public static final String BASKETBALL_REFERENCE_TOR_PAGE_URL = "http://www.basketball-reference.com/teams/TOR/";
     public static final String BASKETBALL_REFERENCE_UTA_PAGE_URL = "http://www.basketball-reference.com/teams/UTA/";
     public static final String BASKETBALL_REFERENCE_WAS_PAGE_URL = "http://www.basketball-reference.com/teams/WAS/";
+
+    public static final String NUMBER_FIRE_SEASON_STATS_URL = "https://www.numberfire.com/nba/fantasy/season-stats";
+    public static final String NUMBER_FIRE_DAILY_PROJECTION_URL = "https://www.numberfire.com/nba/fantasy/fantasy-basketball-projections";
+    public static final String NUMBER_FIRE_YEARLY_PROJECTIONS_URL = "https://www.numberfire.com/nba/fantasy/yearly-projections";
+
+    private static final String NUMBER_FIRE_REMAINING_PROJECTIONS_URL = "https://www.numberfire.com/nba/fantasy/remaining-projections";
+    public static final String NUMBER_FIRE_REMAINING_PROJECTIONS_GUARDS_URL = NUMBER_FIRE_REMAINING_PROJECTIONS_URL + "/guards";
+    public static final String NUMBER_FIRE_REMAINING_PROJECTIONS_FORWARDS_URL = NUMBER_FIRE_REMAINING_PROJECTIONS_URL + "/forwards";
+    public static final String NUMBER_FIRE_REMAINING_PROJECTIONS_CENTERS_URL = NUMBER_FIRE_REMAINING_PROJECTIONS_URL + "/centers";
 }
