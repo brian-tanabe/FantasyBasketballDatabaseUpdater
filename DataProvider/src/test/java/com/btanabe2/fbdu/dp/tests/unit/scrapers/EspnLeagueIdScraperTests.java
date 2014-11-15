@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.tests.scrapers;
+package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dp.leagues.scrapers.EspnLeagueIdScraper;
 import com.btanabe2.fbdu.dp.mocks.MockWebRequest;

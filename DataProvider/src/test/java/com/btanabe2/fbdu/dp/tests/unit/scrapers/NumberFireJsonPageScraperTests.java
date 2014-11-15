@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.tests.scrapers;
+package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dp.fixtures.NumberFirePageFixture;
 import com.btanabe2.fbdu.dp.scrapers.NumberFireJsonPageScraper;
