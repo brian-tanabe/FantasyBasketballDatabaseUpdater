@@ -14,4 +14,8 @@ public class EspnTeamsPageFixture {
     public static Document getEspnBostonStadiumPage(){
         return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/espn-team-pages/espn-boston-stadium-page.html");
     }
+
+    public static Document getEspnFantasyBasketballHomepagePage(){
+        return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/espn-fantasy-pages/espn-fantasy-homepage.html");
+    }
 }

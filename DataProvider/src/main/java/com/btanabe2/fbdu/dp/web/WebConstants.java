@@ -6,9 +6,15 @@ package com.btanabe2.fbdu.dp.web;
 public class WebConstants {
     public static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:32.0) Gecko/20100101 Firefox/32.0";
 
+    ////////// ESPN: //////////
     public static final String ESPN_TEAMS_PAGE_URL = "http://espn.go.com/nba/teams";
-    public static final String ESPN_TEAMS_BOS_URL = "http://espn.go.com/nba/team/stadium/_/name/bos/boston-celtics";
+    public static final String ESPN_FANTASY_BASKETBALL_HOMEPAGE = "http://games.espn.go.com/frontpage/basketball";
 
+    public static String getEspnLoginUrl(String username, String password){
+        return String.format("https://r.espn.go.com/members/login?count=0&SUBMIT=1&language=en&affiliateName=espn&regFormId=espn&username=%s&password=%s&appRedirect=https://r.espn.go.com/members/index", username, password);
+    }
+
+    ////////// BASKETBALL REFERENCE: //////////
     public static final String BASKETBALL_REFERENCE_TEAM_PAGE_URL = "http://www.basketball-reference.com/teams/";
 
     public static final String BASKETBALL_REFERENCE_STANDINGS_PAGE_URL = "http://www.basketball-reference.com/leagues/NBA_2015_standings.html";
@@ -42,4 +48,5 @@ public class WebConstants {
     public static final String BASKETBALL_REFERENCE_TOR_PAGE_URL = "http://www.basketball-reference.com/teams/TOR/";
     public static final String BASKETBALL_REFERENCE_UTA_PAGE_URL = "http://www.basketball-reference.com/teams/UTA/";
     public static final String BASKETBALL_REFERENCE_WAS_PAGE_URL = "http://www.basketball-reference.com/teams/WAS/";
+
 }

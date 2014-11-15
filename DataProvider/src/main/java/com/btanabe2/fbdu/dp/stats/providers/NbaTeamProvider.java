@@ -1,7 +1,7 @@
-package com.btanabe2.fbdu.dp.providers;
+package com.btanabe2.fbdu.dp.stats.providers;
 
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
-import com.btanabe2.fbdu.dp.scrapers.NbaTeamJsonParser;
+import com.btanabe2.fbdu.dp.stats.scrapers.NbaTeamJsonParser;
 
 import java.io.IOException;
 import java.util.List;
