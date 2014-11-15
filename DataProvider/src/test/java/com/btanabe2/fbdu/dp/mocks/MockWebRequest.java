@@ -2,8 +2,10 @@ package com.btanabe2.fbdu.dp.mocks;
 
 import com.btanabe2.fbdu.dp.web.SecureWebRequest;
 import com.btanabe2.fbdu.dp.web.WebRequest;
+import com.btanabe2.fbdu.dp.web.auth.TestableCredentialProvider;
 import org.jsoup.nodes.Document;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -61,7 +63,7 @@ public class MockWebRequest {
         return getMockWebRequest(urlToDocumentMap);
     }
 
-    public static SecureWebRequest getEspnLeagueIdScraperMockWebRequest(){
+    public static SecureWebRequest getEspnLeagueIdScraperMockWebRequest() throws IOException {
         Map<String, Document> urlToDocumentMap = new LinkedHashMap<>();
         urlToDocumentMap.put(ESPN_FANTASY_BASKETBALL_HOMEPAGE, getEspnFantasyBasketballHomepagePage());
 
@@ -89,6 +91,7 @@ public class MockWebRequest {
                 when(webRequest.getPageAsDocument(url)).thenReturn(urlToDocumentMap.get(url));
             }
 
+            when(webRequest.login(new TestableCredentialProvider())).thenReturn(webRequest);
             return webRequest;
         } catch (Exception ex){
             ex.printStackTrace();
