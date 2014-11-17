@@ -9,7 +9,7 @@ import java.sql.Date;
 @javax.persistence.Table(name = "player_biography", schema = "public", catalog = "FANTASY_BASKETBALL")
 public class PlayerBiographyEntity {
     private int id;
-    private int name;
+    private String name;
     private Date birthday;
     private int experience;
     private int espnid;
@@ -29,11 +29,11 @@ public class PlayerBiographyEntity {
 
     @javax.persistence.Basic
     @javax.persistence.Column(name = "name")
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -119,7 +119,7 @@ public class PlayerBiographyEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + name;
+        result = 31 * result + name.hashCode();
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + experience;
         result = 31 * result + espnid;
@@ -127,5 +127,10 @@ public class PlayerBiographyEntity {
         result = 31 * result + numberfireid;
         result = 31 * result + nbateamid;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s", name);
     }
 }

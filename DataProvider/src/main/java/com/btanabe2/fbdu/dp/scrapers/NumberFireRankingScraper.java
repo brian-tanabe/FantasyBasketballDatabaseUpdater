@@ -1,77 +1,44 @@
 package com.btanabe2.fbdu.dp.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.btanabe2.fbdu.dp.models.NumberFireNbaTeamModel;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by BTanabe on 11/10/2014.
  */
 public class NumberFireRankingScraper {
+    private List<NumberFireNbaTeamModel> nbaTeams = new ArrayList<>();
     private LinkedHashMap<Integer, PlayerBiographyEntity> numberFireIdToPlayerBiographyEntityMap = new LinkedHashMap<>();
 
     public void scrapeForPlayers(Document document) throws ParseException {
-        Elements scriptElements = document.select("script[type=text/javascript]");
-        String projectionJavascriptString = findProjectionJavascript(scriptElements);
-        JSONObject jsonObject = new JSONObject(projectionJavascriptString);
-
-        Map<Integer, Integer> numberFireTeamIdToEspnTeamIdMap = extractNumberFireTeamIdToEspnTeamIdFromTeamsJson(jsonObject.getJSONObject("teams"));
-        extractPlayerDataFromJson(numberFireTeamIdToEspnTeamIdMap, jsonObject.getJSONArray("players"));
-
-        System.out.print("");
+        NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
+        nbaTeams = scraper.getNumberFireNbaTeamModels(document);
+        scraper.getProjectionAttributeMapList(document).forEach(this::parseJsonDataAndStoreInPlayerBiographyEntityObject);
     }
 
-    private String findProjectionJavascript(Elements scriptElements){
-        for(Element script : scriptElements){
-            if(script.html().contains("NF_DATA"))
-                return extractJustTheJsonFromJavascript(script.html());
+    private void parseJsonDataAndStoreInPlayerBiographyEntityObject(Map<String, String> playerJsonProjection) {
+        try {
+            PlayerBiographyEntity playerBiographyEntity = new PlayerBiographyEntity();
+
+            playerBiographyEntity.setNumberfireid(Integer.parseInt(playerJsonProjection.getOrDefault("id", "-1")));
+            playerBiographyEntity.setEspnid(Integer.parseInt(playerJsonProjection.getOrDefault("espn_id", "-1")));
+            playerBiographyEntity.setYahooid(Integer.parseInt(playerJsonProjection.getOrDefault("yahoo_id", "-1")));
+            playerBiographyEntity.setName(playerJsonProjection.getOrDefault("name", "UNKNOWN NAME"));
+            playerBiographyEntity.setExperience(Integer.parseInt(playerJsonProjection.getOrDefault("experience", "-1")));
+            playerBiographyEntity.setBirthday(new Date(new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH).parse(playerJsonProjection.getOrDefault("dob", "1900-01-01")).getTime()));
+            playerBiographyEntity.setNbateamid(nbaTeams.stream().filter(t -> t.getNumberFireId() == Integer.parseInt(playerJsonProjection.get("team_id"))).limit(1).collect(Collectors.toList()).get(0).getEspnId());
+
+            numberFireIdToPlayerBiographyEntityMap.put(playerBiographyEntity.getNumberfireid(), playerBiographyEntity);
+        } catch (ParseException ex){
+            ex.printStackTrace();
         }
-
-        return "";
-    }
-
-    private String extractJustTheJsonFromJavascript(String javascriptJson){
-        return javascriptJson.substring(javascriptJson.indexOf("NF_DATA = ") + "NF_DATA = ".length(), javascriptJson.indexOf("};") + "}:".length());
-    }
-
-    private Map<Integer, Integer> extractNumberFireTeamIdToEspnTeamIdFromTeamsJson(JSONObject teamsJsonObject){
-        Map<Integer, Integer> numberFireTeamIdToEspnTeamIdMap = new LinkedHashMap<>(30);
-
-        for(String jsonElementName : teamsJsonObject.getNames(teamsJsonObject)){
-            JSONObject jsonElement = teamsJsonObject.getJSONObject(jsonElementName);
-            int numberFireId = jsonElement.getInt("id");
-            int espnId = jsonElement.getInt("espn_id");
-
-            numberFireTeamIdToEspnTeamIdMap.put(numberFireId, espnId);
-        }
-
-        return numberFireTeamIdToEspnTeamIdMap;
-    }
-
-    private void extractPlayerDataFromJson(Map<Integer, Integer> numberFireTeamIdToEspnTeamIdMap, JSONArray playersJson) throws ParseException {
-        for(int index = 0; index < playersJson.length(); index++){
-            JSONObject playerJsonObject = playersJson.getJSONObject(index);
-
-            PlayerBiographyEntity playerBiography = new PlayerBiographyEntity();
-            playerBiography.setEspnid(playerJsonObject.getInt("espn_id"));
-            playerBiography.setYahooid(playerJsonObject.getInt("yahoo_id"));
-            playerBiography.setExperience(playerJsonObject.getInt("experience"));
-            playerBiography.setBirthday(new java.sql.Date(new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH).parse(playerJsonObject.getString("dob")).getTime()));
-            playerBiography.setNbateamid(numberFireTeamIdToEspnTeamIdMap.get(playerJsonObject.getInt("team_id")));
-//            playerBiography.setName(playerJsonObject.getString("name"));      // TODO change field name to string
-
-            numberFireIdToPlayerBiographyEntityMap.put(playerJsonObject.getInt("id"), playerBiography);
-        }
-
-
-        System.out.print("");
     }
 
     public List<PlayerBiographyEntity> getPlayerBiographyEntitiesList(){

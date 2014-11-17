@@ -1,5 +1,7 @@
 package com.btanabe2.fbdu.dp.scrapers;
 
+import com.btanabe2.fbdu.dp.models.NumberFireNbaTeamModel;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,25 +14,54 @@ import java.util.*;
  */
 public class NumberFireJsonPageScraper {
 
-    public List<Map<String, String>> getProjectionAttributeMapList(Document document) {
-        JSONObject playersObject = new JSONObject(findProjectionJavascript(document.select("script[type=text/javascript]"))).getJSONObject("players");
-        List<Map<String, String>> playerProjectionMapList = new ArrayList<>(playersObject.keySet().size());
-        Set<String> keys = playersObject.keySet();
-        for (String key : keys) {
-            JSONObject playerProjectionJsonArray = playersObject.getJSONObject(key);
-            Map<String, String> playerProjectionMap = new LinkedHashMap<>(playerProjectionJsonArray.names().length());
-            for (int mapKeyIndex = 0; mapKeyIndex < playerProjectionJsonArray.names().length(); mapKeyIndex++) {
+    public List<NumberFireNbaTeamModel> getNumberFireNbaTeamModels(Document document){
+        JSONObject playersObject = new JSONObject(findProjectionJavascript(document.select("script[type=text/javascript]"))).getJSONObject("teams");
+        List<Map<String, String>> teamAttributeMapList = getAllJsonObjectsKeyToValueMap(playersObject);
 
-                String keyString = playerProjectionJsonArray.names().getString(mapKeyIndex);
-                String valueString = playerProjectionJsonArray.getString(keyString);
-
-                playerProjectionMap.put(keyString, valueString);
-            }
-
-            playerProjectionMapList.add(playerProjectionMap);
+        List<NumberFireNbaTeamModel> nbaTeamModels = new ArrayList<>(teamAttributeMapList.size());
+        for(Map<String, String> nbaTeamAttributeMap : teamAttributeMapList){
+            nbaTeamModels.add(new NumberFireNbaTeamModel(nbaTeamAttributeMap.getOrDefault("name", "UNKNOWN TEAM"), Integer.parseInt(nbaTeamAttributeMap.getOrDefault("id", "-1")), Integer.parseInt(nbaTeamAttributeMap.getOrDefault("espn_id", "-1"))));
         }
 
-        return playerProjectionMapList;
+        return nbaTeamModels;
+    }
+
+    public List<Map<String, String>> getProjectionAttributeMapList(Document document) {
+        String playersJavascriptString = findProjectionJavascript(document.select("script[type=text/javascript]"));
+        JSONObject playersJsonObject = new JSONObject(playersJavascriptString);
+        Object playersObject = playersJsonObject.get("players");
+        return playersObject instanceof JSONArray ? getAllJsonArrayObjectsKeyToValueMap((JSONArray) playersObject) : getAllJsonObjectsKeyToValueMap((JSONObject) playersObject);
+    }
+
+    private List<Map<String, String>> getAllJsonArrayObjectsKeyToValueMap(JSONArray allObjects){
+        List<Map<String, String>> keyToValueMapList = new ArrayList<>(allObjects.length());
+        for(int index = 0; index < allObjects.length(); index++){
+            keyToValueMapList.add(parseProjectionGroup(allObjects.getJSONObject(index)));
+        }
+
+        return keyToValueMapList;
+    }
+
+    private List<Map<String, String>> getAllJsonObjectsKeyToValueMap(JSONObject allObjects){
+        List<Map<String, String>> keyToValueMapList = new ArrayList<>(allObjects.keySet().size());
+        for (String key : (Set<String>) allObjects.keySet()) {
+            keyToValueMapList.add(parseProjectionGroup(allObjects.getJSONObject(key)));
+        }
+
+        return keyToValueMapList;
+    }
+
+    private Map<String, String> parseProjectionGroup(JSONObject projectionGroup){
+        Map<String, String> projectionMap = new LinkedHashMap<>(projectionGroup.keySet().size());
+
+        for(int mapKeyIndex = 0; mapKeyIndex < projectionGroup.names().length(); mapKeyIndex++){
+            String keyString = projectionGroup.names().getString(mapKeyIndex);
+            String valueString = projectionGroup.getString(keyString);
+
+            projectionMap.put(keyString, valueString);
+        }
+
+        return projectionMap;
     }
 
     private String findProjectionJavascript(Elements scriptElements) {

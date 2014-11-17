@@ -1,6 +1,7 @@
 package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dp.fixtures.NumberFirePageFixture;
+import com.btanabe2.fbdu.dp.models.NumberFireNbaTeamModel;
 import com.btanabe2.fbdu.dp.scrapers.NumberFireJsonPageScraper;
 import org.junit.Test;
 
@@ -9,6 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by BTanabe on 11/11/2014.
@@ -69,5 +71,22 @@ public class NumberFireJsonPageScraperTests {
         assertEquals("996", playerProjections.get("espn_id"));
         assertEquals("3513", playerProjections.get("yahoo_id"));
         assertEquals("10", playerProjections.get("experience"));
+    }
+
+    @Test
+    public void shouldBeAbleToFindThirtyNbaTeams(){
+        NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
+        List<NumberFireNbaTeamModel> nbaTeams = scraper.getNumberFireNbaTeamModels(NumberFirePageFixture.getNumberFireRankingsPageDocument());
+        assertEquals(30, nbaTeams.size());
+    }
+
+    @Test
+    public void shouldScrapeTheCorrectInformationForTheDenverNuggets(){
+        NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
+        NumberFireNbaTeamModel nuggets = scraper.getNumberFireNbaTeamModels(NumberFirePageFixture.getNumberFireRankingsPageDocument()).stream().filter(t -> t.getName().equalsIgnoreCase("Denver Nuggets")).collect(Collectors.toList()).get(0);
+
+        assertNotNull("The 'Denver Nuggets' object was not found", nuggets);
+        assertEquals("Did not parse the Nugget's NumberFire ID properly", 7, nuggets.getNumberFireId());
+        assertEquals("Did not parse the Nugget's ESPN ID properly", 7, nuggets.getEspnId());
     }
 }
