@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 /**
  * Created by BTanabe on 11/10/2014.
  */
-public class NumberFireRankingScraper {
+public class NumberFireRankingPageScraper {
     private List<NumberFireNbaTeamModel> nbaTeams = new ArrayList<>();
     private LinkedHashMap<Integer, PlayerBiographyEntity> numberFireIdToPlayerBiographyEntityMap = new LinkedHashMap<>();
 
