@@ -28,8 +28,8 @@ public class NumberFireRemainingSeasonProjectionsPageScraperTests {
     }
 
     @Test
-    public void shouldFindTwoHundredGuard(){
-        assertEquals(200, guardsProjections.size());
+    public void shouldFindTwoHundredNineGuards(){
+        assertEquals(209, guardsProjections.size());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class NumberFireRemainingSeasonProjectionsPageScraperTests {
     }
 
     @Test
-    public void shouldFindOneHundredEightyFiveCenters(){
-        assertEquals(185, centersProjections.size());
+    public void shouldFindOneTwentySixCenters(){
+        assertEquals(126, centersProjections.size());
     }
 }

@@ -27,9 +27,13 @@ public class NumberFireJsonPageScraper {
     }
 
     public List<Map<String, String>> getProjectionAttributeMapList(Document document) {
+        return getProjectionAttributeMapList(document, "players");
+    }
+
+    public List<Map<String, String>> getProjectionAttributeMapList(Document document, String key) {
         String playersJavascriptString = findProjectionJavascript(document.select("script[type=text/javascript]"));
         JSONObject playersJsonObject = new JSONObject(playersJavascriptString);
-        Object playersObject = playersJsonObject.get("players");
+        Object playersObject = playersJsonObject.get(key);
         return playersObject instanceof JSONArray ? getAllJsonArrayObjectsKeyToValueMap((JSONArray) playersObject) : getAllJsonObjectsKeyToValueMap((JSONObject) playersObject);
     }
 
