@@ -42,11 +42,6 @@ public class PlayerBiographyPageScraper {
         PlayerBiographyEntity player = new PlayerBiographyEntity();
         try {
             player.setName(String.format("%s %s", playerAttributes.get("first_name"), playerAttributes.get("last_name")));
-
-            if (player.getName().equals("Ty Lawson")) {
-                System.out.print("");
-            }
-
             player.setEspnid(Integer.parseInt(playerAttributes.get("espn_id")));
             player.setYahooid(Integer.parseInt(playerAttributes.get("yahoo_id")));
             player.setExperience(Integer.parseInt(playerAttributes.get("experience")));

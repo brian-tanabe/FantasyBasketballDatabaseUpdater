@@ -64,7 +64,16 @@ public class PlayerBiographyPageScraperTests {
 
     @Test
     public void shouldParseKyleKorverCorrectly(){
+        PlayerBiographyEntity player = forwardsBiographies.stream().filter(p -> p.getName().equals("Kyle Korver")).limit(1).collect(Collectors.toList()).get(0);
 
+        assertNotNull("Did not find Kyle Korver", player);
+        assertEquals("Did not find Kyle Korver", "Kyle Korver", player.getName());
+        assertEquals("Player's ESPN ID was not parsed correctly", 2011, player.getEspnid());
+//        assertEquals("Player's Yahoo ID was not parsed correctly", 4623, player.getYahooid());
+        assertEquals("Player's NumberFire ID was not parsed correctly", 328, player.getNumberfireid());
+        assertEquals("Player's experience was not parsed correctly", 8, player.getExperience());
+        assertEquals("Player's NBA team was not parsed correctly", 1, player.getNbateamid());
+        assertEquals("Player's birthday was not parsed correctly", "1981-03-18", player.getBirthday().toString());
     }
 
     @Test
