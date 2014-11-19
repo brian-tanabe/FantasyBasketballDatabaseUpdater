@@ -61,4 +61,14 @@ public class PlayerBiographyPageScraperTests {
         assertEquals("Player's NBA team was not parsed correctly", 7, player.getNbateamid());
         assertEquals("Player's birthday was not parsed correctly", "1987-11-03", player.getBirthday().toString());
     }
+
+    @Test
+    public void shouldParseKyleKorverCorrectly(){
+
+    }
+
+    @Test
+    public void shouldParseJoseJuanBerreaCorrectlySinceHeHasNoBirthdayOrExperienceDataOnHisNumberFireProfile(){
+
+    }
 }
