@@ -2,7 +2,7 @@ package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dp.fixtures.FileDocumentor;
-import com.btanabe2.fbdu.dp.scrapers.PlayerBiographyPageScraper;
+import com.btanabe2.fbdu.dp.stats.scrapers.PlayerBiographyPageScraper;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -81,6 +81,13 @@ public class PlayerBiographyPageScraperTests {
         PlayerBiographyEntity player = centersBiographies.stream().filter(p -> p.getName().equals("DeMarcus Cousins")).limit(1).collect(Collectors.toList()).get(0);
 
         assertNotNull("Did not find DeMarcus Cousins", player);
+        assertEquals("Did not find DeMarcus Cousins", "DeMarcus Cousins", player.getName());
+        assertEquals("Player's ESPN ID was not parsed correctly", 4258, player.getEspnid());
+        assertEquals("Player's Yahoo ID was not parsed correctly", 4720, player.getYahooid());
+        assertEquals("Player's NumberFire ID was not parsed correctly", 136, player.getNumberfireid());
+        assertEquals("Player's NBA team was not parsed correctly", 23, player.getNbateamid());
+        assertEquals("Player's birthday was not parsed correctly", "1990-08-13", player.getBirthday().toString());
+        assertEquals("Player's experience was not parsed correctly", 3, player.getExperience());
     }
 
     @Test

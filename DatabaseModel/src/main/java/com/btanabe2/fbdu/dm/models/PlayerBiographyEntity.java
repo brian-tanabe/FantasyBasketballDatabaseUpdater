@@ -131,6 +131,6 @@ public class PlayerBiographyEntity {
 
     @Override
     public String toString() {
-        return String.format("%s", name);
+        return String.format("name=[%s], espnID=[%d], yahooID=[%d], numberFireID=[%d], nbaTeamID=[%d], experience=[%d], birthday[%s], ID=[%d]", name, espnid, yahooid, numberfireid, nbateamid, experience, birthday.toString(), id);
     }
 }

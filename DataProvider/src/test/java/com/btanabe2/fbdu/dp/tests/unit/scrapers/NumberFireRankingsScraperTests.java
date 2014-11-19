@@ -2,7 +2,7 @@ package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dp.fixtures.NumberFirePageFixture;
-import com.btanabe2.fbdu.dp.scrapers.NumberFireRankingPageScraper;
+import com.btanabe2.fbdu.dp.stats.scrapers.NumberFireRankingPageScraper;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
