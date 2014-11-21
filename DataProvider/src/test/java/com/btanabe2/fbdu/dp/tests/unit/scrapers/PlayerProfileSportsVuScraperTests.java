@@ -1,6 +1,7 @@
 package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
+import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
 import com.btanabe2.fbdu.dp.stats.scrapers.PlayerProfileSportsVuScraper;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import org.apache.commons.io.FileUtils;
@@ -44,7 +45,7 @@ public class PlayerProfileSportsVuScraperTests {
     @Test
     public void shouldBeAbleToFindFourHundredFortyNinePlayers() {
         try {
-            List<PlayerBiographyEntity> allActiveNbaPlayers = scraper.scrapeForPlayerBiographies();
+            List<PlayerBiographyEntity> allActiveNbaPlayers = scraper.scrapeForPlayerBiographies(NbaTeamEntityFixture.getMockNbaTeams());
             assertEquals("Did not find enough active players", 449, allActiveNbaPlayers.size());
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,7 +56,7 @@ public class PlayerProfileSportsVuScraperTests {
     @Test
     public void shouldParseArronAfflalosBiographyCorrectly(){
         try {
-            PlayerBiographyEntity player = scraper.scrapeForPlayerBiographies().stream().filter(p -> p.getId() == 201167).limit(1).collect(Collectors.toList()).get(0);
+            PlayerBiographyEntity player = scraper.scrapeForPlayerBiographies(NbaTeamEntityFixture.getMockNbaTeams()).stream().filter(p -> p.getId() == 201167).limit(1).collect(Collectors.toList()).get(0);
 
             assertNotNull("Did not find Arron Afflalo", player);
             assertEquals("Player's name did not match", "Arron Afflalo", player.getName());

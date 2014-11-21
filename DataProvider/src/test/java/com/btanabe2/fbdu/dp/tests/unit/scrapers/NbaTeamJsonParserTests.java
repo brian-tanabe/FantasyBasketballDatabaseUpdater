@@ -148,7 +148,7 @@ public class NbaTeamJsonParserTests {
 
     @Test
     public void shouldBeAbleToFindThePelicans(){
-        runTest("New Orleans Pelicans", "New Orleans, LA", "NO");
+        runTest("New Orleans Pelicans", "New Orleans, LA", "NOP");
     }
 
     @Test

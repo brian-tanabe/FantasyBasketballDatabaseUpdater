@@ -1,5 +1,6 @@
 package com.btanabe2.fbdu.dp.stats.scrapers;
 
+import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import com.google.gson.JsonArray;
@@ -34,9 +35,9 @@ public class PlayerProfileSportsVuScraper {
         this.webRequest = webRequest;
     }
 
-    public List<PlayerBiographyEntity> scrapeForPlayerBiographies() throws IOException, ParseException {
+    public List<PlayerBiographyEntity> scrapeForPlayerBiographies(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException {
         List<Integer> allActiveNbaPlayersSportsVuPlayerIds = getListOfAllActivePlayerIds();
-        return scrapeAllPlayerInfoFromEachPlayersSportsVuPage(allActiveNbaPlayersSportsVuPlayerIds);
+        return scrapeAllPlayerInfoFromEachPlayersSportsVuPage(allActiveNbaPlayersSportsVuPlayerIds, nbaTeams);
     }
 
     private List<Integer> getListOfAllActivePlayerIds() throws IOException {
@@ -51,16 +52,16 @@ public class PlayerProfileSportsVuScraper {
         return playerIds;
     }
 
-    private List<PlayerBiographyEntity> scrapeAllPlayerInfoFromEachPlayersSportsVuPage(List<Integer> allActivePlayerIds) throws IOException, ParseException {
+    private List<PlayerBiographyEntity> scrapeAllPlayerInfoFromEachPlayersSportsVuPage(List<Integer> allActivePlayerIds, List<NbaTeamEntity> nbaTeam) throws IOException, ParseException {
         List<PlayerBiographyEntity> playerBiographies = new ArrayList<>(allActivePlayerIds.size());
         for(int playerId : allActivePlayerIds){ // is there a way to do lambdas that throw execptions?
-            playerBiographies.add(getPlayerInfo(playerId));
+            playerBiographies.add(getPlayerInfo(playerId, nbaTeam));
         }
 
         return playerBiographies;
     }
 
-    private PlayerBiographyEntity getPlayerInfo(int playerId) throws IOException, ParseException {
+    private PlayerBiographyEntity getPlayerInfo(int playerId, List<NbaTeamEntity> nbaTeam) throws IOException, ParseException {
         JsonArray playerInfoJsonArray = getPlayerInfoJsonArray(playerId);
 
         PlayerBiographyEntity player = new PlayerBiographyEntity();
@@ -68,7 +69,7 @@ public class PlayerProfileSportsVuScraper {
         player.setName(playerInfoJsonArray.get(3).getAsString());
         player.setBirthday(convertDateStringToSqlDateObject(playerInfoJsonArray.get(6).getAsString()));
         player.setExperience(playerInfoJsonArray.get(12).getAsInt());
-        player.setNbateamid(convertTeamNameToTeamId(playerInfoJsonArray.get(19).getAsString()));
+        player.setNbateamid(convertTeamNameToTeamId(playerInfoJsonArray.get(19).getAsString(), nbaTeam));
         player.setHeight(convertHeightToInches(playerInfoJsonArray.get(10).getAsString()));
         player.setWeight(playerInfoJsonArray.get(11).getAsInt());
         player.setCountry(playerInfoJsonArray.get(8).getAsString());
@@ -96,7 +97,7 @@ public class PlayerProfileSportsVuScraper {
         return new Date(new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dateString).getTime());
     }
 
-    private int convertTeamNameToTeamId(String teamName){
+    private int convertTeamNameToTeamId(String teamName, List<NbaTeamEntity> nbaTeam){
 
         return 0;
     }

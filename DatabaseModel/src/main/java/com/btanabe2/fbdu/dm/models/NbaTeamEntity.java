@@ -14,6 +14,10 @@ public class NbaTeamEntity {
     private String abbreviation;
     private String name;
 
+    public NbaTeamEntity(){}
+
+    public NbaTeamEntity(int id, String abbreviation){ this.id = id; this.abbreviation = abbreviation; }
+
     @Id
     @Column(name = "id")
     @GeneratedValue(generator = "IDENTITY")
