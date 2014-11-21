@@ -1,24 +1,28 @@
 package com.btanabe2.fbdu.dm.models;
 
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by brian on 11/5/14.
+ * Created by brian on 11/20/14.
  */
-@javax.persistence.Entity
-@javax.persistence.Table(name = "player_biography", schema = "public", catalog = "FANTASY_BASKETBALL")
+@Entity
+@Table(name = "player_biography", schema = "public", catalog = "FANTASY_BASKETBALL")
 public class PlayerBiographyEntity {
     private int id;
     private String name;
     private Date birthday;
     private int experience;
     private int espnid;
-    private int yahooid;
     private int numberfireid;
     private int nbateamid;
+    private int height;
+    private int weight;
+    private String country;
+    private String school;
 
-    @javax.persistence.Id
-    @javax.persistence.Column(name = "id")
+    @Id
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -27,8 +31,8 @@ public class PlayerBiographyEntity {
         this.id = id;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "name")
+    @Basic
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -37,8 +41,8 @@ public class PlayerBiographyEntity {
         this.name = name;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "birthday")
+    @Basic
+    @Column(name = "birthday")
     public Date getBirthday() {
         return birthday;
     }
@@ -47,8 +51,8 @@ public class PlayerBiographyEntity {
         this.birthday = birthday;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "experience")
+    @Basic
+    @Column(name = "experience")
     public int getExperience() {
         return experience;
     }
@@ -57,8 +61,8 @@ public class PlayerBiographyEntity {
         this.experience = experience;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "espnid")
+    @Basic
+    @Column(name = "espnid")
     public int getEspnid() {
         return espnid;
     }
@@ -67,18 +71,8 @@ public class PlayerBiographyEntity {
         this.espnid = espnid;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "yahooid")
-    public int getYahooid() {
-        return yahooid;
-    }
-
-    public void setYahooid(int yahooid) {
-        this.yahooid = yahooid;
-    }
-
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "numberfireid")
+    @Basic
+    @Column(name = "numberfireid")
     public int getNumberfireid() {
         return numberfireid;
     }
@@ -87,14 +81,54 @@ public class PlayerBiographyEntity {
         this.numberfireid = numberfireid;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "nbateamid")
+    @Basic
+    @Column(name = "nbateamid")
     public int getNbateamid() {
         return nbateamid;
     }
 
     public void setNbateamid(int nbateamid) {
         this.nbateamid = nbateamid;
+    }
+
+    @Basic
+    @Column(name = "height")
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    @Basic
+    @Column(name = "weight")
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    @Basic
+    @Column(name = "country")
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    @Basic
+    @Column(name = "school")
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
     }
 
     @Override
@@ -106,12 +140,15 @@ public class PlayerBiographyEntity {
 
         if (espnid != that.espnid) return false;
         if (experience != that.experience) return false;
+        if (height != that.height) return false;
         if (id != that.id) return false;
-        if (name != that.name) return false;
         if (nbateamid != that.nbateamid) return false;
         if (numberfireid != that.numberfireid) return false;
-        if (yahooid != that.yahooid) return false;
+        if (weight != that.weight) return false;
         if (birthday != null ? !birthday.equals(that.birthday) : that.birthday != null) return false;
+        if (country != null ? !country.equals(that.country) : that.country != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (school != null ? !school.equals(that.school) : that.school != null) return false;
 
         return true;
     }
@@ -119,18 +156,16 @@ public class PlayerBiographyEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + name.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + experience;
         result = 31 * result + espnid;
-        result = 31 * result + yahooid;
         result = 31 * result + numberfireid;
         result = 31 * result + nbateamid;
+        result = 31 * result + height;
+        result = 31 * result + weight;
+        result = 31 * result + (country != null ? country.hashCode() : 0);
+        result = 31 * result + (school != null ? school.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("name=[%s], espnID=[%d], yahooID=[%d], numberFireID=[%d], nbaTeamID=[%d], experience=[%d], birthday[%s], ID=[%d]", name, espnid, yahooid, numberfireid, nbateamid, experience, birthday.toString(), id);
     }
 }

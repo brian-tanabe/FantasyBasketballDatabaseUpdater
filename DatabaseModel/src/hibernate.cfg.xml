@@ -8,6 +8,7 @@
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.username">brian</property>
         <property name="connection.password">admin</property>
+        <mapping class="com.btanabe2.fbdu.dm.models.PlayerBiographyEntity"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>
