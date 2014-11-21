@@ -27,4 +27,9 @@ public class NbaTeamSportsVuModel {
     public void setAbbreviation(String abbreviation) {
         this.abbreviation = abbreviation;
     }
+
+    @Override
+    public String toString() {
+        return String.format("abbreviation=[%s]; id=[%d]", abbreviation, id);
+    }
 }

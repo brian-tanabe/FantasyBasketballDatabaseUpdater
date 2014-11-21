@@ -1,150 +1,180 @@
 [
     {
+        "id": 1610612738,
         "name": "Boston Celtics",
         "location": "Boston, MA",
         "abbreviation": "BOS"
     },
     {
+        "id": 1610612751,
         "name": "Brooklyn Nets",
         "location": "New York, NY",
         "abbreviation": "BKN"
     },
     {
+        "id": 1610612752,
         "name": "New York Knicks",
         "location": "New York, NY",
         "abbreviation": "NYK"
     },
     {
+        "id": 1610612755,
         "name": "Philadelphia 76ers",
         "location": "Philadelphia, PA",
         "abbreviation": "PHI"
     },
     {
+        "id": 1610612761,
         "name": "Toronto Raptors",
         "location": "Toronto, ON",
         "abbreviation": "TOR"
     },
     {
+        "id": 1610612741,
         "name": "Chicago Bulls",
         "location": "Chicago, IL",
         "abbreviation": "CHI"
     },
     {
+        "id": 1610612739,
         "name": "Cleveland Cavaliers",
         "location": "Cleveland, OH",
         "abbreviation": "CLE"
     },
     {
+        "id": 1610612765,
         "name": "Detroit Pistons",
         "location": "Detroit, MI",
         "abbreviation": "DET"
     },
     {
+        "id": 1610612754,
         "name": "Indiana Pacers",
         "location": "Indianapolis, IN",
         "abbreviation": "IND"
     },
     {
+        "id": 1610612749,
         "name": "Milwaukee Bucks",
         "location": "Milwaukee, WI",
         "abbreviation": "MIL"
     },
     {
+        "id": 1610612737,
         "name": "Atlanta Hawks",
         "location": "Atlanta, GA",
         "abbreviation": "ATL"
     },
     {
+        "id": 1610612766,
         "name": "Charlotte Hornets",
         "location": "Charlotte, NC",
         "abbreviation": "CHA"
     },
     {
+        "id": 1610612748,
         "name": "Miami Heat",
         "location": "Miami, FL",
         "abbreviation": "MIA"
     },
     {
+        "id": 1610612753,
         "name": "Orlando Magic",
         "location": "Orlando, FL",
         "abbreviation": "ORL"
     },
     {
+        "id": 1610612764,
         "name": "Washington Wizards",
         "location": "Washington, DC",
         "abbreviation": "WAS"
     },
     {
+        "id": 1610612744,
         "name": "Golden State Warriors",
         "location": "Oakland, CA",
         "abbreviation": "GSW"
     },
     {
+        "id": 1610612746,
         "name": "Los Angeles Clippers",
         "location": "Los Angeles, CA",
         "abbreviation": "LAC"
     },
     {
+        "id": 1610612747,
         "name": "Los Angeles Lakers",
         "location": "Los Angeles, CA",
         "abbreviation": "LAL"
     },
     {
+        "id": 1610612756,
         "name": "Phoenix Suns",
         "location": "Phoenix, AZ",
         "abbreviation": "PHX"
     },
     {
+        "id": 1610612758,
         "name": "Sacramento Kings",
         "location": "Sacramento, CA",
         "abbreviation": "SAC"
     },
     {
+        "id": 1610612742,
         "name": "Dallas Mavericks",
         "location": "Dallas, TX",
         "abbreviation": "DAL"
     },
     {
+        "id": 1610612745,
         "name": "Houston Rockets",
         "location": "Houston, TX",
         "abbreviation": "HOU"
     },
     {
+        "id": 1610612763,
         "name": "Memphis Grizzlies",
         "location": "Memphis, TN",
         "abbreviation": "MEM"
     },
     {
+        "id": 1610612740,
         "name": "New Orleans Pelicans",
         "location": "New Orleans, LA",
         "abbreviation": "NO"
     },
     {
+        "id": 1610612759,
         "name": "San Antonio Spurs",
         "location": "San Antonio, TX",
         "abbreviation": "SAS"
     },
     {
+        "id": 1610612743,
         "name": "Denver Nuggets",
         "location": "Denver, CO",
         "abbreviation": "DEN"
     },
     {
+        "id": 1610612760,
         "name": "Oklahoma City Thunder",
         "location": "Oklahoma City, OK",
         "abbreviation": "OKC"
     },
     {
+        "id": 1610612750,
         "name": "Minnesota Timberwolves",
         "location": "Minneapolis, MN",
         "abbreviation": "MIN"
     },
     {
+        "id": 1610612757,
         "name": "Portland Trail Blazers",
         "location": "Portland, OR",
         "abbreviation": "POR"
     },
     {
+        "id": 1610612762,
         "name": "Utah Jazz",
         "location": "Salt Lake City, UT",
         "abbreviation": "UTA"
