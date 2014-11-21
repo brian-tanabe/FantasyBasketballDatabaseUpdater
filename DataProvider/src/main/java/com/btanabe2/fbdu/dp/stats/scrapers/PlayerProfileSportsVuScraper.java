@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 import static com.btanabe2.fbdu.dp.web.WebConstants.SPORTS_VU_ALL_PLAYERS_URL;
 import static com.btanabe2.fbdu.dp.web.WebConstants.getPlayerInfoPageUrlFromSportsVu;
@@ -69,7 +70,7 @@ public class PlayerProfileSportsVuScraper {
         player.setName(playerInfoJsonArray.get(3).getAsString());
         player.setBirthday(convertDateStringToSqlDateObject(playerInfoJsonArray.get(6).getAsString()));
         player.setExperience(playerInfoJsonArray.get(12).getAsInt());
-        player.setNbateamid(convertTeamNameToTeamId(playerInfoJsonArray.get(19).getAsString(), nbaTeam));
+        player.setNbateamid(convertTeamNameToTeamId(playerInfoJsonArray.get(18).getAsString(), nbaTeam));
         player.setHeight(convertHeightToInches(playerInfoJsonArray.get(10).getAsString()));
         player.setWeight(playerInfoJsonArray.get(11).getAsInt());
         player.setCountry(playerInfoJsonArray.get(8).getAsString());
@@ -90,15 +91,14 @@ public class PlayerProfileSportsVuScraper {
 
     private int convertHeightToInches(String heightString){
         String[] feetInches = heightString.split("-");
-        return Integer.parseInt(feetInches[1]) * 12 + Integer.parseInt(feetInches[0]);
+        return Integer.parseInt(feetInches[0]) * 12 + Integer.parseInt(feetInches[1]);
     }
 
     private Date convertDateStringToSqlDateObject(String dateString) throws ParseException {
         return new Date(new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dateString).getTime());
     }
 
-    private int convertTeamNameToTeamId(String teamName, List<NbaTeamEntity> nbaTeam){
-
-        return 0;
+    private int convertTeamNameToTeamId(String teamAbbreviation, List<NbaTeamEntity> nbaTeam){
+        return nbaTeam.stream().filter(t -> t.getAbbreviation().equals(teamAbbreviation)).limit(1).collect(Collectors.toList()).get(0).getId();
     }
 }

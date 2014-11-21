@@ -60,6 +60,14 @@ public class PlayerProfileSportsVuScraperTests {
 
             assertNotNull("Did not find Arron Afflalo", player);
             assertEquals("Player's name did not match", "Arron Afflalo", player.getName());
+            assertEquals("Player's teamId was incorrect", 1610612743, player.getNbateamid());
+            assertEquals("Player's country was incorrect", "USA", player.getCountry());
+            assertEquals("UCLA", player.getSchool());
+            assertEquals(201167, player.getId());
+            assertEquals(7, player.getExperience());
+            assertEquals(77, player.getHeight());
+            assertEquals(215, player.getWeight());
+            assertEquals("1985-10-15", player.getBirthday().toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
