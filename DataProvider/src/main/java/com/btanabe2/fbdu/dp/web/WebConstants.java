@@ -6,6 +6,13 @@ package com.btanabe2.fbdu.dp.web;
 public class WebConstants {
     public static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:32.0) Gecko/20100101 Firefox/32.0";
 
+    ////////// SPORTSVU: //////////
+    public static final String SPORTS_VU_ALL_PLAYERS_URL = "http://stats.nba.com/stats/commonallplayers?LeagueID=00&Season=2014-15&IsOnlyCurrentSeason=1";
+
+    public static String getPlayerInfoFromSportsVu(int playerId){
+        return String.format("http://stats.nba.com/stats/commonplayerinfo?PlayerID=%d", playerId);
+    }
+
     ////////// ESPN: //////////
     public static final String ESPN_TEAMS_PAGE_URL = "http://espn.go.com/nba/teams";
     public static final String ESPN_FANTASY_BASKETBALL_HOMEPAGE = "http://games.espn.go.com/frontpage/basketball";

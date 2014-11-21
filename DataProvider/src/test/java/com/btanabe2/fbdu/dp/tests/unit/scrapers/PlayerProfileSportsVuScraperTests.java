@@ -1,32 +1,51 @@
 package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
+import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dp.stats.scrapers.PlayerProfileSportsVuScraper;
+import com.btanabe2.fbdu.dp.web.WebRequest;
 import org.apache.commons.io.FileUtils;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
-import java.util.Map;
 
+import static com.btanabe2.fbdu.dp.web.WebConstants.SPORTS_VU_ALL_PLAYERS_URL;
+import static com.btanabe2.fbdu.dp.web.WebConstants.getPlayerInfoFromSportsVu;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by brian on 11/19/14.
  */
 public class PlayerProfileSportsVuScraperTests {
+    private static PlayerProfileSportsVuScraper scraper;
+
+    @BeforeClass
+    public static void setup(){
+        try {
+            WebRequest mockWebRequest = mock(WebRequest.class);
+            when(mockWebRequest.getPage(SPORTS_VU_ALL_PLAYERS_URL)).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/nba-commonallplayers.json"), Charset.forName("UTF8")));
+            when(mockWebRequest.getPage(getPlayerInfoFromSportsVu(201167))).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/playerinfo-afflalo_aaron.json"), Charset.forName("UTF8")));
+            scraper = new PlayerProfileSportsVuScraper(mockWebRequest);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Failed to create the mock WebRequest for the PlayerProfileSportsVuScraperTests");
+        }
+    }
 
     @Test
     public void shouldBeAbleToFindFourHundredFortyNinePlayers() {
         try {
-            PlayerProfileSportsVuScraper scraper = new PlayerProfileSportsVuScraper();
-            List<Map<String, String>> allActiveNbaPlayers = scraper.getAllActivePlayersNameIdAndExperience(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/nba-commonallplayers.json"), Charset.forName("UTF8")));
+            List<PlayerBiographyEntity> allActiveNbaPlayers = scraper.scrapeForPlayerBiographies();
             assertEquals("Did not find enough active players", 449, allActiveNbaPlayers.size());
         } catch (IOException e) {
             e.printStackTrace();
-            fail("Failed to read input test files");
+            fail("JSON test files are illegally formatted or formatted in an unpredictable manner");
         }
     }
 }
