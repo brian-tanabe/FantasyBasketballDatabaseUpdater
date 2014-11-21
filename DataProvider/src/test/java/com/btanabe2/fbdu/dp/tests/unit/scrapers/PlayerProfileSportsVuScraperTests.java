@@ -30,7 +30,7 @@ public class PlayerProfileSportsVuScraperTests {
         try {
             WebRequest mockWebRequest = mock(WebRequest.class);
             when(mockWebRequest.getPage(SPORTS_VU_ALL_PLAYERS_URL)).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/nba-commonallplayers.json"), Charset.forName("UTF8")));
-            when(mockWebRequest.getPage(getPlayerInfoFromSportsVu(201167))).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/playerinfo-afflalo_aaron.json"), Charset.forName("UTF8")));
+            when(mockWebRequest.getPage(getPlayerInfoFromSportsVu(201167))).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/playerinfo-pages/playerinfo-afflalo_aaron.json"), Charset.forName("UTF8")));
             scraper = new PlayerProfileSportsVuScraper(mockWebRequest);
         } catch (IOException e) {
             e.printStackTrace();
