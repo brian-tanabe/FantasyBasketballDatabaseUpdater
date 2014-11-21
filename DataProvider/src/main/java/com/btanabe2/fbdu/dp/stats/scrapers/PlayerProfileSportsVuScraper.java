@@ -7,10 +7,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.btanabe2.fbdu.dp.web.WebConstants.SPORTS_VU_ALL_PLAYERS_URL;
+import static com.btanabe2.fbdu.dp.web.WebConstants.getPlayerInfoPageUrlFromSportsVu;
 
 /**
  * Created by BTanabe on 11/19/2014.
@@ -45,18 +47,54 @@ public class PlayerProfileSportsVuScraper {
         return playerIds;
     }
 
-    private List<PlayerBiographyEntity> scrapeAllPlayerInfoFromEachPlayersSportsVuPage(List<Integer> allActivePlayerIds){
+    private List<PlayerBiographyEntity> scrapeAllPlayerInfoFromEachPlayersSportsVuPage(List<Integer> allActivePlayerIds) throws IOException {
         List<PlayerBiographyEntity> playerBiographies = new ArrayList<>(allActivePlayerIds.size());
-        allActivePlayerIds.forEach(p -> playerBiographies.add(getPlayerInfo(p)));
+        for(int playerId : allActivePlayerIds){ // is there a way to do lambdas that throw execptions?
+            playerBiographies.add(getPlayerInfo(playerId));
+        }
 
         return playerBiographies;
     }
 
-    private PlayerBiographyEntity getPlayerInfo(int playerId){
+    private PlayerBiographyEntity getPlayerInfo(int playerId) throws IOException {
+        JsonArray playerInfoJsonArray = getPlayerInfoJsonArray(playerId);
+
         PlayerBiographyEntity player = new PlayerBiographyEntity();
         player.setId(playerId);
-
+        player.setName(playerInfoJsonArray.get(3).getAsString());
+        player.setBirthday(convertDateStringToSqlDateObject(playerInfoJsonArray.get(6).getAsString()));
+        player.setExperience(playerInfoJsonArray.get(12).getAsInt());
+        player.setNbateamid(convertTeamNameToTeamId(playerInfoJsonArray.get(16).getAsString()));
+        player.setHeight(convertHeightToInches(playerInfoJsonArray.get(10).getAsString()));
+        player.setWeight(playerInfoJsonArray.get(11).getAsInt());
+        player.setCountry(playerInfoJsonArray.get(8).getAsString());
+        player.setSchool(playerInfoJsonArray.get(7).getAsString());
 
         return player;
+    }
+
+    private JsonArray getPlayerInfoJsonArray(int playerId) throws IOException {
+        JsonObject jsonElement = new JsonParser().parse(webRequest.getPage(getPlayerInfoPageUrlFromSportsVu(playerId))).getAsJsonObject();
+        JsonArray jsonArray = jsonElement.getAsJsonArray("resultSets");
+
+//        JsonArray elementHeaders = jsonArray.get(0).getAsJsonObject().get("headers").getAsJsonArray();
+        JsonArray elements = jsonArray.get(0).getAsJsonObject().get("rowSet").getAsJsonArray();
+
+        return elements.get(0).getAsJsonArray();
+    }
+
+    private int convertHeightToInches(String heightString){
+
+        return 0;
+    }
+
+    private Date convertDateStringToSqlDateObject(String dateString){
+
+        return null;
+    }
+
+    private int convertTeamNameToTeamId(String teamName){
+
+        return 0;
     }
 }

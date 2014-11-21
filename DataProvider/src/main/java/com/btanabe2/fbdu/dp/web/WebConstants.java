@@ -9,7 +9,7 @@ public class WebConstants {
     ////////// SPORTSVU: //////////
     public static final String SPORTS_VU_ALL_PLAYERS_URL = "http://stats.nba.com/stats/commonallplayers?LeagueID=00&Season=2014-15&IsOnlyCurrentSeason=1";
 
-    public static String getPlayerInfoFromSportsVu(int playerId){
+    public static String getPlayerInfoPageUrlFromSportsVu(int playerId){
         return String.format("http://stats.nba.com/stats/commonplayerinfo?PlayerID=%d", playerId);
     }
 

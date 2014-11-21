@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.btanabe2.fbdu.dp.web.WebConstants.SPORTS_VU_ALL_PLAYERS_URL;
-import static com.btanabe2.fbdu.dp.web.WebConstants.getPlayerInfoFromSportsVu;
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -32,7 +32,8 @@ public class PlayerProfileSportsVuScraperTests {
         try {
             WebRequest mockWebRequest = mock(WebRequest.class);
             when(mockWebRequest.getPage(SPORTS_VU_ALL_PLAYERS_URL)).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/nba-commonallplayers.json"), Charset.forName("UTF8")));
-            when(mockWebRequest.getPage(getPlayerInfoFromSportsVu(201167))).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/playerinfo-pages/playerinfo-afflalo_aaron.json"), Charset.forName("UTF8")));
+            when(mockWebRequest.getPage(any(String.class))).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/playerinfo-pages/playerinfo-afflalo_aaron.json"), Charset.forName("UTF8")));
+
             scraper = new PlayerProfileSportsVuScraper(mockWebRequest);
         } catch (IOException e) {
             e.printStackTrace();
@@ -52,12 +53,12 @@ public class PlayerProfileSportsVuScraperTests {
     }
 
     @Test
-    public void shouldParseAaronAfflalosBiographyCorrectly(){
+    public void shouldParseArronAfflalosBiographyCorrectly(){
         try {
             PlayerBiographyEntity player = scraper.scrapeForPlayerBiographies().stream().filter(p -> p.getId() == 201167).limit(1).collect(Collectors.toList()).get(0);
 
-            assertNotNull("Did not find Aaron Afflalo", player);
-            assertEquals("Player's name did not match", "Aaron Afflalo", player.getName());
+            assertNotNull("Did not find Arron Afflalo", player);
+            assertEquals("Player's name did not match", "Arron Afflalo", player.getName());
         } catch (IOException e) {
             e.printStackTrace();
         }
