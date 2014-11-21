@@ -17,6 +17,9 @@ import java.util.List;
  */
 public class NbaTeamJsonParser {
 
+    // Check out:
+    // http://stats.nba.com/stats/commonteamyears?LeagueID=00
+
     public static List<NbaTeamEntity> getAllNbaTeams() throws IOException {
         String nbaTeamsJsonFile = getNbaTeamsJsonFileAsString();
         return parseNbaTeamsJsonFile(nbaTeamsJsonFile);

@@ -46,7 +46,7 @@ public class PlayerProfileSportsVuScraperTests {
         try {
             List<PlayerBiographyEntity> allActiveNbaPlayers = scraper.scrapeForPlayerBiographies();
             assertEquals("Did not find enough active players", 449, allActiveNbaPlayers.size());
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             fail("JSON test files are illegally formatted or formatted in an unpredictable manner");
         }
@@ -59,7 +59,7 @@ public class PlayerProfileSportsVuScraperTests {
 
             assertNotNull("Did not find Arron Afflalo", player);
             assertEquals("Player's name did not match", "Arron Afflalo", player.getName());
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

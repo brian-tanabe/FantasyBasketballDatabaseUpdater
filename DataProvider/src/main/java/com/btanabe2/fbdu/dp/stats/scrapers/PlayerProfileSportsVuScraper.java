@@ -8,8 +8,11 @@ import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static com.btanabe2.fbdu.dp.web.WebConstants.SPORTS_VU_ALL_PLAYERS_URL;
 import static com.btanabe2.fbdu.dp.web.WebConstants.getPlayerInfoPageUrlFromSportsVu;
@@ -31,7 +34,7 @@ public class PlayerProfileSportsVuScraper {
         this.webRequest = webRequest;
     }
 
-    public List<PlayerBiographyEntity> scrapeForPlayerBiographies() throws IOException {
+    public List<PlayerBiographyEntity> scrapeForPlayerBiographies() throws IOException, ParseException {
         List<Integer> allActiveNbaPlayersSportsVuPlayerIds = getListOfAllActivePlayerIds();
         return scrapeAllPlayerInfoFromEachPlayersSportsVuPage(allActiveNbaPlayersSportsVuPlayerIds);
     }
@@ -47,7 +50,7 @@ public class PlayerProfileSportsVuScraper {
         return playerIds;
     }
 
-    private List<PlayerBiographyEntity> scrapeAllPlayerInfoFromEachPlayersSportsVuPage(List<Integer> allActivePlayerIds) throws IOException {
+    private List<PlayerBiographyEntity> scrapeAllPlayerInfoFromEachPlayersSportsVuPage(List<Integer> allActivePlayerIds) throws IOException, ParseException {
         List<PlayerBiographyEntity> playerBiographies = new ArrayList<>(allActivePlayerIds.size());
         for(int playerId : allActivePlayerIds){ // is there a way to do lambdas that throw execptions?
             playerBiographies.add(getPlayerInfo(playerId));
@@ -56,7 +59,7 @@ public class PlayerProfileSportsVuScraper {
         return playerBiographies;
     }
 
-    private PlayerBiographyEntity getPlayerInfo(int playerId) throws IOException {
+    private PlayerBiographyEntity getPlayerInfo(int playerId) throws IOException, ParseException {
         JsonArray playerInfoJsonArray = getPlayerInfoJsonArray(playerId);
 
         PlayerBiographyEntity player = new PlayerBiographyEntity();
@@ -64,7 +67,7 @@ public class PlayerProfileSportsVuScraper {
         player.setName(playerInfoJsonArray.get(3).getAsString());
         player.setBirthday(convertDateStringToSqlDateObject(playerInfoJsonArray.get(6).getAsString()));
         player.setExperience(playerInfoJsonArray.get(12).getAsInt());
-        player.setNbateamid(convertTeamNameToTeamId(playerInfoJsonArray.get(16).getAsString()));
+        player.setNbateamid(convertTeamNameToTeamId(playerInfoJsonArray.get(19).getAsString()));
         player.setHeight(convertHeightToInches(playerInfoJsonArray.get(10).getAsString()));
         player.setWeight(playerInfoJsonArray.get(11).getAsInt());
         player.setCountry(playerInfoJsonArray.get(8).getAsString());
@@ -84,13 +87,12 @@ public class PlayerProfileSportsVuScraper {
     }
 
     private int convertHeightToInches(String heightString){
-
-        return 0;
+        String[] feetInches = heightString.split("-");
+        return Integer.parseInt(feetInches[1]) * 12 + Integer.parseInt(feetInches[0]);
     }
 
-    private Date convertDateStringToSqlDateObject(String dateString){
-
-        return null;
+    private Date convertDateStringToSqlDateObject(String dateString) throws ParseException {
+        return new Date(new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dateString).getTime());
     }
 
     private int convertTeamNameToTeamId(String teamName){
