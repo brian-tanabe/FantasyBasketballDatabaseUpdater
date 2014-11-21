@@ -37,7 +37,6 @@ public class NbaTeamJsonParser {
 
         for (NbaTeamModel nbaTeam : nbaTeams) {
             NbaTeamEntity newNbaTeamEntity = new NbaTeamEntity();
-            newNbaTeamEntity.setId(nbaTeam.id);
             newNbaTeamEntity.setName(nbaTeam.name);
             newNbaTeamEntity.setLocation(nbaTeam.location);
             newNbaTeamEntity.setAbbreviation(nbaTeam.abbreviation);

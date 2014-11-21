@@ -9,12 +9,14 @@ import javax.persistence.*;
 @Table(name = "nba_team", schema = "public", catalog = "FANTASY_BASKETBALL")
 public class NbaTeamEntity {
     private int id;
+    private int espnId;
     private String location;
     private String abbreviation;
     private String name;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(generator = "IDENTITY")
     public int getId() {
         return id;
     }
@@ -22,6 +24,12 @@ public class NbaTeamEntity {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Basic
+    @Column(name = "espnId")
+    public int getEspnId() { return espnId; }
+
+    public void setEspnId(int espnId) { this.espnId = espnId; }
 
     @Basic
     @Column(name = "location")
@@ -75,5 +83,10 @@ public class NbaTeamEntity {
         result = 31 * result + (abbreviation != null ? abbreviation.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("abbreviation=[%s]; id=[%d]; espnId=[%d]; name=[%s]; location=[%s]", abbreviation, id, espnId, name, location);
     }
 }

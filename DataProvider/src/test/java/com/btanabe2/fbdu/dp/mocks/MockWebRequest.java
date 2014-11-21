@@ -3,8 +3,10 @@ package com.btanabe2.fbdu.dp.mocks;
 import com.btanabe2.fbdu.dp.web.SecureWebRequest;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import com.btanabe2.fbdu.dp.web.auth.TestableCredentialProvider;
+import org.apache.commons.io.FileUtils;
 import org.jsoup.nodes.Document;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -19,6 +21,17 @@ import static org.mockito.Mockito.when;
  * Created by brian on 11/6/14.
  */
 public class MockWebRequest {
+
+    public static WebRequest getSportsVuTeamsPageMockWebRequest(){
+        WebRequest webRequest = mock(WebRequest.class);
+        try {
+            when(webRequest.getPage(SPORTS_VU_NBA_TEAM_INFO_URL)).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/nba-commonteamyear.json")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            return webRequest;
+        }
+    }
 
     public static WebRequest getBasketballReferenceTeamsPageMockWebRequest(){
         Map<String, Document> urlToDocumentMap = new LinkedHashMap<>();
