@@ -43,7 +43,6 @@ public class PlayerBiographyPageScraper {
         try {
             player.setName(String.format("%s %s", playerAttributes.get("first_name"), playerAttributes.get("last_name")));
             player.setEspnid(Integer.parseInt(playerAttributes.get("espn_id")));
-            player.setYahooid(Integer.parseInt(playerAttributes.get("yahoo_id")));
             player.setExperience(Integer.parseInt(playerAttributes.get("experience")));
             player.setNumberfireid(Integer.parseInt(playerAttributes.get("id")));
             player.setNbateamid(nbaTeams.stream().filter(t -> t.getNumberFireId() == Integer.parseInt(playerAttributes.get("team_id"))).limit(1).collect(Collectors.toList()).get(0).getEspnId());

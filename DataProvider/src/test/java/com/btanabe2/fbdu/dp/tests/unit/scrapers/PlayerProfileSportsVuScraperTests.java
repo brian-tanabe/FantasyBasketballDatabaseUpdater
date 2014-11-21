@@ -11,9 +11,11 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.btanabe2.fbdu.dp.web.WebConstants.SPORTS_VU_ALL_PLAYERS_URL;
 import static com.btanabe2.fbdu.dp.web.WebConstants.getPlayerInfoFromSportsVu;
+import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -46,6 +48,18 @@ public class PlayerProfileSportsVuScraperTests {
         } catch (IOException e) {
             e.printStackTrace();
             fail("JSON test files are illegally formatted or formatted in an unpredictable manner");
+        }
+    }
+
+    @Test
+    public void shouldParseAaronAfflalosBiographyCorrectly(){
+        try {
+            PlayerBiographyEntity player = scraper.scrapeForPlayerBiographies().stream().filter(p -> p.getId() == 201167).limit(1).collect(Collectors.toList()).get(0);
+
+            assertNotNull("Did not find Aaron Afflalo", player);
+            assertEquals("Player's name did not match", "Aaron Afflalo", player.getName());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

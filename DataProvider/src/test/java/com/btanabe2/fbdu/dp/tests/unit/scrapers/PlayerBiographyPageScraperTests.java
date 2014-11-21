@@ -55,7 +55,6 @@ public class PlayerBiographyPageScraperTests {
         assertNotNull("Did not find Ty Lawson", player);
         assertEquals("Did not find Ty Lawson", "Ty Lawson", player.getName());
         assertEquals("Player's ESPN ID was not parsed correctly", 4000, player.getEspnid());
-        assertEquals("Player's Yahoo ID was not parsed correctly", 4623, player.getYahooid());
         assertEquals("Player's NumberFire ID was not parsed correctly", 132, player.getNumberfireid());
         assertEquals("Player's experience was not parsed correctly", 2, player.getExperience());
         assertEquals("Player's NBA team was not parsed correctly", 7, player.getNbateamid());
@@ -69,7 +68,6 @@ public class PlayerBiographyPageScraperTests {
         assertNotNull("Did not find Kyle Korver", player);
         assertEquals("Did not find Kyle Korver", "Kyle Korver", player.getName());
         assertEquals("Player's ESPN ID was not parsed correctly", 2011, player.getEspnid());
-        assertEquals("Player's Yahoo ID was not parsed correctly", 4623, player.getYahooid());  // TODO THIS FIELD IS NOT PRESENT IN THE DATA
         assertEquals("Player's NumberFire ID was not parsed correctly", 328, player.getNumberfireid());
         assertEquals("Player's experience was not parsed correctly", 8, player.getExperience());
         assertEquals("Player's NBA team was not parsed correctly", 1, player.getNbateamid());
@@ -83,15 +81,14 @@ public class PlayerBiographyPageScraperTests {
         assertNotNull("Did not find DeMarcus Cousins", player);
         assertEquals("Did not find DeMarcus Cousins", "DeMarcus Cousins", player.getName());
         assertEquals("Player's ESPN ID was not parsed correctly", 4258, player.getEspnid());
-        assertEquals("Player's Yahoo ID was not parsed correctly", 4720, player.getYahooid());
         assertEquals("Player's NumberFire ID was not parsed correctly", 136, player.getNumberfireid());
         assertEquals("Player's NBA team was not parsed correctly", 23, player.getNbateamid());
         assertEquals("Player's birthday was not parsed correctly", "1990-08-13", player.getBirthday().toString());
-        assertEquals("Player's experience was not parsed correctly", 3, player.getExperience());
+        assertEquals("Player's experience was not parsed correctly", 3, player.getExperience());        // NF never updated their player bio info.  Will switch to using SportsVu for everything but projections.
     }
 
     @Test
     public void shouldParseJoseJuanBerreaCorrectlySinceHeHasNoBirthdayOrExperienceDataOnHisNumberFireProfile(){
-
+        fail("Unimplemented test!");
     }
 }

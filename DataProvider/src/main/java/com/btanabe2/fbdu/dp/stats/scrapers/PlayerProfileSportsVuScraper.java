@@ -54,6 +54,8 @@ public class PlayerProfileSportsVuScraper {
 
     private PlayerBiographyEntity getPlayerInfo(int playerId){
         PlayerBiographyEntity player = new PlayerBiographyEntity();
+        player.setId(playerId);
+
 
         return player;
     }

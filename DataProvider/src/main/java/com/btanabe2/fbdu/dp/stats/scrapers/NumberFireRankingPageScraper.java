@@ -29,7 +29,6 @@ public class NumberFireRankingPageScraper {
 
             playerBiographyEntity.setNumberfireid(Integer.parseInt(playerJsonProjection.getOrDefault("id", "-1")));
             playerBiographyEntity.setEspnid(Integer.parseInt(playerJsonProjection.getOrDefault("espn_id", "-1")));
-            playerBiographyEntity.setYahooid(Integer.parseInt(playerJsonProjection.getOrDefault("yahoo_id", "-1")));
             playerBiographyEntity.setName(playerJsonProjection.getOrDefault("name", "UNKNOWN NAME"));
             playerBiographyEntity.setExperience(Integer.parseInt(playerJsonProjection.getOrDefault("experience", "-1")));
             playerBiographyEntity.setBirthday(new Date(new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH).parse(playerJsonProjection.getOrDefault("dob", "1900-01-01")).getTime()));

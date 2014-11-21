@@ -46,7 +46,6 @@ public class NumberFireRankingsScraperTests {
         assertEquals("1985-01-06", player.getBirthday().toString());
         assertEquals(6, player.getExperience());
         assertEquals(2779, player.getEspnid());
-        assertEquals(3930, player.getYahooid());
         assertEquals(22, player.getNumberfireid());
         assertEquals(12, player.getNbateamid());
     }
