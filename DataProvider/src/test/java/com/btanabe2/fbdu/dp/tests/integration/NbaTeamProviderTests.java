@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.tests.unit.providers;
+package com.btanabe2.fbdu.dp.tests.integration;
 
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dp.stats.providers.NbaTeamProvider;

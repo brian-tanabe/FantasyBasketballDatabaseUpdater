@@ -8,12 +8,14 @@ import org.jsoup.nodes.Document;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static com.btanabe2.fbdu.dp.fixtures.BasketballReferencePageFixture.*;
 import static com.btanabe2.fbdu.dp.fixtures.EspnTeamsPageFixture.getEspnFantasyBasketballHomepagePage;
 import static com.btanabe2.fbdu.dp.web.WebConstants.*;
+import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -21,6 +23,21 @@ import static org.mockito.Mockito.when;
  * Created by brian on 11/6/14.
  */
 public class MockWebRequest {
+
+    public static WebRequest getPlayerBiographyProviderMockWebRequest(){
+        WebRequest webRequest = mock(WebRequest.class);
+
+        try {
+            when(webRequest.getPage(SPORTS_VU_NBA_TEAM_INFO_URL)).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/nba-commonteamyear.json")));
+            when(webRequest.getPage(SPORTS_VU_ALL_PLAYERS_URL)).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/nba-commonallplayers.json"), Charset.forName("UTF8")));
+            when(webRequest.getPage(contains("?PlayerID="))).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/playerinfo-pages/playerinfo-afflalo_aaron.json"), Charset.forName("UTF8")));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            return webRequest;
+        }
+    }
 
     public static WebRequest getSportsVuTeamsPageMockWebRequest(){
         WebRequest webRequest = mock(WebRequest.class);

@@ -91,4 +91,12 @@ public class PlayerBiographyPageScraperTests {
     public void shouldParseJoseJuanBerreaCorrectlySinceHeHasNoBirthdayOrExperienceDataOnHisNumberFireProfile(){
         fail("Unimplemented test!");
     }
+
+    @Test
+    public void shouldBeAbleToParseArronAfflalosInfoProperly(){
+        PlayerBiographyEntity player = guardsBiographies.stream().filter(p -> p.getName().equals("Arron Afflalo")).limit(1).collect(Collectors.toList()).get(0);
+
+        assertEquals(3187, player.getEspnid());
+        assertEquals(0, player.getNumberfireid());
+    }
 }
