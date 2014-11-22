@@ -20,7 +20,7 @@ public class NumberFireJsonPageScraper {
 
         List<NumberFireNbaTeamModel> nbaTeamModels = new ArrayList<>(teamAttributeMapList.size());
         for(Map<String, String> nbaTeamAttributeMap : teamAttributeMapList){
-            nbaTeamModels.add(new NumberFireNbaTeamModel(nbaTeamAttributeMap.getOrDefault("name", "UNKNOWN TEAM"), Integer.parseInt(nbaTeamAttributeMap.getOrDefault("id", "-1")), Integer.parseInt(nbaTeamAttributeMap.getOrDefault("espn_id", "-1"))));
+            nbaTeamModels.add(new NumberFireNbaTeamModel(nbaTeamAttributeMap.getOrDefault("abbrev", "UNKNOWN TEAM"), Integer.parseInt(nbaTeamAttributeMap.getOrDefault("id", "-1")), Integer.parseInt(nbaTeamAttributeMap.getOrDefault("espn_id", "-1"))));
         }
 
         return nbaTeamModels;

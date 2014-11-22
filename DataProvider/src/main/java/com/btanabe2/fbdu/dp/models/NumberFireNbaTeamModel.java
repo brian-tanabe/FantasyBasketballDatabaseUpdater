@@ -6,10 +6,10 @@ package com.btanabe2.fbdu.dp.models;
 public class NumberFireNbaTeamModel {
     private int numberFireId;
     private int espnId;
-    private String name;
+    private String abbreviation;
 
-    public NumberFireNbaTeamModel(String name, int numberFireId, int espnId){
-        this.name = name;
+    public NumberFireNbaTeamModel(String abbreviation, int numberFireId, int espnId){
+        this.abbreviation = abbreviation;
         this.numberFireId = numberFireId;
         this.espnId = espnId;
     }
@@ -30,11 +30,16 @@ public class NumberFireNbaTeamModel {
         this.espnId = espnId;
     }
 
-    public String getName() {
-        return name;
+    public String getAbbreviation() {
+        return abbreviation;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("abbreviation=[%s]; numberFireId=[%d]; espnId=[%d]", abbreviation, numberFireId, espnId);
     }
 }

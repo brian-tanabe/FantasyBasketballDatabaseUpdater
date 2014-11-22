@@ -1,5 +1,6 @@
 package com.btanabe2.fbdu.dp.stats.scrapers;
 
+import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dp.models.NumberFireNbaTeamModel;
 import org.jsoup.nodes.Document;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
  */
 public class EspnAndNumberFireIdPageScraper {
 
-    public List<PlayerBiographyEntity> scrapePlayerBiographiesFromPage(Document page) throws ParseException {
+    public List<PlayerBiographyEntity> scrapePlayerBiographiesFromPage(Document page, List<NbaTeamEntity> nbaTeamIds) throws ParseException {
         List<Map<String, String>> playerAttributeMapObjects = getAllPlayersOnPageAttributesAsMap(page);
         List<NumberFireNbaTeamModel> nbaTeams = getNumberFireNbaTeams(page);
 

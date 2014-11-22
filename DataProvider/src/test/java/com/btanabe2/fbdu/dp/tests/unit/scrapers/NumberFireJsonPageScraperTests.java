@@ -83,7 +83,7 @@ public class NumberFireJsonPageScraperTests {
     @Test
     public void shouldScrapeTheCorrectInformationForTheDenverNuggets(){
         NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
-        NumberFireNbaTeamModel nuggets = scraper.getNumberFireNbaTeamModels(NumberFirePageFixture.getNumberFireRankingsPageDocument()).stream().filter(t -> t.getName().equalsIgnoreCase("Denver Nuggets")).collect(Collectors.toList()).get(0);
+        NumberFireNbaTeamModel nuggets = scraper.getNumberFireNbaTeamModels(NumberFirePageFixture.getNumberFireRankingsPageDocument()).stream().filter(t -> t.getAbbreviation().equalsIgnoreCase("DEN")).collect(Collectors.toList()).get(0);
 
         assertNotNull("The 'Denver Nuggets' object was not found", nuggets);
         assertEquals("Did not parse the Nugget's NumberFire ID properly", 7, nuggets.getNumberFireId());

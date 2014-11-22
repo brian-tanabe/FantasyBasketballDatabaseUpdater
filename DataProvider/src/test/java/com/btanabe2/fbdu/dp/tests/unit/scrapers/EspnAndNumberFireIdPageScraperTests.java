@@ -2,6 +2,7 @@ package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dp.fixtures.FileDocumentor;
+import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
 import com.btanabe2.fbdu.dp.stats.scrapers.EspnAndNumberFireIdPageScraper;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -24,9 +25,9 @@ public class EspnAndNumberFireIdPageScraperTests {
         try {
             EspnAndNumberFireIdPageScraper scraper = new EspnAndNumberFireIdPageScraper();
 
-            guardsBiographies = scraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-guards.html"));
-            forwardsBiographies = scraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-forwards.html"));
-            centersBiographies = scraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-centers.html"));
+            guardsBiographies = scraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-guards.html"), NbaTeamEntityFixture.getMockNbaTeams());
+            forwardsBiographies = scraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-forwards.html"), NbaTeamEntityFixture.getMockNbaTeams());
+            centersBiographies = scraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-centers.html"), NbaTeamEntityFixture.getMockNbaTeams());
         } catch (Exception ex){
             ex.printStackTrace();
             fail("Failed to parse NumberFire input files properly");

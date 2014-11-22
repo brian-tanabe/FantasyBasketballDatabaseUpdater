@@ -1,5 +1,6 @@
 package com.btanabe2.fbdu.dp.mocks;
 
+import com.btanabe2.fbdu.dp.fixtures.FileDocumentor;
 import com.btanabe2.fbdu.dp.web.SecureWebRequest;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import com.btanabe2.fbdu.dp.web.auth.TestableCredentialProvider;
@@ -31,6 +32,7 @@ public class MockWebRequest {
             when(webRequest.getPage(SPORTS_VU_NBA_TEAM_INFO_URL)).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/nba-commonteamyear.json")));
             when(webRequest.getPage(SPORTS_VU_ALL_PLAYERS_URL)).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/nba-commonallplayers.json"), Charset.forName("UTF8")));
             when(webRequest.getPage(contains("?PlayerID="))).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/playerinfo-pages/playerinfo-afflalo_aaron.json"), Charset.forName("UTF8")));
+            when(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_GUARDS_URL)).thenReturn(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-guards.html"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,6 +45,7 @@ public class MockWebRequest {
         WebRequest webRequest = mock(WebRequest.class);
         try {
             when(webRequest.getPage(SPORTS_VU_NBA_TEAM_INFO_URL)).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/nba-commonteamyear.json")));
+            when(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_GUARDS_URL)).thenReturn(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-guards.html"));
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
