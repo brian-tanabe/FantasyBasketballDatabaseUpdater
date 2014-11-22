@@ -1,6 +1,6 @@
 package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
-import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
+import com.btanabe2.fbdu.dp.models.NbaTeamModel;
 import com.btanabe2.fbdu.dp.stats.scrapers.NbaTeamJsonParser;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
  * Created by brian on 11/6/14.
  */
 public class NbaTeamJsonParserTests {
-    private static List<NbaTeamEntity> nbaTeams;
+    private static List<NbaTeamModel> nbaTeams;
 
     @BeforeClass
     public static void setup(){
@@ -182,9 +182,9 @@ public class NbaTeamJsonParserTests {
     }
 
     private void runTest(String name, String location, String abbreviation){
-        NbaTeamEntity teamName = nbaTeams.stream().filter(t -> t.getName().equals(name)).findFirst().get();
-        NbaTeamEntity teamLocation = nbaTeams.stream().filter(t -> t.getLocation().equals(location) && (t.getAbbreviation().equals(abbreviation) || t.getName().equals(name))).findFirst().get();
-        NbaTeamEntity teamAbbreviation = nbaTeams.stream().filter(t -> t.getAbbreviation().equals(abbreviation)).findFirst().get();
+        NbaTeamModel teamName = nbaTeams.stream().filter(t -> t.getName().equals(name)).findFirst().get();
+        NbaTeamModel teamLocation = nbaTeams.stream().filter(t -> t.getLocation().equals(location) && (t.getLocation().equals(abbreviation) || t.getName().equals(name))).findFirst().get();
+        NbaTeamModel teamAbbreviation = nbaTeams.stream().filter(t -> t.getAbbreviation().equals(abbreviation)).findFirst().get();
 
         assertEquals(name, teamName.getName());
         assertEquals(location, teamLocation.getLocation());

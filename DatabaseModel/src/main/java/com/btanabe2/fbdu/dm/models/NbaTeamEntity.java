@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class NbaTeamEntity {
     private int id;
     private int espnId;
+    private int numberFireId;
     private String location;
     private String abbreviation;
     private String name;
@@ -34,6 +35,12 @@ public class NbaTeamEntity {
     public int getEspnId() { return espnId; }
 
     public void setEspnId(int espnId) { this.espnId = espnId; }
+
+    @Basic
+    @Column(name = "numberFireId")
+    public int getNumberFireId() { return numberFireId; }
+
+    public void setNumberFireId(int numberFireId) { this.numberFireId = numberFireId; }
 
     @Basic
     @Column(name = "location")
@@ -91,6 +98,6 @@ public class NbaTeamEntity {
 
     @Override
     public String toString() {
-        return String.format("abbreviation=[%s]; id=[%d]; espnId=[%d]; name=[%s]; location=[%s]", abbreviation, id, espnId, name, location);
+        return String.format("abbreviation=[%s]; id=[%d]; espnId=[%d]; numberFireId=[%d]; name=[%s]; location=[%s]", abbreviation, id, espnId, numberFireId, name, location);
     }
 }

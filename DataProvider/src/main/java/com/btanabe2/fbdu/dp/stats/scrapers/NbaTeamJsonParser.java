@@ -1,6 +1,5 @@
 package com.btanabe2.fbdu.dp.stats.scrapers;
 
-import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dp.models.NbaTeamModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,7 +19,7 @@ public class NbaTeamJsonParser {
     // Check out:
     // http://stats.nba.com/stats/commonteamyears?LeagueID=00
 
-    public static List<NbaTeamEntity> getAllNbaTeams() throws IOException {
+    public static List<NbaTeamModel> getAllNbaTeams() throws IOException {
         String nbaTeamsJsonFile = getNbaTeamsJsonFileAsString();
         return parseNbaTeamsJsonFile(nbaTeamsJsonFile);
     }
@@ -29,20 +28,15 @@ public class NbaTeamJsonParser {
         return FileUtils.readFileToString(new File("./DataProvider/src/main/resources/nba-teams.json"), Charset.forName("UTF8"));
     }
 
-    private static List<NbaTeamEntity> parseNbaTeamsJsonFile(String nbaTeamsJsonString){
-        List<NbaTeamEntity> nbaTeamsList = new ArrayList<>(30);
-
+    private static List<NbaTeamModel> parseNbaTeamsJsonFile(String nbaTeamsJsonString){
         Gson gson = new GsonBuilder().create();
         NbaTeamModel[] nbaTeams = gson.fromJson(nbaTeamsJsonString, NbaTeamModel[].class);
 
+        List<NbaTeamModel> models = new ArrayList<>(30);
         for (NbaTeamModel nbaTeam : nbaTeams) {
-            NbaTeamEntity newNbaTeamEntity = new NbaTeamEntity();
-            newNbaTeamEntity.setName(nbaTeam.name);
-            newNbaTeamEntity.setLocation(nbaTeam.location);
-            newNbaTeamEntity.setAbbreviation(nbaTeam.abbreviation);
-            nbaTeamsList.add(newNbaTeamEntity);
+            models.add(nbaTeam);
         }
 
-        return nbaTeamsList;
+        return models;
     }
 }

@@ -42,7 +42,7 @@ public class PlayerProfileSportsVuScraperTests {
         }
     }
 
-    @Test
+//    @Test
     public void shouldBeAbleToFindFourHundredFortyNinePlayers() {
         try {
             List<PlayerBiographyEntity> allActiveNbaPlayers = scraper.scrapeForPlayerBiographies(NbaTeamEntityFixture.getMockNbaTeams());
