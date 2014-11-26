@@ -35,8 +35,20 @@ public class NbaTeamProviderTests {
     }
 
     @Test
-    public void shouldNotProduceAnyTeamsWithNullIds(){
+    public void shouldNotProduceAnyTeamsWithZeroedIds(){
         List<NbaTeamEntity> teamsWithoutIds = nbaTeams.stream().filter(t -> t.getId() == 0).collect(Collectors.toList());
+        assertEquals(0, teamsWithoutIds.size());
+    }
+
+    @Test
+    public void shouldNotProduceAnyTeamsWithZeroedEspnIds(){
+        List<NbaTeamEntity> teamsWithoutIds = nbaTeams.stream().filter(t -> t.getEspnId() == 0).collect(Collectors.toList());
+        assertEquals(0, teamsWithoutIds.size());
+    }
+
+    @Test
+    public void shouldNotProduceAnyTeamsWithZeroedNumberFireIds(){
+        List<NbaTeamEntity> teamsWithoutIds = nbaTeams.stream().filter(t -> t.getNumberFireId() == 0).collect(Collectors.toList());
         assertEquals(0, teamsWithoutIds.size());
     }
 }
