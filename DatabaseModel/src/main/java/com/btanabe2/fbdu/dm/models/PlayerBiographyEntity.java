@@ -168,4 +168,9 @@ public class PlayerBiographyEntity {
         result = 31 * result + (school != null ? school.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return String.format("id=[%d]; name=[%s]; birthday=[%s]; experience=[%d], nbaTeamId=[%d]; espnId=[%d]; numberFireId=[%d]; height=[%d]; weight=[%d]; country=[%s]; school=[%s]", id, name, birthday.toString(), experience, nbateamid, espnid, numberfireid, height, weight, country, school);
+    }
 }

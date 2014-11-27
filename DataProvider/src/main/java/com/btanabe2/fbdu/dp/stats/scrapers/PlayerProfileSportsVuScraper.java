@@ -4,6 +4,7 @@ import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -12,6 +13,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -62,19 +64,22 @@ public class PlayerProfileSportsVuScraper {
         return playerBiographies;
     }
 
-    private PlayerBiographyEntity getPlayerInfo(int playerId, List<NbaTeamEntity> nbaTeam) throws IOException, ParseException {
+    private PlayerBiographyEntity getPlayerInfo(int playerId, List<NbaTeamEntity> nbaTeams) throws IOException, ParseException {
         JsonArray playerInfoJsonArray = getPlayerInfoJsonArray(playerId);
 
         PlayerBiographyEntity player = new PlayerBiographyEntity();
         player.setId(playerId);
-        player.setName(playerInfoJsonArray.get(3).getAsString());
-        player.setBirthday(convertDateStringToSqlDateObject(playerInfoJsonArray.get(6).getAsString()));
-        player.setExperience(playerInfoJsonArray.get(12).getAsInt());
-        player.setNbateamid(convertTeamNameToTeamId(playerInfoJsonArray.get(18).getAsString(), nbaTeam));
-        player.setHeight(convertHeightToInches(playerInfoJsonArray.get(10).getAsString()));
-        player.setWeight(playerInfoJsonArray.get(11).getAsInt());
-        player.setCountry(playerInfoJsonArray.get(8).getAsString());
-        player.setSchool(playerInfoJsonArray.get(7).getAsString());
+        player.setName(extractPlayerName(playerInfoJsonArray.get(3)));
+        player.setBirthday(extractPlayerBirthday(playerInfoJsonArray.get(6)));
+        player.setExperience(extractPlayerExperience(playerInfoJsonArray.get(12)));
+        player.setNbateamid(extractNbaTeamId(playerInfoJsonArray.get(18), nbaTeams));
+        player.setHeight(extractHeight(playerInfoJsonArray.get(10)));
+        player.setWeight(extractWeight(playerInfoJsonArray.get(11)));
+        player.setCountry(extractCountry(playerInfoJsonArray.get(8)));
+        player.setSchool(extractCollege(playerInfoJsonArray.get(7)));
+
+        // TODO REMOVE THIS DEBUGGING STATEMENT:
+        System.out.println(player.toString());
 
         return player;
     }
@@ -89,16 +94,74 @@ public class PlayerProfileSportsVuScraper {
         return elements.get(0).getAsJsonArray();
     }
 
-    private int convertHeightToInches(String heightString){
-        String[] feetInches = heightString.split("-");
-        return Integer.parseInt(feetInches[0]) * 12 + Integer.parseInt(feetInches[1]);
+    private String extractPlayerName(JsonElement playerNameJsonElement){
+        try {
+            return playerNameJsonElement.getAsString();
+        } catch (Exception ex){
+            return "";
+        }
     }
 
-    private Date convertDateStringToSqlDateObject(String dateString) throws ParseException {
-        return new Date(new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dateString).getTime());
+    private Date extractPlayerBirthday(JsonElement playerBirthdayJsonElement){
+        try {
+            return new Date(new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(playerBirthdayJsonElement.getAsString()).getTime());
+        } catch (Exception ex){
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.YEAR, 1900);
+            calendar.set(Calendar.MONTH, 0);
+            calendar.set(Calendar.DAY_OF_MONTH, 0);
+
+            return new Date(calendar.getTimeInMillis());
+        }
     }
 
-    private int convertTeamNameToTeamId(String teamAbbreviation, List<NbaTeamEntity> nbaTeam){
-        return nbaTeam.stream().filter(t -> t.getAbbreviation().equals(teamAbbreviation)).limit(1).collect(Collectors.toList()).get(0).getId();
+    private int extractPlayerExperience(JsonElement playerExperienceJsonElement){
+        try {
+            return playerExperienceJsonElement.getAsInt();
+        } catch (Exception ex){
+            return 0;
+        }
+    }
+
+    private int extractNbaTeamId(JsonElement playerNbaTeamIdJsonElement, List<NbaTeamEntity> nbaTeams){
+        try {
+            return nbaTeams.stream().filter(t -> t.getAbbreviation().equals(playerNbaTeamIdJsonElement.getAsString())).limit(1).collect(Collectors.toList()).get(0).getId();
+        } catch (Exception ex){
+            return 0;
+        }
+    }
+
+    private int extractHeight(JsonElement playerHeightJsonElement){
+        try {
+            String heightString = playerHeightJsonElement.getAsString();
+            String[] feetInches = heightString.split("-");
+            return Integer.parseInt(feetInches[0]) * 12 + Integer.parseInt(feetInches[1]);
+        } catch (Exception ex){
+            return 0;
+        }
+    }
+
+    private int extractWeight(JsonElement playerWeightJsonElement){
+        try {
+            return playerWeightJsonElement.getAsInt();
+        } catch (Exception ex){
+            return 0;
+        }
+    }
+
+    private String extractCountry(JsonElement playerCountryJsonElement){
+        try {
+            return playerCountryJsonElement.getAsString();
+        } catch (Exception ex){
+            return "";
+        }
+    }
+
+    private String extractCollege(JsonElement playerCollegeJsonElement){
+        try {
+            return playerCollegeJsonElement.getAsString();
+        } catch (Exception ex){
+            return "";
+        }
     }
 }

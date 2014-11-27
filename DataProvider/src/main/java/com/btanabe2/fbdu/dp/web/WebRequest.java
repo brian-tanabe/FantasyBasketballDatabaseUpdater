@@ -49,6 +49,6 @@ public class WebRequest {
     private HttpResponse getPageResponse(String url) throws IOException {
         HttpGet request = new HttpGet(url);
         request.addHeader("User-agent", USER_AGENT);
-        return client.execute(request);
+        return HttpClientBuilder.create().build().execute(request);
     }
 }
