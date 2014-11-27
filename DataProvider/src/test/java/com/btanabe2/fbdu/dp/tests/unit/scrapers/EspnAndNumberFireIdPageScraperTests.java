@@ -90,7 +90,7 @@ public class EspnAndNumberFireIdPageScraperTests {
         assertEquals("Juan Jose Barea", player.getName());
         assertEquals("Barea's NumberFireID was not parsed correctly", 470, player.getNumberfireid());
         assertEquals("Barea's ESPN ID was not parsed corretly", 3055, player.getEspnid());
-        assertEquals("Barea's NBA team ID was not parsed correctly", 1610612742, player.getNbateamid());
+        assertEquals("Barea's NBA team ID was not parsed correctly", 6, player.getNbateamid());
     }
 
     @Test
