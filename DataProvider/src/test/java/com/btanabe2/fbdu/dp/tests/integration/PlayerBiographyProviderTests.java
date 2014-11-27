@@ -1,6 +1,7 @@
 package com.btanabe2.fbdu.dp.tests.integration;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
+import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
 import com.btanabe2.fbdu.dp.stats.providers.PlayerBiographyProvider;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -23,7 +24,7 @@ public class PlayerBiographyProviderTests {
     public static void setup() {
         try {
             PlayerBiographyProvider provider = new PlayerBiographyProvider(getPlayerBiographyProviderMockWebRequest());
-            players = provider.getAllPlayers();
+            players = provider.getAllPlayers(NbaTeamEntityFixture.getMockNbaTeams());
         } catch (Exception e) {
             e.printStackTrace();
             fail("Failed to assemble all PlayerBiographyEntity objects");

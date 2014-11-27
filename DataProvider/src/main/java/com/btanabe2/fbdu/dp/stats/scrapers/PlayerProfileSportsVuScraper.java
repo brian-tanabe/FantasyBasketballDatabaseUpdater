@@ -78,9 +78,6 @@ public class PlayerProfileSportsVuScraper {
         player.setCountry(extractCountry(playerInfoJsonArray.get(8)));
         player.setSchool(extractCollege(playerInfoJsonArray.get(7)));
 
-        // TODO REMOVE THIS DEBUGGING STATEMENT:
-        System.out.println(player.toString());
-
         return player;
     }
 
