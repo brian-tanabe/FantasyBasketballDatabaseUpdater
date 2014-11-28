@@ -3,6 +3,8 @@ package com.btanabe2.fbdu.dm.models;
 import javax.persistence.*;
 import java.sql.Date;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 /**
  * Created by brian on 11/20/14.
  */
@@ -23,6 +25,7 @@ public class PlayerBiographyEntity {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = IDENTITY)
     public int getId() {
         return id;
     }
