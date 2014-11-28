@@ -8,6 +8,6 @@ import java.util.List;
 /**
  * Created by Brian on 11/27/14.
  */
-public interface PlayerBiographyRepository extends CrudRepository<PlayerBiographyEntity, Long> {
+public interface PlayerBiographyRepository extends CrudRepository<PlayerBiographyEntity, Integer> {
     List<PlayerBiographyEntity> findByName(String name);
 }

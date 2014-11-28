@@ -52,6 +52,14 @@ public class PlayerBiographyProvider {
     }
 
     private PlayerBiographyEntity findNumberFireRemainingSeasonProjectionEntityForPlayer(PlayerBiographyEntity playerToSearchFor, List<PlayerBiographyEntity> listOfNumberFireRemainingSeasonProjections){
-        return listOfNumberFireRemainingSeasonProjections.stream().filter(p -> p.getName().equals(playerToSearchFor.getName())).limit(1).collect(Collectors.toList()).get(0);
+        try {
+            return listOfNumberFireRemainingSeasonProjections.stream().filter(p -> p.getName().equals(playerToSearchFor.getName())).limit(1).collect(Collectors.toList()).get(0);
+        } catch (Exception ex){
+            // TODO LOG THIS EVENT:
+            PlayerBiographyEntity emptyPlayer = new PlayerBiographyEntity();
+            emptyPlayer.setNumberfireid(0);
+            emptyPlayer.setEspnid(0);
+            return emptyPlayer;
+        }
     }
 }

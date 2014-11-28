@@ -24,7 +24,7 @@ public class PlayerBiographyTableUpdater {
         ConfigurableApplicationContext context = SpringApplication.run(PlayerBiographyTableUpdater.class);
         PlayerBiographyRepository repository = context.getBean(PlayerBiographyRepository.class);
 
-        playersToAddToDatabase.forEach(p -> repository.save(p));
+//        playersToAddToDatabase.forEach(p -> repository.save(p));
 
         System.out.println("");
     }
