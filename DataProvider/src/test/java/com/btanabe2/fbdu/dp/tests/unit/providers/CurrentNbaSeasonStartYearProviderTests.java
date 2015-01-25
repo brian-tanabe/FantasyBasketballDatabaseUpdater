@@ -1,6 +1,6 @@
 package com.btanabe2.fbdu.dp.tests.unit.providers;
 
-import com.btanabe2.fbdu.dp.leagues.providers.CurrentNbaSeasonProvider;
+import com.btanabe2.fbdu.dp.leagues.providers.CurrentNbaSeasonStartYearProvider;
 import org.junit.Test;
 
 import java.time.Month;
@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by brian on 1/25/15.
  */
-public class CurrentNbaSeasonProviderTests {
+public class CurrentNbaSeasonStartYearProviderTests {
 
     @Test
     public void shouldBeAbleToCreateOurTestCalendarObjectProperly() {
@@ -23,9 +23,16 @@ public class CurrentNbaSeasonProviderTests {
 
     @Test
     public void shouldBeAbleToKnowWhenTheCurrentSeasonStartsWhenTheCurrentDateIsAfterJanuary() {
-        int testYear = CurrentNbaSeasonProvider.getCurrentNbaSeasonStartYear(getCalendarForDate(2014, Month.JANUARY, 2));
-        assertEquals("Did not calculate the year properly", 2014, testYear);
+        int testYear = CurrentNbaSeasonStartYearProvider.getCurrentNbaSeasonStartYear(getCalendarForDate(2015, Month.JANUARY, 2));
+        assertEquals("Did not calculate the year properly for a date of 1/2/2015", 2014, testYear);
     }
+
+    @Test
+    public void shouldBeAbleToKnowWhenTheCurrentSeasonStartsWhenTheCurrentDateIsAfterTheNbaFinals() {
+        int testYear = CurrentNbaSeasonStartYearProvider.getCurrentNbaSeasonStartYear(getCalendarForDate(2014, Month.JULY, 1));
+        assertEquals("Did not calculate the year properly for a date of 7/1/2014", 2014, testYear);
+    }
+
 
     private Calendar getCalendarForDate(int year, Month monthOfYear, int dayOfMonth){
         Calendar testDate = Calendar.getInstance();
