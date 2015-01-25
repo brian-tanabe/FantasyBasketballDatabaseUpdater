@@ -1,5 +1,6 @@
 package com.btanabe2.fbdu.dp.stats.scrapers;
 
+import com.btanabe2.fbdu.dp.leagues.providers.CurrentNbaSeasonStartYearProvider;
 import com.btanabe2.fbdu.dp.models.NbaTeamSportsVuModel;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import com.google.gson.JsonArray;
@@ -32,7 +33,7 @@ public class NbaTeamSportsVuScraper {
         List<NbaTeamSportsVuModel> nbaTeams = new ArrayList<>(elements.size());
         for(int index = 0; index < elements.size(); index++){
             JsonArray teamJsonArray = elements.get(index).getAsJsonArray();
-            if(teamJsonArray.get(3).getAsString().equals(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)))){
+            if(teamJsonArray.get(3).getAsInt() == CurrentNbaSeasonStartYearProvider.getCurrentNbaSeasonStartYear(Calendar.getInstance())) {
                 nbaTeams.add(parseOutTeamInfo(teamJsonArray));
             }
         }
