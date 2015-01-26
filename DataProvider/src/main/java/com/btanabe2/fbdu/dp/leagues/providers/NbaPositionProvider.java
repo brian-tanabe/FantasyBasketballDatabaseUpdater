@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.du.updaters;
+package com.btanabe2.fbdu.dp.leagues.providers;
 
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
 
@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by brian on 11/15/14.
+ * Created by brian on 1/25/15.
  */
-public class PositionFactory {
+public class NbaPositionProvider {
 
     public static List<PositionsEntity> getAllPositions(){
         List<PositionsEntity> positions = new ArrayList<>(5);
@@ -29,10 +29,12 @@ public class PositionFactory {
         smallForward.setFullname("Small Forward");
 
         PositionsEntity powerForward = new PositionsEntity();
+        powerForward.setId(4);
         powerForward.setAbbreviation("PF");
         powerForward.setFullname("Power Forward");
 
         PositionsEntity center = new PositionsEntity();
+        center.setId(5);
         center.setAbbreviation("C");
         center.setFullname("Center");
 

@@ -2,10 +2,10 @@ package com.btanabe2.fbdu.du.application;
 
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
+import com.btanabe2.fbdu.dp.leagues.providers.NbaPositionProvider;
 import com.btanabe2.fbdu.dp.stats.providers.NbaTeamProvider;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import com.btanabe2.fbdu.du.updaters.PlayerBiographyTableUpdater;
-import com.btanabe2.fbdu.du.updaters.PositionFactory;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -34,7 +34,7 @@ public class Application {
     }
 
     private static void createPositionsTable(){
-        List<PositionsEntity> positions = PositionFactory.getAllPositions();
+        List<PositionsEntity> positions = NbaPositionProvider.getAllPositions();
 
     }
 
