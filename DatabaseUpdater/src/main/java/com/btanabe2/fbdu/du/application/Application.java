@@ -36,6 +36,18 @@ public class Application {
     private static void createPositionsTable(){
         List<PositionsEntity> positions = NbaPositionProvider.getAllPositions();
 
+        // Get session:
+
+        // session.persist()
+
+        // session.flush() every 30-ish or whatever you're supposed to do
+
+        // session.close() when done
+
+        // session.save() will return the ID given to that object but will trigger even if the session is already closed.
+        // i'm not sure if this will result in an exception or loss of data but I do know that session.persist() will
+        // not do this.  persist() will not return the object's ID though since it's not actually inserted until the
+        // session is flush()-ed.
     }
 
     private static void createPlayerBiographyTable(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException {
