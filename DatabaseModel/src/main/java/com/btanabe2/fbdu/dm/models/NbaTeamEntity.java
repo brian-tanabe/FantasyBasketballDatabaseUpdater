@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by brian on 11/7/14.
  */
 @Entity
-@Table(name = "nba_team", schema = "public", catalog = "FANTASY_BASKETBALL")
+@Table(name = "nba_team")
 public class NbaTeamEntity {
     private int id;
     private int espnId;
@@ -21,7 +21,6 @@ public class NbaTeamEntity {
 
     @Id
     @Column(name = "id")
-//    @GeneratedValue(strategy = IDENTITY)
     public int getId() {
         return id;
     }
