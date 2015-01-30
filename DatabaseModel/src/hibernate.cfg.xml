@@ -6,9 +6,15 @@
     <session-factory>
         <property name="connection.url">jdbc:postgresql://localhost:5432/FANTASY_BASKETBALL</property>
         <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.current_session_context_class">thread</property>
         <property name="connection.username">brian</property>
         <property name="connection.password">admin</property>
         <mapping class="com.btanabe2.fbdu.dm.models.PlayerBiographyEntity"/>
+        <mapping class="com.btanabe2.fbdu.dm.models.NbaTeamEntity"/>
+        <mapping class="com.btanabe2.fbdu.dm.models.PositionsEntity"/>
+        <mapping class="com.btanabe2.fbdu.dm.models.PositionEligibilityEntity"/>
+        <mapping class="com.btanabe2.fbdu.dm.models.NfDailyProjectionsEntity"/>
+        <mapping class="com.btanabe2.fbdu.dm.models.NfRemainingSeasonProjectionsEntity"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>

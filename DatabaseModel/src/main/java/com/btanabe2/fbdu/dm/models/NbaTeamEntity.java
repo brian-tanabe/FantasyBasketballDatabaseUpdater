@@ -2,8 +2,6 @@ package com.btanabe2.fbdu.dm.models;
 
 import javax.persistence.*;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 /**
  * Created by brian on 11/7/14.
  */
@@ -23,7 +21,7 @@ public class NbaTeamEntity {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = IDENTITY)
+//    @GeneratedValue(strategy = IDENTITY)
     public int getId() {
         return id;
     }
@@ -33,13 +31,13 @@ public class NbaTeamEntity {
     }
 
     @Basic
-    @Column(name = "espnId")
+    @Column(name = "espn_id")
     public int getEspnId() { return espnId; }
 
     public void setEspnId(int espnId) { this.espnId = espnId; }
 
     @Basic
-    @Column(name = "numberFireId")
+    @Column(name = "number_fire_id")
     public int getNumberFireId() { return numberFireId; }
 
     public void setNumberFireId(int numberFireId) { this.numberFireId = numberFireId; }

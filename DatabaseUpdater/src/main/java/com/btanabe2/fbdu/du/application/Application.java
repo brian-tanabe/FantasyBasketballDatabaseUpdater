@@ -4,9 +4,10 @@ import com.btanabe2.fbdu.dm.configuration.HibernateConfiguration;
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
 import com.btanabe2.fbdu.dp.leagues.providers.NbaPositionProvider;
-import com.btanabe2.fbdu.dp.stats.providers.NbaTeamProvider;
 import com.btanabe2.fbdu.dp.web.WebRequest;
+import com.btanabe2.fbdu.du.updaters.NbaTeamTableUpdater;
 import com.btanabe2.fbdu.du.updaters.PlayerBiographyTableUpdater;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -20,28 +21,32 @@ import java.util.List;
  * Created by brian on 11/8/14.
  */
 public class Application {
-    private static SessionFactory sessionFactory;
+    private static WebRequest webRequest = new WebRequest();
+    private static NbaTeamTableUpdater nbaTeamTableUpdater;
 
     public static void main(String[] args) {
-        buildSessionFactory();
+        SessionFactory sessionFactory = null;
 
         try {
-            List<NbaTeamEntity> nbaTeams = getNbaTeams();
+            sessionFactory = buildSessionFactory();
 
-            createPositionsTable();
-            createPlayerBiographyTable(nbaTeams);
+            buildNbaTeamTableUpdater();
+            createNbaTeamsTable(sessionFactory.getCurrentSession());
+
+//            createPositionsTable();
+//            createPlayerBiographyTable(nbaTeamTableUpdater.getNbaTeams());
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
+//        } catch (ParseException e) {
+//            e.printStackTrace();
         } finally {
             sessionFactory.close();
             System.out.println("Done updating database");
         }
     }
 
-    private static List<NbaTeamEntity> getNbaTeams() throws IOException {
-        return NbaTeamProvider.getAllNbaTeamEntities(new WebRequest());
+    private static void createNbaTeamsTable(Session session) throws IOException {
+        nbaTeamTableUpdater.getTeamsAndCreateTable(session);
     }
 
     private static void createPositionsTable(){
@@ -66,11 +71,19 @@ public class Application {
         playerBiographyTableUpdater.createPlayerBiographyTable(nbaTeams);
     }
 
-    private static void buildSessionFactory() {
+    private static SessionFactory buildSessionFactory() {
         Configuration configuration = new Configuration();
         configuration.configure(HibernateConfiguration.getHibernateConfigurationFile());
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+        sessionFactory.openSession();
+
+        return sessionFactory;
+    }
+
+    private static void buildNbaTeamTableUpdater() {
+        nbaTeamTableUpdater = new NbaTeamTableUpdater(webRequest);
     }
 }
