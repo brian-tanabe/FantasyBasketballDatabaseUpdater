@@ -1,11 +1,16 @@
 package com.btanabe2.fbdu.du.application;
 
+import com.btanabe2.fbdu.dm.configuration.HibernateConfiguration;
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
 import com.btanabe2.fbdu.dp.leagues.providers.NbaPositionProvider;
 import com.btanabe2.fbdu.dp.stats.providers.NbaTeamProvider;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import com.btanabe2.fbdu.du.updaters.PlayerBiographyTableUpdater;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -15,8 +20,11 @@ import java.util.List;
  * Created by brian on 11/8/14.
  */
 public class Application {
+    private static SessionFactory sessionFactory;
 
     public static void main(String[] args) {
+        buildSessionFactory();
+
         try {
             List<NbaTeamEntity> nbaTeams = getNbaTeams();
 
@@ -26,6 +34,9 @@ public class Application {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
+        } finally {
+            sessionFactory.close();
+            System.out.println("Done updating database");
         }
     }
 
@@ -53,5 +64,13 @@ public class Application {
     private static void createPlayerBiographyTable(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException {
         PlayerBiographyTableUpdater playerBiographyTableUpdater = new PlayerBiographyTableUpdater();
         playerBiographyTableUpdater.createPlayerBiographyTable(nbaTeams);
+    }
+
+    private static void buildSessionFactory() {
+        Configuration configuration = new Configuration();
+        configuration.configure(HibernateConfiguration.getHibernateConfigurationFile());
+
+        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
     }
 }
