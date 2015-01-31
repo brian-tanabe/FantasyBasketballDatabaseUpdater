@@ -8,6 +8,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by BTanabe on 11/11/2014.
@@ -19,9 +20,7 @@ public class NumberFireJsonPageScraper {
         List<Map<String, String>> teamAttributeMapList = getAllJsonObjectsKeyToValueMap(playersObject);
 
         List<NumberFireNbaTeamModel> nbaTeamModels = new ArrayList<>(teamAttributeMapList.size());
-        for(Map<String, String> nbaTeamAttributeMap : teamAttributeMapList){
-            nbaTeamModels.add(new NumberFireNbaTeamModel(nbaTeamAttributeMap.getOrDefault("abbrev", "UNKNOWN TEAM"), Integer.parseInt(nbaTeamAttributeMap.getOrDefault("id", "-1")), Integer.parseInt(nbaTeamAttributeMap.getOrDefault("espn_id", "-1"))));
-        }
+        nbaTeamModels.addAll(teamAttributeMapList.stream().map(nbaTeamAttributeMap -> new NumberFireNbaTeamModel(nbaTeamAttributeMap.getOrDefault("abbrev", "UNKNOWN TEAM"), Integer.parseInt(nbaTeamAttributeMap.getOrDefault("id", "-1")), Integer.parseInt(nbaTeamAttributeMap.getOrDefault("espn_id", "-1")))).collect(Collectors.toList()));
 
         return nbaTeamModels;
     }

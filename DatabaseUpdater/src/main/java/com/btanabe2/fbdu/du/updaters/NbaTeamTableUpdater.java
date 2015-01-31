@@ -31,10 +31,8 @@ public class NbaTeamTableUpdater {
 
     private void saveOrUpdateAllNbaTeamsInDatabase(Session session) {
         Transaction transaction = session.beginTransaction();
-        nbaTeams.sort((lhs, rhs) -> lhs.getEspnId() - rhs.getEspnId());
-        nbaTeams.forEach(session::persist);
+        nbaTeams.forEach(session::saveOrUpdate);
         transaction.commit();
-//        session.flush();
     }
 
     public List<NbaTeamEntity> getNbaTeams() {

@@ -62,13 +62,6 @@ public class NbaTeamProviderTests {
     }
 
     @Test
-    public void allEspnIdsShouldBeUnique() {
-        Set<Integer> nbaTeamEspnIds = new HashSet<>(nbaTeams.size());
-        nbaTeams.stream().filter(nbaTeam -> !nbaTeamEspnIds.add(nbaTeam.getEspnId())).forEach(nbaTeam -> fail(String.format("Attempting to insert ESPN_ID[%d] more than once", nbaTeam.getEspnId())));
-        assertEquals("The proper number of unique IDs were not generated", nbaTeams.size(), nbaTeamEspnIds.size());
-    }
-
-    @Test
     public void allNumberFireIdsShouldBeUnique() {
         Set<Integer> nbaTeamNumberFireIds = new HashSet<>(nbaTeams.size());
         nbaTeams.stream().filter(nbaTeam -> !nbaTeamNumberFireIds.add(nbaTeam.getNumberFireId())).forEach(nbaTeam -> fail(String.format("Attempting to insert NUMBER_FIRE_ID[%d] more than once", nbaTeam.getNumberFireId())));
