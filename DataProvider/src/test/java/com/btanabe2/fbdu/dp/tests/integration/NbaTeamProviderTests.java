@@ -6,7 +6,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.btanabe2.fbdu.dp.mocks.MockWebRequest.getSportsVuTeamsPageMockWebRequest;
@@ -50,5 +52,26 @@ public class NbaTeamProviderTests {
     public void shouldNotProduceAnyTeamsWithZeroedNumberFireIds(){
         List<NbaTeamEntity> teamsWithoutIds = nbaTeams.stream().filter(t -> t.getNumberFireId() == 0).collect(Collectors.toList());
         assertEquals(0, teamsWithoutIds.size());
+    }
+
+    @Test
+    public void allIdsShouldBeUnique() {
+        Set<Integer> nbaTeamIds = new HashSet<>(nbaTeams.size());
+        nbaTeams.stream().filter(nbaTeam -> !nbaTeamIds.add(nbaTeam.getId())).forEach(nbaTeam -> fail(String.format("Attempting to insert ID[%d] more than once", nbaTeam.getId())));
+        assertEquals("The proper number of unique IDs were not generated", nbaTeams.size(), nbaTeamIds.size());
+    }
+
+    @Test
+    public void allEspnIdsShouldBeUnique() {
+        Set<Integer> nbaTeamEspnIds = new HashSet<>(nbaTeams.size());
+        nbaTeams.stream().filter(nbaTeam -> !nbaTeamEspnIds.add(nbaTeam.getEspnId())).forEach(nbaTeam -> fail(String.format("Attempting to insert ESPN_ID[%d] more than once", nbaTeam.getEspnId())));
+        assertEquals("The proper number of unique IDs were not generated", nbaTeams.size(), nbaTeamEspnIds.size());
+    }
+
+    @Test
+    public void allNumberFireIdsShouldBeUnique() {
+        Set<Integer> nbaTeamNumberFireIds = new HashSet<>(nbaTeams.size());
+        nbaTeams.stream().filter(nbaTeam -> !nbaTeamNumberFireIds.add(nbaTeam.getNumberFireId())).forEach(nbaTeam -> fail(String.format("Attempting to insert NUMBER_FIRE_ID[%d] more than once", nbaTeam.getNumberFireId())));
+        assertEquals("The proper number of unique IDs were not generated", nbaTeams.size(), nbaTeamNumberFireIds.size());
     }
 }
