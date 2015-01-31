@@ -21,8 +21,13 @@ public class NbaTeamTableUpdater {
     }
 
     public void getTeamsAndCreateTable(Session session) throws IOException {
+        Transaction transaction = session.beginTransaction();
+
+        removeAllCurrentNbaTeamsFromDatabase(session);
         scrapeForNbaTeams(webRequest);
         saveOrUpdateAllNbaTeamsInDatabase(session);
+
+        transaction.commit();
     }
 
     private void scrapeForNbaTeams(WebRequest webRequest) throws IOException {
@@ -30,9 +35,11 @@ public class NbaTeamTableUpdater {
     }
 
     private void saveOrUpdateAllNbaTeamsInDatabase(Session session) {
-        Transaction transaction = session.beginTransaction();
         nbaTeams.forEach(session::saveOrUpdate);
-        transaction.commit();
+    }
+
+    private void removeAllCurrentNbaTeamsFromDatabase(Session session) {
+        session.createCriteria(NbaTeamEntity.class).list().forEach(session::delete);
     }
 
     public List<NbaTeamEntity> getNbaTeams() {
