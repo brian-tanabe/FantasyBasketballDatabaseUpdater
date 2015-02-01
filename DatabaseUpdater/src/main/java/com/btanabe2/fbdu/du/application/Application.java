@@ -1,13 +1,16 @@
 package com.btanabe2.fbdu.du.application;
 
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
+import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
 import com.btanabe2.fbdu.dp.leagues.providers.NbaPositionProvider;
 import com.btanabe2.fbdu.dp.stats.providers.NbaTeamProvider;
+import com.btanabe2.fbdu.dp.stats.providers.PlayerBiographyProvider;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import com.btanabe2.fbdu.du.updaters.UpdateByDroppingExistingEntitiesActor;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -21,6 +24,8 @@ public class Application {
             createPositionsTable();
             createPlayerBiographyTable(nbaTeams);
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         } finally {
             MySessionManager.getInstance().getSessionFactory().close();
@@ -39,6 +44,10 @@ public class Application {
         return positions;
     }
 
-    private static void createPlayerBiographyTable(List<NbaTeamEntity> nbaTeams) {
+    private static List<PlayerBiographyEntity> createPlayerBiographyTable(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException {
+        PlayerBiographyProvider provider = new PlayerBiographyProvider(new WebRequest());
+        List<PlayerBiographyEntity> playerBiographies = provider.getAllPlayers(nbaTeams);
+        UpdateByDroppingExistingEntitiesActor.doUpdate(PlayerBiographyEntity.class, playerBiographies);
+        return playerBiographies;
     }
 }
