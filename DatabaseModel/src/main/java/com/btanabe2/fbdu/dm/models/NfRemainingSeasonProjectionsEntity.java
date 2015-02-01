@@ -1,10 +1,12 @@
 package com.btanabe2.fbdu.dm.models;
 
+import javax.persistence.*;
+
 /**
  * Created by brian on 11/5/14.
  */
-@javax.persistence.Entity
-@javax.persistence.Table(name = "nf_remaining_season_projections", schema = "public", catalog = "FANTASY_BASKETBALL")
+@Entity
+@Table(name = "nf_remaining_season_projections")
 public class NfRemainingSeasonProjectionsEntity {
     private int playerid;
     private int points;
@@ -21,8 +23,8 @@ public class NfRemainingSeasonProjectionsEntity {
     private int blocks;
     private int turnovers;
 
-    @javax.persistence.Id
-    @javax.persistence.Column(name = "playerid")
+    @Id
+    @Column(name = "playerid")
     public int getPlayerid() {
         return playerid;
     }
@@ -31,8 +33,8 @@ public class NfRemainingSeasonProjectionsEntity {
         this.playerid = playerid;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "points")
+    @Basic
+    @Column(name = "points")
     public int getPoints() {
         return points;
     }
@@ -41,8 +43,8 @@ public class NfRemainingSeasonProjectionsEntity {
         this.points = points;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "minutes")
+    @Basic
+    @Column(name = "minutes")
     public int getMinutes() {
         return minutes;
     }
@@ -51,8 +53,8 @@ public class NfRemainingSeasonProjectionsEntity {
         this.minutes = minutes;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "fieldgoalsmade")
+    @Basic
+    @Column(name = "fieldgoalsmade")
     public int getFieldgoalsmade() {
         return fieldgoalsmade;
     }
@@ -61,8 +63,8 @@ public class NfRemainingSeasonProjectionsEntity {
         this.fieldgoalsmade = fieldgoalsmade;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "fieldgoalsattempted")
+    @Basic
+    @Column(name = "fieldgoalsattempted")
     public int getFieldgoalsattempted() {
         return fieldgoalsattempted;
     }
@@ -71,8 +73,8 @@ public class NfRemainingSeasonProjectionsEntity {
         this.fieldgoalsattempted = fieldgoalsattempted;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "freethrowsmade")
+    @Basic
+    @Column(name = "freethrowsmade")
     public int getFreethrowsmade() {
         return freethrowsmade;
     }
@@ -81,8 +83,8 @@ public class NfRemainingSeasonProjectionsEntity {
         this.freethrowsmade = freethrowsmade;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "freethrowsattempted")
+    @Basic
+    @Column(name = "freethrowsattempted")
     public int getFreethrowsattempted() {
         return freethrowsattempted;
     }
@@ -91,8 +93,8 @@ public class NfRemainingSeasonProjectionsEntity {
         this.freethrowsattempted = freethrowsattempted;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "threepointersmade")
+    @Basic
+    @Column(name = "threepointersmade")
     public int getThreepointersmade() {
         return threepointersmade;
     }
@@ -101,8 +103,8 @@ public class NfRemainingSeasonProjectionsEntity {
         this.threepointersmade = threepointersmade;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "threepointersattempted")
+    @Basic
+    @Column(name = "threepointersattempted")
     public int getThreepointersattempted() {
         return threepointersattempted;
     }
@@ -111,8 +113,8 @@ public class NfRemainingSeasonProjectionsEntity {
         this.threepointersattempted = threepointersattempted;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "rebounds")
+    @Basic
+    @Column(name = "rebounds")
     public int getRebounds() {
         return rebounds;
     }
@@ -121,8 +123,8 @@ public class NfRemainingSeasonProjectionsEntity {
         this.rebounds = rebounds;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "assists")
+    @Basic
+    @Column(name = "assists")
     public int getAssists() {
         return assists;
     }
@@ -131,8 +133,8 @@ public class NfRemainingSeasonProjectionsEntity {
         this.assists = assists;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "steals")
+    @Basic
+    @Column(name = "steals")
     public int getSteals() {
         return steals;
     }
@@ -141,8 +143,8 @@ public class NfRemainingSeasonProjectionsEntity {
         this.steals = steals;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "blocks")
+    @Basic
+    @Column(name = "blocks")
     public int getBlocks() {
         return blocks;
     }
@@ -151,8 +153,8 @@ public class NfRemainingSeasonProjectionsEntity {
         this.blocks = blocks;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "turnovers")
+    @Basic
+    @Column(name = "turnovers")
     public int getTurnovers() {
         return turnovers;
     }

@@ -1,13 +1,14 @@
 package com.btanabe2.fbdu.dm.models;
 
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
  * Created by brian on 11/5/14.
  */
-@javax.persistence.Entity
-@javax.persistence.Table(name = "nf_daily_projections", schema = "public", catalog = "FANTASY_BASKETBALL")
-@javax.persistence.IdClass(NfDailyProjectionsEntityPK.class)
+@Entity
+@Table(name = "nf_daily_projections")
+@IdClass(NfDailyProjectionsEntityPK.class)
 public class NfDailyProjectionsEntity {
     private int playerid;
     private Date date;
@@ -19,8 +20,8 @@ public class NfDailyProjectionsEntity {
     private double steals;
     private double firepoints;
 
-    @javax.persistence.Id
-    @javax.persistence.Column(name = "playerid")
+    @Id
+    @Column(name = "playerid")
     public int getPlayerid() {
         return playerid;
     }
@@ -29,8 +30,8 @@ public class NfDailyProjectionsEntity {
         this.playerid = playerid;
     }
 
-    @javax.persistence.Id
-    @javax.persistence.Column(name = "date")
+    @Id
+    @Column(name = "date")
     public Date getDate() {
         return date;
     }
@@ -39,8 +40,8 @@ public class NfDailyProjectionsEntity {
         this.date = date;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "opponent")
+    @Basic
+    @Column(name = "opponent")
     public int getOpponent() {
         return opponent;
     }
@@ -49,8 +50,8 @@ public class NfDailyProjectionsEntity {
         this.opponent = opponent;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "minutes")
+    @Basic
+    @Column(name = "minutes")
     public double getMinutes() {
         return minutes;
     }
@@ -59,8 +60,8 @@ public class NfDailyProjectionsEntity {
         this.minutes = minutes;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "points")
+    @Basic
+    @Column(name = "points")
     public double getPoints() {
         return points;
     }
@@ -69,8 +70,8 @@ public class NfDailyProjectionsEntity {
         this.points = points;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "rebounds")
+    @Basic
+    @Column(name = "rebounds")
     public double getRebounds() {
         return rebounds;
     }
@@ -79,8 +80,8 @@ public class NfDailyProjectionsEntity {
         this.rebounds = rebounds;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "assists")
+    @Basic
+    @Column(name = "assists")
     public double getAssists() {
         return assists;
     }
@@ -89,8 +90,8 @@ public class NfDailyProjectionsEntity {
         this.assists = assists;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "steals")
+    @Basic
+    @Column(name = "steals")
     public double getSteals() {
         return steals;
     }
@@ -99,8 +100,8 @@ public class NfDailyProjectionsEntity {
         this.steals = steals;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "firepoints")
+    @Basic
+    @Column(name = "firepoints")
     public double getFirepoints() {
         return firepoints;
     }

@@ -3,13 +3,11 @@ package com.btanabe2.fbdu.dm.models;
 import javax.persistence.*;
 import java.sql.Date;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 /**
  * Created by brian on 11/20/14.
  */
 @Entity
-@Table(name = "player_biography", schema = "public", catalog = "FANTASY_BASKETBALL")
+@Table(name = "player_biography")
 public class PlayerBiographyEntity {
     private int id;
     private String name;
@@ -25,7 +23,6 @@ public class PlayerBiographyEntity {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = IDENTITY)
     public int getId() {
         return id;
     }

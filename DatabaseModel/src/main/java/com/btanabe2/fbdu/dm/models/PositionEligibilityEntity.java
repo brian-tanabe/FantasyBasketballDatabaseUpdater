@@ -1,17 +1,19 @@
 package com.btanabe2.fbdu.dm.models;
 
+import javax.persistence.*;
+
 /**
  * Created by brian on 11/5/14.
  */
-@javax.persistence.Entity
-@javax.persistence.Table(name = "position_eligibility", schema = "public", catalog = "FANTASY_BASKETBALL")
+@Entity
+@Table(name = "position_eligibility", schema = "public", catalog = "FANTASY_BASKETBALL")
 public class PositionEligibilityEntity {
     private int id;
     private int playerid;
     private int positionid;
 
-    @javax.persistence.Id
-    @javax.persistence.Column(name = "id")
+    @Id
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -20,8 +22,8 @@ public class PositionEligibilityEntity {
         this.id = id;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "playerid")
+    @Basic
+    @Column(name = "playerid")
     public int getPlayerid() {
         return playerid;
     }
@@ -30,8 +32,8 @@ public class PositionEligibilityEntity {
         this.playerid = playerid;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "positionid")
+    @Basic
+    @Column(name = "positionid")
     public int getPositionid() {
         return positionid;
     }

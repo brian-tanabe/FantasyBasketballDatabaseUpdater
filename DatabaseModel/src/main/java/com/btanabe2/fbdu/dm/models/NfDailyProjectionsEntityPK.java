@@ -1,5 +1,7 @@
 package com.btanabe2.fbdu.dm.models;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -10,8 +12,8 @@ public class NfDailyProjectionsEntityPK implements Serializable {
     private int playerid;
     private Date date;
 
-    @javax.persistence.Column(name = "playerid")
-    @javax.persistence.Id
+    @Column(name = "playerid")
+    @Id
     public int getPlayerid() {
         return playerid;
     }
@@ -20,8 +22,8 @@ public class NfDailyProjectionsEntityPK implements Serializable {
         this.playerid = playerid;
     }
 
-    @javax.persistence.Column(name = "date")
-    @javax.persistence.Id
+    @Column(name = "date")
+    @Id
     public Date getDate() {
         return date;
     }

@@ -16,7 +16,6 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
-
         try {
             List<NbaTeamEntity> nbaTeams = createNbaTeamsTable();
             createPositionsTable();
@@ -34,7 +33,7 @@ public class Application {
         return nbaTeams;
     }
 
-    private static List<PositionsEntity> createPositionsTable(){
+    private static List<PositionsEntity> createPositionsTable() {
         List<PositionsEntity> positions = NbaPositionProvider.getAllPositions();
         UpdateByDroppingExistingEntitiesActor.doUpdate(PositionsEntity.class, positions);
         return positions;
