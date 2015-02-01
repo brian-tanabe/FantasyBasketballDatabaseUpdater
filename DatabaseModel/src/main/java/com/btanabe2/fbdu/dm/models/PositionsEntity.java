@@ -1,17 +1,19 @@
 package com.btanabe2.fbdu.dm.models;
 
+import javax.persistence.*;
+
 /**
  * Created by brian on 11/5/14.
  */
-@javax.persistence.Entity
-@javax.persistence.Table(name = "positions", schema = "public", catalog = "FANTASY_BASKETBALL")
+@Entity
+@Table(name = "positions")
 public class PositionsEntity {
     private int id;
     private String fullname;
     private String abbreviation;
 
-    @javax.persistence.Id
-    @javax.persistence.Column(name = "id")
+    @Id
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -20,8 +22,8 @@ public class PositionsEntity {
         this.id = id;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "fullname")
+    @Basic
+    @Column(name = "fullname")
     public String getFullname() {
         return fullname;
     }
@@ -30,8 +32,8 @@ public class PositionsEntity {
         this.fullname = fullname;
     }
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "abbreviation")
+    @Basic
+    @Column(name = "abbreviation")
     public String getAbbreviation() {
         return abbreviation;
     }
@@ -60,5 +62,10 @@ public class PositionsEntity {
         result = 31 * result + (fullname != null ? fullname.hashCode() : 0);
         result = 31 * result + (abbreviation != null ? abbreviation.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID=[%d]; abbreviation=[%s]; fullname=[%s]", id, abbreviation, fullname);
     }
 }
