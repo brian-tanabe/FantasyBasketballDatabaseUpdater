@@ -2,6 +2,8 @@ package com.btanabe2.fbdu.dm.models;
 
 import javax.persistence.*;
 
+import static javax.persistence.GenerationType.AUTO;
+
 /**
  * Created by brian on 11/5/14.
  */
@@ -14,6 +16,7 @@ public class PositionEligibilityEntity {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = AUTO)
     public int getId() {
         return id;
     }
