@@ -15,6 +15,8 @@ public class PositionEligibilityProvider {
     public static List<PositionEligibilityEntity> getPlayerPositionEligibility(List<PlayerBiographyEntity> players, List<PositionsEntity> positions) {
         List<PositionEligibilityEntity> playerPositionEligibilityEntities = new ArrayList<>(players.size());
 
+        // TODO WILL NEED TO SCRAPE ESPN FOR EACH PLAYER'S POSITION ELIGIBILITY
+        // TODO THIS MAY BE EASIER NOW THAT WE HAVE THEIR ESPN PLAYER IDS...
 
         return playerPositionEligibilityEntities;
     }
