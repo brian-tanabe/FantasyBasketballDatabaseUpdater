@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.btanabe2.fbdu.dp.mocks.MockWebRequest.getPlayerBiographyProviderMockWebRequest;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
@@ -32,8 +33,8 @@ public class PlayerBiographyProviderTests {
     }
 
     @Test
-    public void shouldBeAbleToFindFourHundredSeventyOnePlayers() {
-        assertEquals(471, players.size());
+    public void shouldBeAbleToFindFourHundredFortyThreePlayers() {
+        assertEquals(443, players.size());
     }
 
     @Test
@@ -42,7 +43,7 @@ public class PlayerBiographyProviderTests {
 
         assertNotNull("Did not find Arron Afflalo using his name as the key", player);
         assertEquals("Arron Afflalo", player.getName());
-        assertEquals(203112, player.getId());
+        assertEquals(201167, player.getId());
         assertEquals(1610612743, player.getNbateamid());
         assertEquals("1985-10-15", player.getBirthday().toString());
         assertEquals(7, player.getExperience());
@@ -52,5 +53,10 @@ public class PlayerBiographyProviderTests {
         assertEquals("USA", player.getCountry());
         assertEquals(3187, player.getEspnid());
         assertEquals(123, player.getNumberfireid());
+    }
+
+    @Test
+    public void shouldNotIncludeInactivePlayersInTheParsedResults() {
+        assertFalse("Player with an ID of 202399 is inactive and shouldn't be parsed", players.stream().anyMatch(p -> p.getId() == 202399));
     }
 }

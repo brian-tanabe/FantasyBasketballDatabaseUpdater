@@ -37,8 +37,7 @@ public class PlayerBiographyProvider {
     }
 
     private List<PlayerBiographyEntity> getAllActivePlayerBiographiesWithoutNumberFireOrEspnIds(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException {
-        PlayerProfileSportsVuScraper playerProfileSportsVuScraper = new PlayerProfileSportsVuScraper(webRequest);
-        return playerProfileSportsVuScraper.scrapeForPlayerBiographies(nbaTeams);
+        return new PlayerProfileSportsVuScraper(webRequest).scrapeForPlayerBiographies(nbaTeams);
     }
 
     private List<PlayerBiographyEntity> getAllEspnAndNumberFireIds(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException {
