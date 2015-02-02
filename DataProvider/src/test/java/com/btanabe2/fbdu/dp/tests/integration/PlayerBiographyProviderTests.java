@@ -32,8 +32,8 @@ public class PlayerBiographyProviderTests {
     }
 
     @Test
-    public void shouldBeAbleToFindFourHundredFortyNinePlayers() {
-        assertEquals(449, players.size());
+    public void shouldBeAbleToFindFourHundredSeventyOnePlayers() {
+        assertEquals(471, players.size());
     }
 
     @Test

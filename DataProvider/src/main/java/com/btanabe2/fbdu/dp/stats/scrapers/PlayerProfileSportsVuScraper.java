@@ -34,7 +34,7 @@ public class PlayerProfileSportsVuScraper {
 
     private WebRequest webRequest;
 
-    public PlayerProfileSportsVuScraper(WebRequest webRequest){
+    public PlayerProfileSportsVuScraper(WebRequest webRequest) {
         this.webRequest = webRequest;
     }
 
@@ -57,7 +57,7 @@ public class PlayerProfileSportsVuScraper {
 
     private List<PlayerBiographyEntity> scrapeAllPlayerInfoFromEachPlayersSportsVuPage(List<Integer> allActivePlayerIds, List<NbaTeamEntity> nbaTeam) throws IOException, ParseException {
         List<PlayerBiographyEntity> playerBiographies = new ArrayList<>(allActivePlayerIds.size());
-        for(int playerId : allActivePlayerIds){ // is there a way to do lambdas that throw exceptions?
+        for (int playerId : allActivePlayerIds) { // is there a way to do lambdas that throw exceptions?
             playerBiographies.add(getPlayerInfo(playerId, nbaTeam));
         }
 
@@ -84,25 +84,23 @@ public class PlayerProfileSportsVuScraper {
     private JsonArray getPlayerInfoJsonArray(int playerId) throws IOException {
         JsonObject jsonElement = new JsonParser().parse(webRequest.getPage(getPlayerInfoPageUrlFromSportsVu(playerId))).getAsJsonObject();
         JsonArray jsonArray = jsonElement.getAsJsonArray("resultSets");
-
-//        JsonArray elementHeaders = jsonArray.get(0).getAsJsonObject().get("headers").getAsJsonArray();
         JsonArray elements = jsonArray.get(0).getAsJsonObject().get("rowSet").getAsJsonArray();
 
         return elements.get(0).getAsJsonArray();
     }
 
-    private String extractPlayerName(JsonElement playerNameJsonElement){
+    private String extractPlayerName(JsonElement playerNameJsonElement) {
         try {
             return playerNameJsonElement.getAsString();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return "";
         }
     }
 
-    private Date extractPlayerBirthday(JsonElement playerBirthdayJsonElement){
+    private Date extractPlayerBirthday(JsonElement playerBirthdayJsonElement) {
         try {
             return new Date(new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(playerBirthdayJsonElement.getAsString()).getTime());
-        } catch (Exception ex){
+        } catch (Exception ex) {
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.YEAR, 1900);
             calendar.set(Calendar.MONTH, 0);
@@ -112,52 +110,52 @@ public class PlayerProfileSportsVuScraper {
         }
     }
 
-    private int extractPlayerExperience(JsonElement playerExperienceJsonElement){
+    private int extractPlayerExperience(JsonElement playerExperienceJsonElement) {
         try {
             return playerExperienceJsonElement.getAsInt();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return 0;
         }
     }
 
-    private int extractNbaTeamId(JsonElement playerNbaTeamIdJsonElement, List<NbaTeamEntity> nbaTeams){
+    private int extractNbaTeamId(JsonElement playerNbaTeamIdJsonElement, List<NbaTeamEntity> nbaTeams) {
         try {
             return nbaTeams.stream().filter(t -> t.getAbbreviation().equals(playerNbaTeamIdJsonElement.getAsString())).limit(1).collect(Collectors.toList()).get(0).getId();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return 0;
         }
     }
 
-    private int extractHeight(JsonElement playerHeightJsonElement){
+    private int extractHeight(JsonElement playerHeightJsonElement) {
         try {
             String heightString = playerHeightJsonElement.getAsString();
             String[] feetInches = heightString.split("-");
             return Integer.parseInt(feetInches[0]) * 12 + Integer.parseInt(feetInches[1]);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return 0;
         }
     }
 
-    private int extractWeight(JsonElement playerWeightJsonElement){
+    private int extractWeight(JsonElement playerWeightJsonElement) {
         try {
             return playerWeightJsonElement.getAsInt();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return 0;
         }
     }
 
-    private String extractCountry(JsonElement playerCountryJsonElement){
+    private String extractCountry(JsonElement playerCountryJsonElement) {
         try {
             return playerCountryJsonElement.getAsString();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return "";
         }
     }
 
-    private String extractCollege(JsonElement playerCollegeJsonElement){
+    private String extractCollege(JsonElement playerCollegeJsonElement) {
         try {
             return playerCollegeJsonElement.getAsString();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return "";
         }
     }
