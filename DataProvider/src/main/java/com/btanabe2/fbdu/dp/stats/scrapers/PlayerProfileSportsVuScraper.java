@@ -43,8 +43,7 @@ public class PlayerProfileSportsVuScraper {
         return scrapeAllPlayerInfoFromEachPlayersSportsVuPage(allActiveNbaPlayersSportsVuPlayerIds, nbaTeams);
     }
 
-    // TODO CHANGE BACK TO PRIVATE:
-    public List<Integer> getListOfAllActivePlayerIds() throws IOException {
+    private List<Integer> getListOfAllActivePlayerIds() throws IOException {
         // TODO THIS CAN BE ABSTRACTED OUT:
         JsonObject jsonElement = new JsonParser().parse(webRequest.getPage(SPORTS_VU_ALL_PLAYERS_URL)).getAsJsonObject();
         JsonArray jsonArray = jsonElement.getAsJsonArray("resultSets");
