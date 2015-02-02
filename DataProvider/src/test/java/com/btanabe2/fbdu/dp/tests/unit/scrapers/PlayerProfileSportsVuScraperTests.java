@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.btanabe2.fbdu.dp.mocks.MockWebRequest.getPlayerProfileSportsVuScraperMockWebRequest;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
@@ -18,12 +19,13 @@ import static org.junit.Assert.assertEquals;
  * Created by brian on 11/19/14.
  */
 public class PlayerProfileSportsVuScraperTests {
-    private static PlayerProfileSportsVuScraper scraper;
+    private static List<PlayerBiographyEntity> allActiveNbaPlayers;
 
     @BeforeClass
     public static void setup(){
         try {
-            scraper = new PlayerProfileSportsVuScraper(getPlayerProfileSportsVuScraperMockWebRequest());
+            PlayerProfileSportsVuScraper scraper = new PlayerProfileSportsVuScraper(getPlayerProfileSportsVuScraperMockWebRequest());
+            allActiveNbaPlayers = scraper.scrapeForPlayerBiographies(NbaTeamEntityFixture.getMockNbaTeams());
         } catch (Exception e) {
             e.printStackTrace();
             fail("Failed to create the mock WebRequest for the PlayerProfileSportsVuScraperTests");
@@ -31,10 +33,9 @@ public class PlayerProfileSportsVuScraperTests {
     }
 
     @Test
-    public void shouldBeAbleToFindFourHundredSeventyOnePlayers() {
+    public void shouldBeAbleToFindFourHundredFortyThreePlayers() {
         try {
-            List<PlayerBiographyEntity> allActiveNbaPlayers = scraper.scrapeForPlayerBiographies(NbaTeamEntityFixture.getMockNbaTeams());
-            assertEquals("Did not find enough active players", 471, allActiveNbaPlayers.size());
+            assertEquals("Did not find the correct number of active players", 443, allActiveNbaPlayers.size());
         } catch (Exception e) {
             e.printStackTrace();
             fail("JSON test files are illegally formatted or formatted in an unpredictable manner");
@@ -44,7 +45,7 @@ public class PlayerProfileSportsVuScraperTests {
     @Test
     public void shouldParseArronAfflalosBiographyCorrectly(){
         try {
-            PlayerBiographyEntity player = scraper.scrapeForPlayerBiographies(NbaTeamEntityFixture.getMockNbaTeams()).stream().filter(p -> p.getId() == 201167).limit(1).collect(Collectors.toList()).get(0);
+            PlayerBiographyEntity player = allActiveNbaPlayers.stream().filter(p -> p.getId() == 201167).limit(1).collect(Collectors.toList()).get(0);
 
             assertNotNull("Did not find Arron Afflalo", player);
             assertEquals("Player's name did not match", "Arron Afflalo", player.getName());
@@ -60,5 +61,10 @@ public class PlayerProfileSportsVuScraperTests {
             e.printStackTrace();
             fail("Failed to parse Aaron Afflalo's player profile correctly");
         }
+    }
+
+    @Test
+    public void shouldNotIncludeInactivePlayersInTheParsedResults() {
+        assertFalse("Player with an ID of 202399 is inactive and shouldn't be parsed", allActiveNbaPlayers.stream().anyMatch(p -> p.getId() == 202399));
     }
 }

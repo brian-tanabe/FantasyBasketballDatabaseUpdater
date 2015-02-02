@@ -58,15 +58,16 @@ public class PlayerProfileSportsVuScraper {
     private List<PlayerBiographyEntity> scrapeAllPlayerInfoFromEachPlayersSportsVuPage(List<Integer> allActivePlayerIds, List<NbaTeamEntity> nbaTeam) throws IOException, ParseException {
         List<PlayerBiographyEntity> playerBiographies = new ArrayList<>(allActivePlayerIds.size());
         for (int playerId : allActivePlayerIds) { // is there a way to do lambdas that throw exceptions?
-            playerBiographies.add(getPlayerInfo(playerId, nbaTeam));
+            JsonArray playerInfoJsonArray = getPlayerInfoJsonArray(playerId);
+            if (extractRosterStatus(playerInfoJsonArray.get(15))) {
+                playerBiographies.add(populatePlayerBiographyEntityObject(playerId, playerInfoJsonArray, nbaTeam));
+            }
         }
 
         return playerBiographies;
     }
 
-    private PlayerBiographyEntity getPlayerInfo(int playerId, List<NbaTeamEntity> nbaTeams) throws IOException, ParseException {
-        JsonArray playerInfoJsonArray = getPlayerInfoJsonArray(playerId);
-
+    private PlayerBiographyEntity populatePlayerBiographyEntityObject(int playerId, JsonArray playerInfoJsonArray, List<NbaTeamEntity> nbaTeams) {
         PlayerBiographyEntity player = new PlayerBiographyEntity();
         player.setId(playerId);
         player.setName(extractPlayerName(playerInfoJsonArray.get(3)));
@@ -157,6 +158,14 @@ public class PlayerProfileSportsVuScraper {
             return playerCollegeJsonElement.getAsString();
         } catch (Exception ex) {
             return "";
+        }
+    }
+
+    private boolean extractRosterStatus(JsonElement playerRosterStatusJsonElement) {
+        try {
+            return playerRosterStatusJsonElement.getAsString().equals("Active");
+        } catch (Exception ex) {
+            return false;
         }
     }
 }
