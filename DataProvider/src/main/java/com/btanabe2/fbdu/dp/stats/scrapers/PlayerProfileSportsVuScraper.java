@@ -43,7 +43,8 @@ public class PlayerProfileSportsVuScraper {
         return scrapeAllPlayerInfoFromEachPlayersSportsVuPage(allActiveNbaPlayersSportsVuPlayerIds, nbaTeams);
     }
 
-    private List<Integer> getListOfAllActivePlayerIds() throws IOException {
+    // TODO CHANGE BACK TO PRIVATE:
+    public List<Integer> getListOfAllActivePlayerIds() throws IOException {
         // TODO THIS CAN BE ABSTRACTED OUT:
         JsonObject jsonElement = new JsonParser().parse(webRequest.getPage(SPORTS_VU_ALL_PLAYERS_URL)).getAsJsonObject();
         JsonArray jsonArray = jsonElement.getAsJsonArray("resultSets");
@@ -57,7 +58,7 @@ public class PlayerProfileSportsVuScraper {
 
     private List<PlayerBiographyEntity> scrapeAllPlayerInfoFromEachPlayersSportsVuPage(List<Integer> allActivePlayerIds, List<NbaTeamEntity> nbaTeam) throws IOException, ParseException {
         List<PlayerBiographyEntity> playerBiographies = new ArrayList<>(allActivePlayerIds.size());
-        for(int playerId : allActivePlayerIds){ // is there a way to do lambdas that throw execptions?
+        for(int playerId : allActivePlayerIds){ // is there a way to do lambdas that throw exceptions?
             playerBiographies.add(getPlayerInfo(playerId, nbaTeam));
         }
 

@@ -33,7 +33,7 @@ public class PlayerProfileSportsVuScraperTests {
         try {
             WebRequest mockWebRequest = mock(WebRequest.class);
             when(mockWebRequest.getPage(SPORTS_VU_ALL_PLAYERS_URL)).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/nba-commonallplayers.json"), Charset.forName("UTF8")));
-            when(mockWebRequest.getPage(any(String.class))).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/playerinfo-pages/playerinfo-afflalo_aaron.json"), Charset.forName("UTF8")));
+            when(mockWebRequest.getPage(any(String.class))).thenReturn(FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/nba-sportsvu-pages/playerinfo-pages/201167.json"), Charset.forName("UTF8")));
 
             scraper = new PlayerProfileSportsVuScraper(mockWebRequest);
         } catch (IOException e) {
@@ -70,6 +70,7 @@ public class PlayerProfileSportsVuScraperTests {
             assertEquals("1985-10-15", player.getBirthday().toString());
         } catch (Exception e) {
             e.printStackTrace();
+            fail("Failed to parse Aaron Afflalo's player profile correctly");
         }
     }
 }
