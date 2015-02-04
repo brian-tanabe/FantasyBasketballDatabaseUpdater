@@ -1,8 +1,8 @@
 package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dm.models.NfRemainingSeasonProjectionsEntity;
+import com.btanabe2.fbdu.dp.data.scrapers.NumberFireRemainingSeasonProjectionsPageScraper;
 import com.btanabe2.fbdu.dp.fixtures.FileDocumentor;
-import com.btanabe2.fbdu.dp.stats.scrapers.NumberFireRemainingSeasonProjectionsPageScraper;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -19,7 +19,7 @@ public class NumberFireRemainingSeasonProjectionsPageScraperTests {
     private static List<NfRemainingSeasonProjectionsEntity> centersProjections;
 
     @BeforeClass
-    public static void setup(){
+    public static void setup() {
         NumberFireRemainingSeasonProjectionsPageScraper scraper = new NumberFireRemainingSeasonProjectionsPageScraper();
 
         guardsProjections = scraper.scrapeRemainingSeasonProjectionsFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-guards.html"));
@@ -28,17 +28,17 @@ public class NumberFireRemainingSeasonProjectionsPageScraperTests {
     }
 
     @Test
-    public void shouldFindTwoHundredNineGuards(){
+    public void shouldFindTwoHundredNineGuards() {
         assertEquals(209, guardsProjections.size());
     }
 
     @Test
-    public void shouldFindTwoHundredFiftyForwards(){
+    public void shouldFindTwoHundredFiftyForwards() {
         assertEquals(250, forwardsProjections.size());
     }
 
     @Test
-    public void shouldFindOneTwentySixCenters(){
+    public void shouldFindOneTwentySixCenters() {
         assertEquals(126, centersProjections.size());
     }
 }

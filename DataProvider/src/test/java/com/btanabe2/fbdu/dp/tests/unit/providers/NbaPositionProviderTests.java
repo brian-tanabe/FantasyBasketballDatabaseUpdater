@@ -1,7 +1,7 @@
 package com.btanabe2.fbdu.dp.tests.unit.providers;
 
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
-import com.btanabe2.fbdu.dp.leagues.providers.NbaPositionProvider;
+import com.btanabe2.fbdu.dp.data.providers.NbaPositionProvider;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ public class NbaPositionProviderTests {
     private static List<PositionsEntity> positionList;
 
     @BeforeClass
-    public static void getAllNbaPositions(){
+    public static void getAllNbaPositions() {
         positionList = NbaPositionProvider.getAllPositions();
     }
 
@@ -70,7 +70,7 @@ public class NbaPositionProviderTests {
     }
 
     @Test
-         public void shouldBeAbleToCreateSmallForwardsWithTheProperAbbreviation() {
+    public void shouldBeAbleToCreateSmallForwardsWithTheProperAbbreviation() {
         String positionAbbreviation = "SF";
         PositionsEntity position = positionList.stream().filter(p -> p.getAbbreviation().equals(positionAbbreviation)).limit(1).collect(Collectors.toList()).get(0);
         assertNotNull("Did not find a PositionEntity with an abbreviation of " + positionAbbreviation, position);

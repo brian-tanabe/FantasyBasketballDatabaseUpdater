@@ -1,9 +1,9 @@
 package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
+import com.btanabe2.fbdu.dp.data.scrapers.EspnAndNumberFireIdPageScraper;
 import com.btanabe2.fbdu.dp.fixtures.FileDocumentor;
 import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
-import com.btanabe2.fbdu.dp.stats.scrapers.EspnAndNumberFireIdPageScraper;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -21,36 +21,36 @@ public class EspnAndNumberFireIdPageScraperTests {
     private static List<PlayerBiographyEntity> centersBiographies;
 
     @BeforeClass
-    public static void setup(){
+    public static void setup() {
         try {
             EspnAndNumberFireIdPageScraper scraper = new EspnAndNumberFireIdPageScraper();
 
             guardsBiographies = scraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-guards.html"), NbaTeamEntityFixture.getMockNbaTeams());
             forwardsBiographies = scraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-forwards.html"), NbaTeamEntityFixture.getMockNbaTeams());
             centersBiographies = scraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-centers.html"), NbaTeamEntityFixture.getMockNbaTeams());
-        } catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             fail("Failed to parse NumberFire input files properly");
         }
     }
 
     @Test
-    public void shouldFindTwoHundredNineGuards(){
+    public void shouldFindTwoHundredNineGuards() {
         assertEquals(209, guardsBiographies.size());
     }
 
     @Test
-    public void shouldFindTwoHundredFiftyForwards(){
+    public void shouldFindTwoHundredFiftyForwards() {
         assertEquals(250, forwardsBiographies.size());
     }
 
     @Test
-    public void shouldFindOneTwentySixCenters(){
+    public void shouldFindOneTwentySixCenters() {
         assertEquals(126, centersBiographies.size());
     }
 
     @Test
-    public void shouldParseTyLawsonCorrectly(){
+    public void shouldParseTyLawsonCorrectly() {
         PlayerBiographyEntity player = guardsBiographies.stream().filter(p -> p.getName().equals("Ty Lawson")).limit(1).collect(Collectors.toList()).get(0);
 
         assertNotNull("Did not find Ty Lawson", player);
@@ -61,7 +61,7 @@ public class EspnAndNumberFireIdPageScraperTests {
     }
 
     @Test
-    public void shouldParseKyleKorverCorrectly(){
+    public void shouldParseKyleKorverCorrectly() {
         PlayerBiographyEntity player = forwardsBiographies.stream().filter(p -> p.getName().equals("Kyle Korver")).limit(1).collect(Collectors.toList()).get(0);
 
         assertNotNull("Did not find Kyle Korver", player);
@@ -72,7 +72,7 @@ public class EspnAndNumberFireIdPageScraperTests {
     }
 
     @Test
-    public void shouldParseDeMarcusCousinsCorrectly(){
+    public void shouldParseDeMarcusCousinsCorrectly() {
         PlayerBiographyEntity player = centersBiographies.stream().filter(p -> p.getName().equals("DeMarcus Cousins")).limit(1).collect(Collectors.toList()).get(0);
 
         assertNotNull("Did not find DeMarcus Cousins", player);
@@ -83,7 +83,7 @@ public class EspnAndNumberFireIdPageScraperTests {
     }
 
     @Test
-    public void shouldParseJoseJuanBareaCorrectlySinceHeHasNoBirthdayOrExperienceDataOnHisNumberFireProfile(){
+    public void shouldParseJoseJuanBareaCorrectlySinceHeHasNoBirthdayOrExperienceDataOnHisNumberFireProfile() {
         PlayerBiographyEntity player = guardsBiographies.stream().filter(p -> p.getName().equals("Juan Jose Barea")).limit(1).collect(Collectors.toList()).get(0);
 
         assertNotNull("Unable to find Juan Jose Barea using his name as a key", player);
@@ -94,7 +94,7 @@ public class EspnAndNumberFireIdPageScraperTests {
     }
 
     @Test
-    public void shouldBeAbleToParseArronAfflalosInfoProperly(){
+    public void shouldBeAbleToParseArronAfflalosInfoProperly() {
         PlayerBiographyEntity player = guardsBiographies.stream().filter(p -> p.getName().equals("Arron Afflalo")).limit(1).collect(Collectors.toList()).get(0);
 
         assertEquals(3187, player.getEspnid());

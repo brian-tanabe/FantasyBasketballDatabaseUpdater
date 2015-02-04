@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.stats.scrapers;
+package com.btanabe2.fbdu.dp.data.scrapers;
 
 import com.btanabe2.fbdu.dp.models.NumberFireNbaTeamModel;
 import org.json.JSONArray;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  */
 public class NumberFireJsonPageScraper {
 
-    public List<NumberFireNbaTeamModel> getNumberFireNbaTeamModels(Document document){
+    public List<NumberFireNbaTeamModel> getNumberFireNbaTeamModels(Document document) {
         JSONObject playersObject = new JSONObject(findProjectionJavascript(document.select("script[type=text/javascript]"))).getJSONObject("teams");
         List<Map<String, String>> teamAttributeMapList = getAllJsonObjectsKeyToValueMap(playersObject);
 
@@ -36,16 +36,16 @@ public class NumberFireJsonPageScraper {
         return playersObject instanceof JSONArray ? getAllJsonArrayObjectsKeyToValueMap((JSONArray) playersObject) : getAllJsonObjectsKeyToValueMap((JSONObject) playersObject);
     }
 
-    private List<Map<String, String>> getAllJsonArrayObjectsKeyToValueMap(JSONArray allObjects){
+    private List<Map<String, String>> getAllJsonArrayObjectsKeyToValueMap(JSONArray allObjects) {
         List<Map<String, String>> keyToValueMapList = new ArrayList<>(allObjects.length());
-        for(int index = 0; index < allObjects.length(); index++){
+        for (int index = 0; index < allObjects.length(); index++) {
             keyToValueMapList.add(parseProjectionGroup(allObjects.getJSONObject(index)));
         }
 
         return keyToValueMapList;
     }
 
-    private List<Map<String, String>> getAllJsonObjectsKeyToValueMap(JSONObject allObjects){
+    private List<Map<String, String>> getAllJsonObjectsKeyToValueMap(JSONObject allObjects) {
         List<Map<String, String>> keyToValueMapList = new ArrayList<>(allObjects.keySet().size());
         for (String key : (Set<String>) allObjects.keySet()) {
             keyToValueMapList.add(parseProjectionGroup(allObjects.getJSONObject(key)));
@@ -54,10 +54,10 @@ public class NumberFireJsonPageScraper {
         return keyToValueMapList;
     }
 
-    private Map<String, String> parseProjectionGroup(JSONObject projectionGroup){
+    private Map<String, String> parseProjectionGroup(JSONObject projectionGroup) {
         Map<String, String> projectionMap = new LinkedHashMap<>(projectionGroup.keySet().size());
 
-        for(int mapKeyIndex = 0; mapKeyIndex < projectionGroup.names().length(); mapKeyIndex++){
+        for (int mapKeyIndex = 0; mapKeyIndex < projectionGroup.names().length(); mapKeyIndex++) {
             String keyString = projectionGroup.names().getString(mapKeyIndex);
             String valueString = projectionGroup.getString(keyString);
 

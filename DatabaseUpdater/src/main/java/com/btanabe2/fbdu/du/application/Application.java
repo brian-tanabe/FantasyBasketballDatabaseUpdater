@@ -3,9 +3,9 @@ package com.btanabe2.fbdu.du.application;
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
-import com.btanabe2.fbdu.dp.leagues.providers.NbaPositionProvider;
-import com.btanabe2.fbdu.dp.stats.providers.NbaTeamProvider;
-import com.btanabe2.fbdu.dp.stats.providers.PlayerBiographyProvider;
+import com.btanabe2.fbdu.dp.data.providers.NbaPositionProvider;
+import com.btanabe2.fbdu.dp.data.providers.NbaTeamProvider;
+import com.btanabe2.fbdu.dp.data.providers.PlayerBiographyProvider;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import com.btanabe2.fbdu.du.updaters.UpdateByDroppingExistingEntitiesActor;
 

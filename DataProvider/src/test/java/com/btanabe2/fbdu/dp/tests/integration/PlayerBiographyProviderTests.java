@@ -1,8 +1,8 @@
 package com.btanabe2.fbdu.dp.tests.integration;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
+import com.btanabe2.fbdu.dp.data.providers.PlayerBiographyProvider;
 import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
-import com.btanabe2.fbdu.dp.stats.providers.PlayerBiographyProvider;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -38,7 +38,7 @@ public class PlayerBiographyProviderTests {
     }
 
     @Test
-    public void shouldBeAbleToScrapeArronAfflalosPlayerBiographyEntityCorrectly(){
+    public void shouldBeAbleToScrapeArronAfflalosPlayerBiographyEntityCorrectly() {
         PlayerBiographyEntity player = players.stream().filter(p -> p.getName().equals("Arron Afflalo")).limit(1).collect(Collectors.toList()).get(0);
 
         assertNotNull("Did not find Arron Afflalo using his name as the key", player);

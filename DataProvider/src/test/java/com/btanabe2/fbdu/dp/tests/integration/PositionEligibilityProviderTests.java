@@ -1,11 +1,11 @@
 package com.btanabe2.fbdu.dp.tests.integration;
 
 import com.btanabe2.fbdu.dm.models.PositionEligibilityEntity;
+import com.btanabe2.fbdu.dp.data.providers.NbaPositionProvider;
+import com.btanabe2.fbdu.dp.data.providers.PlayerBiographyProvider;
+import com.btanabe2.fbdu.dp.data.providers.PositionEligibilityProvider;
 import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
-import com.btanabe2.fbdu.dp.leagues.providers.NbaPositionProvider;
-import com.btanabe2.fbdu.dp.leagues.providers.PositionEligibilityProvider;
 import com.btanabe2.fbdu.dp.mocks.MockWebRequest;
-import com.btanabe2.fbdu.dp.stats.providers.PlayerBiographyProvider;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import org.junit.BeforeClass;
 import org.junit.Test;

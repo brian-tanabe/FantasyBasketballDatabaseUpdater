@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.stats.scrapers;
+package com.btanabe2.fbdu.dp.data.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dp.models.NumberFireNbaTeamModel;
@@ -35,16 +35,16 @@ public class NumberFireRankingPageScraper {
             playerBiographyEntity.setNbateamid(nbaTeams.stream().filter(t -> t.getNumberFireId() == Integer.parseInt(playerJsonProjection.get("team_id"))).limit(1).collect(Collectors.toList()).get(0).getEspnId());
 
             numberFireIdToPlayerBiographyEntityMap.put(playerBiographyEntity.getNumberfireid(), playerBiographyEntity);
-        } catch (ParseException ex){
+        } catch (ParseException ex) {
             ex.printStackTrace();
         }
     }
 
-    public List<PlayerBiographyEntity> getPlayerBiographyEntitiesList(){
+    public List<PlayerBiographyEntity> getPlayerBiographyEntitiesList() {
         return new ArrayList(numberFireIdToPlayerBiographyEntityMap.values());
     }
 
-    public Map<Integer, PlayerBiographyEntity> getPlayerBiographyEntitiesListMap(){
+    public Map<Integer, PlayerBiographyEntity> getPlayerBiographyEntitiesListMap() {
         return numberFireIdToPlayerBiographyEntityMap;
     }
 }

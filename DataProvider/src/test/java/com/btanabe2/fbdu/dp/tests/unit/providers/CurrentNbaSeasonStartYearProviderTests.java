@@ -1,6 +1,6 @@
 package com.btanabe2.fbdu.dp.tests.unit.providers;
 
-import com.btanabe2.fbdu.dp.leagues.providers.CurrentNbaSeasonStartYearProvider;
+import com.btanabe2.fbdu.dp.data.providers.CurrentNbaSeasonStartYearProvider;
 import org.junit.Test;
 
 import java.time.Month;
@@ -34,7 +34,7 @@ public class CurrentNbaSeasonStartYearProviderTests {
     }
 
 
-    private Calendar getCalendarForDate(int year, Month monthOfYear, int dayOfMonth){
+    private Calendar getCalendarForDate(int year, Month monthOfYear, int dayOfMonth) {
         Calendar testDate = Calendar.getInstance();
         testDate.set(Calendar.YEAR, year);
         testDate.set(Calendar.MONTH, monthOfYear.getValue() - 1);

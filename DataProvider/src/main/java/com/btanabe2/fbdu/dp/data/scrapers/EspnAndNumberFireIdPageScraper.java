@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.stats.scrapers;
+package com.btanabe2.fbdu.dp.data.scrapers;
 
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
@@ -26,12 +26,12 @@ public class EspnAndNumberFireIdPageScraper {
         return playerEntities;
     }
 
-    private List<Map<String, String>> getAllPlayersOnPageAttributesAsMap(Document page){
+    private List<Map<String, String>> getAllPlayersOnPageAttributesAsMap(Document page) {
         NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
         return scraper.getProjectionAttributeMapList(page, "players");
     }
 
-    private List<NumberFireNbaTeamModel> getNumberFireNbaTeams(Document page){
+    private List<NumberFireNbaTeamModel> getNumberFireNbaTeams(Document page) {
         NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
         return scraper.getNumberFireNbaTeamModels(page);
     }
@@ -43,7 +43,7 @@ public class EspnAndNumberFireIdPageScraper {
             player.setEspnid(Integer.parseInt(playerAttributes.get("espn_id")));
             player.setNumberfireid(Integer.parseInt(playerAttributes.get("id")));
             player.setNbateamid(nbaTeams.stream().filter(t -> t.getNumberFireId() == Integer.parseInt(playerAttributes.get("team_id"))).limit(1).collect(Collectors.toList()).get(0).getEspnId());
-        } catch (Exception exception){
+        } catch (Exception exception) {
             exception.printStackTrace();
         } finally {
             return player;

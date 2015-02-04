@@ -1,8 +1,8 @@
 package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
+import com.btanabe2.fbdu.dp.data.scrapers.PlayerProfileSportsVuScraper;
 import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
-import com.btanabe2.fbdu.dp.stats.scrapers.PlayerProfileSportsVuScraper;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -22,7 +22,7 @@ public class PlayerProfileSportsVuScraperTests {
     private static List<PlayerBiographyEntity> allActiveNbaPlayers;
 
     @BeforeClass
-    public static void setup(){
+    public static void setup() {
         try {
             PlayerProfileSportsVuScraper scraper = new PlayerProfileSportsVuScraper(getPlayerProfileSportsVuScraperMockWebRequest());
             allActiveNbaPlayers = scraper.scrapeForPlayerBiographies(NbaTeamEntityFixture.getMockNbaTeams());
@@ -43,7 +43,7 @@ public class PlayerProfileSportsVuScraperTests {
     }
 
     @Test
-    public void shouldParseArronAfflalosBiographyCorrectly(){
+    public void shouldParseArronAfflalosBiographyCorrectly() {
         try {
             PlayerBiographyEntity player = allActiveNbaPlayers.stream().filter(p -> p.getId() == 201167).limit(1).collect(Collectors.toList()).get(0);
 

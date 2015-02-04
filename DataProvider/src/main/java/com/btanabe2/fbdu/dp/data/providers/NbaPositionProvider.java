@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.leagues.providers;
+package com.btanabe2.fbdu.dp.data.providers;
 
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
 
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class NbaPositionProvider {
 
-    public static List<PositionsEntity> getAllPositions(){
+    public static List<PositionsEntity> getAllPositions() {
         List<PositionsEntity> positions = new ArrayList<>(5);
 
         PositionsEntity pointGuard = new PositionsEntity();

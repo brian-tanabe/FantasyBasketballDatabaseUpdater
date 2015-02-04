@@ -1,8 +1,8 @@
 package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
+import com.btanabe2.fbdu.dp.data.scrapers.NumberFireJsonPageScraper;
 import com.btanabe2.fbdu.dp.fixtures.NumberFirePageFixture;
 import com.btanabe2.fbdu.dp.models.NumberFireNbaTeamModel;
-import com.btanabe2.fbdu.dp.stats.scrapers.NumberFireJsonPageScraper;
 import org.junit.Test;
 
 import java.util.List;
@@ -18,35 +18,35 @@ import static org.junit.Assert.assertNotNull;
 public class NumberFireJsonPageScraperTests {
 
     @Test
-    public void shouldBeAbleToFindTwoHundredNineForwardsInTheNumberFireRemainingSeasonProjectionsPage(){
+    public void shouldBeAbleToFindTwoHundredNineForwardsInTheNumberFireRemainingSeasonProjectionsPage() {
         NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
         List<Map<String, String>> playersAttributes = scraper.getProjectionAttributeMapList(NumberFirePageFixture.getNumberFireRemainingSeasonGuardsProjectionsPageDocument());
         assertEquals("Did not find the correct number of forwards in the remaining season projections", 209, playersAttributes.size());
     }
 
     @Test
-    public void shouldBeAbleToFindTwoHundredFiftyGuardsInTheNumberFireRemainingSeasonProjectionsPage(){
+    public void shouldBeAbleToFindTwoHundredFiftyGuardsInTheNumberFireRemainingSeasonProjectionsPage() {
         NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
         List<Map<String, String>> playersAttributes = scraper.getProjectionAttributeMapList(NumberFirePageFixture.getNumberFireRemainingSeasonForwardsProjectionsPageDocument());
         assertEquals("Did not find the correct number of guards in the remaining season projections", 250, playersAttributes.size());
     }
 
     @Test
-    public void shouldBeAbleToFindOneHundredTwentySixCentersInTheNumberFireRemainingSeasonProjectionsPage(){
+    public void shouldBeAbleToFindOneHundredTwentySixCentersInTheNumberFireRemainingSeasonProjectionsPage() {
         NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
         List<Map<String, String>> playersAttributes = scraper.getProjectionAttributeMapList(NumberFirePageFixture.getNumberFireRemainingSeasonCentersProjectionsPageDocument());
         assertEquals("Did not find the correct number of centers in the remaining season projections", 126, playersAttributes.size());
     }
 
     @Test
-    public void shouldBeAbleToFindOneHundredFortyNinePlayersInTheNumberFireDailyProjectionsPage(){
+    public void shouldBeAbleToFindOneHundredFortyNinePlayersInTheNumberFireDailyProjectionsPage() {
         NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
         List<Map<String, String>> playersAttributes = scraper.getProjectionAttributeMapList(NumberFirePageFixture.getNumberFireDailyProjectionsPageDocument());
         assertEquals("Did not find the correct number of players in the daily projections", 149, playersAttributes.size());
     }
 
     @Test
-    public void shouldBeAbleToParseRandomForwardsRemainingSeasonProjectionsCorrectly(){
+    public void shouldBeAbleToParseRandomForwardsRemainingSeasonProjectionsCorrectly() {
         NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
         List<Map<String, String>> playersAttributes = scraper.getProjectionAttributeMapList(NumberFirePageFixture.getNumberFireDailyProjectionsPageDocument());
         Map<String, String> playerProjections = playersAttributes.stream().filter(p -> p.values().contains("Pau Gasol")).limit(1).collect(Collectors.toList()).get(0);
@@ -60,7 +60,7 @@ public class NumberFireJsonPageScraperTests {
     }
 
     @Test
-    public void shouldBeAbleToParseRandomForwardsDailyProjectionsCorrectly(){
+    public void shouldBeAbleToParseRandomForwardsDailyProjectionsCorrectly() {
         NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
         List<Map<String, String>> playersAttributes = scraper.getProjectionAttributeMapList(NumberFirePageFixture.getNumberFireDailyProjectionsPageDocument());
         Map<String, String> playerProjections = playersAttributes.stream().filter(p -> p.values().contains("Pau Gasol")).limit(1).collect(Collectors.toList()).get(0);
@@ -74,14 +74,14 @@ public class NumberFireJsonPageScraperTests {
     }
 
     @Test
-    public void shouldBeAbleToFindThirtyNbaTeams(){
+    public void shouldBeAbleToFindThirtyNbaTeams() {
         NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
         List<NumberFireNbaTeamModel> nbaTeams = scraper.getNumberFireNbaTeamModels(NumberFirePageFixture.getNumberFireRankingsPageDocument());
         assertEquals(30, nbaTeams.size());
     }
 
     @Test
-    public void shouldScrapeTheCorrectInformationForTheDenverNuggets(){
+    public void shouldScrapeTheCorrectInformationForTheDenverNuggets() {
         NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
         NumberFireNbaTeamModel nuggets = scraper.getNumberFireNbaTeamModels(NumberFirePageFixture.getNumberFireRankingsPageDocument()).stream().filter(t -> t.getAbbreviation().equalsIgnoreCase("DEN")).collect(Collectors.toList()).get(0);
 

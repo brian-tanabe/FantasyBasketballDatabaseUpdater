@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.leagues.scrapers;
+package com.btanabe2.fbdu.dp.data.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
 import com.btanabe2.fbdu.dp.models.EspnPositionEligibilityModel;

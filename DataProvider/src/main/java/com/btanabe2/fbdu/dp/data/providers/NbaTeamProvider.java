@@ -1,12 +1,12 @@
-package com.btanabe2.fbdu.dp.stats.providers;
+package com.btanabe2.fbdu.dp.data.providers;
 
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
+import com.btanabe2.fbdu.dp.data.scrapers.NbaTeamJsonParser;
+import com.btanabe2.fbdu.dp.data.scrapers.NbaTeamSportsVuScraper;
+import com.btanabe2.fbdu.dp.data.scrapers.NumberFireJsonPageScraper;
 import com.btanabe2.fbdu.dp.models.NbaTeamModel;
 import com.btanabe2.fbdu.dp.models.NbaTeamSportsVuModel;
 import com.btanabe2.fbdu.dp.models.NumberFireNbaTeamModel;
-import com.btanabe2.fbdu.dp.stats.scrapers.NbaTeamJsonParser;
-import com.btanabe2.fbdu.dp.stats.scrapers.NbaTeamSportsVuScraper;
-import com.btanabe2.fbdu.dp.stats.scrapers.NumberFireJsonPageScraper;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 
 import java.io.IOException;
@@ -28,10 +28,10 @@ public class NbaTeamProvider {
         List<NbaTeamSportsVuModel> teamIdsAndAbbreviations = scraper.getAllNbaTeams();
 
         NumberFireJsonPageScraper nbaTeamAbbreviationAndEspnIdScraper = new NumberFireJsonPageScraper();
-        List<NumberFireNbaTeamModel> nbaTeamAbbreviationsAndEspnIds =  nbaTeamAbbreviationAndEspnIdScraper.getNumberFireNbaTeamModels(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_GUARDS_URL));
+        List<NumberFireNbaTeamModel> nbaTeamAbbreviationsAndEspnIds = nbaTeamAbbreviationAndEspnIdScraper.getNumberFireNbaTeamModels(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_GUARDS_URL));
 
         List<NbaTeamEntity> teams = new ArrayList<>(30);
-        for(NbaTeamModel nbaTeamFromJsonFile : teamNamesAndAbbreviations){
+        for (NbaTeamModel nbaTeamFromJsonFile : teamNamesAndAbbreviations) {
             NbaTeamSportsVuModel idObject = teamIdsAndAbbreviations.stream().filter(a -> a.getAbbreviation().equals(nbaTeamFromJsonFile.getAbbreviation())).limit(1).collect(Collectors.toList()).get(0);
             NumberFireNbaTeamModel numberFireNbaTeamModel = nbaTeamAbbreviationsAndEspnIds.stream().filter(a -> a.getAbbreviation().equals(nbaTeamFromJsonFile.getNumberFireAbbreviation())).limit(1).collect(Collectors.toList()).get(0);
 

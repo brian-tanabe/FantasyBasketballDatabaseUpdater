@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.stats.scrapers;
+package com.btanabe2.fbdu.dp.data.scrapers;
 
 import com.btanabe2.fbdu.dp.models.NbaTeamModel;
 import com.google.gson.Gson;
@@ -28,7 +28,7 @@ public class NbaTeamJsonParser {
         return FileUtils.readFileToString(new File("./DataProvider/src/main/resources/nba-teams.json"), Charset.forName("UTF8"));
     }
 
-    private static List<NbaTeamModel> parseNbaTeamsJsonFile(String nbaTeamsJsonString){
+    private static List<NbaTeamModel> parseNbaTeamsJsonFile(String nbaTeamsJsonString) {
         Gson gson = new GsonBuilder().create();
         NbaTeamModel[] nbaTeams = gson.fromJson(nbaTeamsJsonString, NbaTeamModel[].class);
 

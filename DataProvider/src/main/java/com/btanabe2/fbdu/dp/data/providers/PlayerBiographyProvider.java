@@ -1,9 +1,9 @@
-package com.btanabe2.fbdu.dp.stats.providers;
+package com.btanabe2.fbdu.dp.data.providers;
 
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
-import com.btanabe2.fbdu.dp.stats.scrapers.EspnAndNumberFireIdPageScraper;
-import com.btanabe2.fbdu.dp.stats.scrapers.PlayerProfileSportsVuScraper;
+import com.btanabe2.fbdu.dp.data.scrapers.EspnAndNumberFireIdPageScraper;
+import com.btanabe2.fbdu.dp.data.scrapers.PlayerProfileSportsVuScraper;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 
 import java.io.IOException;
@@ -19,7 +19,7 @@ import static com.btanabe2.fbdu.dp.web.WebConstants.*;
 public class PlayerBiographyProvider {
     private WebRequest webRequest;
 
-    public PlayerBiographyProvider(WebRequest webRequest){
+    public PlayerBiographyProvider(WebRequest webRequest) {
         this.webRequest = webRequest;
     }
 
@@ -27,7 +27,7 @@ public class PlayerBiographyProvider {
         List<PlayerBiographyEntity> allActivePlayerBiographiesWithoutEspnIds = getAllActivePlayerBiographiesWithoutNumberFireOrEspnIds(nbaTeams);
         List<PlayerBiographyEntity> playerIds = getAllEspnAndNumberFireIds(nbaTeams);
 
-        for(PlayerBiographyEntity player : allActivePlayerBiographiesWithoutEspnIds){
+        for (PlayerBiographyEntity player : allActivePlayerBiographiesWithoutEspnIds) {
             PlayerBiographyEntity matchedPlayerEntityContainingEspnAndNumberFireIds = findNumberFireRemainingSeasonProjectionEntityForPlayer(player, playerIds);
             player.setEspnid(matchedPlayerEntityContainingEspnAndNumberFireIds.getEspnid());
             player.setNumberfireid(matchedPlayerEntityContainingEspnAndNumberFireIds.getNumberfireid());
@@ -50,10 +50,10 @@ public class PlayerBiographyProvider {
         return playerIdEntities;
     }
 
-    private PlayerBiographyEntity findNumberFireRemainingSeasonProjectionEntityForPlayer(PlayerBiographyEntity playerToSearchFor, List<PlayerBiographyEntity> listOfNumberFireRemainingSeasonProjections){
+    private PlayerBiographyEntity findNumberFireRemainingSeasonProjectionEntityForPlayer(PlayerBiographyEntity playerToSearchFor, List<PlayerBiographyEntity> listOfNumberFireRemainingSeasonProjections) {
         try {
             return listOfNumberFireRemainingSeasonProjections.stream().filter(p -> p.getName().equals(playerToSearchFor.getName())).limit(1).collect(Collectors.toList()).get(0);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             // TODO LOG THIS EVENT:
             PlayerBiographyEntity emptyPlayer = new PlayerBiographyEntity();
             emptyPlayer.setNumberfireid(0);

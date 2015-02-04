@@ -1,6 +1,6 @@
 package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
-import com.btanabe2.fbdu.dp.leagues.scrapers.EspnLeagueIdScraper;
+import com.btanabe2.fbdu.dp.data.scrapers.EspnLeagueIdScraper;
 import com.btanabe2.fbdu.dp.mocks.MockWebRequest;
 import com.btanabe2.fbdu.dp.web.SecureWebRequest;
 import com.btanabe2.fbdu.dp.web.auth.EspnCredentialProvider;
@@ -33,7 +33,7 @@ public class EspnLeagueIdScraperTests {
     }
 
     @Test
-    public void shouldNotFindLinksFromOldSeason(){
+    public void shouldNotFindLinksFromOldSeason() {
         try {
             SecureWebRequest webRequest = MockWebRequest.getEspnLeagueIdScraperMockWebRequest();
             EspnLeagueIdScraper scraper = new EspnLeagueIdScraper();
@@ -47,7 +47,7 @@ public class EspnLeagueIdScraperTests {
     }
 
     @Test
-    public void shouldParseTheCurrentSeasonLinksCorrectly(){
+    public void shouldParseTheCurrentSeasonLinksCorrectly() {
         try {
             SecureWebRequest webRequest = MockWebRequest.getEspnLeagueIdScraperMockWebRequest();
             EspnLeagueIdScraper scraper = new EspnLeagueIdScraper();

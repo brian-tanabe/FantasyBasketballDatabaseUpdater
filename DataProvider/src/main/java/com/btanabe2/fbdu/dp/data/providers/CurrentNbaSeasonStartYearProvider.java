@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.leagues.providers;
+package com.btanabe2.fbdu.dp.data.providers;
 
 import java.util.Calendar;
 
@@ -8,7 +8,7 @@ import java.util.Calendar;
 public class CurrentNbaSeasonStartYearProvider {
 
     public static int getCurrentNbaSeasonStartYear(Calendar currentDate) {
-        if(currentDate.get(Calendar.MONTH) < Calendar.OCTOBER && currentDate.get(Calendar.MONTH) > Calendar.JUNE)
+        if (currentDate.get(Calendar.MONTH) < Calendar.OCTOBER && currentDate.get(Calendar.MONTH) > Calendar.JUNE)
             return currentDate.get(Calendar.YEAR);
         else
             return currentDate.get(Calendar.YEAR) - 1;

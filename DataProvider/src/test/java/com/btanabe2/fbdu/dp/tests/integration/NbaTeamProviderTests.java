@@ -1,7 +1,7 @@
 package com.btanabe2.fbdu.dp.tests.integration;
 
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
-import com.btanabe2.fbdu.dp.stats.providers.NbaTeamProvider;
+import com.btanabe2.fbdu.dp.data.providers.NbaTeamProvider;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -22,7 +22,7 @@ public class NbaTeamProviderTests {
     private static List<NbaTeamEntity> nbaTeams;
 
     @BeforeClass
-    public static void setup(){
+    public static void setup() {
         try {
             nbaTeams = NbaTeamProvider.getAllNbaTeamEntities(getSportsVuTeamsPageMockWebRequest());
         } catch (IOException e) {
@@ -32,24 +32,24 @@ public class NbaTeamProviderTests {
     }
 
     @Test
-    public void shouldBeAbleToFindThirtyTeams(){
+    public void shouldBeAbleToFindThirtyTeams() {
         assertEquals("Did not find 30 teams", 30, nbaTeams.size());
     }
 
     @Test
-    public void shouldNotProduceAnyTeamsWithZeroedIds(){
+    public void shouldNotProduceAnyTeamsWithZeroedIds() {
         List<NbaTeamEntity> teamsWithoutIds = nbaTeams.stream().filter(t -> t.getId() == 0).collect(Collectors.toList());
         assertEquals(0, teamsWithoutIds.size());
     }
 
     @Test
-    public void shouldNotProduceAnyTeamsWithZeroedEspnIds(){
+    public void shouldNotProduceAnyTeamsWithZeroedEspnIds() {
         List<NbaTeamEntity> teamsWithoutIds = nbaTeams.stream().filter(t -> t.getEspnId() == 0).collect(Collectors.toList());
         assertEquals(0, teamsWithoutIds.size());
     }
 
     @Test
-    public void shouldNotProduceAnyTeamsWithZeroedNumberFireIds(){
+    public void shouldNotProduceAnyTeamsWithZeroedNumberFireIds() {
         List<NbaTeamEntity> teamsWithoutIds = nbaTeams.stream().filter(t -> t.getNumberFireId() == 0).collect(Collectors.toList());
         assertEquals(0, teamsWithoutIds.size());
     }
