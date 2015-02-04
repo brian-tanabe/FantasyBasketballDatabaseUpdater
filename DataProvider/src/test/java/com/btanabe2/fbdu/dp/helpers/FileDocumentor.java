@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.fixtures;
+package com.btanabe2.fbdu.dp.helpers;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,10 +10,10 @@ import java.io.File;
  */
 public class FileDocumentor {
 
-    public static Document getDocumentFromFileHtml(String path){
+    public static Document getDocumentFromFileHtml(String path) {
         try {
             return Jsoup.parse(new File(path), "UTF8");
-        } catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }

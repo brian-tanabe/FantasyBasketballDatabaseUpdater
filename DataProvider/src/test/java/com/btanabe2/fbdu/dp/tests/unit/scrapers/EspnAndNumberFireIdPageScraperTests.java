@@ -2,8 +2,8 @@ package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnAndNumberFireIdPageScraper;
-import com.btanabe2.fbdu.dp.fixtures.FileDocumentor;
 import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
+import com.btanabe2.fbdu.dp.helpers.FileDocumentor;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

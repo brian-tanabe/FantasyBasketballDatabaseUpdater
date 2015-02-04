@@ -1,5 +1,6 @@
 package com.btanabe2.fbdu.dp.fixtures;
 
+import com.btanabe2.fbdu.dp.helpers.FileDocumentor;
 import org.jsoup.nodes.Document;
 
 /**
@@ -7,23 +8,23 @@ import org.jsoup.nodes.Document;
  */
 public class NumberFirePageFixture {
 
-    public static Document getNumberFireRankingsPageDocument(){
+    public static Document getNumberFireRankingsPageDocument() {
         return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-rankings.html");
     }
 
-    public static Document getNumberFireRemainingSeasonGuardsProjectionsPageDocument(){
+    public static Document getNumberFireRemainingSeasonGuardsProjectionsPageDocument() {
         return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-guards.html");
     }
 
-    public static Document getNumberFireRemainingSeasonForwardsProjectionsPageDocument(){
+    public static Document getNumberFireRemainingSeasonForwardsProjectionsPageDocument() {
         return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-forwards.html");
     }
 
-    public static Document getNumberFireRemainingSeasonCentersProjectionsPageDocument(){
+    public static Document getNumberFireRemainingSeasonCentersProjectionsPageDocument() {
         return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-centers.html");
     }
 
-    public static Document getNumberFireDailyProjectionsPageDocument(){
+    public static Document getNumberFireDailyProjectionsPageDocument() {
         return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-daily-projections.html");
     }
 }

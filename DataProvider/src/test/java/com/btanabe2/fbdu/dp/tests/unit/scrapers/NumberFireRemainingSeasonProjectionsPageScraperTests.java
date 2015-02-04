@@ -2,7 +2,7 @@ package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dm.models.NfRemainingSeasonProjectionsEntity;
 import com.btanabe2.fbdu.dp.data.scrapers.NumberFireRemainingSeasonProjectionsPageScraper;
-import com.btanabe2.fbdu.dp.fixtures.FileDocumentor;
+import com.btanabe2.fbdu.dp.helpers.FileDocumentor;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
