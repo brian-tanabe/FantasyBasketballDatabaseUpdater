@@ -33,6 +33,7 @@ public class SecureWebRequestTests {
     @Test
     public void shouldBeAbleToDownloadPagesBehindTheEspnSecurityWall() {
         try {
+            fail("Make sure this works when you have Internet");
             assertTrue("Did not find any links to team pages.", webRequest.getPageAsDocument(ESPN_FANTASY_BASKETBALL_HOMEPAGE).select("a.clubhouse-link[href^=http://games.espn.go.com/fba/clubhouse?leagueId=]").size() > 0);
         } catch (IOException e) {
             e.printStackTrace();
