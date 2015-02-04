@@ -3,8 +3,13 @@ package com.btanabe2.fbdu.dp.data.providers;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dm.models.PositionEligibilityEntity;
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
+import com.btanabe2.fbdu.dp.data.models.EspnPositionEligibilityModel;
+import com.btanabe2.fbdu.dp.data.scrapers.EspnProjectionsPageScraper;
 import com.btanabe2.fbdu.dp.web.SecureWebRequest;
+import com.btanabe2.fbdu.dp.web.WebConstants;
+import org.jsoup.nodes.Document;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,19 +18,49 @@ import java.util.List;
  */
 public class PositionEligibilityProvider {
     private SecureWebRequest webRequest;
+    private int espnFantasyLeagueId;
+    private int espnFantasyTeamId;
 
-    public PositionEligibilityProvider(SecureWebRequest webRequest) {
+    public PositionEligibilityProvider(SecureWebRequest webRequest, int espnFantasyLeagueId, int espnFantasyTeamId) {
         this.webRequest = webRequest;
+        this.espnFantasyLeagueId = espnFantasyLeagueId;
+        this.espnFantasyTeamId = espnFantasyTeamId;
     }
 
-    public List<PositionEligibilityEntity> getPlayerPositionEligibility(List<PlayerBiographyEntity> players, List<PositionsEntity> positions) {
+    public List<PositionEligibilityEntity> getPlayerPositionEligibility(List<PlayerBiographyEntity> players, List<PositionsEntity> positions) throws IOException {
         List<PositionEligibilityEntity> playerPositionEligibilityEntities = new ArrayList<>(players.size());
 
-        // TODO WILL NEED TO SCRAPE ESPN FOR EACH PLAYER'S POSITION ELIGIBILITY
-        // TODO THIS MAY BE EASIER NOW THAT WE HAVE THEIR ESPN PLAYER IDS...
+        Document page = webRequest.getPageAsDocument(WebConstants.getEspnPlayerRaterPageUrlForParameterizedLeagueIdAndTeamId(espnFantasyLeagueId, espnFantasyTeamId, 0));
+        ;
+        do {
+            List<EspnPositionEligibilityModel> positionEligibilityMappedToEspnFantasyIds = scrapePageForPlayerPositionEligibility(page, positions);
+            playerPositionEligibilityEntities.addAll(mapTheFantasyEspnIdsToTheirNormalEspnIdsAndPopulatePositionEligibilityEntityObject(positionEligibilityMappedToEspnFantasyIds));
+            String nextPageUrl = getNextPageUrl(page);
+            page = webRequest.getPageAsDocument(nextPageUrl);
+        } while (isThereAnotherPlayerRaterPageLinkedOnThisCurrentPage(page));
 
         return playerPositionEligibilityEntities;
     }
 
+    private boolean isThereAnotherPlayerRaterPageLinkedOnThisCurrentPage(Document page) {
+        return page.select("div.paginationNav").select("a:Contains(Next)").size() > 0;
+    }
 
+    private String getNextPageUrl(Document page) {
+        return page.select("div.paginationNav").select("a:Contains(Next)").attr("href");
+    }
+
+    private List<EspnPositionEligibilityModel> scrapePageForPlayerPositionEligibility(Document page, List<PositionsEntity> positions) {
+        return EspnProjectionsPageScraper.getEspnPlayerPositionEligibilities(page, positions);
+    }
+
+    private List<PositionEligibilityEntity> mapTheFantasyEspnIdsToTheirNormalEspnIdsAndPopulatePositionEligibilityEntityObject(List<EspnPositionEligibilityModel> fantasyIdsAndPositionEligibility) {
+        List<PositionEligibilityEntity> positionEligibilityEntities = new ArrayList<>(fantasyIdsAndPositionEligibility.size());
+
+        // TODO FIX THIS!  THE IDS HERE WILL NOT MATCH THOSE IN THE DATABASE.
+        // TODO I THINK I'LL NEED TO FOLLOW THE PLAYERCARD LINK TO FIND THE PLAYER'S REAL ESPN ID
+        fantasyIdsAndPositionEligibility.forEach(e -> positionEligibilityEntities.add(new PositionEligibilityEntity(e.getEspnPlayerId(), e.getPositionId())));
+
+        return positionEligibilityEntities;
+    }
 }

@@ -14,6 +14,14 @@ public class PositionEligibilityEntity {
     private int playerid;
     private int positionid;
 
+    public PositionEligibilityEntity(int playerId, int positionId) {
+        this.playerid = playerId;
+        this.positionid = positionId;
+    }
+
+    public PositionEligibilityEntity() {
+    }
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = AUTO)

@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static com.btanabe2.fbdu.dp.web.WebConstants.ESPN_FANTASY_BASKETBALL_HOMEPAGE;
-import static org.aspectj.bridge.MessageUtil.fail;
+import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertTrue;
 
 /**

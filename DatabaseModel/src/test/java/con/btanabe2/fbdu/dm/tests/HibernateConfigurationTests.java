@@ -4,7 +4,7 @@ import com.btanabe2.fbdu.dm.configuration.HibernateConfiguration;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertNotNull;
-import static org.aspectj.bridge.MessageUtil.fail;
+import static junit.framework.TestCase.fail;
 
 /**
  * Created by brian on 1/30/15.
