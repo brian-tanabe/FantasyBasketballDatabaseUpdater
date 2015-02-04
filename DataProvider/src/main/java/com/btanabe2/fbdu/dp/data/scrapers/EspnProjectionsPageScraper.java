@@ -18,12 +18,7 @@ public class EspnProjectionsPageScraper {
 
     public static List<EspnPositionEligibilityModel> getEspnPlayerPositionEligibilities(Document document, List<PositionsEntity> positionsEntities) {
         List<EspnPositionEligibilityModel> players = new ArrayList<>(50);
-        Elements playerElements = extractPlayersOnPage(document);
-        for (Element playerElement : playerElements) {
-            int espnPlayerId = extractPlayerId(playerElement);
-            players.addAll(extractPositionEligibilityAndPopulateEspnPositionEligibilityModels(playerElement, espnPlayerId, positionsEntities));
-        }
-
+        extractPlayersOnPage(document).forEach(p -> players.addAll(extractPositionEligibilityAndPopulateEspnPositionEligibilityModels(p, extractPlayerId(p), positionsEntities)));
         return players;
     }
 
@@ -33,8 +28,7 @@ public class EspnProjectionsPageScraper {
 
     private static int extractPlayerId(Element playerElement) {
         try {
-            String playerIdString = playerElement.select("a").attr("playerId");
-            return Integer.parseInt(playerIdString);
+            return Integer.parseInt(playerElement.select("a").attr("playerId"));
         } catch (Exception ex) {
             return 0;
         }
@@ -43,7 +37,13 @@ public class EspnProjectionsPageScraper {
     private static List<EspnPositionEligibilityModel> extractPositionEligibilityAndPopulateEspnPositionEligibilityModels(Element playerElement, int espnPlayerId, List<PositionsEntity> positionsEntities) {
         List<EspnPositionEligibilityModel> positionEligibilityModels = new ArrayList<>();
 
-//        String positionAndTeamString = playerElement.text().replace(name, "").replace(",", "").replace("\u00a0"," ").replaceAll("[^a-zA-Z /]", "").trim();
+        // String positionAndTeamString = playerElement.text().replace(name, "").replace(",", "").replace("\u00a0"," ").replaceAll("[^a-zA-Z /]", "").trim();
+
+//        String positionAndTeamString = playerElement.text().replace(",", "").replace("\u00a0"," ").replaceAll("[^a-zA-Z /]", "").trim();
+//        if(positionAndTeamString.toLowerCase().contains("lebron james") || positionAndTeamString.toLowerCase().contains("james harden") || positionAndTeamString.toLowerCase().contains("pau gasol")) {
+//            System.out.println(espnPlayerId + " " + positionAndTeamString);
+//        }
+
         Stream.of(playerElement.text().trim().replace(",", "").replace("\u00a0", " ").split(" ")).filter(w -> positionsEntities.stream().anyMatch(p -> p.getAbbreviation().equals(w))).forEach(p -> positionEligibilityModels.add(new EspnPositionEligibilityModel(espnPlayerId, positionsEntities.stream().filter(e -> e.getAbbreviation().equals(p)).limit(1).collect(Collectors.toList()).get(0).getId())));
 
         return positionEligibilityModels;
