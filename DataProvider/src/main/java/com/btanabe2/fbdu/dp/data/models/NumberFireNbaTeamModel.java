@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.models;
+package com.btanabe2.fbdu.dp.data.models;
 
 /**
  * Created by BTanabe on 11/13/2014.
@@ -8,7 +8,7 @@ public class NumberFireNbaTeamModel {
     private int espnId;
     private String abbreviation;
 
-    public NumberFireNbaTeamModel(String abbreviation, int numberFireId, int espnId){
+    public NumberFireNbaTeamModel(String abbreviation, int numberFireId, int espnId) {
         this.abbreviation = abbreviation;
         this.numberFireId = numberFireId;
         this.espnId = espnId;

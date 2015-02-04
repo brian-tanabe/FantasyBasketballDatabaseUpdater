@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.models;
+package com.btanabe2.fbdu.dp.data.models;
 
 /**
  * Created by brian on 11/7/14.

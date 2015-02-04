@@ -1,6 +1,6 @@
 package com.btanabe2.fbdu.dp.data.scrapers;
 
-import com.btanabe2.fbdu.dp.models.NumberFireNbaTeamModel;
+import com.btanabe2.fbdu.dp.data.models.NumberFireNbaTeamModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.nodes.Document;

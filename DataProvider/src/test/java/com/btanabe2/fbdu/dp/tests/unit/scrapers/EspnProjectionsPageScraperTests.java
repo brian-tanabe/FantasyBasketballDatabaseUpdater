@@ -1,9 +1,9 @@
 package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
+import com.btanabe2.fbdu.dp.data.models.EspnPositionEligibilityModel;
 import com.btanabe2.fbdu.dp.data.providers.NbaPositionProvider;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnProjectionsPageScraper;
 import com.btanabe2.fbdu.dp.fixtures.FileDocumentor;
-import com.btanabe2.fbdu.dp.models.EspnPositionEligibilityModel;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

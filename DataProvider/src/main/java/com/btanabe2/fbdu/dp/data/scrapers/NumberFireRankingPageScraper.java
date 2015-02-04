@@ -1,7 +1,7 @@
 package com.btanabe2.fbdu.dp.data.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
-import com.btanabe2.fbdu.dp.models.NumberFireNbaTeamModel;
+import com.btanabe2.fbdu.dp.data.models.NumberFireNbaTeamModel;
 import org.jsoup.nodes.Document;
 
 import java.sql.Date;

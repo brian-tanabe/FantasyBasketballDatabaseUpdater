@@ -1,7 +1,7 @@
 package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
+import com.btanabe2.fbdu.dp.data.models.NbaTeamModel;
 import com.btanabe2.fbdu.dp.data.scrapers.NbaTeamJsonParser;
-import com.btanabe2.fbdu.dp.models.NbaTeamModel;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

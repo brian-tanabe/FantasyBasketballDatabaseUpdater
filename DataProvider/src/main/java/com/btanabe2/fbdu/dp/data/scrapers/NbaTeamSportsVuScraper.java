@@ -1,7 +1,7 @@
 package com.btanabe2.fbdu.dp.data.scrapers;
 
+import com.btanabe2.fbdu.dp.data.models.NbaTeamSportsVuModel;
 import com.btanabe2.fbdu.dp.data.providers.CurrentNbaSeasonStartYearProvider;
-import com.btanabe2.fbdu.dp.models.NbaTeamSportsVuModel;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

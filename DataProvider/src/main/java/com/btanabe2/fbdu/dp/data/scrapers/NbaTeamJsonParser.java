@@ -1,6 +1,6 @@
 package com.btanabe2.fbdu.dp.data.scrapers;
 
-import com.btanabe2.fbdu.dp.models.NbaTeamModel;
+import com.btanabe2.fbdu.dp.data.models.NbaTeamModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.commons.io.FileUtils;

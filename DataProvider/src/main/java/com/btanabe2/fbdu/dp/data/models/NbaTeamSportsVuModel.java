@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.models;
+package com.btanabe2.fbdu.dp.data.models;
 
 /**
  * Created by BTanabe on 11/21/2014.
@@ -7,7 +7,7 @@ public class NbaTeamSportsVuModel {
     private int id;
     private String abbreviation;
 
-    public NbaTeamSportsVuModel(int id, String abbreviation){
+    public NbaTeamSportsVuModel(int id, String abbreviation) {
         this.id = id;
         this.abbreviation = abbreviation;
     }

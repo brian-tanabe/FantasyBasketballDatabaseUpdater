@@ -1,7 +1,7 @@
 package com.btanabe2.fbdu.dp.data.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
-import com.btanabe2.fbdu.dp.models.EspnPositionEligibilityModel;
+import com.btanabe2.fbdu.dp.data.models.EspnPositionEligibilityModel;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

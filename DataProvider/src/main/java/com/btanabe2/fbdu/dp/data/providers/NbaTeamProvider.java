@@ -1,12 +1,12 @@
 package com.btanabe2.fbdu.dp.data.providers;
 
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
+import com.btanabe2.fbdu.dp.data.models.NbaTeamModel;
+import com.btanabe2.fbdu.dp.data.models.NbaTeamSportsVuModel;
+import com.btanabe2.fbdu.dp.data.models.NumberFireNbaTeamModel;
 import com.btanabe2.fbdu.dp.data.scrapers.NbaTeamJsonParser;
 import com.btanabe2.fbdu.dp.data.scrapers.NbaTeamSportsVuScraper;
 import com.btanabe2.fbdu.dp.data.scrapers.NumberFireJsonPageScraper;
-import com.btanabe2.fbdu.dp.models.NbaTeamModel;
-import com.btanabe2.fbdu.dp.models.NbaTeamSportsVuModel;
-import com.btanabe2.fbdu.dp.models.NumberFireNbaTeamModel;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 
 import java.io.IOException;
