@@ -20,7 +20,7 @@ public class EspnProjectionsPageScraperTests {
 
     @BeforeClass
     public static void setup() {
-        positionEligibilityModels = EspnProjectionsPageScraper.getEspnPlayerPositionEligibilities(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/espn-team-pages/espn-playerrater1.html"), NbaPositionProvider.getAllPositions());
+        positionEligibilityModels = EspnProjectionsPageScraper.getEspnPlayerPositionEligibilities(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/espn-fantasy-pages/espn-playerrater1.html"), NbaPositionProvider.getAllPositions());
     }
 
     @Test
