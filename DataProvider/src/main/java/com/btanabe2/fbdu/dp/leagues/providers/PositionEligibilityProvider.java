@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.stats.providers;
+package com.btanabe2.fbdu.dp.leagues.providers;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dm.models.PositionEligibilityEntity;
