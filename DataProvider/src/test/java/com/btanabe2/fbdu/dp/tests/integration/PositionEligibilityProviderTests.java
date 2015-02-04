@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static com.btanabe2.fbdu.dp.mocks.MockWebRequest.getPositionEligibilityProviderMockSecureWebRequest;
 import static org.aspectj.bridge.MessageUtil.fail;
 import static org.junit.Assert.assertEquals;
 
@@ -26,12 +27,11 @@ public class PositionEligibilityProviderTests {
         try {
             WebRequest webRequest = MockWebRequest.getPlayerBiographyProviderMockWebRequest();
             PlayerBiographyProvider playerBiographyProvider = new PlayerBiographyProvider(webRequest);
-            positionEligibilityEntityList = PositionEligibilityProvider.getPlayerPositionEligibility(playerBiographyProvider.getAllPlayers(NbaTeamEntityFixture.getMockNbaTeams()), NbaPositionProvider.getAllPositions());
+            positionEligibilityEntityList = new PositionEligibilityProvider(getPositionEligibilityProviderMockSecureWebRequest()).getPlayerPositionEligibility(playerBiographyProvider.getAllPlayers(NbaTeamEntityFixture.getMockNbaTeams()), NbaPositionProvider.getAllPositions());
         } catch (Exception e) {
             e.printStackTrace();
             fail("Failed to successfully create all PositionEligibilityEntity objects");
         }
-
     }
 
     @Test

@@ -18,7 +18,7 @@ public class PositionEligibilityProvider {
         this.webRequest = webRequest;
     }
 
-    public static List<PositionEligibilityEntity> getPlayerPositionEligibility(List<PlayerBiographyEntity> players, List<PositionsEntity> positions) {
+    public List<PositionEligibilityEntity> getPlayerPositionEligibility(List<PlayerBiographyEntity> players, List<PositionsEntity> positions) {
         List<PositionEligibilityEntity> playerPositionEligibilityEntities = new ArrayList<>(players.size());
 
         // TODO WILL NEED TO SCRAPE ESPN FOR EACH PLAYER'S POSITION ELIGIBILITY

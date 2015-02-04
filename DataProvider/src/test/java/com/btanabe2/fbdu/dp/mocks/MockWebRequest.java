@@ -11,6 +11,7 @@ import java.util.Map;
 import static com.btanabe2.fbdu.dp.fixtures.EspnLeagueIdScraperFixture.getEspnLeagueIdScraperPagesMappedToTheirUrls;
 import static com.btanabe2.fbdu.dp.fixtures.NbaTeamProviderFixture.getNbaTeamProviderMockWebRequestUrlsToPageStrings;
 import static com.btanabe2.fbdu.dp.fixtures.PlayerBiographyProviderFixture.getPlayerProfilePagesMappedToTheirUrls;
+import static com.btanabe2.fbdu.dp.fixtures.PositionEligibilityProviderFixture.getPositionEligibilityProviderPagesMappedToTheirUrlsMap;
 import static com.btanabe2.fbdu.dp.fixtures.SportsVuPlayerProfileFixture.getSportsVuPlayerProfilePagesMappedToTheirUrls;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -36,6 +37,10 @@ public class MockWebRequest {
         return getMockSecureWebRequest(getEspnLeagueIdScraperPagesMappedToTheirUrls());
     }
 
+    public static SecureWebRequest getPositionEligibilityProviderMockSecureWebRequest() throws IOException {
+        return getMockSecureWebRequest(getPositionEligibilityProviderPagesMappedToTheirUrlsMap());
+    }
+
     private static WebRequest getMockWebRequestUsingPageStrings(Map<String, String> urlToPageStringMap) {
         try {
             WebRequest webRequest = mock(WebRequest.class);
@@ -45,7 +50,7 @@ public class MockWebRequest {
             }
 
             return webRequest;
-        } catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
@@ -61,7 +66,7 @@ public class MockWebRequest {
 
             when(webRequest.login(new TestableCredentialProvider())).thenReturn(webRequest);
             return webRequest;
-        } catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
