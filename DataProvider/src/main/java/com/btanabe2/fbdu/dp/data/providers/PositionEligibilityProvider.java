@@ -31,19 +31,13 @@ public class PositionEligibilityProvider {
         List<PositionEligibilityEntity> playerPositionEligibilityEntities = new ArrayList<>(players.size());
 
         Document page = webRequest.getPageAsDocument(WebConstants.getEspnPlayerRaterPageUrlForParameterizedLeagueIdAndTeamId(espnFantasyLeagueId, espnFantasyTeamId, 0));
-        ;
         do {
             List<EspnPositionEligibilityModel> positionEligibilityMappedToEspnFantasyIds = scrapePageForPlayerPositionEligibility(page, positions);
             playerPositionEligibilityEntities.addAll(mapTheFantasyEspnIdsToTheirNormalEspnIdsAndPopulatePositionEligibilityEntityObject(positionEligibilityMappedToEspnFantasyIds));
-            String nextPageUrl = getNextPageUrl(page);
-            page = webRequest.getPageAsDocument(nextPageUrl);
-        } while (isThereAnotherPlayerRaterPageLinkedOnThisCurrentPage(page));
+            page = webRequest.getPageAsDocument(getNextPageUrl(page));
+        } while (page != null); // FIXME THIS MAY NOT RETURN NULL WHEN A NON-EXISTENT URL IS REQUESTED
 
         return playerPositionEligibilityEntities;
-    }
-
-    private boolean isThereAnotherPlayerRaterPageLinkedOnThisCurrentPage(Document page) {
-        return page.select("div.paginationNav").select("a:Contains(Next)").size() > 0;
     }
 
     private String getNextPageUrl(Document page) {

@@ -39,8 +39,8 @@ public class PositionEligibilityProviderTests {
     }
 
     @Test
-    public void shouldBeAbleToCreateSixHundredFortyPositionEligibilityEntities() {
-        assertEquals("Did not create the proper number of PositionEligibilityEntities", 640, positionEligibilityEntityList.size());
+    public void shouldBeAbleToCreateSixHundredSeventySevenPositionEligibilityEntities() {
+        assertEquals("Did not create the proper number of PositionEligibilityEntities", 677, positionEligibilityEntityList.size());
     }
 
     @Test
