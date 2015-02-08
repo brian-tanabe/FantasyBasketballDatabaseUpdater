@@ -33,29 +33,6 @@ public class EspnProjectionsPageScraperTests {
         assertFalse(String.format("Found [%s] positionEligibilityModels with an ESPN ID of 0", positionEligibilityModels.stream().filter(p -> p.getEspnPlayerId() == 0).collect(Collectors.toList()).size()), positionEligibilityModels.stream().anyMatch(p -> p.getEspnPlayerId() == 0));
     }
 
-    //    @Test
-    public void shouldBeAbleToParsePlayersWithOnePositionEligibilityModelsCorrectly() {
-        List<EspnPositionEligibilityModel> positionEligibilityModelList = positionEligibilityModels.stream().filter(p -> p.getEspnPlayerId() == 3992).collect(Collectors.toList());
-        assertEquals("James Harden should have one eligible positions", 1, positionEligibilityModelList.size());
-        assertTrue("James Harden should be SG eligible", positionEligibilityModelList.stream().anyMatch(p -> p.getPositionId() == 2));
-    }
-
-    //    @Test
-    public void shouldBeAbleToParsePlayersWithTwoPositionEligibilityModelsCorrectly() {
-        List<EspnPositionEligibilityModel> positionEligibilityModelList = positionEligibilityModels.stream().filter(p -> p.getEspnPlayerId() == 1966).collect(Collectors.toList());
-        assertEquals("LeBron James should have two eligible positions", 2, positionEligibilityModelList.size());
-        assertTrue("LeBron James should be SF eligible", positionEligibilityModelList.stream().anyMatch(p -> p.getPositionId() == 3));
-        assertTrue("LeBron James should be PF eligible", positionEligibilityModelList.stream().anyMatch(p -> p.getPositionId() == 4));
-    }
-
-    //    @Test
-    public void shouldBeAbleToParsePlayersWithTextAfterTheirPositionListCorrectly() {
-        List<EspnPositionEligibilityModel> positionEligibilityModelList = positionEligibilityModels.stream().filter(p -> p.getEspnPlayerId() == 996).collect(Collectors.toList());
-        assertEquals("Paul Gasol should have two eligible positions", 2, positionEligibilityModelList.size());
-        assertTrue("Pau Gasol should be PF eligible", positionEligibilityModelList.stream().anyMatch(p -> p.getPositionId() == 4));
-        assertTrue("Pau Gasol should be C eligible", positionEligibilityModelList.stream().anyMatch(p -> p.getPositionId() == 5));
-    }
-
     @Test
     public void shouldBeAbleToParsePlayersWithOnePositionEligibilityModelsCorrectlyUsingTheFantasyId() {
         List<EspnPositionEligibilityModel> positionEligibilityModelList = positionEligibilityModels.stream().filter(p -> p.getEspnPlayerId() == 633).collect(Collectors.toList());

@@ -51,7 +51,11 @@ public class PositionEligibilityProvider {
 
     private List<PositionEligibilityEntity> mapTheFantasyEspnIdsToTheirNormalEspnIdsAndPopulatePositionEligibilityEntityObject(List<EspnPositionEligibilityModel> fantasyIdsAndPositionEligibility, Map<Integer, Integer> fantasyIdsMappedToEspnIds) {
         List<PositionEligibilityEntity> positionEligibilityEntities = new ArrayList<>(fantasyIdsAndPositionEligibility.size());
-        fantasyIdsAndPositionEligibility.forEach(e -> positionEligibilityEntities.add(new PositionEligibilityEntity(fantasyIdsMappedToEspnIds.get(e.getEspnPlayerId()), e.getPositionId())));
+        for (EspnPositionEligibilityModel positionEligibility : fantasyIdsAndPositionEligibility) {
+            if (fantasyIdsMappedToEspnIds.containsKey(positionEligibility.getEspnPlayerId())) {
+                positionEligibilityEntities.add(new PositionEligibilityEntity(fantasyIdsMappedToEspnIds.get(positionEligibility.getEspnPlayerId()), positionEligibility.getPositionId()));
+            }
+        }
 
         return positionEligibilityEntities;
     }
