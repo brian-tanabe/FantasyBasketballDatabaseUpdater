@@ -3,9 +3,12 @@ package com.btanabe2.fbdu.dp.data.providers;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnPlayerProfileLinkScraper;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnTeamsRosterLinkScraper;
 import com.btanabe2.fbdu.dp.web.WebRequest;
+import org.apache.commons.io.FileUtils;
 import org.jsoup.nodes.Document;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -23,10 +26,18 @@ public class EspnFantasyIdToStandardIdProvider {
         this.webRequest = webRequest;
     }
 
+    public static void main(String[] args) {
+        try {
+            new EspnFantasyIdToStandardIdProvider(new WebRequest()).getFantasyIdMappedToNormalIdMap();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Map<Integer, Integer> getFantasyIdMappedToNormalIdMap() throws IOException {
         List<String> allNbaTeamRosterPageUrls = getNbaTeamRosterPagesUrls();
 
-//        allNbaTeamRosterPageUrls.forEach(u -> savePage(u));
+        allNbaTeamRosterPageUrls.forEach(u -> savePage(u));
 
         List<String> allNbaPlayerProfilePageUrls = getAllNbaPlayerProfilePageUrls(allNbaTeamRosterPageUrls);
 
@@ -51,27 +62,15 @@ public class EspnFantasyIdToStandardIdProvider {
         return EspnPlayerProfileLinkScraper.getPlayerProfileLinks(teamRosterPage);
     }
 
-//    private void savePage(String url) {
-//        try {
-//            String pageString = webRequest.getPage(url);
-//
-//            int teamNameStringIndex = url.lastIndexOf("/");
-//            String teamName = url.substring(teamNameStringIndex);
-//            teamNameStringIndex = url.replace(teamName, "").lastIndexOf("/");
-//            teamName = url.substring(teamNameStringIndex) + teamName;
-//            teamName = teamName.replace("/", "-");
-//
-//            FileUtils.writeStringToFile(new File("./DataProvider/src/test/resources/webpages/espn-team-pages/" + teamName), pageString, Charset.forName("UTF8"));
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
-//    }
-//
-//    public static void main(String[] args) {
-//        try {
-//            new EspnFantasyIdToStandardIdProvider(new WebRequest()).getFantasyIdMappedToNormalIdMap();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private void savePage(String url) {
+        try {
+            String pageString = webRequest.getPage(url);
+
+            String teamName = String.format("espn-team-roster-page-%s.html", url.substring(url.lastIndexOf("/")).replace("/", ""));
+
+            FileUtils.writeStringToFile(new File("./DataProvider/src/test/resources/webpages/espn-team-pages/" + teamName), pageString, Charset.forName("UTF8"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

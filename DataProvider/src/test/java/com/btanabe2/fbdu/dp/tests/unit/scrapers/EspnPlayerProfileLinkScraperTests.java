@@ -18,7 +18,7 @@ public class EspnPlayerProfileLinkScraperTests {
 
     @BeforeClass
     public static void setup() {
-        playerProfilePageLinks = EspnPlayerProfileLinkScraper.getPlayerProfileLinks(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/espn-team-pages/espn-chicago-bulls-roster-page.html"));
+        playerProfilePageLinks = EspnPlayerProfileLinkScraper.getPlayerProfileLinks(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/espn-team-pages/espn-team-roster-page-chi.html"));
     }
 
     @Test
