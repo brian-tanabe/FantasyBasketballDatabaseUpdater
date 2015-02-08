@@ -3,12 +3,9 @@ package com.btanabe2.fbdu.dp.data.providers;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnPlayerProfileLinkScraper;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnTeamsRosterLinkScraper;
 import com.btanabe2.fbdu.dp.web.WebRequest;
-import org.apache.commons.io.FileUtils;
 import org.jsoup.nodes.Document;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -56,19 +53,5 @@ public class EspnFantasyIdToStandardIdProvider {
 
     public List<String> extractPlayerProfilePageLinks(Document teamRosterPage) {
         return EspnPlayerProfileLinkScraper.getPlayerProfileLinks(teamRosterPage);
-    }
-
-    private void savePage(String url) {
-        try {
-            String pageString = webRequest.getPage(url);
-
-            String fileName = url.replace("http://espn.go.com/nba/player/_/id/", "").replace("/", "_");
-
-            String playerName = String.format("espn-player-profile-page-%s.html", fileName);
-
-            FileUtils.writeStringToFile(new File("./DataProvider/src/test/resources/webpages/espn-player-pages/" + playerName), pageString, Charset.forName("UTF8"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 }
