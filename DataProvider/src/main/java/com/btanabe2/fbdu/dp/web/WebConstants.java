@@ -13,6 +13,7 @@ public class WebConstants {
     ////////// ESPN: //////////
     public static final String ESPN_TEAMS_PAGE_URL = "http://espn.go.com/nba/teams";
     public static final String ESPN_FANTASY_BASKETBALL_HOMEPAGE = "http://games.espn.go.com/frontpage/basketball";
+
     ////////// BASKETBALL REFERENCE: //////////
     public static final String BASKETBALL_REFERENCE_TEAM_PAGE_URL = "http://www.basketball-reference.com/teams/";
     public static final String BASKETBALL_REFERENCE_STANDINGS_PAGE_URL = "http://www.basketball-reference.com/leagues/NBA_2015_standings.html";

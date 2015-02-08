@@ -5,8 +5,6 @@ import com.btanabe2.fbdu.dp.data.providers.NbaPositionProvider;
 import com.btanabe2.fbdu.dp.data.providers.PlayerBiographyProvider;
 import com.btanabe2.fbdu.dp.data.providers.PositionEligibilityProvider;
 import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
-import com.btanabe2.fbdu.dp.mocks.MockWebRequest;
-import com.btanabe2.fbdu.dp.web.WebRequest;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -16,6 +14,7 @@ import java.util.Set;
 
 import static com.btanabe2.fbdu.dp.fixtures.PositionEligibilityProviderFixture.TEST_LEAGUE_ID;
 import static com.btanabe2.fbdu.dp.fixtures.PositionEligibilityProviderFixture.TEST_TEAM_ID;
+import static com.btanabe2.fbdu.dp.mocks.MockWebRequest.getPlayerBiographyProviderMockWebRequest;
 import static com.btanabe2.fbdu.dp.mocks.MockWebRequest.getPositionEligibilityProviderMockSecureWebRequest;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
@@ -29,8 +28,7 @@ public class PositionEligibilityProviderTests {
     @BeforeClass
     public static void setup() {
         try {
-            WebRequest webRequest = MockWebRequest.getPlayerBiographyProviderMockWebRequest();
-            PlayerBiographyProvider playerBiographyProvider = new PlayerBiographyProvider(webRequest);
+            PlayerBiographyProvider playerBiographyProvider = new PlayerBiographyProvider(getPlayerBiographyProviderMockWebRequest());
             positionEligibilityEntityList = new PositionEligibilityProvider(getPositionEligibilityProviderMockSecureWebRequest(), TEST_LEAGUE_ID, TEST_TEAM_ID).getPlayerPositionEligibility(playerBiographyProvider.getAllPlayers(NbaTeamEntityFixture.getMockNbaTeams()), NbaPositionProvider.getAllPositions());
         } catch (Exception e) {
             e.printStackTrace();

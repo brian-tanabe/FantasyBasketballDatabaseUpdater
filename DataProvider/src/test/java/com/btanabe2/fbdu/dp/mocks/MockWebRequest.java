@@ -8,6 +8,7 @@ import org.jsoup.Jsoup;
 import java.io.IOException;
 import java.util.Map;
 
+import static com.btanabe2.fbdu.dp.fixtures.EspnFantasyIdToStandardIdProviderFixture.getEspnFantasyIdToStandardIdProviderPagesMappedToTheirUrls;
 import static com.btanabe2.fbdu.dp.fixtures.EspnLeagueIdScraperFixture.getEspnLeagueIdScraperPagesMappedToTheirUrls;
 import static com.btanabe2.fbdu.dp.fixtures.NbaTeamProviderFixture.getNbaTeamProviderMockWebRequestUrlsToPageStrings;
 import static com.btanabe2.fbdu.dp.fixtures.PlayerBiographyProviderFixture.getPlayerProfilePagesMappedToTheirUrls;
@@ -31,6 +32,10 @@ public class MockWebRequest {
 
     public static WebRequest getPlayerProfileSportsVuScraperMockWebRequest() throws IOException {
         return getMockWebRequestUsingPageStrings(getSportsVuPlayerProfilePagesMappedToTheirUrls());
+    }
+
+    public static WebRequest getEspnFantasyIdToStandardIdProviderMockWebRequest() throws IOException {
+        return getMockWebRequestUsingPageStrings(getEspnFantasyIdToStandardIdProviderPagesMappedToTheirUrls());
     }
 
     public static SecureWebRequest getEspnLeagueIdScraperMockWebRequest() throws IOException {
