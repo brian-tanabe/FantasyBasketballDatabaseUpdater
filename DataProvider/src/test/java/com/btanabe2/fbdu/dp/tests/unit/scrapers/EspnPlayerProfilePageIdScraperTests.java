@@ -26,7 +26,7 @@ public class EspnPlayerProfilePageIdScraperTests {
     }
 
     @Test
-    public void shouldBeAbleToMapKostasPapanikolaousIdCorrectly() {
+    public void shouldBeAbleToMapKostasPapanikolaousIdCorrectlyWhichLacksMostRecentNewsAndSeasonOutlookFields() {
         Integer kostasPapanikolaousEspnId = 4195;
         assertEquals("Did not find Kostas Papanikolaous' ESPN ID properly", kostasPapanikolaousEspnId, getPlayerFantasyIdFromProfilePage("./DataProvider/src/test/resources/webpages/espn-player-pages/espn-player-profile-page-4195_kostas-papanikolaou.html", 4195).get(959));
     }

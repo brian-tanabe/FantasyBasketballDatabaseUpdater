@@ -30,4 +30,14 @@ public class EspnFantasyIdToStandardIdProviderTests {
     public void shouldBeAbleToMapFourHundredFortySixPlayersEspnIds() {
         assertEquals("Did not find the proper number of players on their team roster pages", 446, fantasyIdMappedToNormalIdMap.size());
     }
+
+    @Test
+    public void shouldBeAbleToMapPauGasolsIdsProperly() {
+        assertEquals("Did not map Pau Gasol's fantasy ID and ESPN ID properly", (Integer) 996, fantasyIdMappedToNormalIdMap.get(162));
+    }
+
+    @Test
+    public void shouldBeAbleToMapLaryDrewsIdsProperly() {
+        assertEquals("Did not map Larry Drew II's fantasy ID and ESPN ID properly", (Integer) 2325495, fantasyIdMappedToNormalIdMap.get(1162));
+    }
 }
