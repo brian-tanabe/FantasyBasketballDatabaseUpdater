@@ -30,10 +30,6 @@ public class EspnFantasyIdToStandardIdProvider {
 
         Map<Integer, Integer> playerFantasyIdsMappedToTheirEspnIds = new HashMap<>(allNbaPlayerProfilePageUrls.size());
         for (String playerProfilePageUrl : allNbaPlayerProfilePageUrls) {
-
-            // TODO REMOVE THIS DEBUGGING STATEMENT:
-            System.out.println(playerProfilePageUrl);
-
             playerFantasyIdsMappedToTheirEspnIds.putAll(extractPlayerFantasyIdMappedToHisEspnId(playerProfilePageUrl));
         }
         return playerFantasyIdsMappedToTheirEspnIds;
