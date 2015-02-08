@@ -25,6 +25,12 @@ public class EspnPlayerProfilePageIdScraperTests {
         assertEquals("Did not find Tim Frazier's ESPN ID properly", timFraziersEspnId, getPlayerFantasyIdFromProfilePage("./DataProvider/src/test/resources/webpages/espn-player-pages/espn-player-profile-page-2488945_tim-frazier.html", 2488945).get(1329));
     }
 
+    @Test
+    public void shouldBeAbleToMapKostasPapanikolaousIdCorrectly() {
+        Integer kostasPapanikolaousEspnId = 4195;
+        assertEquals("Did not find Kostas Papanikolaous' ESPN ID properly", kostasPapanikolaousEspnId, getPlayerFantasyIdFromProfilePage("./DataProvider/src/test/resources/webpages/espn-player-pages/espn-player-profile-page-4195_kostas-papanikolaou.html", 4195).get(959));
+    }
+
     private Map<Integer, Integer> getPlayerFantasyIdFromProfilePage(String pathToProfilePage, int playerEspnId) {
         return EspnPlayerProfilePageIdScraper.getPlayerFantasyIdMappedToHisEspnId(FileDocumentor.getDocumentFromFileHtml(pathToProfilePage), playerEspnId);
     }
