@@ -12,6 +12,7 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Brian on 2/2/15.
@@ -27,15 +28,15 @@ public class PositionEligibilityProvider {
         this.espnFantasyTeamId = espnFantasyTeamId;
     }
 
-    public List<PositionEligibilityEntity> getPlayerPositionEligibility(List<PlayerBiographyEntity> players, List<PositionsEntity> positions) throws IOException {
+    public List<PositionEligibilityEntity> getPlayerPositionEligibility(List<PlayerBiographyEntity> players, List<PositionsEntity> positions, Map<Integer, Integer> fantasyIdsMappedToEspnIds) throws IOException {
         List<PositionEligibilityEntity> playerPositionEligibilityEntities = new ArrayList<>(players.size());
 
         Document page = webRequest.getPageAsDocument(WebConstants.getEspnPlayerRaterPageUrlForParameterizedLeagueIdAndTeamId(espnFantasyLeagueId, espnFantasyTeamId, 0));
         do {
             List<EspnPositionEligibilityModel> positionEligibilityMappedToEspnFantasyIds = scrapePageForPlayerPositionEligibility(page, positions);
-            playerPositionEligibilityEntities.addAll(mapTheFantasyEspnIdsToTheirNormalEspnIdsAndPopulatePositionEligibilityEntityObject(positionEligibilityMappedToEspnFantasyIds));
+            playerPositionEligibilityEntities.addAll(mapTheFantasyEspnIdsToTheirNormalEspnIdsAndPopulatePositionEligibilityEntityObject(positionEligibilityMappedToEspnFantasyIds, fantasyIdsMappedToEspnIds));
             page = webRequest.getPageAsDocument(getNextPageUrl(page));
-        } while (page != null); // FIXME THIS MAY NOT RETURN NULL WHEN A NON-EXISTENT URL IS REQUESTED
+        } while (page != null);
 
         return playerPositionEligibilityEntities;
     }
@@ -48,12 +49,9 @@ public class PositionEligibilityProvider {
         return EspnProjectionsPageScraper.getEspnPlayerPositionEligibilities(page, positions);
     }
 
-    private List<PositionEligibilityEntity> mapTheFantasyEspnIdsToTheirNormalEspnIdsAndPopulatePositionEligibilityEntityObject(List<EspnPositionEligibilityModel> fantasyIdsAndPositionEligibility) {
+    private List<PositionEligibilityEntity> mapTheFantasyEspnIdsToTheirNormalEspnIdsAndPopulatePositionEligibilityEntityObject(List<EspnPositionEligibilityModel> fantasyIdsAndPositionEligibility, Map<Integer, Integer> fantasyIdsMappedToEspnIds) {
         List<PositionEligibilityEntity> positionEligibilityEntities = new ArrayList<>(fantasyIdsAndPositionEligibility.size());
-
-        // TODO FIX THIS!  THE IDS HERE WILL NOT MATCH THOSE IN THE DATABASE.
-        // TODO I THINK I'LL NEED TO FOLLOW THE PLAYERCARD LINK TO FIND THE PLAYER'S REAL ESPN ID
-        fantasyIdsAndPositionEligibility.forEach(e -> positionEligibilityEntities.add(new PositionEligibilityEntity(e.getEspnPlayerId(), e.getPositionId())));
+        fantasyIdsAndPositionEligibility.forEach(e -> positionEligibilityEntities.add(new PositionEligibilityEntity(fantasyIdsMappedToEspnIds.get(e.getEspnPlayerId()), e.getPositionId())));
 
         return positionEligibilityEntities;
     }
