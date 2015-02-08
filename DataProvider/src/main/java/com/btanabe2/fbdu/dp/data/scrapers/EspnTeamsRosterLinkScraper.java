@@ -12,7 +12,7 @@ public class EspnTeamsRosterLinkScraper {
 
     public static List<String> getTeamRosterPageLinks(Document document) {
         List<String> teamLinks = new ArrayList<>(30);
-        document.select("a:contains(Roster)").stream().forEach(h -> teamLinks.add(String.format("http://www.go.espn.com%s", h.attr("href"))));
+        document.select("a:contains(Roster)").stream().forEach(h -> teamLinks.add(String.format("http://espn.go.com/nba/team/roster/_/name/%s", h.attr("href").replace("/nba/teams/roster?team=", ""))));
         return teamLinks;
     }
 }

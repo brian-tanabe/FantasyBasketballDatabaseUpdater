@@ -29,6 +29,6 @@ public class EspnTeamRosterLinkScraperTests {
     @Test
     public void shouldBeAbleToFormatChicagosTeamRosterPageLinkProperly() {
         String chicagoRosterPageLink = teamRosterPageLinks.stream().filter(t -> t.contains("chi")).limit(1).collect(Collectors.toList()).get(0);
-        assertEquals("Did not scrape the proper link for Chicago", "http://www.go.espn.com/nba/teams/roster?team=chi", chicagoRosterPageLink);
+        assertEquals("Did not scrape the proper link for Chicago", "http://espn.go.com/nba/team/roster/_/name/chi", chicagoRosterPageLink);
     }
 }

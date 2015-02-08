@@ -24,7 +24,11 @@ public class EspnFantasyIdToStandardIdProvider {
     }
 
     public Map<Integer, Integer> getFantasyIdMappedToNormalIdMap() throws IOException {
-        List<String> allNbaPlayerProfilePageUrls = getAllNbaPlayerProfilePageUrls(getNbaTeamRosterPagesUrls());
+        List<String> allNbaTeamRosterPageUrls = getNbaTeamRosterPagesUrls();
+
+//        allNbaTeamRosterPageUrls.forEach(u -> savePage(u));
+
+        List<String> allNbaPlayerProfilePageUrls = getAllNbaPlayerProfilePageUrls(allNbaTeamRosterPageUrls);
 
 
         return new LinkedHashMap<>();
@@ -46,4 +50,28 @@ public class EspnFantasyIdToStandardIdProvider {
     public List<String> extractPlayerProfilePageLinks(Document teamRosterPage) {
         return EspnPlayerProfileLinkScraper.getPlayerProfileLinks(teamRosterPage);
     }
+
+//    private void savePage(String url) {
+//        try {
+//            String pageString = webRequest.getPage(url);
+//
+//            int teamNameStringIndex = url.lastIndexOf("/");
+//            String teamName = url.substring(teamNameStringIndex);
+//            teamNameStringIndex = url.replace(teamName, "").lastIndexOf("/");
+//            teamName = url.substring(teamNameStringIndex) + teamName;
+//            teamName = teamName.replace("/", "-");
+//
+//            FileUtils.writeStringToFile(new File("./DataProvider/src/test/resources/webpages/espn-team-pages/" + teamName), pageString, Charset.forName("UTF8"));
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//    }
+//
+//    public static void main(String[] args) {
+//        try {
+//            new EspnFantasyIdToStandardIdProvider(new WebRequest()).getFantasyIdMappedToNormalIdMap();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
