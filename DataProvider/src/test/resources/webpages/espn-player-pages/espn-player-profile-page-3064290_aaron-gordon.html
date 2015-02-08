@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+    <script src="http://sports-ak.espn.go.com/sports/optimizely.js"></script>
+    <meta charset="iso-8859-1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <script type="text/javascript">        if (true && navigator && navigator.userAgent.toLowerCase().indexOf("teamstream") >= 0) {
+        window.location = 'http://a.m.espn.go.com/mobilecache/general/apps/sc';
+    }</script>
+    <script type="text/javascript">var espn = window.espn || {};
+    espn.beta = function (e, t, n) {
+        function o(t) {
+            var o, u, f, l, c, h, p, d, v;
+            if (t !== n) {
+                i = t;
+                o = t.match(/http:\/\/([^\/]*)([^?]*).*/);
+                if (o && o.length === 3) {
+                    s = o[2]
+                }
+            }
+            if (s.match(/\/story$/i) || s.match(/\/story\//i)) {
+                l = a("storyId", t) || a("id", t);
+                c = a("storyPage", t) || a("page", t);
+                if (l !== "") {
+                    return r + s + "/_/id/" + l
+                } else if (c !== "") {
+                    return r + s + "/_/page/" + c
+                } else {
+                    return r + s
+                }
+            }
+            if (s.match(/\/blogpostindex$/i)) {
+                u = a("blogname", t);
+                if (e.espn && espn.GLOBALS && espn.GLOBALS.isCEBlog === true) {
+                    return
+                }
+                if (u !== "") {
+                    return r + "/blog/" + u
+                }
+            }
+            if (s.match(/\/blogpost$/i)) {
+                u = a("blogname", t);
+                f = a("id", t);
+                if (e.espn && espn.GLOBALS && espn.GLOBALS.isCEBlog === true) {
+                    return
+                }
+                if (u !== "" && f !== "") {
+                    return r + "/blog/" + u + "/post/_/id/" + f
+                }
+            }
+            if (s.match(/^\/blog\//i)) {
+                u = a("blogName", t);
+                f = a("id", t);
+                if (s.match(/\/blog\/.*\/post$/i)) {
+                    if (f !== "") {
+                        return r + s + "/_/id/" + f
+                    }
+                } else {
+                    if (u !== "" && f !== "") {
+                        return r + "/blog/" + u + "/post/_/id/" + f
+                    } else if (u !== "") {
+                        return r + "/blog/" + u
+                    } else {
+                        return r + s
+                    }
+                }
+            }
+            if ((s === "" || s === "/") && !i.match(/^https?:\/\/insider\.espn\.go\.com/i) && !i.match(/^https?:\/\/search\.espn\.go\.com/i)) {
+                return r
+            }
+            var m = s.match(/^\/.*?\/(?:index)?$/i);
+            if (m) {
+                h = {"/frontpage/": true, "/wireless/": true, "/general/": true, "/extra/": true, "/mobile/": true, "/nfl/": true, "/nba/": true, "/mlb/": true, "/nhl/": true, "/ncf/": true, "/college-football/": true, "/ncb/": true, "/mens-college-basketball/": true, "/ncw/": true, "/womenbb/": true, "/womens-basketball/": true, "/wnba/": true, "/golf/": true, "/tennis/": true, "/general/tennis/": true, "/mma/": true, "/extra/mma/": true, "/racing/": true, "/rpm/": true, "/racing/nascar/": true, "/rpm/nascar/": true, "/boxing/": true, "/extra/boxing/": true, "/college-sports/": true, "/ncaa/": true, "/extra/ncaa/": true, "/olympics/": true, "/extra/olympics/": true, "/horse-racing/": true, "/horse/": true, "/general/horse/": true, "/poker/": true, "/general/poker/": true, "/sports/endurance/": true, "/extra/endurance/": true};
+                if (s.match(/\/index$/i)) {
+                    s = s.substring(0, s.length - 5)
+                }
+                if (h[s] === true) {
+                    return r + s
+                }
+            }
+            if (s.match(/\/nflpreview$/i) || s.match(/\/preview$/i)) {
+                p = a("gameId", t);
+                if (p !== "") {
+                    if (s.match(/\/nflpreview$/i)) {
+                        return r + "/nfl/preview?gameId=" + p
+                    } else {
+                        return r + s + "?gameId=" + p
+                    }
+                }
+            }
+            if (s.match(/\/recap$/i)) {
+                p = a("gameId", t);
+                if (p !== "") {
+                    return r + s + "?gameId=" + p
+                }
+            }
+            if (s === "/general/video") {
+                d = a("cid", t);
+                v = a("vid", t);
+                if (d !== "") {
+                    return r + "/video/clip?id=" + d
+                } else if (v !== "") {
+                    return r + "/video/clip?id=" + v
+                }
+            }
+            if (s.match(/^\/(?:videohub\/video|video)\/clip$/i)) {
+                d = a("id", t);
+                if (d !== "") {
+                    return r + s + "?id=" + d
+                }
+            }
+        }
+
+        function u(e) {
+            var t = o(e);
+            var n = i.match(/^https?:\/\/insider\.espn\.go\.com/i) || e && e.match(/^https?:\/\/insider\.espn\.go\.com/i) || espn && espn.GLOBALS && espn.GLOBALS.isPremium;
+            if (t) {
+                t = t.replace("/wireless/", "/");
+                t = t.replace("/general/", "/");
+                t = t.replace("/extra/", "/");
+                t = t.replace("/mobile/", "/");
+                t = t.replace("/frontpage/", "/");
+                t = t.replace("/videohub/", "/");
+                t = t.replace("/ncf/", "/college-football/");
+                t = t.replace("/rpm/", "/racing/");
+                t = t.replace("/ncb/", "/mens-college-basketball/");
+                t = t.replace("/ncw/", "/womens-basketball/");
+                t = t.replace("/wnba/", "/womens-basketball/");
+                t = t.replace("/ncaa/", "/college-sports/");
+                if (n) {
+                    t = t.replace("/story/", "/insider/story/");
+                    t = t.replace("/post/", "/insider/post/");
+                    if (t.match(/\/blog\/[^_]*$/i)) {
+                        if (t.charAt(t.length - 1) === "/") {
+                            t = t + "insider/"
+                        } else {
+                            t = t + "/insider/"
+                        }
+                    }
+                }
+            }
+            return t
+        }
+
+        function a(e, t) {
+            var r = location.search;
+            if (t !== n) {
+                var i = t.indexOf("?");
+                if (i > -1) {
+                    r = t.substr(i)
+                }
+            }
+            e = e.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var s = new RegExp("[\\?&]" + e + "=([^&#]*)"), o = s.exec(r);
+            return o === null ? "" : decodeURIComponent(o[1].replace(/\+/g, " "))
+        }
+
+        function f() {
+            var t = l("betauser");
+            var n = l("betacohort") || "";
+            if (t !== null && n.indexOf("cohort-") === 0) {
+                var r = n.split("-");
+                if (r && r.length === 2) {
+                    if (parseInt(r[1], 10) === 999) {
+                        return
+                    }
+                }
+                var i = u();
+                if (i) {
+                    e.location = i
+                }
+            }
+        }
+
+        function l(e) {
+            var n = e + "=";
+            var r = t.cookie.split(";");
+            for (var i = 0; i < r.length; i++) {
+                var s = r[i];
+                while (s.charAt(0) === " ") {
+                    s = s.substring(1, s.length)
+                }
+                if (s.indexOf(n) === 0) {
+                    return s.substring(n.length, s.length)
+                }
+            }
+            return null
+        }
+
+        function c() {
+            if (a("rand") === "beta") {
+                espn.beta.recheck = true
+            } else {
+                f()
+            }
+        }
+
+        var r = "http://beta.espn.go.com", i = e.location.href, s = t.location.pathname;
+        return{init: function () {
+            c()
+        }}
+    }(this, this.document);
+    espn.beta.init();</script>
+    <script>(function () {
+        function r(a) {
+            a = a.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var c = new RegExp("[\\?&]" + a + "=([^&#]*)"), b = c.exec(location.search);
+            return b == null ? "" : decodeURIComponent(b[1].replace(/\+/g, " "));
+        }
+
+        var p = navigator.userAgent, o = window.location, l = document.cookie, f = document.referrer, n = (f === "" || f.indexOf(".go.com") !== -1), d = (n) ? "http://m.espn.go.com/nba/playercard?playerId=3064290&src=desktop" : "http://m.espn.go.com/nba/playercard?playerId=3064290&src=desktop&rand=ref~%7B%22ref%22%3A%22" + encodeURIComponent(f) + "%22%7D", i = (p.match(/iPad/i) || (p.match(/Android/i) && !p.match(/Mobile/i)) || p.match(/RIM Tablet/i) || p.match(/Silk/i)), k = (p.match(/Mobile/i) || p.match(/Mini/i)), g = o.href.match(/src=mobile/i), q = l.indexOf("iphone_redirect=false") > -1, e = l.indexOf("iphone_redirect=true") > -1, j = r("addata"), h = r("ex_cid"), m = r("rand");
+        if (j != "") {
+            d += "&addata=" + j;
+        }
+        if (h != "") {
+            d += "&ex_cid=" + h;
+        }
+        if (m === "beta") {
+            d += "&rand=beta";
+        }
+        if (i) {
+            document.documentElement.className += " tablet ";
+            if ((!p.match(/iPad/i) || e) && !q) {
+                o.href = d;
+            }
+        } else {
+            if (k && !q && !g) {
+                o.href = d;
+            }
+        }
+    })();</script>
+    <title>Aaron Gordon Stats, News, Videos, Highlights, Pictures, Bio - Orlando Magic - ESPN</title>
+    <meta name="slice" scheme="IE" content="off"/>
+    <meta name="google-site-verification" content="xuj1ODRluWa0frM-BjIr_aSHoUC7HB5C1MgmYAM_GkA"/>
+    <meta name="msvalidate.01" content="B1FEB7C682C46C8FCDA3130F3D18AC28"/>
+    <meta name="googlebot" content="noodp"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="description"
+          content="Get the latest news, stats, videos, highlights and more about Orlando Magic power forward Aaron Gordon on ESPN.com."/>
+    <meta name="keywords"
+          content="aaron gordon, aaron gordon bio, aaron gordon news, aaron gordon stats, aaron gordon videos, aaron gordon highlights, aaron gordon pictures"/>
+    <meta property="fb:app_id" content="116656161708917">
+    <meta property="og:site_name" content="ESPN.com">
+    <meta property="og:title" content="Aaron Gordon"/>
+    <meta property="og:type" content="athlete"/>
+    <meta property="og:description"
+          content="Get the latest news, stats, videos, highlights and more about Orlando Magic power forward Aaron Gordon on ESPN.com."/>
+    <meta property="og:image"
+          content="http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3064290.png&h=90"/>
+    <meta property="og:url" content="http://espn.go.com/nba/player/_/id/3064290/aaron-gordon"/>
+    <meta name="twitter:site" content="espn">
+    <meta name="twitter:title" content="Aaron Gordon">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description"
+          content="Get the latest news, stats, videos, highlights and more about Orlando Magic power forward Aaron Gordon on ESPN.com.">
+    <meta name="twitter:image"
+          content="http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3064290.png&h=90">
+    <meta name="twitter:url" content="http://espn.go.com/nba/player/_/id/3064290/aaron-gordon">
+    <meta name="twitter:app:name:iphone" content="SportsCenter"/>
+    <meta name="twitter:app:id:iphone" content="317469184"/>
+    <meta name="twitter:app:name:googleplay" content="SportsCenter"/>
+    <meta name="twitter:app:id:googleplay" content="com.espn.score_center"/>
+    <link rel="canonical" href="http://espn.go.com/nba/player/_/id/3064290/aaron-gordon"/>
+    <script type="text/javascript">var NREUMQ = NREUMQ || [];
+    NREUMQ.push(["mark", "firstbyte", new Date().getTime()]);</script>
+    <script>var _sf_startpt = (new Date()).getTime();</script>
+    <link rel="search" type="application/opensearchdescription+xml" href="http://a.espncdn.com/search/opensearch.xml"
+          title="ESPN Search"/>
+    <link rel="stylesheet"
+          href="http://a.espncdn.com/combiner/c/201401211964?css=global_reset.r1.css,base.r236.css,modules.r462.css,global_header.r44.css,header_topbar.r1.css,modules/global_nav.r54.css,modules/insider_enhanced.r1.css,modules/mem/mem.r12.1.css,modules/mem/mem_espn360.r8.4.css,modules/mem/skirmish.r8.css,modules/twin.r1.css,modules/facebook/button.r2.css,universal_overlay/universal_overlay.css,universal_overlay/media_overlay.css,universal_overlay/video_overlay.css,universal_overlay/photo_overlay.css,universal_overlay/dyk_overlay.css,fonts/bentonsans.css"
+          type="text/css" media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="http://a.espncdn.com/combiner/c/201303290924?css=sprites/teamlogos.r18.css"
+          type="text/css" media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="http://a.espncdn.com/combiner/c/20120509325?css=modules/master_tables_10.r3.css"
+          type="text/css" media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="http://a.espncdn.com/combiner/c/20120509325?css=modules/tabs-page-nav.3.css"
+          type="text/css" media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="http://a.espncdn.com/combiner/c/20120509326?css=pagetype/tier3.r10.css" type="text/css"
+          media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="http://a.espncdn.com/prod/styles/tier3/tier3_nba.css" type="text/css" media="screen"
+          charset="utf-8"/>
+    <link rel="stylesheet" href="http://a.espncdn.com/prod/styles/playercard_10.css" type="text/css" media="screen"
+          charset="utf-8"/>
+    <link rel="stylesheet" href="http://a.espncdn.com/prod/styles/playercard_nba_10.css" type="text/css" media="screen"
+          charset="utf-8"/>
+    <script type="text/javascript">var _vrq = _vrq || [];
+    _vrq.push(['id', 489]);
+    _vrq.push(['automate', false]);
+    _vrq.push(['track', function () {
+    }]);
+    (function (d, a) {
+        var s = d.createElement(a), x = d.getElementsByTagName(a)[0];
+        s.async = true;
+        s.src = 'http://a.visualrevenue.com/vrs.js';
+        x.parentNode.insertBefore(s, x);
+    })(document, 'script'); </script>
+    <script src="http://a.espncdn.com/combiner/c?js=jquery-1.7.1.js,plugins/json2.r3.js,plugins/teacrypt.js,plugins/jquery.metadata.js,plugins/jquery.bgiframe.r3.js,plugins/jquery.easing.1.3.js,plugins/jquery.hoverIntent.js,plugins/jquery.jcarousel.0.2.9.js,plugins/jquery.tinysort.r4.js,plugins/jquery.pubsub.r5.js,ui/1.8.16/jquery.ui.core.js,ui/1.8.16/jquery.ui.widget.js,ui/1.8.16/jquery.ui.tabs.js,ui/1.8.16/jquery.ui.accordion.js,plugins/ba-debug-0.4.js,espn.l10n.r12.js,swfobject/2.2/swfobject.js,flashObjWrapper.r7.js,plugins/jquery.colorbox.1.3.14.js,plugins/jquery.ba-postmessage.js,espn.core.duo.r57.js,m/beta/betacheck.r5.js,espn.mem.r39.js,stub.search.r9.js,espn.nav.mega.r38b.js,espn.storage.r6.js,espn.p13n.r19.5.js,espn.geo.r3.js,espn.video.r81.r5.js,analytics/chartbeat/video/strategy_comprehensive.r1.js,registration/staticLogin.r12.06102014.js,espn.universal.overlay.r19.js,insider/espn.insider.20140915.js,espn.espn360.stub.r9.js,espn.myHeadlines.stub.r16.js,espn.myfaves.stub.r3.js,tsscoreboard.20090612.js,ie9pinning.r3.js,espn.f8.noauth.r3.js,espn.socialmediamod.r7.js"></script>
+    <script>espn.core.navVersion = 'a';</script>
+    <script>var ad_site = "espn.us.com.nba", ad_zone = "nbaplayer", ad_kvps = "pgtyp=nbaplayer;sp=nba;tm=orl;pl=3064290;", ad_swid = "", ad_counter = 1, ad_ord = Math.floor(9999999999 * Math.random()), ad_seg = "", ad_mnr = -1 < document.cookie.indexOf("grif=1") ? "t" : "f", ad_ref = "other", ref = document.referrer, refsMap = {"facebook.com": "facebook", "twitter.com|t.co": "twitter", "plus.url.google.com|plus.google.com": "googleplus", "google.com": "google", "bing.com": "bing", "yahoo.com": "yahoo", "espn.go.com": "espn"}, refKey;
+    for (refKey in refsMap)ref.match(refKey) && (ad_ref = refsMap[refKey]);
+    ad_kvps = ad_kvps + "ref=" + ad_ref + ";mnr=" + ad_mnr + ";";
+    ad_swid = jQuery.cookie("SWID");
+    "function" === typeof espn.core.ad_segments && (ad_seg = espn.core.ad_segments(), null != ad_seg && "" != ad_seg && (ad_kvps += ad_seg));
+    var ad_u = "";
+    null != ad_swid && "" != ad_swid && (ad_u = "swid=" + ad_swid + ";");</script>
+</head>
+<body class="nba {sportId:46, teamId:19} tier3 player-card orl">
+<div class="mboxDefault">
+    <link rel="stylesheet" charset="utf-8" media="screen"
+          href="http://a.espncdn.com/prod/styles/modules/hideGravity.css" type="text/css"/>
+</div>
+<script>mboxCreate('ESPN_global');</script>
+<!--[if IE 5]>
+<div class="ie5"><![endif]--><!--[if IE 6]>
+<div class="ie ie6"><![endif]--><!--[if IE 7]>
+<div class="ie ie7"><![endif]--><!--[if IE 8]>
+<div class="ie ie8"><![endif]--><!--[if IE 9]>
+<div class="ie9"><![endif]--><!-- begin bg-elements -->
+<div class="bg-elements"><!-- begin header -->
+    <div id="header" class="container"><!-- begin top-bar -->
+        <div class="top-bar"><!-- begin uni login -->
+            <script type="text/javascript">var returnURL = document.location.href;
+            var anCV = "";
+            var myEspnText = {'welcometext': 'Welcome', 'register': 'Register', 'signin': 'Sign In', 'signout': 'Sign Out', 'heliumdown': 'Login Temporarily Unavailable', 'connectedfacebook': 'Connected to Facebook', 'connectfacebook': 'Connect with Facebook', 'activateinsider': 'Activate Insider'};</script>
+            <form id="form-memberarea"><input type="hidden" name="language" id="language" value="en"/><input
+                    type="hidden" name="affiliateName" id="memberAreaAffiliateName" value="espn"/><input type="hidden"
+                                                                                                         name="regFormId"
+                                                                                                         id="regFormId"
+                                                                                                         value="espn"/>
+            </form>
+            <div class="signin" id="signin"></div>
+            <script>espn.memberservices.welcome();</script>
+            <div class="nav-edition editions"><label>EDITIONS:</label>
+                <ul class="main">
+                    <li class="e-usa active"><a href="http://espn.go.com/"
+                                                name="&amp;lpos=editionsnav&amp;lid=usa">USA</a></li>
+                    <li class="e-deportes"><a href="http://www.espn.com?country-view=us&lang-view=es"
+                                              name="&amp;lpos=editionsnav&amp;lid=deportes"
+                                              class="{langPref:'spanish'}">DEPORTES</a></li>
+                    <li class="last dropdown">
+                        <ul class="">
+                            <li class="selected">More</li>
+                            <li><a href="http://www.espn.com?country-view=ar&lang-view=es"
+                                   name="&amp;lpos=editionsnav&amp;lid=argentina">Argentina</a></li>
+                            <li><a href="http://www.espn.com.au" name="&amp;lpos=editionsnav&amp;lid=australia">Australia</a>
+                            </li>
+                            <li><a href="http://www.espn.com.br" name="&amp;lpos=editionsnav&amp;lid=brazil">Brazil</a>
+                            </li>
+                            <li><a href="http://www.espn.com?country-view=co&lang-view=es"
+                                   name="&amp;lpos=editionsnav&amp;lid=colombia">Colombia</a></li>
+                            <li><a href="http://www.espn.com?country-view=mx&lang-view=es"
+                                   name="&amp;lpos=editionsnav&amp;lid=mexico">Mexico</a></li>
+                            <li><a href="http://www.espn.co.uk/" name="&amp;lpos=editionsnav&amp;lid=uk">United
+                                Kingdom</a></li>
+                            <li><a href="http://www.espn.com?country-view=ve&lang-view=es"
+                                   name="&amp;lpos=editionsnav&amp;lid=venezuela">Venezuela</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-edition"><label>CITIES:</label>
+                <ul class="main">
+                    <li class="e-boston"><a href="http://espn.go.com/boston/" name="&amp;lpos=citynav&amp;lid=boston">BOSTON</a>
+                    </li>
+                    <li class="e-chicago"><a href="http://espn.go.com/chicago/"
+                                             name="&amp;lpos=citynav&amp;lid=chicago">CHICAGO</a></li>
+                    <li class="e-dallas"><a href="http://espn.go.com/dallas/" name="&amp;lpos=citynav&amp;lid=dallas">DALLAS</a>
+                    </li>
+                    <li class="e-losangeles"><a href="http://espn.go.com/los-angeles/"
+                                                name="&amp;lpos=citynav&amp;lid=losangeles">LOS ANGELES</a></li>
+                    <li class="last e-newyork"><a href="http://espn.go.com/new-york/"
+                                                  name="&amp;lpos=citynav&amp;lid=newyork">NEW YORK</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- end top-bar --><!-- begin espn-logo -->
+        <div class="espn-logo"><h1><a href="http://espn.go.com/" name="&lpos=sitenavdefault&lid=sitenav_main-logo"
+                                      class="espn">ESPN</a> <a href="http://espn.go.com/nba/"
+                                                               class="section-title">NBA</a></h1></div>
+        <!-- end espn-logo --><!-- begin ad --><span class="presby"><!--espn.us.com.nba sitezone--><!--http://ad.Doubleclick.net hostUrl--><script>if ("undefined" != typeof ad_kvps && "undefined" != typeof ad_u && "undefined" != typeof ad_counter && "undefined" != typeof ad_ord) {
+            if ("undefined" == typeof ad_site || "undefined" == typeof ad_zone)var ad_site = "espn.us.com.nba", ad_zone = "nbaplayer";
+            var ad_finalString = "http://ad.Doubleclick.net/adj/" + ad_site + "/" + ad_zone + ";" + ad_kvps + "pos=SponsoredByLogoHeader;" + ad_u + "sz=150x45,1x1;tile=" + ad_counter + ";ord=" + ad_ord;
+            document.write('<div data-cb-ad-id="SponsoredByLogoHeader" data-cb-dfp-id="' + ad_kvps + 'sz=150x45,1x1"><script src=' + ad_finalString + '>\x3c/script></div>');
+            ad_counter++
+        }
+        ;</script><noscript><a
+                href="http://ad.Doubleclick.net/jump/espn.us.com.nba/nbaplayer;pgtyp=nbaplayer;sp=nba;tm=orl;pl=3064290;sz=150x45,1x1;"
+                target="_blank"><img
+                src="http://ad.Doubleclick.net/ad/espn.us.com.nba/nbaplayer;pgtyp=nbaplayer;sp=nba;tm=orl;pl=3064290;sz=150x45,1x1;"
+                border="0" alt=""></a></noscript></span><!-- end ad -->
+        <div class="header-right">
+            <style>.ie6 #searchBox, .ie6 #searchBox div {
+                display: inline;
+            } </style>
+            <!-- begin search -->
+            <div id="nav-main-search">
+                <form id="searchBox" name="searchBox" action="http://search.espn.go.com/results" method="get"
+                      accept-charset="utf-8" style="color: #999999;">
+                    <div class="clearfix"><input autocomplete="off" class="text" type="text" placeholder="Search"
+                                                 name="searchString" id="searchString"/><input type="hidden" name="page"
+                                                                                               id="page"
+                                                                                               value="null"/><input
+                            type="hidden" name="fromForm" value="true"/><input class="submit" type="submit" value=""/>
+                    </div>
+                </form>
+            </div>
+            <!-- end search -->
+            <div id="shop"><a class="shop-btn"
+                              href="http://www.dickssportinggoods.com/category/index.jsp?categoryId=15504446&camp=Part:ESPNpart::nbashopbutton:NBA"
+                              name="&lpos=sitenavdefault&lid=sitenav_shopbutton" rel="nofollow">Shop</a></div>
+        </div>
+    </div>
+    <!-- end header --><!--espn.us.com.nba sitezone--><!--http://ad.Doubleclick.net hostUrl-->
+    <script>if ("undefined" != typeof ad_kvps && "undefined" != typeof ad_u && "undefined" != typeof ad_counter && "undefined" != typeof ad_ord) {
+        if ("undefined" == typeof ad_site || "undefined" == typeof ad_zone)var ad_site = "espn.us.com.nba", ad_zone = "nbaplayer";
+        var ad_finalString = "http://ad.Doubleclick.net/adj/" + ad_site + "/" + ad_zone + ";" + ad_kvps + "pos=Background_Skin;" + ad_u + "sz=1280x946,200x800,1x1;tile=" + ad_counter + ";ord=" + ad_ord;
+        document.write('<div data-cb-ad-id="Background_Skin" data-cb-dfp-id="' + ad_kvps + 'sz=1280x946,200x800,1x1"><script src=' + ad_finalString + '>\x3c/script></div>');
+        ad_counter++
+    }
+    ;</script>
+    <noscript><a
+            href="http://ad.Doubleclick.net/jump/espn.us.com.nba/nbaplayer;pgtyp=nbaplayer;sp=nba;tm=orl;pl=3064290;sz=1280x946,200x800,1x1;"
+            target="_blank"><img
+            src="http://ad.Doubleclick.net/ad/espn.us.com.nba/nbaplayer;pgtyp=nbaplayer;sp=nba;tm=orl;pl=3064290;sz=1280x946,200x800,1x1;"
+            border="0" alt=""></a></noscript>
+    <!-- begin subheader -->
+    <div id="subheader"><!-- begin content -->
+        <div id="content-wrapper">
+            <div id="ad-top" class="container"><!-- begin Banner ad -->
+                <div class="span-6 ad banner top">
+                    <div class="ad-center">
+                        <div class="ad-wrapper"><!--espn.us.com.nba sitezone--><!--http://ad.Doubleclick.net hostUrl-->
+                            <script>if ("undefined" != typeof ad_kvps && "undefined" != typeof ad_u && "undefined" != typeof ad_counter && "undefined" != typeof ad_ord) {
+                                if ("undefined" == typeof ad_site || "undefined" == typeof ad_zone)var ad_site = "espn.us.com.nba", ad_zone = "nbaplayer";
+                                var ad_finalString = "http://ad.Doubleclick.net/adj/" + ad_site + "/" + ad_zone + ";" + ad_kvps + "pos=Banner;" + ad_u + "sz=728x90,970x66,924x50,1x1;tile=" + ad_counter + ";ord=" + ad_ord;
+                                document.write('<div data-cb-ad-id="Banner" data-cb-dfp-id="' + ad_kvps + 'sz=728x90,970x66,924x50,1x1"><script src=' + ad_finalString + '>\x3c/script></div>');
+                                ad_counter++
+                            }
+                            ;</script>
+                            <noscript><a
+                                    href="http://ad.Doubleclick.net/jump/espn.us.com.nba/nbaplayer;pgtyp=nbaplayer;sp=nba;tm=orl;pl=3064290;sz=728x90,970x66,924x50,1x1;"
+                                    target="_blank"><img
+                                    src="http://ad.Doubleclick.net/ad/espn.us.com.nba/nbaplayer;pgtyp=nbaplayer;sp=nba;tm=orl;pl=3064290;sz=728x90,970x66,924x50,1x1;"
+                                    border="0" alt=""></a></noscript>
+                        </div>
+                    </div>
+                </div>
+                <!-- end Banner ad --></div>
+            <div id="content" class="container">
+                <div id="fb-root"></div>
+                <!--[if lte IE 7]>
+                <link rel="stylesheet" charset="utf-8" media="screen"
+                      href="http://a.espncdn.com/combiner/c?css=modules/browser-alert.r7.css" type="text/css"/>
+                <div class="span-6" id="browser-alert-wrapper" style="display:none;">
+                    <div class="mod-container mod-no-header-footer browser-alert">
+                        <div class="mod-content">
+                            <div class="gradient-container"><h1><span>Your Web Browser</span> is no longer supported
+                            </h1>
+
+                                <p>To experience everything that ESPN.com has to offer, we recommend that you upgrade to
+                                    a newer version of your web browser. Click the upgrade button to the right or <a
+                                            href="http://espn.go.com/espn/news/story?id=5630562">learn more</a>.</p>
+                                <ul>
+                                    <li><a class="btn-upgrade"
+                                           href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Upgrade</a>
+                                    </li>
+                                    <li><a class="btn-faq" href="http://espn.go.com/espn/news/story?id=5630562">FAQs</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>(function (b) {
+                    setTimeout(function () {
+                        var a = b("#browser-alert-wrapper");
+                        if (espn.cookie.get("browseralert") != "true") {
+                            b('<a class="btn-close" href="#">Close</a>').bind("click", function () {
+                                a.hide();
+                                espn.cookie.set("browseralert", "true", 30);
+                                return false
+                            }).appendTo(a.find(".gradient-container"));
+                            a.show();
+                            espn.cookie.set("browseralert", "true")
+                        }
+                    }, 100)
+                })(jQuery);</script><![endif]-->
+                <div id="fb-root"></div>
+                <script>    window.fbAsyncInit = function () {
+                    FB.init({            appId: "116656161708917", cookie: true, // these two are not required for partners that			status: true, // only rely on stk plugins and don't use connect			xfbml: true,			channelUrl: document.location.protocol + '//' + document.domain + '/facebook/channel.html'		});		jQuery(document).ready(function () {			FB.XFBML.parse();			FB.Event.subscribe('edge.create', function(href, widget) {				if(typeof anTrackLink === 'function') {					anTrackLink(jQuery('.fb_iframe_widget')[0],'espn','facebook','like');				}			});		});	};	(function() {		var e = document.createElement('script'); e.async = true;		e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';		document.getElementById('fb-root').appendChild(e);	}());</script>
+                <style>.mod-myespn .mod-content a img {
+                    padding: 10px;
+                    margin: 0px;
+                }
+
+                .mod-page-header ul.player-favorites a.btn-add-fave-player {
+                    color: #ddd !important;
+                }
+
+                .mod-page-header ul.player-favorites a.btn-add-fave-player.favorite {
+                    color: #000 !important;
+                }</style>
+                <script type="text/javascript">    (function ($) {
+                    var loggedIn = espn.core.loggedIn;
+                    var displayModule = false;
+                    var showAddButton = true;
+                    var fadeTime = 1500;
+                    var baseRef = '/';
+                    var lang = 'en';
+                    var playerId = 3064290;
+                    var sportId = $('body').metadata()['sportId'];
+                    var playerName = 'Aaron Gordon';
+                    var abbrevs = {10: 'mlb', 46: 'nba', 28: 'nfl', 90: 'nhl', 23: 'ncf', 41: 'ncb', 600: 'soccer', 850: 'tennis', 1106: 'golf', 2020: 'nascar', 3301: 'mma', 3540: 'ncfrecruit', 3550: 'ncbrecruit', 3551: 'hs_bsbrecruit', 3552: 'hs_sfbrecruit'}
+                    var sportAbbrev = abbrevs[sportId];
+                    var sportAbbrevFav = abbrevs[sportId];
+                    var count = 0;
+                    var displayModule = false;
+                    var appId = 1
+                    var tabName = "players"
+                    if (sportId == 3540 || sportId == 3550 || sportId == 3551 || sportId == 3552) {
+                        appId = 3;
+                    }
+                    if (sportId == 3540 || sportId == 3550) {
+                        tabName = "recruits"
+                    }
+                    function resetData(checkSport, checkPlayer) {
+                        if (loggedIn) {
+                            espn.p13n.reset({                    success: function (data) {
+                                if (data != null && data != 'UNDEF' && typeof(data.myPlayers) != 'UNDEF' && data.myPlayers != null) {
+                                    var count = 0;
+                                    var sportTypes = {10: 'mlb', 46: 'nba', 28: 'nfl', 90: 'nhl', 850: 'tennis', 1106: 'golf', 2020: 'nascar', 3301: 'mma'}
+                                    var sportAbbrevs = {10: 'MLB', 46: 'NBA', 28: 'NFL', 90: 'NHL', 850: 'Tennis', 1106: 'Golf', 2020: 'NASCAR', 3301: 'MMA'}
+                                    $.each(data.myPlayers, function (i, item) {
+                                        if (typeof(item.sport) != 'UNDEF' && item.sport != null && item.sport == sportId && count < 12) {
+                                            var image = '';
+                                            sportType = sportTypes[item.sport];
+                                            sportAbbrev = sportAbbrevs[item.sport];
+                                            sport = item.sport;
+                                            abbrev = '';
+                                            swabbrev = '';
+                                            if (typeof(item.abbrev) != 'UNDEF' && item.abbrev != null) {
+                                                abbrev = item.abbrev.toLowerCase();
+                                            }
+                                            if (typeof(item.sw_abbrev) != 'UNDEF' && item.sw_abbrev != null) {
+                                                swabbrev = item.sw_abbrev.toLowerCase();
+                                            }
+                                            desc = item.text;
+                                            descSEO = desc;
+                                            while (descSEO.indexOf(' ') != -1)descSEO = descSEO.replace(' ', '-');
+                                            var classname = '';
+                                            if (sport == 46 || sport == 10 || sport == 90 || sport == 28 || sport == 1106 || sport == 850) {
+                                                image = 'href="http://espn.go.com/' + sportType + baseRef + 'player/_/id/' + item.id + '/' + descSEO.toLowerCase() + '"  title="' + desc + '"><img src="http://a.espncdn.com/combiner/i?img=/i/headshots/' + sportType + '/players/full/' + item.id + '.png&w=35&h=48&scale=crop&background=0xcccccc&transparent=false"></a>';
+                                            } else if (sport == 2020) {
+                                                image = 'href="http://espn.go.com/rpm/driver?driverId=' + item.id + '"  title="' + desc + '"><img src="http://a.espncdn.com/i/rpm/mugs/35x48/' + item.id + '.jpg"></a>';
+                                            }
+                                            if (count == 0 && !displayModule) {
+                                                $('.mod-myespn .personalization-teams').html('');
+                                            }
+                                            if (image != '') {
+                                                if (count == 14) {
+                                                    image = '<a id="lastplayer" ' + image;
+                                                } else {
+                                                    image = '<a ' + image;
+                                                }
+                                                if (checkPlayer == item.id && checkSport == item.sport) {
+                                                    $('.mod-myespn .personalization-teams').prepend(image).fadeIn(fadeTime, function () {
+                                                        $('#lastplayer').remove();
+                                                        espn.core.init.faves();
+                                                    });
+                                                } else if (checkPlayer == 0) {
+                                                    $('.mod-myespn .personalization-teams').append(image);
+                                                }
+                                            }
+                                            count++;
+                                            if (count == 1 && !displayModule) {
+                                                $('#myespn-personalization').show();
+                                                displayModule = true;
+                                            }
+                                        }
+                                    });
+                                    if (count < 15) {
+                                        $.each(data.myPlayers, function (i, item) {
+                                            if (typeof(item.sport) != 'UNDEF' && item.sport != null && item.sport != sportId && count < 15) {
+                                                var image = '';
+                                                sportType = sportTypes[item.sport];
+                                                sportAbbrev = sportAbbrevs[item.sport];
+                                                sport = item.sport;
+                                                abbrev = '';
+                                                swabbrev = '';
+                                                if (typeof(item.abbrev) != 'UNDEF' && item.abbrev != null) {
+                                                    abbrev = item.abbrev.toLowerCase();
+                                                }
+                                                if (typeof(item.sw_abbrev) != 'UNDEF' && item.sw_abbrev != null) {
+                                                    swabbrev = item.sw_abbrev.toLowerCase();
+                                                }
+                                                desc = item.text;
+                                                descSEO = desc;
+                                                while (descSEO.indexOf(' ') != -1)descSEO = descSEO.replace(' ', '-');
+                                                if (sport == 46 || sport == 10 || sport == 90 || sport == 850) {
+                                                    image = 'href="http://espn.go.com/' + sportType + baseRef + 'player/_/id/' + item.id + '/' + descSEO.toLowerCase() + '"  title="' + desc + '"><img src="http://a.espncdn.com/combiner/i?img=/i/headshots/' + sportType + '/players/full/' + item.id + '.png&w=35&h=48&scale=crop&background=0xcccccc&transparent=false"></a>';
+                                                } else if (sport == 28) {
+                                                    image = 'href="http://espn.go.com/' + sportType + baseRef + 'players/profile?playerId=' + item.id + '"  title="' + desc + '"><img src="http://a.espncdn.com/i/headshots/' + sportType + '/players/35/' + item.id + '.jpg"></a>';
+                                                } else if (sport == 1106) {
+                                                    image = 'href="http://espn.go.com/golf/players/profile?playerId=' + item.id + '"  title="' + desc + '"><img src="http://a.espncdn.com/golfonline/img/profiles/35x48/' + item.id + '.jpg"></a>';
+                                                } else if (sport == 2020) {
+                                                    image = 'href="http://espn.go.com/rpm/driver?driverId=' + item.id + '"  title="' + desc + '"><img src="http://a.espncdn.com/i/rpm/mugs/35x48/' + item.id + '.jpg"></a>';
+                                                }
+                                                if (count == 0 && !displayModule) {
+                                                    $('.mod-myespn .personalization-teams').html('');
+                                                }
+                                                if (image != '') {
+                                                    if (count == 14) {
+                                                        image = '<a id="lastplayer" ' + image;
+                                                    } else {
+                                                        image = '<a ' + image;
+                                                    }
+                                                    if (checkPlayer == item.id && checkSport == item.sport) {
+                                                        $('.mod-myespn .personalization-teams').prepend(image).fadeIn(fadeTime, function () {
+                                                            $('#lastplayer').remove();
+                                                            espn.core.init.faves();
+                                                        });
+                                                    } else if (checkPlayer == 0) {
+                                                        $('.mod-myespn .personalization-teams').append(image);
+                                                    }
+                                                }
+                                                count++;
+                                                if (count == 1 && !displayModule) {
+                                                    $('#myespn-personalization').show();
+                                                    displayModule = true;
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            }                });
+                        }
+                    }
+
+                    $(document).ready(function () {
+                        resetData(0, 0);
+                        if (sportAbbrevFav != 'ncf' && sportAbbrevFav != 'ncb' && sportAbbrevFav != 'mma') {
+                            if (loggedIn) {
+                                if ($('.add-fave-player').length > 0) {
+                                    $('.add-fave-player').html('<a class="btn-add-fave-player"></a>');
+                                }
+                                espn.p13n.get({                        "success": function (data) {
+                                    if (data != null && data != 'UNDEF' && typeof(data.myPlayers) != 'UNDEF' && data.myPlayers != null) {
+                                        $.each(data.myPlayers, function (i, item) {
+                                            if (typeof(item.sport) != 'UNDEF' && item.sport != null) {
+                                                if (item.sport == sportId && item.id == playerId) {
+                                                    showAddButton = false;
+                                                }
+                                            }
+                                        });
+                                    }
+                                    if (showAddButton) {
+                                        $('.add-fave-player a.btn-add-fave-player').html('Add to my favorites').show().attr("onclick", "anTrackLink(this,'espn','playerprofile','" + sportAbbrevFav + "_player_addfavorite_loggedin-add'); return false;");
+                                    } else {
+                                        $('.add-fave-player a.btn-add-fave-player').html('Favorite Player').show().addClass('favorite cbOverlay').attr({href: '', name: '&lpos=playerprofile&lid=' + sportAbbrevFav + '_player_addfavorite_loggedin-modify', tref: '/personalization/v3_1/personalization', 'data-language': lang.toLowerCase(), tab: tabName});
+                                    }
+                                }                    }, {appId: appId});
+                                $('.add-fave-player a.btn-add-fave-player').click(function () {
+                                    if (showAddButton) { // don't allow the button to click through if it is informing you of their favorite player							showAddButton = false; // don't allow multiple clicks during the transition							espn.p13n.add(								{									"players": sportId+":"+playerId+":::"+appId								},								{									"success" : function() {										$('.add-fave-player a.btn-add-fave-player').html('Added').addClass('favorite').css('cursor','default');										resetData(sportId, playerId);									},									"error" : function() {									}								}							);						}					});				}				else{					if ($('.add-fave-player').length > 0){						$('.add-fave-player').html('<a class="btn-add-fave-player">Sign in to personalize</a>');					}					$('.add-fave-player a.btn-add-fave-player').show().attr('href','','name','&lpos=playerprofile&lpos=playerprofile&lid=' + sportAbbrevFav + '_player_addfavorite_loggedout').attr('tref','/members/v3_1/login').attr('data-options','{"addPlayers":"'+sportId+':'+playerId+'","width":"820","height":"385"}').addClass("cbOverlay");				}			}			$('.add-fave-player a.btn-add-fave-player').hover(				function(){					$(this).addClass('favorite');				},				function(){					if (showAddButton){						$(this).removeClass('favorite');					}				}			);			$('.inline-header ul.links li a').addClass('cbOverlay').attr({href:'',tref:'/personalization/v3_1/personalization','data-language':lang.toLowerCase(),tab:tabName});			if (sportAbbrevFav != 'ncf'){				$(".split-select").click(function(){					if ($('.split-level-items').length > 0){						$(".split-level-items").toggle();						$(".split-level-content").toggle();					} else {						var teamId = $(this).attr('id');						var posId = $(this).attr('rel');						var dlink = '/nba/format/player/design09/dropdown';						if (lang == 'es') {							dlink = '/nba/deportes/format/player/design09/dropdown';						}						$.ajax({							type:"GET",							url: dlink,							data: 'teamId='+teamId+'&posId='+posId+'&lang='+lang,							dataType: "html",							success: function(html){								$('.mod-split-menu').append(html);								$(".split-level-items").toggle();								$(".split-level-content").toggle();								$(".main-items a").bind('mouseover click', function(){									$('.main-items li.split-hover-bg').removeClass('split-hover-bg');									$(this).parent().addClass('split-hover-bg');									var thisId = $(this).attr('id');									$('.split-level-content-list').each(function(){										$(this).hide();									});									$('#'+thisId+'list').show();									return false;								});								$(document).click(function(e){									if (e.button != 2) {										$(".split-level-items").hide();										$(".split-level-content").hide();									}								});							}						});					}					return false;				});			}			$("#player-status-main").click(function(){				$("#player-status-main #full-content").toggle();			});		});	})(jQuery);</script>
+                <script type="text/javascript">    var loggedIn = espn.core.loggedIn;
+                (function ($) {
+                    $(document).ready(function () {
+                        var playerId = 3064290;
+                        var playerName = 'Aaron Gordon';
+                        var leagueId = '';
+                        var leagueName = '';
+                        var leagues = '';
+                        var leaguenames = '';
+
+                        function getFantasyData(league, name, updatetext) {
+                            $.ajax({                    type: "GET", url: '/nba/format/player/design09/fantasy', data: 'playerId=' + playerId + '&leagueId=' + league, dataType: "json", success: function (obj) {
+                                printFantasyData(obj, '', league, name, updatetext);
+                            }                });
+                            return false;
+                        }
+
+                        function printFantasyData(data, datastring, league, name, updatetext) {
+                            if (data == null) {
+                                if (datastring == '') {
+                                    datastring = $('#fantasy-content').html();
+                                }
+                                if (datastring != null && datastring != '') {
+                                    data = jQuery.parseJSON(datastring);
+                                }
+                            }
+                            if (data != null && data != '' && (data["mostRecentNews"] != null || data["seasonOutlook"] != null || data["playerRaterSEASON"] != null)) {
+                                fhtml = '';
+                                statushtml = '';
+                                if (updatetext == true) {
+                                    var date = '';
+                                    if (data["mostRecentNews"] != null) {
+                                        if (data["mostRecentNews"]["news"] != null) {
+                                            fhtml += "<p>" + data["mostRecentNews"]["news"] + "</p>";
+                                        }
+                                        if (data["mostRecentNews"]["spin"] != null) {
+                                            fhtml += "<p><span>Spin: </span>" + data["mostRecentNews"]["spin"] + "</p>";
+                                        }
+                                        if (data["mostRecentNews"]["date"] != null) {
+                                            date = data["mostRecentNews"]["date"];
+                                        }
+                                    }
+                                    if ($('#showproj').attr('value') == 'true') {
+                                        if (data["seasonOutlook"] != null) {
+                                            if (data["seasonOutlook"]["outlook"] != null) {
+                                                fhtml += '<p><span>ESPN Fantasy Projection: </span>' + data["seasonOutlook"]["outlook"] + '</p>';
+                                            }
+                                            if (date = '' && data["seasonOutlook"]["date"] != null) {
+                                                date = data["seasonOutlook"]["date"]
+                                            }
+                                        }
+                                    }
+                                    if (date != '') {
+                                        fhtml += '<p class="date bottom-border"><cite>' + date + "</cite></p>";
+                                    }
+                                    fhtml += '<p>';
+                                    if (leagues != '' && leagues.length > 0 && leaguenames != '' && leaguenames.length > 0) {
+                                        leaguearray = leagues.split('~');
+                                        namesarray = leaguenames.split('~');
+                                        if (leaguearray != null && leaguearray.length > 0) {
+                                            fhtml += '<select id="fantasy-teams">';
+                                            fhtml += '<option value="#">Select a League</option>';
+                                            for (i = 0; i < leaguearray.length; i++) {
+                                                if (namesarray.length > i) {
+                                                    fhtml += '<option ';
+                                                    if (leaguearray[i] == league) {
+                                                        fhtml += 'selected ';
+                                                    }
+                                                    fhtml += 'value="' + leaguearray[i] + '">' + namesarray[i] + '</option>';
+                                                }
+                                            }
+                                            fhtml += '</select> ';
+                                        }
+                                    }
+                                    if (league != null && league != '') {
+                                        if (data["playerStatus"] != null) {
+                                            if (data["playerStatus"]["currentStatus"] != null) {
+                                                fhtml += '<span style="font-weight:normal;" id="fantasy-status">';
+                                                if (data["playerStatus"]["currentStatus"] == "ONTEAM" && data["playerStatus"]["currentTeam"] != null) {
+                                                    fhtml += 'Owned By: <span>' + data["playerStatus"]["currentTeam"] + '</span>';
+                                                } else if (data["playerStatus"]["currentStatus"] == "FA") {
+                                                    fhtml += '<span>Status:</span> <a name="&lpos=playerprofile&lid=nba_player_fantasy_league" href="http://games.espn.go.com/fba/freeagency?leagueId=' + league + '">Free Agent</a>';
+                                                } else if (data["playerStatus"]["currentStatus"] == "WAIVERS") {
+                                                    fhtml += '<span>Status:</span> <a name="&lpos=playerprofile&lid=nba_player_fantasy_league" href="http://games.espn.go.com/fba/freeagency?leagueId=' + league + '">On Waivers</a>';
+                                                    if (data["playerStatus"]["waiverProcessDate"] != null) {
+                                                        fhtml += ' (' + data["playerStatus"]["waiverProcessDate"] + ')';
+                                                    }
+                                                }
+                                                fhtml += '</span>';
+                                            }
+                                        }
+                                    }
+                                    fhtml += '</p><div id="fantasy-stats" class="clear">';
+                                } else if (league != null && league != '') {
+                                    if (data["playerStatus"] != null) {
+                                        if (data["playerStatus"]["currentStatus"] != null) {
+                                            if (data["playerStatus"]["currentStatus"] == "ONTEAM" && data["playerStatus"]["currentTeam"] != null) {
+                                                statushtml += 'Owned By: <span>' + data["playerStatus"]["currentTeam"] + '</span>';
+                                            } else if (data["playerStatus"]["currentStatus"] == "FA") {
+                                                statushtml += '<span>Status:</span> <a name="&lpos=playerprofile&lid=nba_player_fantasy_league" href="http://games.espn.go.com/fba/freeagency?leagueId=' + league + '">Free Agent</a>';
+                                            } else if (data["playerStatus"]["currentStatus"] == "WAIVERS") {
+                                                statushtml += '<span>Status:</span> <a name="&lpos=playerprofile&lid=nba_player_fantasy_league" href="http://games.espn.go.com/fba/freeagency?leagueId=' + league + '">On Waivers</a>';
+                                                if (data["playerStatus"]["waiverProcessDate"] != null) {
+                                                    statushtml += ' (' + data["playerStatus"]["waiverProcessDate"] + ')';
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if (data["playerRaterSEASON"] != null) {
+                                    fhtml += '<h5 style="width:56%;float:left;">PLAYER RATING</h5>'
+                                    if (data["percentOwned"] != null) {
+                                        fhtml += '<h5 style="margin:0px;float:left;">RANKINGS</h5>'
+                                    }
+                                    fhtml += '<ul class="floatleft"><li class="first"><ul>';
+                                    fhtml += '<li>Season<div>' + data["playerRaterSEASON"] + '</div></li>';
+                                    if (data["playerRater7DAY"] != null) {
+                                        fhtml += '<li class="last">7 Days<div>' + data["playerRater7DAY"] + '</div></li>';
+                                    }
+                                    fhtml += '</ul></li><li><ul>';
+                                    if (data["playerRater15DAY"] != null) {
+                                        fhtml += '<li>15 Days<div>' + data["playerRater15DAY"] + '</div></li>';
+                                    }
+                                    if (data["playerRater30DAY"] != null) {
+                                        fhtml += '<li class="last">30 Days<div>' + data["playerRater30DAY"] + '</div></li>';
+                                    }
+                                    fhtml += '</ul></li></ul>';
+                                } else if (data["averagePoints"] != null) {
+                                    fhtml += '<h5>POINTS</h5><ul class="floatleft"><li class="first"><ul>';
+                                    fhtml += '<li>Average<div>' + data["averagePoints"] + '</div></li>';
+                                    if (data["totalPoints"] != null) {
+                                        fhtml += '<li class="last">Total<div>' + data["totalPoints"] + '</div></li>';
+                                    }
+                                    fhtml += '</ul></li><li><ul>';
+                                    if (data["points7DAY"] != null) {
+                                        fhtml += '<li>7 Days<div>' + data["points7DAY"] + '</div></li>';
+                                    }
+                                    if (data["points15DAY"] != null) {
+                                        fhtml += '<li class="last">15 Days<div>' + data["points15DAY"] + '</div></li>';
+                                    }
+                                    fhtml += '</ul></li></ul>';
+                                }
+                                if (data["percentOwned"] != null) {
+                                    fhtml += '<ul class="split floatright"><li><ul>';
+                                    if (data["positionRank"] != null) {
+                                        fhtml += '<li>POSITION RK<div>' + data["positionRank"] + '</div></li>';
+                                    }
+                                    fhtml += '<li>% OWNED<div>' + data["percentOwned"] + '</div></li>';
+                                    if (data["averageDraftPosition"] != null) {
+                                        fhtml += '<li>AVG DRAFTED<div>' + data["averageDraftPosition"] + '</div></li>';
+                                    }
+                                    fhtml += '</ul></li></ul>';
+                                }
+                                if (league != null && league != '') {
+                                    fhtml += '<p class="footer"><a name="&lpos=playerprofile&lid=nba_player_fantasy_league" href="http://games.espn.go.com/fba/clubhouse?leagueId=' + league + '">Go to ' + name + ' &#187;</a></p>'
+                                } else {
+                                    fhtml += '<p class="footer"><a name="&lpos=playerprofile&lid=nba_player_fantasy_home" href="http://games.espn.go.com/frontpage/basketball">ESPN Fantasy Basketball &#187;</a></p>'
+                                }
+                                if (updatetext == true) {
+                                    fhtml += '</div>';
+                                }
+                                if (fhtml != '') {
+                                    if (updatetext == true) {
+                                        $('#fantasy-content').html(fhtml);
+                                        $('#fantasy-container').show();
+                                    } else {
+                                        if (statushtml != '') {
+                                            $('#fantasy-status').html(statushtml);
+                                        }
+                                        $('#fantasy-stats').html(fhtml);
+                                    }
+                                }
+                                $('#fantasy-teams').change(function () {
+                                    getFantasyData($(this).val(), $('#fantasy-teams option:selected').text(), false);
+                                    return false;
+                                });
+                            }
+                        }
+
+                        if (loggedIn) {
+                            $.getJSON("http://games.espn.go.com/fba/api/v1/userEntries?callback=?", function (data) {
+                                if (data != null) {
+                                    userentries = data["userEntries"];
+                                    if (userentries != null && userentries.length > 0) {
+                                        for (i = 0; i < userentries.length; i++) {
+                                            thisleague = userentries[i];
+                                            if (thisleague["seasonId"] == "2015" && (thisleague["fantasyGame"] == "FBA" || thisleague["fantasyGame"] == "fba")) {
+                                                if (leagues == '') {
+                                                    leagueId = thisleague["leagueId"];
+                                                    leagueName = thisleague["leagueName"];
+                                                } else {
+                                                    leagues += '~';
+                                                    leaguenames += '~';
+                                                }
+                                                leagues += thisleague["leagueId"];
+                                                leaguenames += thisleague["leagueName"];
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    printFantasyData(null, '', '', '', true);
+                                }
+                                if (leagues != '') {
+                                    getFantasyData(leagueId, leagueName, true);
+                                } else {
+                                    printFantasyData(null, '', '', '', true);
+                                }
+                            });
+                        } else {
+                            printFantasyData(null, '', '', '', true);
+                        }
+                    });
+                })(jQuery);</script>
+                <div class="mod-container mod-no-header-footer mod-page-header">
+                    <div class="player-shadows">
+                        <div class="shadow-right"></div>
+                        <div class="shadow-left"></div>
+                    </div>
+                    <div class="mod-content">
+                        <div class="team-logo"></div>
+                        <div class="main-headshot"><img
+                                src="http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3064290.png&w=350&h=254"
+                                alt="Aaron Gordon"></div>
+                        <h1>Aaron Gordon</h1>
+
+                        <div class="player-bio">
+                            <ul class="player-favorites">
+                                <li class="add-fave-player"></li>
+                            </ul>
+                            <div class="line-divider"></div>
+                            <ul class="general-info">
+                                <li class="first">#00 PF</li>
+                                <li>6' 9", 220 lbs</li>
+                                <li class="last"><a href="http://espn.go.com/nba/team/_/name/orl/orlando-magic">Orlando
+                                    Magic</a></li>
+                            </ul>
+                            <ul class="player-metadata floatleft">
+                                <li><span>Born</span>Sep 16, 1995 in San Jose, CA (Age: 19)</li>
+                                <li><span>Drafted</span>2014: 1st Rnd, 4th by ORL</li>
+                                <li><span>College</span>Arizona</li>
+                            </ul>
+                        </div>
+                        <div class="player-stats"><p>2014-15 Season</p>
+                            <table class="header-stats">
+                                <thead>
+                                <th>PPG</th>
+                                <th>RPG</th>
+                                <th>BLKPG</th>
+                                <th>PER</th>
+                                </thead>
+                                <tr>
+                                    <td>6.3</td>
+                                    <td>3.4</td>
+                                    <td>0.4</td>
+                                    <td>13.88</td>
+                                </tr>
+                                <tr class="title">
+                                    <td colspan="3"><p>Career</p></td>
+                                </tr>
+                                <tr class="career">
+                                    <td>6.3</td>
+                                    <td>3.4</td>
+                                    <td>0.4</td>
+                                </tr>
+                            </table>
+                            <p class="footer"><a href="/nba/player/stats/_/id/3064290/aaron-gordon">Complete Stats
+                                &#187;</a></p></div>
+                    </div>
+                    <div class="header-bg"></div>
+                    <div class="field"></div>
+                    <div class="header-overlay"></div>
+                </div>
+                <div class="player-select-header"><p>Go to</p>
+
+                    <div class="mod-split-menu">
+                        <div class="split-select" id="19"><a class="btn-split-btn">Aaron Gordon</a></div>
+                    </div>
+                </div>
+                <div class="mod-page-tabs mod-pagenav-tabs">
+                    <ul class="ui-tabs">
+                        <li class="active"><a href="/nba/player/_/id/3064290/aaron-gordon">Player Profile</a></li>
+                        <li><a href="/nba/player/stats/_/id/3064290/aaron-gordon">Stats</a></li>
+                        <li><a href="/nba/player/splits/_/id/3064290/aaron-gordon">Splits</a></li>
+                        <li><a href="/nba/player/gamelog/_/id/3064290/aaron-gordon">Game Log</a></li>
+                        <li><a href="http://insider.espn.go.com/nba/player/hollinger/_/id/3064290/aaron-gordon">Advanced
+                            Stats<img width="11" height="11" alt="Insider" style="padding-left:3px;"
+                                      src="http://a.espncdn.com/i/in.gif"></a></li>
+                        <li><a href="/nba/player/videos/_/id/3064290/aaron-gordon">Videos</a></li>
+                        <li><a href="/nba/player/photos/_/id/3064290/aaron-gordon">Photos</a></li>
+                        <li><a target="_new"
+                               href="http://www.dickssportinggoods.com/category/index.jsp?categoryId=11400507&camp=Part:ESPNpart::nbaplayercardnav:AaronGordon"
+                               rel="nofollow">Shop&nbsp;<img
+                                src="http://a.espncdn.com/prod/assets/icon_externallink_wht.png"></a></li>
+                    </ul>
+                </div>
+                <div class="bg-opaque">
+                    <div class="span-6 last">
+                        <table class="player-profile-container">
+                            <tr>
+                                <td class="profile-overview">
+                                    <div class="mod-container mod-game matchup-splits current mod-table mod-no-footer">
+                                        <div class="mod-header"><h4>NEXT GAME</h4></div>
+                                        <div class="mod-content">
+                                            <div class="gradient-container">
+                                                <div class="game-details">
+                                                    <div class="venue"><span>FSFL</span>Amway Center</div>
+                                                    <div class="time">Sun<br>6:00 PM ET</div>
+                                                    <div class="overview">
+                                                        <div class="team team-away"><a
+                                                                href="http://espn.go.com/nba/team/_/name/chi/chicago-bulls">
+                                                            <div class="logo logo-medium logo-nba-medium nba-medium-4"></div>
+                                                        </a>
+
+                                                            <div class="record"><h6>Chicago</h6><br/>(31-20)</div>
+                                                        </div>
+                                                        <div class="symbol">@</div>
+                                                        <div class="team team-home"><a
+                                                                href="http://espn.go.com/nba/team/_/name/orl/orlando-magic">
+                                                            <div class="logo logo-medium logo-nba-medium nba-medium-19"></div>
+                                                        </a>
+
+                                                            <div class="record"><h6>Orlando</h6><br/>(16-37)</div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="links"><a href="/nba/preview?id=400579062">Preview
+                                                        &#187;</a><a href="/nba/conversation?id=400579062">Conversation
+                                                        &#187;</a><a
+                                                            href="http://www.stubhub.com/orlando-magic-tickets/"
+                                                            onclick="this.href=this.href+'?gcid=C12289e885&keyword=Aaron+Gordon+Player+Card'"
+                                                            title="Tickets">Tickets &#187;</a></p></div>
+                                            </div>
+                                            <table cellspacing="1" cellpadding="3" class="tablehead">
+                                                <tr class="colhead">
+                                                    <th>SPLITS</th>
+                                                    <th style="text-align:right !important;" title="Games Played">GP
+                                                    </th>
+                                                    <th style="text-align:right !important;" title="Minutes Per Game">
+                                                        MPG
+                                                    </th>
+                                                    <th style="text-align:right !important;"
+                                                        title="Field Goal Percentage">FG%
+                                                    </th>
+                                                    <th style="text-align:right !important;" title="Rebounds Per Game">
+                                                        RPG
+                                                    </th>
+                                                    <th style="text-align:right !important;" title="Assists Per Game">
+                                                        APG
+                                                    </th>
+                                                    <th style="text-align:right !important;" title="Blocks Per Game">
+                                                        BLKPG
+                                                    </th>
+                                                    <th style="text-align:right !important;" title="Steals Per Game">
+                                                        STPG
+                                                    </th>
+                                                    <th style="text-align:right !important;"
+                                                        title="Personal Fouls Per Game">PFPG
+                                                    </th>
+                                                    <th style="text-align:right !important;" title="Points Per Game">
+                                                        PPG
+                                                    </th>
+                                                </tr>
+                                                <tr class="oddrow">
+                                                    <td>Last 10 Games</td>
+                                                    <td style="text-align:right;">9</td>
+                                                    <td style="text-align:right;">19.8</td>
+                                                    <td style="text-align:right;">.500</td>
+                                                    <td style="text-align:right;">3.8</td>
+                                                    <td style="text-align:right;">0.8</td>
+                                                    <td style="text-align:right;">0.2</td>
+                                                    <td style="text-align:right;">0.2</td>
+                                                    <td style="text-align:right;">1.8</td>
+                                                    <td style="text-align:right;">6.8</td>
+                                                </tr>
+                                                <tr class="evenrow">
+                                                    <td>February</td>
+                                                    <td style="text-align:right;">2</td>
+                                                    <td style="text-align:right;">24.5</td>
+                                                    <td style="text-align:right;">.385</td>
+                                                    <td style="text-align:right;">5.0</td>
+                                                    <td style="text-align:right;">2.0</td>
+                                                    <td style="text-align:right;">0.0</td>
+                                                    <td style="text-align:right;">0.0</td>
+                                                    <td style="text-align:right;">1.0</td>
+                                                    <td style="text-align:right;">6.5</td>
+                                                </tr>
+                                                <tr class="oddrow">
+                                                    <td>vs. Chicago</td>
+                                                    <td style="text-align:right;">1</td>
+                                                    <td style="text-align:right;">14.0</td>
+                                                    <td style="text-align:right;">.500</td>
+                                                    <td style="text-align:right;">1.0</td>
+                                                    <td style="text-align:right;">0.0</td>
+                                                    <td style="text-align:right;">1.0</td>
+                                                    <td style="text-align:right;">0.0</td>
+                                                    <td style="text-align:right;">2.0</td>
+                                                    <td style="text-align:right;">6.0</td>
+                                                </tr>
+                                                <tr class="evenrow">
+                                                    <td>In Wins</td>
+                                                    <td style="text-align:right;">5</td>
+                                                    <td style="text-align:right;">16.2</td>
+                                                    <td style="text-align:right;">.667</td>
+                                                    <td style="text-align:right;">3.4</td>
+                                                    <td style="text-align:right;">1.2</td>
+                                                    <td style="text-align:right;">0.6</td>
+                                                    <td style="text-align:right;">0.2</td>
+                                                    <td style="text-align:right;">0.6</td>
+                                                    <td style="text-align:right;">8.2</td>
+                                                </tr>
+                                                <tr class="oddrow">
+                                                    <td>In Losses</td>
+                                                    <td style="text-align:right;">15</td>
+                                                    <td style="text-align:right;">17.3</td>
+                                                    <td style="text-align:right;">.500</td>
+                                                    <td style="text-align:right;">3.3</td>
+                                                    <td style="text-align:right;">0.5</td>
+                                                    <td style="text-align:right;">0.3</td>
+                                                    <td style="text-align:right;">0.3</td>
+                                                    <td style="text-align:right;">1.9</td>
+                                                    <td style="text-align:right;">5.6</td>
+                                                </tr>
+                                            </table>
+                                            <p class="footer"><a href="/nba/player/splits/_/id/3064290/aaron-gordon">Complete
+                                                Splits &#187;</a></p></div>
+                                    </div>
+                                </td>
+                                <td class="profile-media">
+                                    <style type="text/css">.videoplayer-show {
+                                        height: 217px !important;
+                                    }
+
+                                    .mod-inline.video-player.full-box {
+                                        padding: 1px;
+                                    }
+
+                                    .mod-video-playlist {
+                                        border-width: 0px;
+                                        width: 384px;
+                                        margin: 0 0 10px;
+                                        0;
+                                        float: none;
+                                    }
+
+                                    .mod-video-playlist a, .mod-video-tags a {
+                                        color: #225DB7;
+                                    }
+
+                                    .mod-inline.video-player.with-playlist #videoInfo {
+                                        width: 384px;
+                                    }</style>
+                                    <div class="mod-inline video-player full-box with-playlist">
+                                        <div class="videoplayer videoplayer-playercard_embed09"
+                                             style="margin-top:0px !important;"><img
+                                                src="http://a.espncdn.com/combiner/i?img=/media/motion/2015/0126/dm_150126_NBA_One-Play_Aaron_Gordon/dm_150126_NBA_One-Play_Aaron_Gordon.jpg&w=384&h=216"/>
+                                        </div>
+                                        <div id="videoInfo"></div>
+                                        <a id="videotoplay" style="display:none;"
+                                           class="{trackingName: 'playercard_embed09', playRelatedExternally: 'false'}"
+                                           href="http://espn.go.com/video/clip?id=12233675">Gordon Sick Alley-Oop</a>
+
+                                        <div class="mod-video-playlist"><h6>VIDEO PLAYLIST <img width="15" height="8"
+                                                                                                alt="video"
+                                                                                                src="http://a.espncdn.com/icons/video2.png"/>
+                                        </h6>
+                                            <ul class="bulletlinks">
+                                                <li class=" first active"><a
+                                                        class="{trackingName: 'playercard_embed09', playRelatedExternally: 'false'}"
+                                                        href="http://espn.go.com/video/clip?id=12233675">Gordon Sick
+                                                    Alley-Oop</a><span style="display:none;"></span></li>
+                                                <li class=" next last"><a
+                                                        class="{trackingName: 'playercard_embed09', playRelatedExternally: 'false'}"
+                                                        href="http://espn.go.com/video/clip?id=12228322">Pacers Down
+                                                    Magic To Snap Skid</a><span style="display:none;"></span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <script>        var ESPN_GLOBALS = {            "videoPlayers": {                "playercard_embed09": {                    "height": 216, "width": 384, "autostart": "false", "trackingName": "playercard_embed09"                }            }        };
+                                    espn.video.embeded.play();        </script>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="mod-container mod-table mod-no-footer" style="padding-top:5px;">
+                            <div class="mod-header"><h4>STATS</h4></div>
+                            <div class="mod-content">
+                                <table cellspacing="1" cellpadding="3" class="tablehead">
+                                    <tr class="colhead">
+                                        <th></th>
+                                        <th style="text-align:right !important;" title="Games Played">GP</th>
+                                        <th style="text-align:right !important;" title="Minutes Per Game">MPG</th>
+                                        <th style="text-align:right !important;"
+                                            title="Field Goals Made-Attempted Per Game">FGM-FGA
+                                        </th>
+                                        <th style="text-align:right !important;" title="Field Goal Percentage">FG%</th>
+                                        <th style="text-align:right !important;"
+                                            title="3-Point Field Goals Made-Attempted Per Game">3PM-3PA
+                                        </th>
+                                        <th style="text-align:right !important;" title="3-Point Field Goal Percentage">
+                                            3P%
+                                        </th>
+                                        <th style="text-align:right !important;"
+                                            title="Free Throws Made-Attempted Per Game">FTM-FTA
+                                        </th>
+                                        <th style="text-align:right !important;" title="Free Throw Percentage">FT%</th>
+                                        <th style="text-align:right !important;" title="Rebounds Per Game">RPG</th>
+                                        <th style="text-align:right !important;" title="Assists Per Game">APG</th>
+                                        <th style="text-align:right !important;" title="Blocks Per Game">BLKPG</th>
+                                        <th style="text-align:right !important;" title="Steals Per Game">STLPG</th>
+                                        <th style="text-align:right !important;" title="Personal Fouls Per Game">PFPG
+                                        </th>
+                                        <th style="text-align:right !important;" title="Turnovers Per Game">TOPG</th>
+                                        <th style="text-align:right !important;" title="Points Per Game">PPG</th>
+                                    <tr class="oddrow">
+                                        <td>2014-15 Regular Season</td>
+                                        <td style="text-align:right;">20</td>
+                                        <td style="text-align:right;">17.1</td>
+                                        <td style="text-align:right;">2.3-4.3</td>
+                                        <td style="text-align:right;">.541</td>
+                                        <td style="text-align:right;">0.4-0.9</td>
+                                        <td style="text-align:right;">.471</td>
+                                        <td style="text-align:right;">1.3-1.9</td>
+                                        <td style="text-align:right;">.658</td>
+                                        <td style="text-align:right;">3.4</td>
+                                        <td style="text-align:right;">0.7</td>
+                                        <td style="text-align:right;">0.4</td>
+                                        <td style="text-align:right;">0.3</td>
+                                        <td style="text-align:right;">1.6</td>
+                                        <td style="text-align:right;">0.9</td>
+                                        <td style="text-align:right;">6.3</td>
+                                    </tr>
+                                    <tr class="evenrow">
+                                        <td>Career</td>
+                                        <td style="text-align:right;">20</td>
+                                        <td style="text-align:right;">17.1</td>
+                                        <td style="text-align:right;">2.3-4.3</td>
+                                        <td style="text-align:right;">.541</td>
+                                        <td style="text-align:right;">0.4-0.9</td>
+                                        <td style="text-align:right;">.471</td>
+                                        <td style="text-align:right;">1.3-1.9</td>
+                                        <td style="text-align:right;">.658</td>
+                                        <td style="text-align:right;">3.4</td>
+                                        <td style="text-align:right;">0.7</td>
+                                        <td style="text-align:right;">0.4</td>
+                                        <td style="text-align:right;">0.3</td>
+                                        <td style="text-align:right;">1.6</td>
+                                        <td style="text-align:right;">0.9</td>
+                                        <td style="text-align:right;">6.3</td>
+                                    </tr>
+                                </table>
+                                <p class="footer"><a href="/nba/player/stats/_/id/3064290/aaron-gordon">Complete Stats
+                                    &#187;</a></p></div>
+                        </div>
+                        <div class="mod-container mod-table mod-no-footer">
+                            <div class="mod-header"><h4>GAME LOG</h4></div>
+                            <div class="mod-content">
+                                <table cellspacing="1" cellpadding="3" class="tablehead">
+                                    <tr class="colhead">
+                                        <th>DATE</th>
+                                        <th>OPP</th>
+                                        <th>SCORE</th>
+                                        <th style="text-align:right !important;" title="Minutes">MIN</th>
+                                        <th style="text-align:right !important;" title="Field Goals Made-Attempted">
+                                            FGM-FGA
+                                        </th>
+                                        <th style="text-align:right !important;" title="Field Goal Percentage">FG%</th>
+                                        <th style="text-align:right !important;"
+                                            title="3 Point Field Goals Made-Attempted">3PM-3PA
+                                        </th>
+                                        <th style="text-align:right !important;" title="3 Point Field Goal Percentage">
+                                            3P%
+                                        </th>
+                                        <th style="text-align:right !important;" title="Free Throws Made-Attempted">
+                                            FTM-FTA
+                                        </th>
+                                        <th style="text-align:right !important;" title="Free Throw Percentage">FT%</th>
+                                        <th style="text-align:right !important;" title="Rebounds">REB</th>
+                                        <th style="text-align:right !important;" title="Assists">AST</th>
+                                        <th style="text-align:right !important;" title="Blocks">BLK</th>
+                                        <th style="text-align:right !important;" title="Steals">STL</th>
+                                        <th style="text-align:right !important;" title="Fouls">PF</th>
+                                        <th style="text-align:right !important;" title="Turnovers">TO</th>
+                                        <th style="text-align:right !important;" title="Points">PTS</th>
+                                    </tr>
+                                    <tr class="oddrow team-46-13">
+                                        <td>Fri 2/6</td>
+                                        <td>
+                                            <ul class="game-schedule">
+                                                <li class="game-location">vs</li>
+                                                <li class="team-logo-small logo-nba-small nba-small-13"><a
+                                                        href="http://espn.go.com/nba/team/_/name/lal/los-angeles-lakers"></a>
+                                                </li>
+                                                <li class="team-name"><a
+                                                        href="http://espn.go.com/nba/team/_/name/lal/los-angeles-lakers">LAL</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td><span class="greenfont">W</span> <a
+                                                href="/nba/boxscore?id=400579040">103-97</a></td>
+                                        <td style="text-align:right;">23</td>
+                                        <td style="text-align:right;">3-6</td>
+                                        <td style="text-align:right;">.500</td>
+                                        <td style="text-align:right;">0-1</td>
+                                        <td style="text-align:right;">.000</td>
+                                        <td style="text-align:right;">1-1</td>
+                                        <td style="text-align:right;">1.000</td>
+                                        <td style="text-align:right;">2</td>
+                                        <td style="text-align:right;">2</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">1</td>
+                                        <td style="text-align:right;">1</td>
+                                        <td style="text-align:right;">7</td>
+                                    </tr>
+                                    <tr class="evenrow team-46-24">
+                                        <td>Wed 2/4</td>
+                                        <td>
+                                            <ul class="game-schedule">
+                                                <li class="game-location">@</li>
+                                                <li class="team-logo-small logo-nba-small nba-small-24"><a
+                                                        href="http://espn.go.com/nba/team/_/name/sa/san-antonio-spurs"></a>
+                                                </li>
+                                                <li class="team-name"><a
+                                                        href="http://espn.go.com/nba/team/_/name/sa/san-antonio-spurs">SA</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td><span class="redfont">L</span> <a
+                                                href="/nba/boxscore?id=400579031">103-110</a></td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">0-0</td>
+                                        <td style="text-align:right;">.000</td>
+                                        <td style="text-align:right;">0-0</td>
+                                        <td style="text-align:right;">.000</td>
+                                        <td style="text-align:right;">0-0</td>
+                                        <td style="text-align:right;">.000</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">0</td>
+                                    </tr>
+                                    <tr class="oddrow team-46-25">
+                                        <td>Mon 2/2</td>
+                                        <td>
+                                            <ul class="game-schedule">
+                                                <li class="game-location">@</li>
+                                                <li class="team-logo-small logo-nba-small nba-small-25"><a
+                                                        href="http://espn.go.com/nba/team/_/name/okc/oklahoma-city-thunder"></a>
+                                                </li>
+                                                <li class="team-name"><a
+                                                        href="http://espn.go.com/nba/team/_/name/okc/oklahoma-city-thunder">OKC</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td><span class="redfont">L</span> <a
+                                                href="/nba/boxscore?id=400579015">97-104</a></td>
+                                        <td style="text-align:right;">26</td>
+                                        <td style="text-align:right;">2-7</td>
+                                        <td style="text-align:right;">.286</td>
+                                        <td style="text-align:right;">0-1</td>
+                                        <td style="text-align:right;">.000</td>
+                                        <td style="text-align:right;">2-2</td>
+                                        <td style="text-align:right;">1.000</td>
+                                        <td style="text-align:right;">8</td>
+                                        <td style="text-align:right;">2</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">1</td>
+                                        <td style="text-align:right;">2</td>
+                                        <td style="text-align:right;">6</td>
+                                    </tr>
+                                    <tr class="evenrow team-46-6">
+                                        <td>Sat 1/31</td>
+                                        <td>
+                                            <ul class="game-schedule">
+                                                <li class="game-location">vs</li>
+                                                <li class="team-logo-small logo-nba-small nba-small-6"><a
+                                                        href="http://espn.go.com/nba/team/_/name/dal/dallas-mavericks"></a>
+                                                </li>
+                                                <li class="team-name"><a
+                                                        href="http://espn.go.com/nba/team/_/name/dal/dallas-mavericks">DAL</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td><span class="redfont">L</span> <a
+                                                href="/nba/boxscore?id=400578998">93-108</a></td>
+                                        <td style="text-align:right;">30</td>
+                                        <td style="text-align:right;">3-8</td>
+                                        <td style="text-align:right;">.375</td>
+                                        <td style="text-align:right;">2-3</td>
+                                        <td style="text-align:right;">.667</td>
+                                        <td style="text-align:right;">3-4</td>
+                                        <td style="text-align:right;">.750</td>
+                                        <td style="text-align:right;">5</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">5</td>
+                                        <td style="text-align:right;">1</td>
+                                        <td style="text-align:right;">11</td>
+                                    </tr>
+                                    <tr class="oddrow team-46-15">
+                                        <td>Thu 1/29</td>
+                                        <td>
+                                            <ul class="game-schedule">
+                                                <li class="game-location">vs</li>
+                                                <li class="team-logo-small logo-nba-small nba-small-15"><a
+                                                        href="http://espn.go.com/nba/team/_/name/mil/milwaukee-bucks"></a>
+                                                </li>
+                                                <li class="team-name"><a
+                                                        href="http://espn.go.com/nba/team/_/name/mil/milwaukee-bucks">MIL</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td><span class="redfont">L</span> <a
+                                                href="/nba/boxscore?id=400578984">100-115</a></td>
+                                        <td style="text-align:right;">20</td>
+                                        <td style="text-align:right;">1-1</td>
+                                        <td style="text-align:right;">1.000</td>
+                                        <td style="text-align:right;">0-0</td>
+                                        <td style="text-align:right;">.000</td>
+                                        <td style="text-align:right;">2-4</td>
+                                        <td style="text-align:right;">.500</td>
+                                        <td style="text-align:right;">5</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">0</td>
+                                        <td style="text-align:right;">1</td>
+                                        <td style="text-align:right;">1</td>
+                                        <td style="text-align:right;">4</td>
+                                    </tr>
+                                    <tr class="total">
+                                        <td colspan="3">Last 5 Games</td>
+                                        <td style="text-align:right;">19.8</td>
+                                        <td style="text-align:right;">1.8-4.4</td>
+                                        <td style="text-align:right;">.409</td>
+                                        <td style="text-align:right;">0.4-1.0</td>
+                                        <td style="text-align:right;">.400</td>
+                                        <td style="text-align:right;">1.6-2.2</td>
+                                        <td style="text-align:right;">.727</td>
+                                        <td style="text-align:right;">4.0</td>
+                                        <td style="text-align:right;">0.8</td>
+                                        <td style="text-align:right;">0.0</td>
+                                        <td style="text-align:right;">0.0</td>
+                                        <td style="text-align:right;">1.6</td>
+                                        <td style="text-align:right;">1.0</td>
+                                        <td style="text-align:right;">5.6</td>
+                                    </tr>
+                                </table>
+                                <p class="footer"><a href="/nba/player/gamelog/_/id/3064290/aaron-gordon">Complete Game
+                                    Log &#187;</a></p></div>
+                        </div>
+                    </div>
+                    <div class="span-4"><span style="display:none;" id="showproj" value="false"></span>
+
+                        <div class="mod-container mod-no-footer mod-fantasy" id="fantasy-container"
+                             style="display:none;">
+                            <div class="mod-header"><h4>FANTASY BASKETBALL</h4></div>
+                            <div class="mod-content" id="fantasy-content">
+                                {"playerId":1269,"percentChange":-0.6,"averageDraftPosition":140,"percentOwned":1.5,"playerRaterSEASON":-3.7,"playerRater7DAY":-1.9,"mostRecentNews":{"news":"Gordon
+                                (foot) came off the bench Friday and scored seven points (3-6 FG, 0-1 3Pt, 1-1 FT) and
+                                added two rebounds and two assists in 23 minutes against the Lakers.","spin":"Despite
+                                coming off the bench, Gordon played more minutes than starter Channing Frye. Gordon and
+                                Frye put up nearly identical box scores Friday. Even if Gordon earns a larger role in
+                                the rotation, his skill set is such that he is unlikely to have much value outside of
+                                deeper leagues.","date":"Fri Feb 6"},"fullName":"Aaron
+                                Gordon","seasonOutlook":{"outlook":"Gordon has all of the prerequisites to become a
+                                high-level defense monster, capable of hitting the glass and tallying quality rebounds
+                                and steals. However, the offensive side of his game remains a work in progress: He has a
+                                weak jumper and his free throw shooting is even worse (42.2 FT% as a frosh at Arizona).
+                                If he can harness his incredible athleticism enough to earn a starting role at the 3 or
+                                4, Gordon should have immediate value as a rookie, but it may be some time before the
+                                scoring comes. Moreover, his Andre Drummond-esque free throw shooting is going to be a
+                                thorn in the side of your fantasy roster. <i>--TC</i>","seasonId":2015,"date":"Fri Oct
+                                3"},"playerRater30DAY":-3.4,"playerRater15DAY":-2.4,"positionRank":78}
+                            </div>
+                        </div>
+                        <div class="mod-container mod-tabs mod-tabs-header mod-no-footer mod-content-feed">
+                            <div id="feed-tabs" class="mod-header"><h4>AARON GORDON NEWS FEED</h4>
+                                <ul>
+                                    <li class="ui-tabs-selected"><a href="#default-tab">ALL</a></li>
+                                    <li><a href="http://espn.go.com/nba/player/_/id/3064290/view/video">VIDEO</a></li>
+                                    <li><a href="http://espn.go.com/nba/player/_/id/3064290/view/audio">AUDIO</a></li>
+                                    <li><a href="http://espn.go.com/nba/player/_/id/3064290/view/status alerts">STATUS
+                                        ALERTS</a></li>
+                                </ul>
+                            </div>
+                            <div class="mod-content">
+                                <div id="default-tab">
+                                    <ol>
+                                        <li id="status-1423237106000" class="result">
+                                            <div class="player-status questionable"><span>Day-to-day</span>&nbsp;</div>
+                                            <p>Gordon (foot) will be available to play Friday against the Lakers, Josh
+                                                Robbins of the Orlando Sentinel reports.</p><cite>about 1 day ago | Data
+                                            Provided By <a target="_blank"
+                                                           href="http://www.rotowire.com/users/ad_jump.asp?id=8"><img
+                                                    src="http://g.espncdn.com/s/flblm/12/images/88x21_RWdotcom_trans.gif"></a></cite>
+                                        </li>
+                                        <li id="12283965" class="result"><a
+                                                href="http://espn.go.com/nba/story/_/id/12283965/orlando-magic-fire-head-coach-jacque-vaughn?ex_cid=espnapi_public"><img
+                                                class="floatleft" height="75" width="134"
+                                                src="http://a.espncdn.com/photo/2014/0218/nba_g_oladipo_d1_576x324.jpg"/></a>
+
+                                            <h3>
+                                                <a href="http://espn.go.com/nba/story/_/id/12283965/orlando-magic-fire-head-coach-jacque-vaughn?ex_cid=espnapi_public">Magic
+                                                    fire coach Vaughn after 2-plus seasons</a></h3>
+
+                                            <p>The Orlando Magic have fired head coach Jacque Vaughn, general manager
+                                                Rob Hennigan announced Thursday.</p><cite>about 2 days ago | ESPN.com
+                                                news services</cite></li>
+                                        <li id="12233675" class="result"><a rel="js-video" class="vid-thumb floatleft"
+                                                                            href="http://espn.go.com/video/clip?id=12233675&ex_cid=espnapi_public">
+                                            <div class="vid-icon"></div>
+                                            <img class="floatleft" height="75" width="134"
+                                                 src="http://a.espncdn.com/media/motion/2015/0126/dm_150126_NBA_One-Play_Aaron_Gordon/dm_150126_NBA_One-Play_Aaron_Gordon.jpg"/></a>
+
+                                            <h3><a rel="js-video" class="{playerType:'redesign_clubhouse10'}"
+                                                   href="http://espn.go.com/video/clip?id=12233675&ex_cid=espnapi_public">Gordon
+                                                Sick Alley-Oop</a> <img src="http://a.espncdn.com/icons/watch.png"
+                                                                        alt="Watch"/></h3>
+
+                                            <p>Orlando Magic guard Elfrid Payton threw up a nice pass to forward Aaron
+                                                Gordon, who finished with a monster slam.</p><cite>about 12 days
+                                                ago</cite></li>
+                                        <li id="12228322" class="result"><a rel="js-video" class="vid-thumb floatleft"
+                                                                            href="http://espn.go.com/video/clip?id=12228322&ex_cid=espnapi_public">
+                                            <div class="vid-icon"></div>
+                                            <img class="floatleft" height="75" width="134"
+                                                 src="http://a.espncdn.com/media/motion/2015/0125/dm_150125_nba_pacers_magic/dm_150125_nba_pacers_magic.jpg"/></a>
+
+                                            <h3><a rel="js-video" class="{playerType:'redesign_clubhouse10'}"
+                                                   href="http://espn.go.com/video/clip?id=12228322&ex_cid=espnapi_public">Pacers
+                                                Down Magic To Snap Skid</a> <img
+                                                    src="http://a.espncdn.com/icons/watch.png" alt="Watch"/></h3>
+
+                                            <p>The Pacers broke a seven-game losing streak with a 106-99 victory over
+                                                the Magic.</p><cite>about 13 days ago</cite></li>
+                                        <li id="12745" class="result"><a
+                                                href="http://insider.espn.go.com/blog/ncbrecruiting/on-the-trail/post?id=12745&ex_cid=espnapi_public"><img
+                                                class="floatleft" height="75" width="134"
+                                                src="http://a.espncdn.com/media/motion/2015/0121/com_150121_RN_HOOPS_Player_Rankings/com_150121_RN_HOOPS_Player_Rankings.jpg"/></a>
+
+                                            <h3>
+                                                <a href="http://insider.espn.go.com/blog/ncbrecruiting/on-the-trail/post?id=12745&ex_cid=espnapi_public">Biancardi's
+                                                    Breakdown: What to know about new rankings</a> <img
+                                                    src="http://a.espncdn.com/i/in.gif" alt="Insider"></h3>
+
+                                            <p>ESPN basketball recruiting analyst Paul Biancardi breaks down the major
+                                                storylines in the latest rankings for the 2015, 2016 and 2017
+                                                classes.</p><cite>about 17 days ago | Paul Biancardi | ESPN
+                                                Insider</cite></li>
+                                        <li id="31878" class="result"><h3><a
+                                                href="http://insider.espn.go.com/blog/nba/rumors/post?id=31878&ex_cid=espnapi_public">Latest
+                                            timetable for Aaron Gordon</a> <img src="http://a.espncdn.com/i/in.gif"
+                                                                                alt="Insider"></h3>
+
+                                            <p>We haven't seen rookie Aaron Gordon since the middle of November due to a
+                                                foot injury that required surgery. The original timetable for Gordon was
+                                                that he would be re-evaluated in six to eight weeks, and it appears that
+                                                he remains on that plan and should play this season.</p><cite>about 55
+                                                days ago | Tom Carpenter | ESPN Insider</cite></li>
+                                        <li id="11885809" class="result"><a
+                                                href="http://espn.go.com/nba/story/_/id/11885809/orlando-magic-aaron-gordon-foot-indefinitely?ex_cid=espnapi_public"><img
+                                                class="floatleft" height="75" width="134"
+                                                src="http://a.espncdn.com/photo/2014/1116/nba_g_gordon01jr_A_576x324.jpg"/></a>
+
+                                            <h3>
+                                                <a href="http://espn.go.com/nba/story/_/id/11885809/orlando-magic-aaron-gordon-foot-indefinitely?ex_cid=espnapi_public">Magic
+                                                    rookie Gordon (foot) out indefinitely</a></h3>
+
+                                            <p>Orlando Magic rookie Aaron Gordon will be out indefinitely after
+                                                fracturing a bone in his left foot, general manager Rob Hennigan said
+                                                Sunday.</p><cite>about 83 days ago | ESPN.com</cite></li>
+                                        <li id="11877650" class="result"><a rel="js-video" class="vid-thumb floatleft"
+                                                                            href="http://espn.go.com/video/clip?id=11877650&ex_cid=espnapi_public">
+                                            <div class="vid-icon"></div>
+                                            <img class="floatleft" height="75" width="134"
+                                                 src="http://a.espncdn.com/media/motion/2014/1114/dm_141114_nba_magic_bucks_highlight/dm_141114_nba_magic_bucks_highlight.jpg"/></a>
+
+                                            <h3><a rel="js-video" class="{playerType:'redesign_clubhouse10'}"
+                                                   href="http://espn.go.com/video/clip?id=11877650&ex_cid=espnapi_public">Harris
+                                                Leads Magic To Win</a> <img src="http://a.espncdn.com/icons/watch.png"
+                                                                            alt="Watch"/></h3>
+
+                                            <p>Tobias Harris scored a game-high 26 points in the Magic's 101-85 win over
+                                                the Bucks.</p><cite>about 85 days ago</cite></li>
+                                        <li id="11839054" class="result"><a rel="js-video" class="vid-thumb floatleft"
+                                                                            href="http://espn.go.com/video/clip?id=11839054&ex_cid=espnapi_public">
+                                            <div class="vid-icon"></div>
+                                            <img class="floatleft" height="75" width="134"
+                                                 src="http://a.espncdn.com/media/motion/2014/1107/dm_141107_Wolves_Magic/dm_141107_Wolves_Magic.jpg"/></a>
+
+                                            <h3><a rel="js-video" class="{playerType:'redesign_clubhouse10'}"
+                                                   href="http://espn.go.com/video/clip?id=11839054&ex_cid=espnapi_public">Rubio
+                                                Injured In Wolves' Loss</a> <img
+                                                    src="http://a.espncdn.com/icons/watch.png" alt="Watch"/></h3>
+
+                                            <p>Ricky Rubio exited in the second quarter with a sprained left ankle,
+                                                while Aaron Gordon scored 17 points off the bench in the Magic's 112-103
+                                                overtime win over the Timberwolves.</p><cite>about 92 days ago</cite>
+                                        </li>
+                                        <li id="11793291" class="result"><a rel="js-video" class="vid-thumb floatleft"
+                                                                            href="http://espn.go.com/video/clip?id=11793291&ex_cid=espnapi_public">
+                                            <div class="vid-icon"></div>
+                                            <img class="floatleft" height="75" width="134"
+                                                 src="http://a.espncdn.com/media/motion/2014/1030/dm_141030_nba_wizards_magic_highlight/dm_141030_nba_wizards_magic_highlight.jpg"/></a>
+
+                                            <h3><a rel="js-video" class="{playerType:'redesign_clubhouse10'}"
+                                                   href="http://espn.go.com/video/clip?id=11793291&ex_cid=espnapi_public">Wizards
+                                                Hold Off Magic</a> <img src="http://a.espncdn.com/icons/watch.png"
+                                                                        alt="Watch"/></h3>
+
+                                            <p>John Wall scored 30 points and dished out 12 assists in the Wizards'
+                                                105-98 win over the Magic.</p><cite>about 100 days ago</cite></li>
+                                        <li id="11792630" class="result"><a rel="js-video" class="vid-thumb floatleft"
+                                                                            href="http://espn.go.com/video/clip?id=11792630&ex_cid=espnapi_public">
+                                            <div class="vid-icon"></div>
+                                            <img class="floatleft" height="75" width="134"
+                                                 src="http://a.espncdn.com/media/motion/2014/1030/dm_141030_NBAonePlayAaronGordonlob/dm_141030_NBAonePlayAaronGordonlob.jpg"/></a>
+
+                                            <h3><a rel="js-video" class="{playerType:'redesign_clubhouse10'}"
+                                                   href="http://espn.go.com/video/clip?id=11792630&ex_cid=espnapi_public">Gordon
+                                                Makes Presence Known In Orlando</a> <img
+                                                    src="http://a.espncdn.com/icons/watch.png" alt="Watch"/></h3>
+
+                                            <p>Orlando's Ben Gordon throws up a lob on a fast break to Aaron Gordon
+                                                against the Wizards.</p><cite>about 100 days ago</cite></li>
+                                        <li style="list-style: none"><a class="view-more-posts"
+                                                                        href="http://espn.go.com/nba/player/_/id/3064290/start/11">more</a>
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div id="clubhouse-video-player" class="videoplayer1 videoplayer-redesign_clubhouse10">
+                                    <!-- placeholder -->                        </div>
+                            </div>
+                        </div>
+                        <script>                    jQuery.getScriptCache('http://a.espncdn.com/combiner/c/?js=espn.newsfeed.r5.js', function () { //r3						espn.core.init.newsfeed();					});				</script>
+                    </div>
+                    <div class="span-2 last">
+                        <div class="mod-container mod-no-header-footer mod-myespn" id="myespn-personalization"
+                             style="display:none;">
+                            <div class="mod-content">
+                                <div class="gradient-container">
+                                    <div class="inline-header"><h4>MyESPN</h4>
+                                        <ul class="links" style="padding-top:5px;">
+                                            <li><a href="http://espn.go.com/personalization/index">Customize &#187;</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="personalization-teams"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mod-container mod-no-footer mod-open-list mod-quick-facts">
+                            <div class="mod-header"><h4>QUICK FACTS</h4></div>
+                            <div class="mod-content">
+                                <ul>
+                                    <li class="first last">
+                                        <dl>
+                                            <dt>2015 Salary: <strong>$3,992,040</strong></dt>
+                                            <dd><span>4 years remaining</span></dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--espn.us.com.nba sitezone--><!--http://ad.Doubleclick.net hostUrl-->
+                        <script>if ("undefined" != typeof ad_kvps && "undefined" != typeof ad_u && "undefined" != typeof ad_counter && "undefined" != typeof ad_ord) {
+                            if ("undefined" == typeof ad_site || "undefined" == typeof ad_zone)var ad_site = "espn.us.com.nba", ad_zone = "nbaplayer";
+                            var ad_finalString = "http://ad.Doubleclick.net/adj/" + ad_site + "/" + ad_zone + ";" + ad_kvps + "pos=InContent;" + ad_u + "dcopt=ist;sz=300x600,300x250,1x1;tile=" + ad_counter + ";ord=" + ad_ord;
+                            document.write('<div data-cb-ad-id="InContent" data-cb-dfp-id="' + ad_kvps + 'sz=300x600,300x250,1x1"><script src=' + ad_finalString + '>\x3c/script></div>');
+                            ad_counter++
+                        }
+                        ;</script>
+                        <noscript><a
+                                href="http://ad.Doubleclick.net/jump/espn.us.com.nba/nbaplayer;pgtyp=nbaplayer;sp=espn;pl=3064290;sz=300x600,300x250,1x1;"
+                                target="_blank"><img
+                                src="http://ad.Doubleclick.net/ad/espn.us.com.nba/nbaplayer;pgtyp=nbaplayer;sp=espn;pl=3064290;sz=300x600,300x250,1x1;"
+                                border="0" alt=""></a></noscript>
+                        <!-- begin sponsored links -->
+                        <div id="sponsored" class="mod-container mod-no-footer"><!-- begin sp links -->
+                            <div style="margin: 10px 0 0 0;"><!-- CONTENT: 09story304, SPORT: nba-->
+                                <div style="margin:0px 0px 5px 0px; text-align: center; width: 304px;">
+                                    <ins id="splinks-58672"></ins>
+                                    <script type="text/javascript">            (function ($) {                // config params                var width = '304',                    height = '300',                    client = 'ca-espn-q-players',                    channel = 'nba right',                    lang = 'null';                // builds iframe HTML                function buildIframe(width, height, client, channel) {                    var path = 'http://sports-ak.espn.go.com/espn/sponsoredlinks/adsense/iframeCached';                    // pass params as the hash as they are only needed on the client                    var hash = '58672|' + width + '|' + height + '|' + client + '|' + channel + '|' + lang;                    var iframe = '<iframe seamless scrolling="no" frameborder="0" height="' + height + '" width="' + width + '" src="' + path + '#' + hash + '"></iframe>';                    return iframe;                }                // handles messages from child iframe                function handleMessage(event) {                    if (event.origin === 'http://sports-ak.espn.go.com') {                        $('#splinks-' + event.data).html('
+                                        <!-- no ads served -->
+                                        ');                    }                }                if (typeof window.addEventListener === '
+                                        function
+
+                                        ') {                    window.addEventListener('
+                                        message
+                                        ', handleMessage, false);                } else {                    window.attachEvent('
+                                        onmessage
+                                        ', handleMessage);                }                // insert the iframe                if (espn.geo) {                    espn.geo.getLocation().done(function(loc) {                        if (loc.country.isoCode !== '
+                                        usa
+                                        ' || espn.core.mobileApple || espn.core.android) {                            // outside US or not on desktop                            client = '
+                                        ca - espn - nq
+                                        ';                        }                        $('#splinks - 58672
+                                        ').html(buildIframe(width, height, client, channel));                    }).fail(function() {                        $('#splinks - 58672
+                                        ').html(buildIframe(width, height, '
+                                        ca - espn - nq
+                                        ', channel));                    });                } else {                    // can'
+                                        t
+                                        locate
+                                        them, assume
+                                        they
+                                        are
+                                        outside
+                                        US
+                                        $('#splinks-58672').html(buildIframe(width, height, 'ca-espn-nq', channel));
+                                    }
+                                    })
+                                    (jQuery);        </script>
+                                </div>
+                            </div>
+                            <!-- end sp links --></div>
+                        <!-- end sponsored links --></div>
+                    <div class="clear">
+                        <div style="margin:5px 0;" class="tablesm">Data provided by Elias Sports Bureau</div>
+                    </div>
+                </div>
+            </div>
+            <div id="nav-wrapper" class="container">
+                <div id="nav-wrapper-container">
+                    <div id="nav-main"><!-- begin site nav -->
+                        <ul class="top"><!-- begin site nav --><p><!-- begin site nav --></p>
+                            <ul class="top" id="nav-main-list"><!-- start: Menuitem :: MyTAB -->
+                                <li class="last myespn" id="menu-myespn"><a class="myespn" ref="#">MyESPN</a></li>
+                                <!-- start: Menuitem :: NFL -->
+                                <li class="sport-menu default t-nfl" data-sportid="28" id="menu-nfl"><a
+                                        href="http://espn.go.com/nfl/"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_nfl">NFL</a></li>
+                                <!-- start: Menuitem :: MLB -->
+                                <li class="sport-menu default t-mlb" data-sportid="10" id="menu-mlb"><a
+                                        href="http://espn.go.com/mlb/"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_mlb">MLB</a></li>
+                                <!-- start: Menuitem :: NBA -->
+                                <li class="sport-menu default t-nba selected" data-sportid="46" id="menu-nba"><a
+                                        href="http://espn.go.com/nba/"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_nba">NBA</a></li>
+                                <!-- start: Menuitem :: NHL -->
+                                <li class="sport-menu default t-nhl" data-sportid="90" id="menu-nhl"><a
+                                        href="http://espn.go.com/nhl/"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_nhl">NHL</a></li>
+                                <!-- start: Menuitem :: NCAA FB -->
+                                <li class="sport-menu default t-ncf" data-sportid="23" id="menu-ncf"><a
+                                        href="http://espn.go.com/college-football/"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_ncf">NCAAF</a></li>
+                                <!-- start: Menuitem :: NCAA BB -->
+                                <li class="sport-menu default t-ncb" data-sportid="41" id="menu-ncb"><a
+                                        href="http://espn.go.com/mens-college-basketball/"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_ncb">NCAAM</a></li>
+                                <!-- start: Menuitem :: NASCAR -->
+                                <li class="sport-menu default t-nascar" data-sportid="2020" id="menu-nascar"><a
+                                        href="http://espn.go.com/racing/nascar/"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_nascar">NASCAR</a></li>
+                                <!-- start: Menuitem :: SOCCER -->
+                                <li class="sport-menu default t-soccer" data-sportid="600" id="menu-soccer"><a
+                                        href="http://espnfc.us/" name="&amp;lpos=sitenavdefault&amp;lid=sitenav_soccer">SOCCER</a>
+                                </li>
+                                <!-- start: Menuitem :: GOLF -->
+                                <li class="sport-menu t-golf" data-sportid="1106" id="menu-golf" style="display: none;">
+                                    <a href="http://espn.go.com/golf/"
+                                       name="&amp;lpos=sitenavdefault&amp;lid=sitenav_golfl">GOLF</a></li>
+                                <!-- start: Menuitem :: TENNIS -->
+                                <li class="sport-menu t-tennis" data-sportid="850" id="menu-tennis"
+                                    style="display: none;"><a href="http://espn.go.com/tennis/"
+                                                              name="&amp;lpos=sitenavdefault&amp;lid=sitenav_tennis">TENNIS</a>
+                                </li>
+                                <!-- start: Menuitem :: BOXING-->
+                                <li class="sport-menu t-boxing" data-sportid="1000" id="menu-boxing"
+                                    style="display: none;"><a href="http://espn.go.com/boxing/"
+                                                              name="&amp;lpos=sitenavdefault&amp;lid=sitenav_boxing">BOXING</a>
+                                </li>
+                                <!-- start: Menuitem :: MMA -->
+                                <li class="sport-menu t-mma" data-sportid="3301" id="menu-mma" style="display: none;"><a
+                                        href="http://espn.go.com/mma/"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_mma">MMA</a></li>
+                                <!-- start: Menuitem :: ALL SPORTS -->
+                                <li class="nav-allsports t-allsports" id="menu-allsports"><a
+                                        href="http://espn.go.com/sports/"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_allsports">MORE SPORTS</a></li>
+                                <!-- start: Menuitem :: INSIDER -->
+                                <li class="sport-menu t-insider" id="menu-insider" style="display: none;"><a
+                                        href="http://insider.espn.go.com/insider/index"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_insider">INSIDER</a></li>
+                                <!-- start: Menuitem :: SPORTSNATION -->
+                                <li class="sport-menu t-sportsnation" id="menu-sportsnation" style="display: none;"><a
+                                        href="http://espn.go.com/sportsnation/"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_sportsnation">SN</a></li>
+                                <!-- start: Menuitem :: RADIO & MORE -->
+                                <li class="right-menu two-line last t-radio" id="menu-radio"><a
+                                        href="http://espn.go.com/espnradio/"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_radioandmore">RADIO<span>&amp; MORE</span></a>
+                                </li>
+                                <!-- start: Menuitem :: espnW & PLAYBOOK -->
+                                <li class="right-menu two-line t-page2" id="menu-page2"><a
+                                        href="http://espn.go.com/espnw/"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_espnwandxgames" target="_blank">espnW<span>&amp; X GAMES</span></a>
+                                </li>
+                                <!-- start: Menuitem :: FANTASY & GAMES -->
+                                <li class="right-menu two-line t-fantasy" id="menu-fantasy"><a
+                                        href="http://games.espn.go.com/frontpage"
+                                        name="&amp;lpos=sitenavdefault&amp;lid=sitenav_fantasy">FANTASY<span>&amp; GAMES</span></a>
+                                </li>
+                                <!-- start: Menuitem :: WATCH -->
+                                <li class="right-menu t-watch" id="menu-watch"><a href="http://espn.go.com/video/"
+                                                                                  name="&amp;lpos=sitenavdefault&amp;lid=sitenav_watch">WATCH</a>
+                                </li>
+                            </ul>
+                            <!-- end site nav --><!-- end site nav --></ul>
+                        <!-- end site nav --></div>
+                    <div class="nav-main-secondary"><!--/nba/player-->
+                        <ul>
+                            <li><a href="http://espn.go.com/nba/" name="&lpos=subnav&lid=subnav_NBA_NBA+Home">NBA
+                                Home</a></li>
+                            <li><a href="http://scores.espn.go.com/nba/scoreboard"
+                                   name="&lpos=subnav&lid=subnav_NBA_Scoreboard">Scores</a></li>
+                            <li><a href="http://espn.go.com/nba/schedule"
+                                   name="&lpos=subnav&lid=subnav_NBA_NBA+Schedule">Schedule</a></li>
+                            <li><a href="http://espn.go.com/nba/statistics" name="&lpos=subnav&lid=subnav_NBA_Stats">Stats</a>
+                            </li>
+                            <li><a href="http://espn.go.com/nba/standings" name="&lpos=subnav&lid=subnav_NBA_Standings">Standings</a>
+                            </li>
+                            <li><a href="http://espn.go.com/nba/hollinger/powerrankings"
+                                   name="&lpos=subnav&lid=subnav_NBA_Rankings">Rankings</a></li>
+                            <li class="active"><a href="http://espn.go.com/nba/players"
+                                                  name="&lpos=subnav&lid=subnav_NBA_Players">Players</a></li>
+                            <li class="expandable"><a href="http://espn.go.com/nba/teams"
+                                                      name="&lpos=subnav&lid=subnav_NBA_Teams"><span>Teams</span></a>
+
+                                <div>
+                                    <dl>
+                                        <dt class="first">Atlantic</dt>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/bos/boston-celtics"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_bos">Boston Celtics</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/bkn/brooklyn-nets"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_bkn">Brooklyn Nets</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/ny/new-york-knicks"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_ny">New York Knicks</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/phi/philadelphia-76ers"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_phi">Philadelphia 76ers</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/tor/toronto-raptors"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_tor">Toronto Raptors</a></dd>
+                                        <dt class="first">Central</dt>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/chi/chicago-bulls"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_chi">Chicago Bulls</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/cle/cleveland-cavaliers"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_cle">Cleveland Cavaliers</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/det/detroit-pistons"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_det">Detroit Pistons</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/ind/indiana-pacers"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_ind">Indiana Pacers</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/mil/milwaukee-bucks"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_mil">Milwaukee Bucks</a></dd>
+                                        <dt class="first">Southeast</dt>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/atl/atlanta-hawks"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_atl">Atlanta Hawks</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/cha/charlotte-hornets"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_cha">Charlotte Hornets</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/mia/miami-heat"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_mia">Miami Heat</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/orl/orlando-magic"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_orl">Orlando Magic</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/wsh/washington-wizards"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_was">Washington Wizards</a></dd>
+                                    </dl>
+                                    <dl class="last">
+                                        <dt class="first">Pacific</dt>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/gs/golden-state-warriors"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_gs">Golden State Warriors</a>
+                                        </dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/lac/los-angeles-clippers"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_lac">Los Angeles Clippers</a>
+                                        </dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/lal/los-angeles-lakers"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_lal">Los Angeles Lakers</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/phx/phoenix-suns"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_phx">Phoenix Suns</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/sac/sacramento-kings"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_sac">Sacramento Kings</a></dd>
+                                        <dt class="first">Southwest</dt>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/dal/dallas-mavericks"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_dal">Dallas Mavericks</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/hou/houston-rockets"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_hou">Houston Rockets</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/mem/memphis-grizzlies"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_mem">Memphis Grizzlies</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/no/new-orleans-pelicans"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_no">New Orleans Pelicans</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/sa/san-antonio-spurs"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_sa">San Antonio Spurs</a></dd>
+                                        <dt class="first">Northwest</dt>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/den/denver-nuggets"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_den">Denver Nuggets</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/min/minnesota-timberwolves"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_min">Minnesota Timberwolves</a>
+                                        </dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/okc/oklahoma-city-thunder"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_okc">Oklahoma City Thunder</a>
+                                        </dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/por/portland-trail-blazers"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_por">Portland Trail Blazers</a>
+                                        </dd>
+                                        <dd><a href="http://espn.go.com/nba/team/_/name/utah/utah-jazz"
+                                               name="&lpos=subnav&lid=subnav_NBA_Teams_uth">Utah Jazz</a></dd>
+                                    </dl>
+                                </div>
+                            </li>
+                            </li>
+                            <li><a href="http://espn.go.com/nba/draft">Draft</a></li>
+                            <li><a href="http://espn.go.com/nba/theten">The Ten</a></li>
+                            <li class="expandable"><a href="http://espn.go.com/blog/truehoop"
+                                                      name="&lpos=subnav&lid=subnav_NBA_TrueHoop"><span>TrueHoop</span></a>
+
+                                <div>
+                                    <dl class="last">
+                                        <dd><a href="http://espn.go.com/blog/truehoop"
+                                               name="&lpos=subnav&lid=subnav_NBA_TrueHoop">TrueHoop</a></dd>
+                                        <dd><a href="http://espn.go.com/blog/truehoop/category/_/name/truehoop-tv"
+                                               name="&lpos=subnav&lid=subnav_NBA_TrueHoopTV">TrueHoop TV</a></dd>
+                                        <dd><a href="http://espn.go.com/blog/truehoop/category/_/name/truecities"
+                                               name="&lpos=subnav&lid=subnav_TrueCities">TrueCities</a></dd>
+                                        <dd><a href="http://espn.go.com/blog/truehoop/category/_/name/hoopidea"
+                                               name="&lpos=subnav&lid=subnav_HoopIdea">HoopIdea</a></dd>
+                                    </dl>
+                                </div>
+                            </li>
+                            <li class="expandable"><a href="http://espn.go.com/blog/truehoop"
+                                                      name="&lpos=subnav&lid=subnav_NBA_Blogs"><span>Blogs</span></a>
+
+                                <div>
+                                    <dl class="last">
+                                        <dd><a href="http://espn.go.com/blog/boston/celtics"
+                                               name="&lpos=subnav&lid=subnav_NBA_Blog_Celtics">Boston Celtics</a></dd>
+                                        <dd><a href="http://espn.go.com/blog/brooklyn-nets"
+                                               name="&lpos=subnav&lid=subnav_NBA_Blog_Nets">Brooklyn Nets</a></dd>
+                                        <dd><a href="http://espn.go.com/blog/chicago-bulls"
+                                               name="&lpos=subnav&lid=subnav_NBA_Blog_Bulls">Chicago Bulls</a></dd>
+                                        <dd><a href="http://espn.go.com/blog/cleveland-cavaliers"
+                                               name="&lpos=subnav&lid=subnav_NBA_Blog_Cavs">Cleveland Cavaliers</a></dd>
+                                        <dd><a href="http://espn.go.com/blog/dallas-mavericks"
+                                               name="&lpos=subnav&lid=subnav_NBA_Blog_Mavericks">Dallas Mavericks</a>
+                                        </dd>
+                                        <dd><a href="http://espn.go.com/blog/golden-state-warriors"
+                                               name="&lpos=subnav&lid=subnav_NBA_Blog_Warriors">Golden State
+                                            Warriors</a></dd>
+                                        <dd><a href="http://espn.go.com/blog/los-angeles-clippers/"
+                                               name="&lpos=subnav&lid=subnav_NBA_Blog_Clippers">Los Angeles Clippers</a>
+                                        </dd>
+                                        <dd><a href="http://espn.go.com/blog/los-angeles-lakers"
+                                               name="&lpos=subnav&lid=subnav_NBA_Blog_Lakers">Los Angeles Lakers</a>
+                                        </dd>
+                                        <dd><a href="http://espn.go.com/blog/truehoop/miamiheat"
+                                               name="&lpos=subnav&lid=subnav_NBA_Blog_Heat">Miami Heat</a></dd>
+                                        <dd><a href="http://espn.go.com/blog/new-york-knicks"
+                                               name="&lpos=subnav&lid=subnav_NBA_Blog_Knicks">New York Knicks</a></dd>
+                                        <dd><a href="http://espn.go.com/blog/okc-thunder"
+                                               name="&lpos=subnav&lid=subnav_NBA_Blog_Thunder">Oklahoma City Thunder</a>
+                                        </dd>
+                                        <dd><a href="http://espn.go.com/blog/marc-stein"
+                                               name="&lpos=subnav&lid=subnav_Stein_Line_Live">Stein Line Live</a></dd>
+                                    </dl>
+                                </div>
+                            </li>
+                            <li><a href="http://insider.espn.go.com/blog/nba/rumors/"
+                                   name="&lpos=subnav&lid=subnav_NBA_Rumors">Rumors</a></li>
+                            <!--<li><a href="http://espn.go.com/espn/chalk/">Odds</a></li>-->
+                            <li class="expandable"><a href="" name="&lpos=subnav&lid=subnav_NBA_More"><span>More</span></a>
+
+                                <div>
+                                    <!--<dl><dt class="first">Blogs</dt><dd><a href="http://espn.go.com/blog/marc-stein" name="&lpos=subnav&lid=subnav_Stein_Line_Live">Stein Line Live</a></dd><dd><a href="http://espn.go.com/blog/truehoop" name="&lpos=subnav&lid=subnav_TrueHoop">TrueHoop</a></dd><dt class="first">Events</dt><dd><a href="http://espn.go.com/nba/preview2014/" name="&lpos=subnav&lid=subnav_All_Star_Game">2014-15 Preview</a></dd><dd><a href="http://espn.go.com/nba/playoffs/2014/matchup" name="&lpos=subnav&lid=subnav_NBA_Playoffs">2014 NBA Playoffs</a></dd><dd><a href="http://espn.go.com/nba/draft" name="&lpos=subnav&lid=subnav_NBA_Draft">2014 NBA Draft</a></dd><dd><a href="http://sports.espn.go.com/nba/feature/index?page=nbaallstar2014" name="&lpos=subnav&lid=subnav_All_Star_Game">2014 All-Star Game</a></dd><dd><a href="http://espn.go.com/nba/halloffame" name="&lpos=subnav&lid=subnav_Hall_Of_Fame">Basketball HOF</a></dd></dl>-->
+                                    <dl class="last">
+                                        <dd><a href="http://espn.go.com/nba/allstargame"
+                                               name="&lpos=subnav&lid=subnav_NBA_ASG">All-Star Game</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/history/leaders"
+                                               name="&lpos=subnav&lid=subnav_NBA_Leaders">All-time Leaders</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/history/awards"
+                                               name="&lpos=subnav&lid=subnav_NBA_Awards">Awards History</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/coaches"
+                                               name="&lpos=subnav&lid=subnav_NBA_Coaches">Coaches</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/depth"
+                                               name="&lpos=subnav&lid=subnav_Depth_Charts">Depth Charts</a></dd>
+                                        <dd><a href="http://insider.espn.go.com/nba/draft/results/team"
+                                               name="&lpos=subnav&lid=subnav_Draft_History">Draft History</a></dd>
+                                        <dd><a href="http://games.espn.go.com/frontpage/basketball"
+                                               name="&lpos=subnav&lid=subnav_Fantasy">Fantasy Hoops</a></dd>
+                                        <dd>
+                                            <a href="http://espn.go.com/nba/story/_/id/11377133/nba-free-agents-2015-2016"
+                                               name="&lpos=subnav&lid=subnav_NBA_Free_Agents">Free Agents</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/halloffame"
+                                               name="&lpos=subnav&lid=subnav_NBA_HOFs">Hall of Fame</a></dd>
+                                        <dd><a href="http://espn.go.com/espn/chalk/"
+                                               name="&lpos=subnav&lid=subnav_NBA_Odds">Odds & Info</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/salaries"
+                                               name="&lpos=subnav&lid=subnav_NBA_Salaries">Salaries</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/tradeMachine"
+                                               name="&lpos=subnav&lid=subnav_NBA_TradeMachine">Trade Machine</a></dd>
+                                        <dd><a href="http://espn.go.com/nba/transactions"
+                                               name="&lpos=subnav&lid=subnav_NBA_Transactions">Transactions</a></dd>
+                                    </dl>
+                                </div>
+                            </li>
+                            <li><a href="http://www.stubhub.com/nba-tickets/" target="_blank"
+                                   onclick="this.href=this.href+'?gcid=C12289x522&gtkw=NBA+Sub+Nav'" class="external"
+                                   name="&lpos=subnav&lid=subnav_NBA+Tickets">Tickets</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end content --></div>
+    <!-- end subheader -->
+    <script>espn.core.init.nav();
+    espn.insider.checkUserForPromo();</script>
+    <!-- begin footer -->
+    <div id="footer" class="container">
+        <script type="text/javascript">//<![CDATA[var link = window.location;var bugText = '<a href="#" onclick="window.open(\'http://dynamic.espn.go.com/espn/bugs?url=' + escape(link) + '\', \'Bugs\',\'noresizable,noscrollbars,height=400,width=400\');">Report a Bug</a> | ';//]]></script>
+        <span style="font-weight:bold;">ESPN.com:</span> <a
+            href="http://sports.espn.go.com/espn/news/story?page=help/index">Help</a> | <a
+            href="http://espnmediazone.com/us/" rel="nofollow">Press</a> | <a
+            href="http://www.espncms.com/Advertise-on-ESPN.aspx" rel="nofollow">Advertise on ESPN.com</a> | <a
+            href="http://www.espncms.com" rel="nofollow">Sales Media Kit</a> | <a
+            href="http://preferences.truste.com/2.0/?type=espn&affiliateId=148"
+            onclick="window.open('http://preferences.truste.com/2.0/?type=espn&affiliateId=148','popup','width=986,height=878,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false">Interest-Based
+        Ads</a> |
+        <script type="text/javascript">document.write(bugText);</script>
+        <a href="http://espn.go.com/espn/corrections">Corrections</a> | <a
+            href="http://sports.espn.go.com/espn/news/story?page=contact/index">Contact Us</a> | <a
+            href="http://espn.go.com/espn/sitemap">Site Map</a> | <a href="http://espncareers.com">Jobs at ESPN</a> |
+        <!--a href="http://corporate.disney.go.com/corporate/sourcing.html" rel="nofollow"><span style="font-weight:bold;">Supplier Information</span></a--><a
+            href="http://go.com">Go.com</a><br/>&copy; 2015 ESPN Internet Ventures. <a
+            href="http://disneytermsofuse.com/" rel="nofollow">Terms of Use</a>, <a
+            href="http://disneyprivacycenter.com/" rel="nofollow">Privacy Policy</a>, <a
+            href="https://disneyprivacycenter.com/notice-to-california-residents/" rel="nofollow">Your California
+        Privacy Rights</a>, <a href="https://disneyprivacycenter.com/kids-privacy-policy/english/">Children's Online
+        Privacy Policy</a> and <a href="http://preferences-mgr.truste.com/?type=espn&affiliateId=148">Interest-Based
+        Ads</a> are applicable to you. All rights reserved.
+        <!--<a href="http://www.espnshop.com/" onClick="location.href('http://log.go.com/log?srvc=sz&guid=73B641A0-6660-4EFC-B8FF-9DE23E8CD9BD&drop=0&addata=3374:65:478847:65&a=1&goto=http://www.espnshop.com/');return false">Shop</a>-->
+    </div>
+    <!-- end footer --><!--[if lte IE 9]></div><![endif]--></div>
+<!-- end bg-elements -->
+<script type="text/javascript">jQuery(document).ready(function () {
+    var ua = navigator.userAgent;
+    if (ua && ua.indexOf("Trident/4.0") >= 0) {
+        jQuery(".webicon").show();
+    }
+    if (ua && ua.indexOf("Trident/4.0") >= 0) {
+        jQuery(".webiconmod").show();
+    }
+});</script>
+<!-- SiteCatalyst code version: H.21.3 Copyright 1997-2010 Omniture, Inc. http://www.omniture.com -->
+<script type="text/javascript">    var undef = 'undefined'    , s_account = "wdgespcom"    , omniPageName = "espn:nba:profile"        , insiderStatus = ""    , anGen = ""    , anYear = ""    , anDateString = ""    , anLoginStatus = ""    , callOmniture = function () {        /*-- core story s_omni properties --*/
+    if (typeof anCV != "undefined") {
+        anParseLoginBarInfo(anCV);
+    }
+    s_omni.pageName = "nba:profile";
+    s_omni.server = window.location.host; // Server from the Host		s_omni.channel = "nba";		s_omni.prop1 = "espn";		s_omni.prop4 = "playerprofile";		s_omni.prop5 = "nba";		s_omni.prop11 = (insiderStatus !== null) ? insiderStatus + ":premium-no" : "premium-no";		s_omni.prop13 = "automated-general";		s_omni.prop17 = "en";		s_omni.prop21 = anDateString;		s_omni.prop22 = anGen;		s_omni.prop25 = "basketball";		s_omni.prop26 = "nba";		s_omni.prop29 = anLoginStatus;		s_omni.prop30 = "n";		s_omni.prop32 = "nba:playerid=3064290-aaron+gordon";		s_omni.hier1 = "nba:profile";		s_omni.eVar7 = anYear + ":" + anGen + ":" + anLoginStatus + ":" + s_omni.prop11 + ":";		s_omni.eVar9 = "en";		s_omni.eVar13 = "nba:profile";		s_omni.eVar19 = "basketball";		s_omni.eVar21 = "nba";				if (s_omni.prop11=="anonymous:premium-yes" || s_omni.prop11=="insider-no:premium-yes" && typeof s_omni.prop4!="undefined" &&			(s_omni.prop4=="story" || s_omni.prop4=="blog")) {			if (typeof s_omni.events != "undefined" && s_omni.events!="") {				s_omni.events = s_omni.events+",event8";			} else { 				s_omni.events="event8";			}		}				s_omni.prop38 = "Desktop";		s_omni.eVar38 = "D=c38";						anVersion = "_11apr14_v2_0_r5_";				/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/				var s_code = s_omni.t();		if(s_code) {			var sci = new Image(1,1);			sci.onload = function() {console.log("loaded no append")};			sci.src = s_code;		}			};	</script>
+<script type="text/javascript">    if (typeof(s_omni) === 'undefined') {
+    jQuery(function ($) {			// we want to load the analytics files from the cache if possible - so, let's use full $.ajax() calls			$.ajax({				type:'GET',				url: 'http://a.espncdn.com/combiner/c?js=analytics/sOmni.js,analytics/analytics.js,analytics/externalnielsen.js&v=15',				dataType: 'script',				cache: true,				success: function() {					var lgSrc;					if(typeof anCV !== undef && anCV === '' && document.getElementById('form-memberarea') != null) {						lgSrc = 'https://r.espn.go.com/members/util/getUserInfo?cb=runOmnitureIndependently&regType=true';						$.getScript(lgSrc); // we don't want this to be cached - so we'll use the $.getScript() method					} else {						callOmniture();					}				}			});		});	}</script>
+<!-- End SiteCatalyst code version: H.21. --><!-- Begin comScore Tag -->
+<script type="text/javascript">    if (typeof(jQuery) !== 'undefined') {
+    jQuery(function ($) {
+        if (typeof window._comscore === 'undefined') {
+            window._comscore = window._comscore || [];
+            window._comscore.push({ c1: "2", c2: "3000005" });
+            jQuery.getScript((document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js");
+        }
+    });
+}</script>
+<!-- End comScore Tag -->
+<script>        var _sf_async_config = {            "uid": 22222, "domain": "espn.go.com", "pingServer": "pespn.chartbeat.net", "useCanonical": true, "useSubDomains": false, "sections": "nba", "authors": "playerprofile"        };
+if (typeof(ad_site) !== 'undefined') {
+    _sf_async_config.zone = ad_site;
+}		// load both chartbeat_pub and chartbeat_video		(function () {			function a() {				window._sf_endpt = (new Date()).getTime();				var cbDomain = (("https:"==document.location.protocol)?"https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/":"http://static.chartbeat.com/");				var c = document.createElement("script");				c.setAttribute("language","javascript");				c.setAttribute("type","text/javascript");				c.setAttribute("src", cbDomain+"js/chartbeat_pub.js");				document.body.appendChild(c);				if(typeof StrategyInterface !== 'undefined' && (typeof espn !== 'undefined' && typeof espn.video !== 'undefined')){					var e = document.createElement("script");					e.setAttribute("language",	"javascript");					e.setAttribute("type", "text/javascript");					e.setAttribute("src", cbDomain+"js/chartbeat_video.js");					document.body.appendChild(e);				}			}			var b = window.onload;			window.onload = (typeof window.onload != "function") ? a : function () { b(); a() }		})();		//(function(){function a(){window._sf_endpt=(new Date()).getTime();var c=document.createElement("script");c.setAttribute("language","javascript");c.setAttribute("type","text/javascript");c.setAttribute("src",(("https:"==document.location.protocol)?"https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/":"http://static.chartbeat.com/")+"js/chartbeat_pub.js");document.body.appendChild(c)}var b=window.onload;window.onload=(typeof window.onload!="function")?a:function(){b();a()}})();		</script>
+<!-- dynamic logic: safecount -->
+<script src="http://content.dl-rms.com/rms/mother/508/nodetag.js"></script>
+<script type="text/javascript" charset="utf-8">buildOutHeadlinesForPinnedSite();</script>
+<script type="text/javascript">   var isInIFrame = (window.location != window.parent.location) ? true : false;
+if (isInIFrame) {
+    if (document.referrer) {
+        if (document.referrer.indexOf(".go.com") == -1) {
+            top.location.href = self.location.href;
+        }
+    }
+}</script>
+<script type='text/javascript'>  //<![CDATA[    (function(){    window.gravityInsightsParams = {      'type': 'content',      'action': '',      'site_guid': '9a41401e9b7c945344e001ee7f23031e'    };    var b,c;b="https:"===document.location.protocol?"https://b-ssl.grvcdn.com/moth-min.js":"http://b.grvcdn.com/moth-min.js";window.grvMakeScript=function(d){var a;a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=d;return a};c=document.getElementsByTagName("script")[0];b&&c.parentNode.insertBefore(window.grvMakeScript(b),c);})();  //]]></script>
+<script type="text/javascript">if (!NREUMQ.f) {
+    NREUMQ.f = function () {
+        NREUMQ.push(["load", new Date().getTime()]);
+        var e = document.createElement("script");
+        e.type = "text/javascript";
+        e.src = (("http:" === document.location.protocol) ? "http:" : "https:") + "//" + "js-agent.newrelic.com/nr-100.js";
+        document.body.appendChild(e);
+        if (NREUMQ.a)NREUMQ.a();
+    };
+    NREUMQ.a = window.onload;
+    window.onload = NREUMQ.f;
+}
+;
+NREUMQ.push(["nrfj", "beacon-4.newrelic.com", "7c16f39f8d", "2256671", "NVxTZBFZXUFQW0ZQVwwWZEIKF11QUBdCVVkbXEM=", 0, 24, new Date().getTime(), "", "", "", "", ""]);</script>
+</body>
+</html>

@@ -36,11 +36,8 @@ public class EspnFantasyIdToStandardIdProvider {
 
     public Map<Integer, Integer> getFantasyIdMappedToNormalIdMap() throws IOException {
         List<String> allNbaTeamRosterPageUrls = getNbaTeamRosterPagesUrls();
-
-//        allNbaTeamRosterPageUrls.forEach(u -> savePage(u));
-
         List<String> allNbaPlayerProfilePageUrls = getAllNbaPlayerProfilePageUrls(allNbaTeamRosterPageUrls);
-
+        allNbaPlayerProfilePageUrls.forEach(u -> savePage(u));
 
         return new LinkedHashMap<>();
     }
@@ -66,9 +63,11 @@ public class EspnFantasyIdToStandardIdProvider {
         try {
             String pageString = webRequest.getPage(url);
 
-            String teamName = String.format("espn-team-roster-page-%s.html", url.substring(url.lastIndexOf("/")).replace("/", ""));
+            String fileName = url.replace("http://espn.go.com/nba/player/_/id/", "").replace("/", "_");
 
-            FileUtils.writeStringToFile(new File("./DataProvider/src/test/resources/webpages/espn-team-pages/" + teamName), pageString, Charset.forName("UTF8"));
+            String playerName = String.format("espn-player-profile-page-%s.html", fileName);
+
+            FileUtils.writeStringToFile(new File("./DataProvider/src/test/resources/webpages/espn-player-pages/" + playerName), pageString, Charset.forName("UTF8"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

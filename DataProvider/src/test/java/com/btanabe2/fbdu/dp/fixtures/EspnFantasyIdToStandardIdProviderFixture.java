@@ -19,9 +19,10 @@ public class EspnFantasyIdToStandardIdProviderFixture {
 
     public static Map<String, String> getEspnFantasyIdToStandardIdProviderPagesMappedToTheirUrls() throws IOException {
         Map<String, String> urlToPageString = new HashMap<>();
-        urlToPageString.put(WebConstants.ESPN_TEAMS_PAGE_URL, FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/espn-team-pages/espn-teams-page.html"), Charset.forName("UTF8")));
 
+        urlToPageString.put(WebConstants.ESPN_TEAMS_PAGE_URL, FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/espn-team-pages/espn-teams-page.html"), Charset.forName("UTF8")));
         urlToPageString.putAll(getEspnTeamRosterPagesMappedToTheirUrlsMap());
+        urlToPageString.putAll(getEspnPlayerProfilePagesMappedToTheirUrlsMap());
 
         return urlToPageString;
     }
@@ -36,5 +37,11 @@ public class EspnFantasyIdToStandardIdProviderFixture {
         }
 
         return urlToPageStringMap;
+    }
+
+    private static Map<String, String> getEspnPlayerProfilePagesMappedToTheirUrlsMap() throws IOException {
+
+
+        return new HashMap<>();
     }
 }
