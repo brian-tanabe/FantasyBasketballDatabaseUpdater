@@ -27,7 +27,7 @@ public class EspnFantasyIdToStandardIdProviderTests {
     }
 
     @Test
-    public void shouldBeAbleToMapFiveHundredThirtyPlayersEspnIds() {
-        assertEquals("Did not find the proper number of players on their team roster pages", 530, fantasyIdMappedToNormalIdMap.size());
+    public void shouldBeAbleToMapFourHundredFortySixPlayersEspnIds() {
+        assertEquals("Did not find the proper number of players on their team roster pages", 446, fantasyIdMappedToNormalIdMap.size());
     }
 }
