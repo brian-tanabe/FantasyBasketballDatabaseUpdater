@@ -18,7 +18,7 @@ public class EspnPlayerProfilePageIdScraperTests {
 
     @BeforeClass
     public static void setup() {
-        playerIdMappedToHisFantasyId = EspnPlayerProfilePageIdScraper.getPlayerFantasyIdMappedToHisEspnId(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/espn-player-pages/pau-gasol-player-page.html"), pauGasolsEspnId);
+        playerIdMappedToHisFantasyId = EspnPlayerProfilePageIdScraper.getPlayerFantasyIdMappedToHisEspnId(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/espn-player-pages/espn-player-profile-page-996_pau-gasol.html"), pauGasolsEspnId);
     }
 
     @Test

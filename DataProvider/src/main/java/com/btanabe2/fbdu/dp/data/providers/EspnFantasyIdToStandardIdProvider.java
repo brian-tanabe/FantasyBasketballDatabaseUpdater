@@ -37,7 +37,6 @@ public class EspnFantasyIdToStandardIdProvider {
     public Map<Integer, Integer> getFantasyIdMappedToNormalIdMap() throws IOException {
         List<String> allNbaTeamRosterPageUrls = getNbaTeamRosterPagesUrls();
         List<String> allNbaPlayerProfilePageUrls = getAllNbaPlayerProfilePageUrls(allNbaTeamRosterPageUrls);
-        allNbaPlayerProfilePageUrls.forEach(u -> savePage(u));
 
         return new LinkedHashMap<>();
     }
