@@ -6,6 +6,7 @@ import com.btanabe2.fbdu.dp.web.WebRequest;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,13 +24,23 @@ public class EspnFantasyIdToStandardIdProvider {
     }
 
     public Map<Integer, Integer> getFantasyIdMappedToNormalIdMap() throws IOException {
-        List<String> nbaTeamRosterPageUrls = getNbaTeamRosterPagesUrls();
+        List<String> allNbaPlayerProfilePageUrls = getAllNbaPlayerProfilePageUrls(getNbaTeamRosterPagesUrls());
+
 
         return new LinkedHashMap<>();
     }
 
     public List<String> getNbaTeamRosterPagesUrls() throws IOException {
         return EspnTeamsRosterLinkScraper.getTeamRosterPageLinks(webRequest.getPageAsDocument(ESPN_TEAMS_PAGE_URL));
+    }
+
+    public List<String> getAllNbaPlayerProfilePageUrls(List<String> teamPageUrls) throws IOException {
+        List<String> allNbaPlayersProfilePageUrls = new ArrayList<>(500);
+        for (String teamRosterPageUrl : teamPageUrls) {
+            allNbaPlayersProfilePageUrls.addAll(extractPlayerProfilePageLinks(webRequest.getPageAsDocument(teamRosterPageUrl)));
+        }
+
+        return allNbaPlayersProfilePageUrls;
     }
 
     public List<String> extractPlayerProfilePageLinks(Document teamRosterPage) {
