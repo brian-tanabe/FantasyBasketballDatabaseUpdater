@@ -1,13 +1,14 @@
 package com.btanabe2.fbdu.dp.data.providers;
 
 import com.btanabe2.fbdu.dp.data.scrapers.EspnPlayerProfileLinkScraper;
+import com.btanabe2.fbdu.dp.data.scrapers.EspnPlayerProfilePageIdScraper;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnTeamsRosterLinkScraper;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,26 +24,26 @@ public class EspnFantasyIdToStandardIdProvider {
         this.webRequest = webRequest;
     }
 
-    public static void main(String[] args) {
-        try {
-            new EspnFantasyIdToStandardIdProvider(new WebRequest()).getFantasyIdMappedToNormalIdMap();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public Map<Integer, Integer> getFantasyIdMappedToNormalIdMap() throws IOException {
         List<String> allNbaTeamRosterPageUrls = getNbaTeamRosterPagesUrls();
         List<String> allNbaPlayerProfilePageUrls = getAllNbaPlayerProfilePageUrls(allNbaTeamRosterPageUrls);
 
-        return new LinkedHashMap<>();
+        Map<Integer, Integer> playerFantasyIdsMappedToTheirEspnIds = new HashMap<>(allNbaPlayerProfilePageUrls.size());
+        for (String playerProfilePageUrl : allNbaPlayerProfilePageUrls) {
+
+            // TODO REMOVE THIS DEBUGGING STATEMENT:
+            System.out.println(playerProfilePageUrl);
+
+            playerFantasyIdsMappedToTheirEspnIds.putAll(extractPlayerFantasyIdMappedToHisEspnId(playerProfilePageUrl));
+        }
+        return playerFantasyIdsMappedToTheirEspnIds;
     }
 
-    public List<String> getNbaTeamRosterPagesUrls() throws IOException {
+    private List<String> getNbaTeamRosterPagesUrls() throws IOException {
         return EspnTeamsRosterLinkScraper.getTeamRosterPageLinks(webRequest.getPageAsDocument(ESPN_TEAMS_PAGE_URL));
     }
 
-    public List<String> getAllNbaPlayerProfilePageUrls(List<String> teamPageUrls) throws IOException {
+    private List<String> getAllNbaPlayerProfilePageUrls(List<String> teamPageUrls) throws IOException {
         List<String> allNbaPlayersProfilePageUrls = new ArrayList<>(500);
         for (String teamRosterPageUrl : teamPageUrls) {
             allNbaPlayersProfilePageUrls.addAll(extractPlayerProfilePageLinks(webRequest.getPageAsDocument(teamRosterPageUrl)));
@@ -51,7 +52,12 @@ public class EspnFantasyIdToStandardIdProvider {
         return allNbaPlayersProfilePageUrls;
     }
 
-    public List<String> extractPlayerProfilePageLinks(Document teamRosterPage) {
+    private List<String> extractPlayerProfilePageLinks(Document teamRosterPage) {
         return EspnPlayerProfileLinkScraper.getPlayerProfileLinks(teamRosterPage);
+    }
+
+    private Map<Integer, Integer> extractPlayerFantasyIdMappedToHisEspnId(String playerProfilePageUrl) throws IOException {
+        String playerEspnId = playerProfilePageUrl.replaceAll("[^\\d+]", "");
+        return EspnPlayerProfilePageIdScraper.getPlayerFantasyIdMappedToHisEspnId(webRequest.getPageAsDocument(playerProfilePageUrl), Integer.parseInt(playerEspnId));
     }
 }

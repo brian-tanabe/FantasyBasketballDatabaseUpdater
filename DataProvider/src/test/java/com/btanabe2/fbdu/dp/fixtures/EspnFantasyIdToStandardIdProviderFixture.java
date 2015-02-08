@@ -2,15 +2,13 @@ package com.btanabe2.fbdu.dp.fixtures;
 
 import com.btanabe2.fbdu.dp.web.WebConstants;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.IOFileFilter;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Brian on 2/7/15.
@@ -40,8 +38,32 @@ public class EspnFantasyIdToStandardIdProviderFixture {
     }
 
     private static Map<String, String> getEspnPlayerProfilePagesMappedToTheirUrlsMap() throws IOException {
+        Collection<File> allPlayerProfilePageFiles = FileUtils.listFiles(new File("./DataProvider/src/test/resources/webpages/espn-player-pages/"), new IOFileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return true;
+            }
 
+            @Override
+            public boolean accept(File dir, String name) {
+                return true;
+            }
+        }, new IOFileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return false;
+            }
 
-        return new HashMap<>();
+            @Override
+            public boolean accept(File dir, String name) {
+                return false;
+            }
+        });
+
+        Map<String, String> playerPagesMappedToTheirUrls = new HashMap<>(allPlayerProfilePageFiles.size());
+        for (File playerProfilePageFile : allPlayerProfilePageFiles) {
+            playerPagesMappedToTheirUrls.put(String.format("http://espn.go.com/nba/player/_/id/%s", playerProfilePageFile.getName().replace("espn-player-profile-page-", "").replace("_", "/")).replace(".html", ""), FileUtils.readFileToString(playerProfilePageFile, Charset.forName("UTF8")));
+        }
+        return playerPagesMappedToTheirUrls;
     }
 }

@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class EspnPlayerProfilePageIdScraper {
 
-    public static Map<Integer, Integer> getPlayerFantasyIdMappedToHisEspnId(Document document, int playerEspnIdNotFantasyId) {
+    public static Map<Integer, Integer> getPlayerFantasyIdMappedToHisEspnId(Document document, int playerEspnIdNotFantasyId) throws NullPointerException {
         Map<Integer, Integer> playerEspnIdMappedToHisFantasyId = new HashMap<>(1);
         playerEspnIdMappedToHisFantasyId.put(new Gson().fromJson(document.select("div#fantasy-content").text(), EspnPlayerProfileJsonModel.class).playerId, playerEspnIdNotFantasyId);
         return playerEspnIdMappedToHisFantasyId;

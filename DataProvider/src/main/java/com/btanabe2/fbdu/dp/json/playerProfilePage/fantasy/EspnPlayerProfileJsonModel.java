@@ -6,7 +6,7 @@ package com.btanabe2.fbdu.dp.json.playerProfilePage.fantasy;
 public class EspnPlayerProfileJsonModel {
     public int playerId;
     public double percentChange;
-    public double averageDraftPosition;
+    public Object averageDraftPosition;
     public double percentOwned;
     public double playerRaterSEASON;
     public double playerRater7DAY;

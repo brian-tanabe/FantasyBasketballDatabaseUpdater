@@ -2,7 +2,6 @@ package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dp.data.scrapers.EspnPlayerProfilePageIdScraper;
 import com.btanabe2.fbdu.dp.helpers.FileDocumentor;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.Map;
@@ -13,16 +12,20 @@ import static org.junit.Assert.assertEquals;
  * Created by Brian on 2/7/15.
  */
 public class EspnPlayerProfilePageIdScraperTests {
-    private static Integer pauGasolsEspnId = 996;
-    private static Map<Integer, Integer> playerIdMappedToHisFantasyId;
-
-    @BeforeClass
-    public static void setup() {
-        playerIdMappedToHisFantasyId = EspnPlayerProfilePageIdScraper.getPlayerFantasyIdMappedToHisEspnId(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/espn-player-pages/espn-player-profile-page-996_pau-gasol.html"), pauGasolsEspnId);
-    }
 
     @Test
     public void shouldBeAbleToMapPauGasolsFantasyIdToHisEspnId() {
-        assertEquals("Did not find Pau Gasol's ESPN ID properly", pauGasolsEspnId, playerIdMappedToHisFantasyId.get(162));
+        Integer pauGasolsEspnId = 996;
+        assertEquals("Did not find Pau Gasol's ESPN ID properly", pauGasolsEspnId, getPlayerFantasyIdFromProfilePage("./DataProvider/src/test/resources/webpages/espn-player-pages/espn-player-profile-page-996_pau-gasol.html", pauGasolsEspnId).get(162));
+    }
+
+    @Test
+    public void shouldBeAbleToMapTimFraziersIdsCorrectlyWhichHasUndraftedListedAsHisAverageDraftPosition() {
+        Integer timFraziersEspnId = 2488945;
+        assertEquals("Did not find Tim Frazier's ESPN ID properly", timFraziersEspnId, getPlayerFantasyIdFromProfilePage("./DataProvider/src/test/resources/webpages/espn-player-pages/espn-player-profile-page-2488945_tim-frazier.html", 2488945).get(1329));
+    }
+
+    private Map<Integer, Integer> getPlayerFantasyIdFromProfilePage(String pathToProfilePage, int playerEspnId) {
+        return EspnPlayerProfilePageIdScraper.getPlayerFantasyIdMappedToHisEspnId(FileDocumentor.getDocumentFromFileHtml(pathToProfilePage), playerEspnId);
     }
 }
