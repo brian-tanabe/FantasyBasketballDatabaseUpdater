@@ -1,6 +1,5 @@
 package com.btanabe2.fbdu.dp.tests.integration;
 
-import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dm.models.PositionEligibilityEntity;
 import com.btanabe2.fbdu.dp.data.providers.EspnFantasyIdToStandardIdProvider;
 import com.btanabe2.fbdu.dp.data.providers.NbaPositionProvider;
@@ -12,7 +11,6 @@ import org.junit.Test;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -30,12 +28,7 @@ public class PositionEligibilityProviderTests {
     @BeforeClass
     public static void setup() {
         try {
-            EspnFantasyIdToStandardIdProvider idMapProvider = new EspnFantasyIdToStandardIdProvider(getEspnFantasyIdToStandardIdProviderMockWebRequest());
-            Map<Integer, Integer> playerFantasyIdsToEspnIdMap = idMapProvider.getFantasyIdMappedToNormalIdMap();
-
-            PlayerBiographyProvider playerBiographyProvider = new PlayerBiographyProvider(getPlayerBiographyProviderMockWebRequest());
-            List<PlayerBiographyEntity> playerBiographyEntityList = playerBiographyProvider.getAllPlayers(NbaTeamEntityFixture.getMockNbaTeams());
-            positionEligibilityEntityList = new PositionEligibilityProvider(getPositionEligibilityProviderMockSecureWebRequest()).getPlayerPositionEligibility(playerBiographyEntityList, NbaPositionProvider.getAllPositions(), playerFantasyIdsToEspnIdMap);
+            positionEligibilityEntityList = new PositionEligibilityProvider(getPositionEligibilityProviderMockSecureWebRequest()).getPlayerPositionEligibility(new PlayerBiographyProvider(getPlayerBiographyProviderMockWebRequest()).getAllPlayers(NbaTeamEntityFixture.getMockNbaTeams()), NbaPositionProvider.getAllPositions(), new EspnFantasyIdToStandardIdProvider(getEspnFantasyIdToStandardIdProviderMockWebRequest()).getFantasyIdMappedToNormalIdMap());
         } catch (Exception e) {
             e.printStackTrace();
             fail("Failed to successfully create all PositionEligibilityEntity objects");

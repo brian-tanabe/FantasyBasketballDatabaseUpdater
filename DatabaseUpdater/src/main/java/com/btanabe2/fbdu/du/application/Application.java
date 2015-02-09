@@ -6,7 +6,6 @@ import com.btanabe2.fbdu.dm.models.PositionEligibilityEntity;
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
 import com.btanabe2.fbdu.dp.data.providers.*;
 import com.btanabe2.fbdu.dp.web.WebRequest;
-import com.btanabe2.fbdu.dp.web.auth.EspnCredentialProvider;
 import com.btanabe2.fbdu.du.updaters.UpdateByDroppingExistingEntitiesActor;
 import com.btanabe2.fbdu.du.web.EspnWebRequestProvider;
 
@@ -54,11 +53,8 @@ public class Application {
     }
 
     private static List<PositionEligibilityEntity> createPositionEligibilityTable(List<PlayerBiographyEntity> playerBiographies, List<PositionsEntity> positionsEntities) throws IOException {
-        EspnFantasyIdToStandardIdProvider idProvider = new EspnFantasyIdToStandardIdProvider(EspnWebRequestProvider.createSecureWebRequestAndLogIn(new EspnCredentialProvider()));
-
-        PositionEligibilityProvider provider = new PositionEligibilityProvider(EspnWebRequestProvider.createSecureWebRequestAndLogIn(new EspnCredentialProvider()));
-        List<PositionEligibilityEntity> positionEligibilityEntityList = provider.getPlayerPositionEligibility(playerBiographies, positionsEntities, idProvider.getFantasyIdMappedToNormalIdMap());
-
+        PositionEligibilityProvider provider = new PositionEligibilityProvider(EspnWebRequestProvider.getInstance());
+        List<PositionEligibilityEntity> positionEligibilityEntityList = provider.getPlayerPositionEligibility(playerBiographies, positionsEntities, new EspnFantasyIdToStandardIdProvider(EspnWebRequestProvider.getInstance()).getFantasyIdMappedToNormalIdMap());
         UpdateByDroppingExistingEntitiesActor.doUpdate(PositionEligibilityEntity.class, positionEligibilityEntityList);
         return positionEligibilityEntityList;
     }

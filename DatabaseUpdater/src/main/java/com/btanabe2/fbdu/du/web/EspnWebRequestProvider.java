@@ -9,10 +9,15 @@ import java.io.IOException;
  * Created by brian on 2/8/15.
  */
 public class EspnWebRequestProvider {
+    private static SecureWebRequest instance;
 
-    public static SecureWebRequest createSecureWebRequestAndLogIn(EspnCredentialProvider credentials) throws IOException {
-        SecureWebRequest webRequest = new SecureWebRequest();
-        webRequest.login(credentials);
-        return webRequest;
+    public static SecureWebRequest getInstance() throws IOException {
+        return instance == null ? createSecureWebRequestAndLogIn(new EspnCredentialProvider()) : instance;
+    }
+
+    private static SecureWebRequest createSecureWebRequestAndLogIn(EspnCredentialProvider credentials) throws IOException {
+        instance = new SecureWebRequest();
+        instance.login(credentials);
+        return instance;
     }
 }
