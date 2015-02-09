@@ -3,13 +3,11 @@ package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnLeagueIdScraper;
 import com.btanabe2.fbdu.dp.mocks.MockWebRequest;
 import com.btanabe2.fbdu.dp.web.SecureWebRequest;
-import com.btanabe2.fbdu.dp.web.auth.EspnCredentialProvider;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.List;
 
-import static com.btanabe2.fbdu.dp.web.WebConstants.ESPN_FANTASY_BASKETBALL_HOMEPAGE;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
@@ -19,13 +17,15 @@ import static org.junit.Assert.assertEquals;
  */
 public class EspnLeagueIdScraperTests {
     private static List<String> leaguePageUrls;
+    private static SecureWebRequest webRequest;
+    private static EspnLeagueIdScraper scraper;
 
     @BeforeClass
     public static void setup() {
         try {
-            SecureWebRequest webRequest = MockWebRequest.getEspnLeagueIdScraperMockWebRequest();
-            EspnLeagueIdScraper scraper = new EspnLeagueIdScraper();
-            leaguePageUrls = scraper.findFantasyLeagueHomePageUrls(webRequest, new EspnCredentialProvider(), ESPN_FANTASY_BASKETBALL_HOMEPAGE);
+            webRequest = MockWebRequest.getEspnLeagueIdScraperMockWebRequest();
+            scraper = new EspnLeagueIdScraper();
+            leaguePageUrls = scraper.findFantasyLeagueHomePageUrls(webRequest);
         } catch (Exception e) {
             e.printStackTrace();
             fail("Failed to create the mock SecureWebRequest required by this test class");
@@ -46,5 +46,10 @@ public class EspnLeagueIdScraperTests {
     @Test
     public void shouldParseTheCurrentSeasonLinksCorrectly() {
         assertEquals("Did not find the correct links", "http://games.espn.go.com/fba/leagueoffice?leagueId=233928&teamId=5&seasonId=2015", leaguePageUrls.get(0));
+    }
+
+    @Test
+    public void shouldBeAbleToDetermineTheLeagueIdAsAnIntegerIfGivenALeagueNameHint() {
+        scraper.findCurrentSeasonFanasyLeagueId(webRequest, "Hoop Dreams");
     }
 }

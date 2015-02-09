@@ -3,7 +3,8 @@ package com.btanabe2.fbdu.dp.data.providers;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnPlayerProfileLinkScraper;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnPlayerProfilePageIdScraper;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnTeamsRosterLinkScraper;
-import com.btanabe2.fbdu.dp.web.WebRequest;
+import com.btanabe2.fbdu.dp.web.SecureWebRequest;
+import com.btanabe2.fbdu.dp.web.auth.EspnCredentialProvider;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
@@ -18,21 +19,22 @@ import static com.btanabe2.fbdu.dp.web.WebConstants.ESPN_TEAMS_PAGE_URL;
  * Created by Brian on 2/7/15.
  */
 public class EspnFantasyIdToStandardIdProvider {
-    private WebRequest webRequest;
+    private SecureWebRequest webRequest;
 
-    public EspnFantasyIdToStandardIdProvider(WebRequest webRequest) {
+    public EspnFantasyIdToStandardIdProvider(SecureWebRequest webRequest) {
         this.webRequest = webRequest;
     }
 
-    public Map<Integer, Integer> getFantasyIdMappedToNormalIdMap() throws IOException {
-        List<String> allNbaTeamRosterPageUrls = getNbaTeamRosterPagesUrls();
-        List<String> allNbaPlayerProfilePageUrls = getAllNbaPlayerProfilePageUrls(allNbaTeamRosterPageUrls);
-
-        Map<Integer, Integer> playerFantasyIdsMappedToTheirEspnIds = new HashMap<>(allNbaPlayerProfilePageUrls.size());
-        for (String playerProfilePageUrl : allNbaPlayerProfilePageUrls) {
+    public Map<Integer, Integer> getFantasyIdMappedToNormalIdMap(EspnCredentialProvider credentials) throws IOException {
+        Map<Integer, Integer> playerFantasyIdsMappedToTheirEspnIds = new HashMap<>();
+        for (String playerProfilePageUrl : getAllNbaPlayerProfilePageUrls(getNbaTeamRosterPagesUrls())) {
             playerFantasyIdsMappedToTheirEspnIds.putAll(extractPlayerFantasyIdMappedToHisEspnId(playerProfilePageUrl));
         }
         return playerFantasyIdsMappedToTheirEspnIds;
+    }
+
+    private int determineEspnFantasyLeagueId(EspnCredentialProvider credentials) throws IOException {
+        return -1;
     }
 
     private List<String> getNbaTeamRosterPagesUrls() throws IOException {

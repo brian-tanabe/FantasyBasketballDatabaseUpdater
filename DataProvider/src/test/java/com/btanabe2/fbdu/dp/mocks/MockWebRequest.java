@@ -34,8 +34,8 @@ public class MockWebRequest {
         return getMockWebRequestUsingPageStrings(getSportsVuPlayerProfilePagesMappedToTheirUrls());
     }
 
-    public static WebRequest getEspnFantasyIdToStandardIdProviderMockWebRequest() throws IOException {
-        return getMockWebRequestUsingPageStrings(getEspnFantasyIdToStandardIdProviderPagesMappedToTheirUrls());
+    public static SecureWebRequest getEspnFantasyIdToStandardIdProviderMockWebRequest() throws IOException {
+        return getMockSecureWebRequest(getEspnFantasyIdToStandardIdProviderPagesMappedToTheirUrls());
     }
 
     public static SecureWebRequest getEspnLeagueIdScraperMockWebRequest() throws IOException {

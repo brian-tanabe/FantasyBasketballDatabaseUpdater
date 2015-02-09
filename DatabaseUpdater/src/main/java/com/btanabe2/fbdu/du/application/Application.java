@@ -14,6 +14,7 @@ import com.btanabe2.fbdu.du.updaters.UpdateByDroppingExistingEntitiesActor;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,6 +60,7 @@ public class Application {
         SecureWebRequest webRequest = new SecureWebRequest();
         webRequest.login(new EspnCredentialProvider());
 
+        return new ArrayList<>();
 //        PositionEligibilityProvider provider = new PositionEligibilityProvider(webRequest, )
     }
 }
