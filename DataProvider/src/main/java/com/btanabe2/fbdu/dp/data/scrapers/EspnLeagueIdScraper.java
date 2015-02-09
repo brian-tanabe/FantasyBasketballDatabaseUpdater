@@ -16,6 +16,14 @@ import static com.btanabe2.fbdu.dp.web.WebConstants.ESPN_FANTASY_BASKETBALL_HOME
  */
 public class EspnLeagueIdScraper {
 
+    /**
+     * Finds the first ESPN league ID for a given user
+     *
+     * @param webRequest A <class>SecureWebRequest</class> that has already
+     *                   authenticated with ESPN
+     * @return the league ID of the first league for a user
+     * @throws IOException thrown if errors occurred while making web requests
+     */
     public int findFirstCurrentSeasonFantasyLeagueId(SecureWebRequest webRequest) throws IOException {
         Map<String, String> allFantasyLeagueUrlsMappedToTheirLeagueNames = getFantasyClubhouseLinksMappedToTheirLeagueNames(webRequest);
         return extractLeagueIdFromUrl(allFantasyLeagueUrlsMappedToTheirLeagueNames.get(allFantasyLeagueUrlsMappedToTheirLeagueNames.keySet().stream().limit(1).collect(Collectors.toList()).get(0)));
