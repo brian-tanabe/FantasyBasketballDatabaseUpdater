@@ -4,17 +4,14 @@ import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dm.models.PositionEligibilityEntity;
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
-import com.btanabe2.fbdu.dp.data.providers.NbaPositionProvider;
-import com.btanabe2.fbdu.dp.data.providers.NbaTeamProvider;
-import com.btanabe2.fbdu.dp.data.providers.PlayerBiographyProvider;
-import com.btanabe2.fbdu.dp.web.SecureWebRequest;
+import com.btanabe2.fbdu.dp.data.providers.*;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import com.btanabe2.fbdu.dp.web.auth.EspnCredentialProvider;
 import com.btanabe2.fbdu.du.updaters.UpdateByDroppingExistingEntitiesActor;
+import com.btanabe2.fbdu.du.web.EspnWebRequestProvider;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,10 +21,10 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-            List<NbaTeamEntity> nbaTeams = createNbaTeamsTable();
-            createPositionsTable();
-            createPlayerBiographyTable(nbaTeams);
-            createPositionEligibilityTable();
+            List<NbaTeamEntity> nbaTeamEntityList = createNbaTeamsTable();
+            List<PositionsEntity> positionsEntityList = createPositionsTable();
+            List<PlayerBiographyEntity> playerBiographyEntityList = createPlayerBiographyTable(nbaTeamEntityList);
+            List<PositionEligibilityEntity> positionEligibilityEntityList = createPositionEligibilityTable(playerBiographyEntityList, positionsEntityList);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
@@ -56,11 +53,13 @@ public class Application {
         return playerBiographies;
     }
 
-    private static List<PositionEligibilityEntity> createPositionEligibilityTable() throws IOException {
-        SecureWebRequest webRequest = new SecureWebRequest();
-        webRequest.login(new EspnCredentialProvider());
+    private static List<PositionEligibilityEntity> createPositionEligibilityTable(List<PlayerBiographyEntity> playerBiographies, List<PositionsEntity> positionsEntities) throws IOException {
+        EspnFantasyIdToStandardIdProvider idProvider = new EspnFantasyIdToStandardIdProvider(EspnWebRequestProvider.createSecureWebRequestAndLogIn(new EspnCredentialProvider()));
 
-        return new ArrayList<>();
-//        PositionEligibilityProvider provider = new PositionEligibilityProvider(webRequest, )
+        PositionEligibilityProvider provider = new PositionEligibilityProvider(EspnWebRequestProvider.createSecureWebRequestAndLogIn(new EspnCredentialProvider()));
+        List<PositionEligibilityEntity> positionEligibilityEntityList = provider.getPlayerPositionEligibility(playerBiographies, positionsEntities, idProvider.getFantasyIdMappedToNormalIdMap());
+
+        UpdateByDroppingExistingEntitiesActor.doUpdate(PositionEligibilityEntity.class, positionEligibilityEntityList);
+        return positionEligibilityEntityList;
     }
 }

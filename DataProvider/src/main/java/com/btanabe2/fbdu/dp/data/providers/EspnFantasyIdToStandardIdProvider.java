@@ -4,7 +4,6 @@ import com.btanabe2.fbdu.dp.data.scrapers.EspnPlayerProfileLinkScraper;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnPlayerProfilePageIdScraper;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnTeamsRosterLinkScraper;
 import com.btanabe2.fbdu.dp.web.SecureWebRequest;
-import com.btanabe2.fbdu.dp.web.auth.EspnCredentialProvider;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
@@ -25,16 +24,12 @@ public class EspnFantasyIdToStandardIdProvider {
         this.webRequest = webRequest;
     }
 
-    public Map<Integer, Integer> getFantasyIdMappedToNormalIdMap(EspnCredentialProvider credentials) throws IOException {
+    public Map<Integer, Integer> getFantasyIdMappedToNormalIdMap() throws IOException {
         Map<Integer, Integer> playerFantasyIdsMappedToTheirEspnIds = new HashMap<>();
         for (String playerProfilePageUrl : getAllNbaPlayerProfilePageUrls(getNbaTeamRosterPagesUrls())) {
             playerFantasyIdsMappedToTheirEspnIds.putAll(extractPlayerFantasyIdMappedToHisEspnId(playerProfilePageUrl));
         }
         return playerFantasyIdsMappedToTheirEspnIds;
-    }
-
-    private int determineEspnFantasyLeagueId(EspnCredentialProvider credentials) throws IOException {
-        return -1;
     }
 
     private List<String> getNbaTeamRosterPagesUrls() throws IOException {
