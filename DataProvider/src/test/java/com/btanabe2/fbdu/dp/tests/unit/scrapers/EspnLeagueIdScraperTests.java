@@ -1,13 +1,13 @@
 package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dp.data.scrapers.EspnLeagueIdScraper;
-import com.btanabe2.fbdu.dp.mocks.MockWebRequest;
-import com.btanabe2.fbdu.dp.web.SecureWebRequest;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.List;
 
+import static com.btanabe2.fbdu.dp.mocks.MockWebRequest.getEspnLeagueIdScraperMockWebRequest;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
@@ -17,15 +17,13 @@ import static org.junit.Assert.assertEquals;
  */
 public class EspnLeagueIdScraperTests {
     private static List<String> leaguePageUrls;
-    private static SecureWebRequest webRequest;
     private static EspnLeagueIdScraper scraper;
 
     @BeforeClass
     public static void setup() {
         try {
-            webRequest = MockWebRequest.getEspnLeagueIdScraperMockWebRequest();
             scraper = new EspnLeagueIdScraper();
-            leaguePageUrls = scraper.findFantasyLeagueHomePageUrls(webRequest);
+            leaguePageUrls = scraper.findFantasyLeagueHomePageUrls(getEspnLeagueIdScraperMockWebRequest());
         } catch (Exception e) {
             e.printStackTrace();
             fail("Failed to create the mock SecureWebRequest required by this test class");
@@ -50,6 +48,11 @@ public class EspnLeagueIdScraperTests {
 
     @Test
     public void shouldBeAbleToDetermineTheLeagueIdAsAnIntegerIfGivenALeagueNameHint() {
-        scraper.findCurrentSeasonFanasyLeagueId(webRequest, "Hoop Dreams");
+        try {
+            assertEquals("Did not find the proper ESPN fantasy league ID", 233928, scraper.findCurrentSeasonFantasyLeagueId(getEspnLeagueIdScraperMockWebRequest(), "Hoop Dreams"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Failed to parse ESPN for the current season fantasy team links");
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.btanabe2.fbdu.dp.tests.integration;
 
 import com.btanabe2.fbdu.dp.data.providers.EspnFantasyIdToStandardIdProvider;
+import com.btanabe2.fbdu.dp.web.auth.EspnCredentialProvider;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -19,7 +20,7 @@ public class EspnFantasyIdToStandardIdProviderTests {
     @BeforeClass
     public static void setup() {
         try {
-            fantasyIdMappedToNormalIdMap = new EspnFantasyIdToStandardIdProvider(getEspnFantasyIdToStandardIdProviderMockWebRequest()).getFantasyIdMappedToNormalIdMap();
+            fantasyIdMappedToNormalIdMap = new EspnFantasyIdToStandardIdProvider(getEspnFantasyIdToStandardIdProviderMockWebRequest()).getFantasyIdMappedToNormalIdMap(new EspnCredentialProvider());
         } catch (Exception e) {
             e.printStackTrace();
             fail("Failed to scrape ESPN player IDs using their fantasy IDs");

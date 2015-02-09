@@ -14,7 +14,8 @@ import static com.btanabe2.fbdu.dp.web.WebConstants.ESPN_FANTASY_BASKETBALL_HOME
  */
 public class EspnLeagueIdScraper {
 
-    public int findCurrentSeasonFanasyLeagueId(SecureWebRequest webRequest, String leagueNameHint) {
+    public int findCurrentSeasonFantasyLeagueId(SecureWebRequest webRequest, String leagueNameHint) throws IOException {
+        List<String> leagueUrls = findFantasyLeagueHomePageUrls(webRequest);
 
         return -1;
     }

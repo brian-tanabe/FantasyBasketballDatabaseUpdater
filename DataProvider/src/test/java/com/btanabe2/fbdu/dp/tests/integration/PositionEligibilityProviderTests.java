@@ -7,6 +7,7 @@ import com.btanabe2.fbdu.dp.data.providers.NbaPositionProvider;
 import com.btanabe2.fbdu.dp.data.providers.PlayerBiographyProvider;
 import com.btanabe2.fbdu.dp.data.providers.PositionEligibilityProvider;
 import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
+import com.btanabe2.fbdu.dp.web.auth.EspnCredentialProvider;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -33,7 +34,7 @@ public class PositionEligibilityProviderTests {
     public static void setup() {
         try {
             EspnFantasyIdToStandardIdProvider idMapProvider = new EspnFantasyIdToStandardIdProvider(getEspnFantasyIdToStandardIdProviderMockWebRequest());
-            Map<Integer, Integer> playerFantasyIdsToEspnIdMap = idMapProvider.getFantasyIdMappedToNormalIdMap();
+            Map<Integer, Integer> playerFantasyIdsToEspnIdMap = idMapProvider.getFantasyIdMappedToNormalIdMap(new EspnCredentialProvider());
 
             PlayerBiographyProvider playerBiographyProvider = new PlayerBiographyProvider(getPlayerBiographyProviderMockWebRequest());
             List<PlayerBiographyEntity> playerBiographyEntityList = playerBiographyProvider.getAllPlayers(NbaTeamEntityFixture.getMockNbaTeams());
