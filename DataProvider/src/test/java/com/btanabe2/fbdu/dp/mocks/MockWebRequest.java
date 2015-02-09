@@ -38,7 +38,7 @@ public class MockWebRequest {
         return getMockSecureWebRequest(getEspnFantasyIdToStandardIdProviderPagesMappedToTheirUrls());
     }
 
-    public static SecureWebRequest getEspnLeagueIdScraperMockWebRequest() throws IOException {
+    public static SecureWebRequest getEspnLeagueIdAndTeamIdScraperMockWebRequest() throws IOException {
         return getMockSecureWebRequest(getEspnLeagueIdScraperPagesMappedToTheirUrls());
     }
 

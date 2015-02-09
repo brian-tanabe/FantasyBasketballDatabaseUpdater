@@ -4,9 +4,11 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.btanabe2.fbdu.dp.web.WebConstants.ESPN_FANTASY_BASKETBALL_HOMEPAGE;
 import static com.btanabe2.fbdu.dp.web.WebConstants.getEspnPlayerRaterPageUrlForParameterizedLeagueIdAndTeamId;
 
 /**
@@ -29,6 +31,8 @@ public class PositionEligibilityProviderFixture {
         urlToPageStringMap.put(getEspnPlayerRaterPageUrlForParameterizedLeagueIdAndTeamId(TEST_LEAGUE_ID, TEST_TEAM_ID, 8), FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/espn-fantasy-pages/espn-playerrater9.html")));
         urlToPageStringMap.put(getEspnPlayerRaterPageUrlForParameterizedLeagueIdAndTeamId(TEST_LEAGUE_ID, TEST_TEAM_ID, 9), FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/espn-fantasy-pages/espn-playerrater10.html")));
         urlToPageStringMap.put(getEspnPlayerRaterPageUrlForParameterizedLeagueIdAndTeamId(TEST_LEAGUE_ID, TEST_TEAM_ID, 10), FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/espn-fantasy-pages/espn-playerrater11.html")));
+
+        urlToPageStringMap.put(ESPN_FANTASY_BASKETBALL_HOMEPAGE, FileUtils.readFileToString(new File("./DataProvider/src/test/resources/webpages/espn-fantasy-pages/espn-fantasy-homepage.html"), Charset.forName("UTF8")));
         return urlToPageStringMap;
     }
 }

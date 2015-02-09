@@ -4,6 +4,7 @@ import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dm.models.PositionEligibilityEntity;
 import com.btanabe2.fbdu.dm.models.PositionsEntity;
 import com.btanabe2.fbdu.dp.data.models.EspnPositionEligibilityModel;
+import com.btanabe2.fbdu.dp.data.scrapers.EspnLeagueIdAndTeamIdScraper;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnProjectionsPageScraper;
 import com.btanabe2.fbdu.dp.web.SecureWebRequest;
 import com.btanabe2.fbdu.dp.web.WebConstants;
@@ -19,23 +20,20 @@ import java.util.Map;
  */
 public class PositionEligibilityProvider {
     private SecureWebRequest webRequest;
-    private int espnFantasyLeagueId;
-    private int espnFantasyTeamId;
 
-    public PositionEligibilityProvider(SecureWebRequest webRequest, int espnFantasyLeagueId, int espnFantasyTeamId) {
+    public PositionEligibilityProvider(SecureWebRequest webRequest) {
         this.webRequest = webRequest;
-        this.espnFantasyLeagueId = espnFantasyLeagueId;
-        this.espnFantasyTeamId = espnFantasyTeamId;
     }
 
     public List<PositionEligibilityEntity> getPlayerPositionEligibility(List<PlayerBiographyEntity> players, List<PositionsEntity> positions, Map<Integer, Integer> fantasyIdsMappedToEspnIds) throws IOException {
         List<PositionEligibilityEntity> playerPositionEligibilityEntities = new ArrayList<>(players.size());
-
-        Document page = webRequest.getPageAsDocument(WebConstants.getEspnPlayerRaterPageUrlForParameterizedLeagueIdAndTeamId(espnFantasyLeagueId, espnFantasyTeamId, 0));
+        String url = WebConstants.getEspnPlayerRaterPageUrlForParameterizedLeagueIdAndTeamId(EspnLeagueIdAndTeamIdScraper.findFirstCurrentSeasonFantasyLeagueId(webRequest), 0, 0);
+        Document page = webRequest.getPageAsDocument(url);
         do {
             List<EspnPositionEligibilityModel> positionEligibilityMappedToEspnFantasyIds = scrapePageForPlayerPositionEligibility(page, positions);
             playerPositionEligibilityEntities.addAll(mapTheFantasyEspnIdsToTheirNormalEspnIdsAndPopulatePositionEligibilityEntityObject(positionEligibilityMappedToEspnFantasyIds, fantasyIdsMappedToEspnIds));
-            page = webRequest.getPageAsDocument(getNextPageUrl(page));
+            url = getNextPageUrl(page);
+            page = webRequest.getPageAsDocument(url);
         } while (page != null);
 
         return playerPositionEligibilityEntities;

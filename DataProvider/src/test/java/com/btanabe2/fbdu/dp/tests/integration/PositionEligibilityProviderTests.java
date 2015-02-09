@@ -17,8 +17,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.btanabe2.fbdu.dp.fixtures.PositionEligibilityProviderFixture.TEST_LEAGUE_ID;
-import static com.btanabe2.fbdu.dp.fixtures.PositionEligibilityProviderFixture.TEST_TEAM_ID;
 import static com.btanabe2.fbdu.dp.mocks.MockWebRequest.*;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.fail;
@@ -38,7 +36,7 @@ public class PositionEligibilityProviderTests {
 
             PlayerBiographyProvider playerBiographyProvider = new PlayerBiographyProvider(getPlayerBiographyProviderMockWebRequest());
             List<PlayerBiographyEntity> playerBiographyEntityList = playerBiographyProvider.getAllPlayers(NbaTeamEntityFixture.getMockNbaTeams());
-            positionEligibilityEntityList = new PositionEligibilityProvider(getPositionEligibilityProviderMockSecureWebRequest(), TEST_LEAGUE_ID, TEST_TEAM_ID).getPlayerPositionEligibility(playerBiographyEntityList, NbaPositionProvider.getAllPositions(), playerFantasyIdsToEspnIdMap);
+            positionEligibilityEntityList = new PositionEligibilityProvider(getPositionEligibilityProviderMockSecureWebRequest()).getPlayerPositionEligibility(playerBiographyEntityList, NbaPositionProvider.getAllPositions(), playerFantasyIdsToEspnIdMap);
         } catch (Exception e) {
             e.printStackTrace();
             fail("Failed to successfully create all PositionEligibilityEntity objects");
