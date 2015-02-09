@@ -23,15 +23,15 @@ import static org.mockito.Mockito.when;
 public class MockWebRequest {
 
     public static WebRequest getPlayerBiographyProviderMockWebRequest() throws IOException {
-        return getMockWebRequestUsingPageStrings(getPlayerProfilePagesMappedToTheirUrls());
+        return getMockWebRequest(getPlayerProfilePagesMappedToTheirUrls());
     }
 
     public static WebRequest getSportsVuTeamsPageMockWebRequest() throws IOException {
-        return getMockWebRequestUsingPageStrings(getNbaTeamProviderMockWebRequestUrlsToPageStrings());
+        return getMockWebRequest(getNbaTeamProviderMockWebRequestUrlsToPageStrings());
     }
 
     public static WebRequest getPlayerProfileSportsVuScraperMockWebRequest() throws IOException {
-        return getMockWebRequestUsingPageStrings(getSportsVuPlayerProfilePagesMappedToTheirUrls());
+        return getMockWebRequest(getSportsVuPlayerProfilePagesMappedToTheirUrls());
     }
 
     public static SecureWebRequest getEspnFantasyIdToStandardIdProviderMockWebRequest() throws IOException {
@@ -46,7 +46,7 @@ public class MockWebRequest {
         return getMockSecureWebRequest(getPositionEligibilityProviderPagesMappedToTheirUrlsMap());
     }
 
-    private static WebRequest getMockWebRequestUsingPageStrings(Map<String, String> urlToPageStringMap) {
+    private static WebRequest getMockWebRequest(Map<String, String> urlToPageStringMap) {
         try {
             WebRequest webRequest = mock(WebRequest.class);
             for (String url : urlToPageStringMap.keySet()) {
