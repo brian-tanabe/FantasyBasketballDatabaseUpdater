@@ -27,13 +27,15 @@ public class PositionEligibilityProvider {
 
     public List<PositionEligibilityEntity> getPlayerPositionEligibility(List<PlayerBiographyEntity> players, List<PositionsEntity> positions, Map<Integer, Integer> fantasyIdsMappedToEspnIds) throws IOException {
         List<PositionEligibilityEntity> playerPositionEligibilityEntities = new ArrayList<>(players.size());
-        String url = WebConstants.getEspnPlayerRaterPageUrlForParameterizedLeagueIdAndTeamId(EspnLeagueIdAndTeamIdScraper.findFirstCurrentSeasonFantasyLeagueId(webRequest), 0, 0);
-        Document page = webRequest.getPageAsDocument(url);
+
+        int leagueId = EspnLeagueIdAndTeamIdScraper.findFirstCurrentSeasonFantasyLeagueId(webRequest);
+        int teamId = EspnLeagueIdAndTeamIdScraper.getUsersTeamId(webRequest, leagueId);
+        Document page = webRequest.getPageAsDocument(WebConstants.getEspnPlayerRaterPageUrlForParameterizedLeagueIdAndTeamId(leagueId, teamId, 0));
+
         do {
             List<EspnPositionEligibilityModel> positionEligibilityMappedToEspnFantasyIds = scrapePageForPlayerPositionEligibility(page, positions);
             playerPositionEligibilityEntities.addAll(mapTheFantasyEspnIdsToTheirNormalEspnIdsAndPopulatePositionEligibilityEntityObject(positionEligibilityMappedToEspnFantasyIds, fantasyIdsMappedToEspnIds));
-            url = getNextPageUrl(page);
-            page = webRequest.getPageAsDocument(url);
+            page = webRequest.getPageAsDocument(getNextPageUrl(page));
         } while (page != null);
 
         return playerPositionEligibilityEntities;
