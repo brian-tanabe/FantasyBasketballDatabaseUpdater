@@ -55,4 +55,14 @@ public class EspnLeagueIdScraperTests {
             fail("Failed to parse ESPN for the current season fantasy team links");
         }
     }
+
+    @Test
+    public void shouldBeAbleToDetermineTheFirstLeagueIdAsAnInteger() {
+        try {
+            assertEquals("Did not find the proper ESPN fantasy league ID", 233928, scraper.findFirstCurrentSeasonFantasyLeagueId(getEspnLeagueIdScraperMockWebRequest()));
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Failed to parse ESPN for the current season fantasy team links");
+        }
+    }
 }
