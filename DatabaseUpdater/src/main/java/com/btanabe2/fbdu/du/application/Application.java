@@ -12,6 +12,7 @@ import com.btanabe2.fbdu.du.web.EspnWebRequestProvider;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by brian on 11/8/14.
@@ -27,6 +28,10 @@ public class Application {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
             e.printStackTrace();
         } finally {
             MySessionManager.getInstance().getSessionFactory().close();
@@ -45,14 +50,14 @@ public class Application {
         return positions;
     }
 
-    private static List<PlayerBiographyEntity> createPlayerBiographyTable(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException {
+    private static List<PlayerBiographyEntity> createPlayerBiographyTable(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException, ExecutionException, InterruptedException {
         PlayerBiographyProvider provider = new PlayerBiographyProvider(new WebRequest());
         List<PlayerBiographyEntity> playerBiographies = provider.getAllPlayers(nbaTeams);
         UpdateByDroppingExistingEntitiesActor.doUpdate(PlayerBiographyEntity.class, playerBiographies);
         return playerBiographies;
     }
 
-    private static List<PositionEligibilityEntity> createPositionEligibilityTable(List<PlayerBiographyEntity> playerBiographies, List<PositionsEntity> positionsEntities) throws IOException {
+    private static List<PositionEligibilityEntity> createPositionEligibilityTable(List<PlayerBiographyEntity> playerBiographies, List<PositionsEntity> positionsEntities) throws IOException, ExecutionException, InterruptedException {
         PositionEligibilityProvider provider = new PositionEligibilityProvider(EspnWebRequestProvider.getInstance());
         List<PositionEligibilityEntity> positionEligibilityEntityList = provider.getPlayerPositionEligibility(playerBiographies, positionsEntities, new EspnFantasyIdToStandardIdProvider(EspnWebRequestProvider.getInstance()).getFantasyIdMappedToNormalIdMap());
         UpdateByDroppingExistingEntitiesActor.doUpdate(PositionEligibilityEntity.class, positionEligibilityEntityList);
