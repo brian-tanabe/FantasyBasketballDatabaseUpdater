@@ -1,7 +1,7 @@
 package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
-import com.btanabe2.fbdu.dp.data.scrapers.PlayerProfileSportsVuScraper;
+import com.btanabe2.fbdu.dp.data.scrapers.sportsvu.PlayerProfileSportsVuScraper;
 import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
 import org.junit.BeforeClass;
 import org.junit.Test;

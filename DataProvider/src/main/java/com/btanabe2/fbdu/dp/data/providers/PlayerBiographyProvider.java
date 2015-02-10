@@ -3,12 +3,13 @@ package com.btanabe2.fbdu.dp.data.providers;
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnAndNumberFireIdPageScraper;
-import com.btanabe2.fbdu.dp.data.scrapers.PlayerProfileSportsVuScraper;
+import com.btanabe2.fbdu.dp.data.scrapers.sportsvu.PlayerProfileSportsVuScraper;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 import static com.btanabe2.fbdu.dp.web.WebConstants.*;
@@ -23,7 +24,7 @@ public class PlayerBiographyProvider {
         this.webRequest = webRequest;
     }
 
-    public List<PlayerBiographyEntity> getAllPlayers(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException {
+    public List<PlayerBiographyEntity> getAllPlayers(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException, ExecutionException, InterruptedException {
         List<PlayerBiographyEntity> allActivePlayerBiographiesWithoutEspnIds = getAllActivePlayerBiographiesWithoutNumberFireOrEspnIds(nbaTeams);
         List<PlayerBiographyEntity> playerIds = getAllEspnAndNumberFireIds(nbaTeams);
 
@@ -36,7 +37,7 @@ public class PlayerBiographyProvider {
         return allActivePlayerBiographiesWithoutEspnIds;
     }
 
-    private List<PlayerBiographyEntity> getAllActivePlayerBiographiesWithoutNumberFireOrEspnIds(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException {
+    private List<PlayerBiographyEntity> getAllActivePlayerBiographiesWithoutNumberFireOrEspnIds(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException, ExecutionException, InterruptedException {
         return new PlayerProfileSportsVuScraper(webRequest).scrapeForPlayerBiographies(nbaTeams);
     }
 

@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by Brian on 2/2/15.
@@ -36,7 +37,7 @@ public class PositionEligibilityProvider {
             List<EspnPositionEligibilityModel> positionEligibilityMappedToEspnFantasyIds = scrapePageForPlayerPositionEligibility(page, positions);
             playerPositionEligibilityEntities.addAll(mapTheFantasyEspnIdsToTheirNormalEspnIdsAndPopulatePositionEligibilityEntityObject(positionEligibilityMappedToEspnFantasyIds, fantasyIdsMappedToEspnIds));
             url = getNextPageUrl(page);
-        } while (url.contains("http"));
+        } while (!url.isEmpty());
 
         return playerPositionEligibilityEntities;
     }
@@ -51,12 +52,7 @@ public class PositionEligibilityProvider {
 
     private List<PositionEligibilityEntity> mapTheFantasyEspnIdsToTheirNormalEspnIdsAndPopulatePositionEligibilityEntityObject(List<EspnPositionEligibilityModel> fantasyIdsAndPositionEligibility, Map<Integer, Integer> fantasyIdsMappedToEspnIds) {
         List<PositionEligibilityEntity> positionEligibilityEntities = new ArrayList<>(fantasyIdsAndPositionEligibility.size());
-        for (EspnPositionEligibilityModel positionEligibility : fantasyIdsAndPositionEligibility) {
-            if (fantasyIdsMappedToEspnIds.containsKey(positionEligibility.getEspnPlayerId())) {
-                positionEligibilityEntities.add(new PositionEligibilityEntity(fantasyIdsMappedToEspnIds.get(positionEligibility.getEspnPlayerId()), positionEligibility.getPositionId()));
-            }
-        }
-
+        positionEligibilityEntities.addAll(fantasyIdsAndPositionEligibility.stream().filter(positionEligibility -> fantasyIdsMappedToEspnIds.containsKey(positionEligibility.getEspnPlayerId())).map(positionEligibility -> new PositionEligibilityEntity(fantasyIdsMappedToEspnIds.get(positionEligibility.getEspnPlayerId()), positionEligibility.getPositionId())).collect(Collectors.toList()));
         return positionEligibilityEntities;
     }
 }

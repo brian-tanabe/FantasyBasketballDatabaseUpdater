@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.data.scrapers;
+package com.btanabe2.fbdu.dp.data.scrapers.sportsvu;
 
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
@@ -10,61 +10,45 @@ import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
-import static com.btanabe2.fbdu.dp.web.WebConstants.SPORTS_VU_ALL_PLAYERS_URL;
 import static com.btanabe2.fbdu.dp.web.WebConstants.getPlayerInfoPageUrlFromSportsVu;
 
 /**
- * Created by BTanabe on 11/19/2014.
+ * Created by brian on 2/9/15.
  */
-public class PlayerProfileSportsVuScraper {
-    // Check out this project:
-    // https://www.npmjs.org/package/nba
-
-    // Aaron Afflalo game logs: http://stats.nba.com/stats/playerprofile?LeagueID=00&Season=2014-15&IsOnlyCurrentSeason=1&PlayerId=201167&GraphStat=PTS&GraphEndSeason=2014-15&GraphStartSeason=1990-91&SeasonType=Regular%20Season
-    // Aaron Afflalo player info: http://stats.nba.com/stats/commonplayerinfo?PlayerID=201167
-    // All players: http://stats.nba.com/stats/commonallplayers?LeagueID=00&Season=2014-15&IsOnlyCurrentSeason=1
-
+public class CallablePlayerProfileSportsVuScraper implements Callable<PlayerBiographyEntity> {
     private WebRequest webRequest;
+    private int playerId;
+    private List<NbaTeamEntity> nbaTeams;
 
-    public PlayerProfileSportsVuScraper(WebRequest webRequest) {
+    public CallablePlayerProfileSportsVuScraper(WebRequest webRequest, int playerId, List<NbaTeamEntity> nbaTeams) {
         this.webRequest = webRequest;
+        this.playerId = playerId;
+        this.nbaTeams = nbaTeams;
     }
 
-    public List<PlayerBiographyEntity> scrapeForPlayerBiographies(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException {
-        List<Integer> allActiveNbaPlayersSportsVuPlayerIds = getListOfAllActivePlayerIds();
-        return scrapeAllPlayerInfoFromEachPlayersSportsVuPage(allActiveNbaPlayersSportsVuPlayerIds, nbaTeams);
-    }
-
-    private List<Integer> getListOfAllActivePlayerIds() throws IOException {
-        // TODO THIS CAN BE ABSTRACTED OUT:
-        JsonObject jsonElement = new JsonParser().parse(webRequest.getPage(SPORTS_VU_ALL_PLAYERS_URL)).getAsJsonObject();
-        JsonArray jsonArray = jsonElement.getAsJsonArray("resultSets");
-        JsonArray elements = (JsonArray) jsonArray.get(0).getAsJsonObject().get("rowSet");
-
-        List<Integer> playerIds = new ArrayList<>(elements.size());
-        elements.forEach(p -> playerIds.add(p.getAsJsonArray().get(0).getAsInt()));
-
-        return playerIds;
-    }
-
-    private List<PlayerBiographyEntity> scrapeAllPlayerInfoFromEachPlayersSportsVuPage(List<Integer> allActivePlayerIds, List<NbaTeamEntity> nbaTeam) throws IOException, ParseException {
-        List<PlayerBiographyEntity> playerBiographies = new ArrayList<>(allActivePlayerIds.size());
-        for (int playerId : allActivePlayerIds) { // is there a way to do lambdas that throw exceptions?
-            JsonArray playerInfoJsonArray = getPlayerInfoJsonArray(playerId);
-            if (extractRosterStatus(playerInfoJsonArray.get(15))) {
-                playerBiographies.add(populatePlayerBiographyEntityObject(playerId, playerInfoJsonArray, nbaTeam));
-            }
+    @Override
+    public PlayerBiographyEntity call() throws Exception {
+        JsonArray playerInfoJsonArray = getPlayerInfoJsonArray(playerId);
+        if (extractRosterStatus(playerInfoJsonArray.get(15))) {
+            return populatePlayerBiographyEntityObject(playerId, playerInfoJsonArray, nbaTeams);
         }
 
-        return playerBiographies;
+        return null;
+    }
+
+    private JsonArray getPlayerInfoJsonArray(int playerId) throws IOException {
+        JsonObject jsonElement = new JsonParser().parse(webRequest.getPage(getPlayerInfoPageUrlFromSportsVu(playerId))).getAsJsonObject();
+        JsonArray jsonArray = jsonElement.getAsJsonArray("resultSets");
+        JsonArray elements = jsonArray.get(0).getAsJsonObject().get("rowSet").getAsJsonArray();
+
+        return elements.get(0).getAsJsonArray();
     }
 
     private PlayerBiographyEntity populatePlayerBiographyEntityObject(int playerId, JsonArray playerInfoJsonArray, List<NbaTeamEntity> nbaTeams) {
@@ -80,14 +64,6 @@ public class PlayerProfileSportsVuScraper {
         player.setSchool(extractCollege(playerInfoJsonArray.get(7)));
 
         return player;
-    }
-
-    private JsonArray getPlayerInfoJsonArray(int playerId) throws IOException {
-        JsonObject jsonElement = new JsonParser().parse(webRequest.getPage(getPlayerInfoPageUrlFromSportsVu(playerId))).getAsJsonObject();
-        JsonArray jsonArray = jsonElement.getAsJsonArray("resultSets");
-        JsonArray elements = jsonArray.get(0).getAsJsonObject().get("rowSet").getAsJsonArray();
-
-        return elements.get(0).getAsJsonArray();
     }
 
     private String extractPlayerName(JsonElement playerNameJsonElement) {
