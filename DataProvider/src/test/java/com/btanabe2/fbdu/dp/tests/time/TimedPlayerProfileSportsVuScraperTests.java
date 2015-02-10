@@ -13,8 +13,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class TimedPlayerProfileSportsVuScraperTests {
 
-    @Test(timeout = 5000) // 5 seconds
-    public void shouldBeAbleToGetAllPlayerInLessThanFiveSeconds() {
+    @Test(timeout = 10000) // 10 seconds
+    public void shouldBeAbleToGetAllPlayerInLessThanTenSeconds() {
         try {
             PlayerProfileSportsVuScraper scraper = new PlayerProfileSportsVuScraper(new WebRequest());
             assertTrue("Did not find the correct number of active players", scraper.scrapeForPlayerBiographies(NbaTeamEntityFixture.getMockNbaTeams()).size() > 440);
