@@ -29,19 +29,7 @@ public class EspnFantasyIdToStandardIdProvider {
 
     public Map<Integer, Integer> getFantasyIdMappedToNormalIdMap() throws IOException, ExecutionException, InterruptedException {
         List<String> allNbaPlayerProfilePageUrls = getAllNbaPlayerProfilePageUrls(getNbaTeamRosterPagesUrls());
-
-        ExecutorService executorService = Executors.newFixedThreadPool(allNbaPlayerProfilePageUrls.size());
-        List<Future<Map<Integer, Integer>>> futureList = new ArrayList<>(allNbaPlayerProfilePageUrls.size());
-        allNbaPlayerProfilePageUrls.forEach(url -> futureList.add(executorService.submit(new CallableEspnProfilePageIdScraper(webRequest, url))));
-
-        Map<Integer, Integer> playerFantasyIdsMappedToTheirEspnIds = new HashMap<>(allNbaPlayerProfilePageUrls.size());
-        for (Future<Map<Integer, Integer>> future : futureList) {
-            playerFantasyIdsMappedToTheirEspnIds.putAll(future.get());
-        }
-
-        executorService.shutdown();
-
-        return playerFantasyIdsMappedToTheirEspnIds;
+        return mapAllPlayerFantasyIdsToTheirEspnIds(allNbaPlayerProfilePageUrls);
     }
 
     private List<String> getNbaTeamRosterPagesUrls() throws IOException {
@@ -59,5 +47,20 @@ public class EspnFantasyIdToStandardIdProvider {
         }
 
         return allNbaPlayersProfilePageUrls;
+    }
+
+    private Map<Integer, Integer> mapAllPlayerFantasyIdsToTheirEspnIds(List<String> allNbaPlayerProfilePageUrls) throws ExecutionException, InterruptedException {
+        ExecutorService executorService = Executors.newFixedThreadPool(allNbaPlayerProfilePageUrls.size());
+        List<Future<Map<Integer, Integer>>> futureList = new ArrayList<>(allNbaPlayerProfilePageUrls.size());
+        allNbaPlayerProfilePageUrls.forEach(url -> futureList.add(executorService.submit(new CallableEspnProfilePageIdScraper(webRequest, url))));
+
+        Map<Integer, Integer> playerFantasyIdsMappedToTheirEspnIds = new HashMap<>(allNbaPlayerProfilePageUrls.size());
+        for (Future<Map<Integer, Integer>> future : futureList) {
+            playerFantasyIdsMappedToTheirEspnIds.putAll(future.get());
+        }
+
+        executorService.shutdown();
+
+        return playerFantasyIdsMappedToTheirEspnIds;
     }
 }
