@@ -2,7 +2,6 @@ package com.btanabe2.fbdu.dp.tests.unit.scrapers;
 
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnAndNumberFireIdPageScraper;
-import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
 import com.btanabe2.fbdu.dp.helpers.FileDocumentor;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -23,11 +22,9 @@ public class EspnAndNumberFireIdPageScraperTests {
     @BeforeClass
     public static void setup() {
         try {
-            EspnAndNumberFireIdPageScraper scraper = new EspnAndNumberFireIdPageScraper();
-
-            guardsBiographies = scraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-guards.html"), NbaTeamEntityFixture.getMockNbaTeams());
-            forwardsBiographies = scraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-forwards.html"), NbaTeamEntityFixture.getMockNbaTeams());
-            centersBiographies = scraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-centers.html"), NbaTeamEntityFixture.getMockNbaTeams());
+            guardsBiographies = EspnAndNumberFireIdPageScraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-guards.html"));
+            forwardsBiographies = EspnAndNumberFireIdPageScraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-forwards.html"));
+            centersBiographies = EspnAndNumberFireIdPageScraper.scrapePlayerBiographiesFromPage(FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/webpages/number-fire-pages/number-fire-remaining-season-projections-centers.html"));
         } catch (Exception ex) {
             ex.printStackTrace();
             fail("Failed to parse NumberFire input files properly");

@@ -26,7 +26,7 @@ public class PlayerBiographyProvider {
 
     public List<PlayerBiographyEntity> getAllPlayers(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException, ExecutionException, InterruptedException {
         List<PlayerBiographyEntity> allActivePlayerBiographiesWithoutEspnIds = getAllActivePlayerBiographiesWithoutNumberFireOrEspnIds(nbaTeams);
-        List<PlayerBiographyEntity> playerIds = getAllEspnAndNumberFireIds(nbaTeams);
+        List<PlayerBiographyEntity> playerIds = getAllEspnAndNumberFireIds();
 
         for (PlayerBiographyEntity player : allActivePlayerBiographiesWithoutEspnIds) {
             PlayerBiographyEntity matchedPlayerEntityContainingEspnAndNumberFireIds = findNumberFireRemainingSeasonProjectionEntityForPlayer(player, playerIds);
@@ -41,12 +41,10 @@ public class PlayerBiographyProvider {
         return new PlayerProfileSportsVuScraper(webRequest).scrapeForPlayerBiographies(nbaTeams);
     }
 
-    private List<PlayerBiographyEntity> getAllEspnAndNumberFireIds(List<NbaTeamEntity> nbaTeams) throws IOException, ParseException {
-        EspnAndNumberFireIdPageScraper idScraper = new EspnAndNumberFireIdPageScraper();
-
-        List<PlayerBiographyEntity> playerIdEntities = idScraper.scrapePlayerBiographiesFromPage(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_GUARDS_URL), nbaTeams);
-        playerIdEntities.addAll(idScraper.scrapePlayerBiographiesFromPage(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_FORWARDS_URL), nbaTeams));
-        playerIdEntities.addAll(idScraper.scrapePlayerBiographiesFromPage(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_CENTERS_URL), nbaTeams));
+    private List<PlayerBiographyEntity> getAllEspnAndNumberFireIds() throws IOException, ParseException {
+        List<PlayerBiographyEntity> playerIdEntities = EspnAndNumberFireIdPageScraper.scrapePlayerBiographiesFromPage(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_GUARDS_URL));
+        playerIdEntities.addAll(EspnAndNumberFireIdPageScraper.scrapePlayerBiographiesFromPage(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_FORWARDS_URL)));
+        playerIdEntities.addAll(EspnAndNumberFireIdPageScraper.scrapePlayerBiographiesFromPage(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_CENTERS_URL)));
 
         return playerIdEntities;
     }

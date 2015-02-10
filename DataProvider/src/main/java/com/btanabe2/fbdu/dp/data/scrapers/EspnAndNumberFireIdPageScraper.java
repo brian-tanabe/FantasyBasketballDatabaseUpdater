@@ -1,6 +1,5 @@
 package com.btanabe2.fbdu.dp.data.scrapers;
 
-import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dp.data.models.NumberFireNbaTeamModel;
 import org.jsoup.nodes.Document;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
  */
 public class EspnAndNumberFireIdPageScraper {
 
-    public List<PlayerBiographyEntity> scrapePlayerBiographiesFromPage(Document page, List<NbaTeamEntity> nbaTeamIds) throws ParseException {
+    public static List<PlayerBiographyEntity> scrapePlayerBiographiesFromPage(Document page) throws ParseException {
         List<Map<String, String>> playerAttributeMapObjects = getAllPlayersOnPageAttributesAsMap(page);
         List<NumberFireNbaTeamModel> nbaTeams = getNumberFireNbaTeams(page);
 
@@ -26,17 +25,17 @@ public class EspnAndNumberFireIdPageScraper {
         return playerEntities;
     }
 
-    private List<Map<String, String>> getAllPlayersOnPageAttributesAsMap(Document page) {
+    private static List<Map<String, String>> getAllPlayersOnPageAttributesAsMap(Document page) {
         NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
         return scraper.getProjectionAttributeMapList(page, "players");
     }
 
-    private List<NumberFireNbaTeamModel> getNumberFireNbaTeams(Document page) {
+    private static List<NumberFireNbaTeamModel> getNumberFireNbaTeams(Document page) {
         NumberFireJsonPageScraper scraper = new NumberFireJsonPageScraper();
         return scraper.getNumberFireNbaTeamModels(page);
     }
 
-    private PlayerBiographyEntity populatePlayerBiographyEntityFields(Map<String, String> playerAttributes, List<NumberFireNbaTeamModel> nbaTeams) {
+    private static PlayerBiographyEntity populatePlayerBiographyEntityFields(Map<String, String> playerAttributes, List<NumberFireNbaTeamModel> nbaTeams) {
         PlayerBiographyEntity player = new PlayerBiographyEntity();
         try {
             player.setName(String.format("%s %s", playerAttributes.get("first_name"), playerAttributes.get("last_name")));
