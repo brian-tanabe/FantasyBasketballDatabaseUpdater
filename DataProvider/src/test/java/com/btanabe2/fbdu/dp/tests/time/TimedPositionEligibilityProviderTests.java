@@ -9,7 +9,6 @@ import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
 import com.btanabe2.fbdu.dp.web.SecureWebRequest;
 import com.btanabe2.fbdu.dp.web.auth.EspnCredentialProvider;
 import org.junit.BeforeClass;
-import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
@@ -39,7 +38,7 @@ public class TimedPositionEligibilityProviderTests {
     }
 
     // originally 11:44!
-    @Test
+//    @Test
     public void shouldBeAbleToDetermineAllPlayerPositionEligibilitiesUnderTenSeconds() {
         try {
             List<PlayerBiographyEntity> playerBiographyEntityList = new PlayerBiographyProvider(webRequest).getAllPlayers(NbaTeamEntityFixture.getMockNbaTeams());

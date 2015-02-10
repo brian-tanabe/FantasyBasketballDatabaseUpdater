@@ -48,7 +48,7 @@ public class EspnFantasyIdToStandardIdProvider {
         return EspnTeamsRosterLinkScraper.getTeamRosterPageLinks(webRequest.getPageAsDocument(ESPN_TEAMS_PAGE_URL));
     }
 
-    public List<String> getAllNbaPlayerProfilePageUrls(List<String> teamPageUrls) throws IOException, ExecutionException, InterruptedException {
+    private List<String> getAllNbaPlayerProfilePageUrls(List<String> teamPageUrls) throws IOException, ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(teamPageUrls.size());
         List<Future<List<String>>> futureList = new ArrayList<>(500);
         teamPageUrls.forEach(url -> futureList.add(executorService.submit(new CallableEspnPlayerProfileLinkScraper(webRequest, url))));
