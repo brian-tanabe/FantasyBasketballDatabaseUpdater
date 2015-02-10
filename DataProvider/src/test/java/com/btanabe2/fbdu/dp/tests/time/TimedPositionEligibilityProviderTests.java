@@ -9,6 +9,7 @@ import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
 import com.btanabe2.fbdu.dp.web.SecureWebRequest;
 import com.btanabe2.fbdu.dp.web.auth.EspnCredentialProvider;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,9 +24,6 @@ import static org.junit.Assert.assertTrue;
 public class TimedPositionEligibilityProviderTests {
     private static SecureWebRequest webRequest;
 
-//    @Rule
-//    public Timeout globalTimeout = new Timeout(10 * 1000); // 1 minute
-
     @BeforeClass
     public static void setup() {
         try {
@@ -38,7 +36,7 @@ public class TimedPositionEligibilityProviderTests {
     }
 
     // originally 11:44!
-//    @Test
+    @Test(timeout = 10000)  // 10 seconds
     public void shouldBeAbleToDetermineAllPlayerPositionEligibilitiesUnderTenSeconds() {
         try {
             List<PlayerBiographyEntity> playerBiographyEntityList = new PlayerBiographyProvider(webRequest).getAllPlayers(NbaTeamEntityFixture.getMockNbaTeams());

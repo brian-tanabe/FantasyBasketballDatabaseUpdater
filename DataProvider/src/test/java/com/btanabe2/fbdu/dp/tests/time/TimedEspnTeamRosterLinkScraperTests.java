@@ -2,8 +2,7 @@ package com.btanabe2.fbdu.dp.tests.time;
 
 import com.btanabe2.fbdu.dp.data.scrapers.EspnTeamsRosterLinkScraper;
 import com.btanabe2.fbdu.dp.web.WebRequest;
-import org.junit.Rule;
-import org.junit.rules.Timeout;
+import org.junit.Test;
 
 import java.io.IOException;
 
@@ -16,10 +15,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class TimedEspnTeamRosterLinkScraperTests {
 
-    @Rule
-    public Timeout globalTimeout = new Timeout(2 * 1000);   // 1 second
-
-    //    @Test
+    @Test(timeout = 2000)   // 2 seconds
     public void shouldBeAbleToFindAllTeamRosterLinksInLessThanTwoSeconds() {
         try {
             assertEquals("Did not find 30 team's roster links", 30, EspnTeamsRosterLinkScraper.getTeamRosterPageLinks(new WebRequest().getPageAsDocument(ESPN_TEAMS_PAGE_URL)).size());
