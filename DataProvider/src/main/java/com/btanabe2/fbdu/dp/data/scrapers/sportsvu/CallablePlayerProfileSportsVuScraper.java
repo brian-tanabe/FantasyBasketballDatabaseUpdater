@@ -17,6 +17,7 @@ import java.util.Locale;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
+import static com.btanabe2.fbdu.dp.data.models.PlayerProfile.INACTIVE_PLAYER;
 import static com.btanabe2.fbdu.dp.web.WebConstants.getPlayerInfoPageUrlFromSportsVu;
 
 /**
@@ -40,7 +41,7 @@ public class CallablePlayerProfileSportsVuScraper implements Callable<PlayerBiog
             return populatePlayerBiographyEntityObject(playerId, playerInfoJsonArray, nbaTeams);
         }
 
-        return null;
+        return INACTIVE_PLAYER;
     }
 
     private JsonArray getPlayerInfoJsonArray(int playerId) throws IOException {

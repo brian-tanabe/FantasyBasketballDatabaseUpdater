@@ -19,7 +19,7 @@ public class TimedPlayerProfileSportsVuScraperTests {
     public Timeout globalTimeout = new Timeout(5 * 1000); // 5 seconds
 
     @Test
-    public void shouldBeAbleToGetAllPlayerInLessThanFifteenSeconds() {
+    public void shouldBeAbleToGetAllPlayerInLessThanFiveSeconds() {
         try {
             PlayerProfileSportsVuScraper scraper = new PlayerProfileSportsVuScraper(new WebRequest());
             assertTrue("Did not find the correct number of active players", scraper.scrapeForPlayerBiographies(NbaTeamEntityFixture.getMockNbaTeams()).size() > 440);
