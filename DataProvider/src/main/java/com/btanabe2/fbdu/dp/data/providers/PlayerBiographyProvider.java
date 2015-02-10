@@ -8,6 +8,7 @@ import com.btanabe2.fbdu.dp.web.WebRequest;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
@@ -42,7 +43,9 @@ public class PlayerBiographyProvider {
     }
 
     private List<PlayerBiographyEntity> getAllEspnAndNumberFireIds() throws IOException, ParseException {
-        List<PlayerBiographyEntity> playerIdEntities = EspnAndNumberFireIdPageScraper.scrapePlayerBiographiesFromPage(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_GUARDS_URL));
+        List<PlayerBiographyEntity> playerIdEntities = new ArrayList<>();
+
+        playerIdEntities.addAll(EspnAndNumberFireIdPageScraper.scrapePlayerBiographiesFromPage(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_GUARDS_URL)));
         playerIdEntities.addAll(EspnAndNumberFireIdPageScraper.scrapePlayerBiographiesFromPage(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_FORWARDS_URL)));
         playerIdEntities.addAll(EspnAndNumberFireIdPageScraper.scrapePlayerBiographiesFromPage(webRequest.getPageAsDocument(NUMBER_FIRE_REMAINING_PROJECTIONS_CENTERS_URL)));
 
