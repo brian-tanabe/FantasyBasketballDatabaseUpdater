@@ -1,6 +1,6 @@
 package com.btanabe2.fbdu.dp.tests.time;
 
-import com.btanabe2.fbdu.dp.data.scrapers.sportsvu.PlayerProfileSportsVuScraper;
+import com.btanabe2.fbdu.dp.data.scrapers.PlayerProfileSportsVuScraper;
 import com.btanabe2.fbdu.dp.fixtures.NbaTeamEntityFixture;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import org.junit.Rule;

@@ -3,7 +3,7 @@ package com.btanabe2.fbdu.dp.data.providers;
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnAndNumberFireIdPageScraper;
-import com.btanabe2.fbdu.dp.data.scrapers.sportsvu.PlayerProfileSportsVuScraper;
+import com.btanabe2.fbdu.dp.data.scrapers.PlayerProfileSportsVuScraper;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 
 import java.io.IOException;

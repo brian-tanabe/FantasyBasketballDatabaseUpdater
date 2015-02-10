@@ -38,6 +38,7 @@ public class TimedPositionEligibilityProviderTests {
         }
     }
 
+    // originally 11:44!
     @Test
     public void shouldBeAbleToDetermineAllPlayerPositionEligibilitiesUnderTenSeconds() {
         try {

@@ -1,7 +1,8 @@
-package com.btanabe2.fbdu.dp.data.scrapers.sportsvu;
+package com.btanabe2.fbdu.dp.data.scrapers;
 
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
+import com.btanabe2.fbdu.dp.data.scrapers.workers.CallablePlayerProfileSportsVuScraper;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

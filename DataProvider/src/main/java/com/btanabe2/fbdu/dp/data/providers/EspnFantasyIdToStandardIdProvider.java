@@ -1,16 +1,19 @@
 package com.btanabe2.fbdu.dp.data.providers;
 
-import com.btanabe2.fbdu.dp.data.scrapers.EspnPlayerProfileLinkScraper;
-import com.btanabe2.fbdu.dp.data.scrapers.EspnPlayerProfilePageIdScraper;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnTeamsRosterLinkScraper;
+import com.btanabe2.fbdu.dp.data.scrapers.workers.CallableEspnPlayerProfileLinkScraper;
+import com.btanabe2.fbdu.dp.data.scrapers.workers.CallableEspnProfilePageIdScraper;
 import com.btanabe2.fbdu.dp.web.SecureWebRequest;
-import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import static com.btanabe2.fbdu.dp.web.WebConstants.ESPN_TEAMS_PAGE_URL;
 
@@ -24,11 +27,20 @@ public class EspnFantasyIdToStandardIdProvider {
         this.webRequest = webRequest;
     }
 
-    public Map<Integer, Integer> getFantasyIdMappedToNormalIdMap() throws IOException {
-        Map<Integer, Integer> playerFantasyIdsMappedToTheirEspnIds = new HashMap<>();
-        for (String playerProfilePageUrl : getAllNbaPlayerProfilePageUrls(getNbaTeamRosterPagesUrls())) {
-            playerFantasyIdsMappedToTheirEspnIds.putAll(extractPlayerFantasyIdMappedToHisEspnId(playerProfilePageUrl));
+    public Map<Integer, Integer> getFantasyIdMappedToNormalIdMap() throws IOException, ExecutionException, InterruptedException {
+        List<String> allNbaPlayerProfilePageUrls = getAllNbaPlayerProfilePageUrls(getNbaTeamRosterPagesUrls());
+
+        ExecutorService executorService = Executors.newFixedThreadPool(allNbaPlayerProfilePageUrls.size());
+        List<Future<Map<Integer, Integer>>> futureList = new ArrayList<>(allNbaPlayerProfilePageUrls.size());
+        allNbaPlayerProfilePageUrls.forEach(url -> futureList.add(executorService.submit(new CallableEspnProfilePageIdScraper(webRequest, url))));
+
+        Map<Integer, Integer> playerFantasyIdsMappedToTheirEspnIds = new HashMap<>(allNbaPlayerProfilePageUrls.size());
+        for (Future<Map<Integer, Integer>> future : futureList) {
+            playerFantasyIdsMappedToTheirEspnIds.putAll(future.get());
         }
+
+        executorService.shutdown();
+
         return playerFantasyIdsMappedToTheirEspnIds;
     }
 
@@ -36,21 +48,16 @@ public class EspnFantasyIdToStandardIdProvider {
         return EspnTeamsRosterLinkScraper.getTeamRosterPageLinks(webRequest.getPageAsDocument(ESPN_TEAMS_PAGE_URL));
     }
 
-    private List<String> getAllNbaPlayerProfilePageUrls(List<String> teamPageUrls) throws IOException {
+    public List<String> getAllNbaPlayerProfilePageUrls(List<String> teamPageUrls) throws IOException, ExecutionException, InterruptedException {
+        ExecutorService executorService = Executors.newFixedThreadPool(teamPageUrls.size());
+        List<Future<List<String>>> futureList = new ArrayList<>(500);
+        teamPageUrls.forEach(url -> futureList.add(executorService.submit(new CallableEspnPlayerProfileLinkScraper(webRequest, url))));
+
         List<String> allNbaPlayersProfilePageUrls = new ArrayList<>(500);
-        for (String teamRosterPageUrl : teamPageUrls) {
-            allNbaPlayersProfilePageUrls.addAll(extractPlayerProfilePageLinks(webRequest.getPageAsDocument(teamRosterPageUrl)));
+        for (Future<List<String>> future : futureList) {
+            allNbaPlayersProfilePageUrls.addAll(future.get());
         }
 
         return allNbaPlayersProfilePageUrls;
-    }
-
-    private List<String> extractPlayerProfilePageLinks(Document teamRosterPage) {
-        return EspnPlayerProfileLinkScraper.getPlayerProfileLinks(teamRosterPage);
-    }
-
-    private Map<Integer, Integer> extractPlayerFantasyIdMappedToHisEspnId(String playerProfilePageUrl) throws IOException {
-        String playerEspnId = playerProfilePageUrl.replaceAll("[^\\d+]", "");
-        return EspnPlayerProfilePageIdScraper.getPlayerFantasyIdMappedToHisEspnId(webRequest.getPageAsDocument(playerProfilePageUrl), Integer.parseInt(playerEspnId));
     }
 }

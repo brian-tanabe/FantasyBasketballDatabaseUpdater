@@ -1,4 +1,4 @@
-package com.btanabe2.fbdu.dp.data.scrapers.sportsvu;
+package com.btanabe2.fbdu.dp.data.scrapers.workers;
 
 import com.btanabe2.fbdu.dm.models.NbaTeamEntity;
 import com.btanabe2.fbdu.dm.models.PlayerBiographyEntity;
