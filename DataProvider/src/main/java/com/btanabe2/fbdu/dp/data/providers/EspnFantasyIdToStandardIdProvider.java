@@ -56,7 +56,8 @@ public class EspnFantasyIdToStandardIdProvider {
 
         Map<Integer, Integer> playerFantasyIdsMappedToTheirEspnIds = new HashMap<>(allNbaPlayerProfilePageUrls.size());
         for (Future<Map<Integer, Integer>> future : futureList) {
-            playerFantasyIdsMappedToTheirEspnIds.putAll(future.get());
+            if (future != null)
+                playerFantasyIdsMappedToTheirEspnIds.putAll(future.get());
         }
 
         executorService.shutdown();

@@ -16,7 +16,13 @@ public class EspnPlayerProfilePageIdScraper {
 
     public static Map<Integer, Integer> getPlayerFantasyIdMappedToHisEspnId(Document document, int playerEspnIdNotFantasyId) throws NullPointerException {
         Map<Integer, Integer> playerEspnIdMappedToHisFantasyId = new HashMap<>(1);
-        playerEspnIdMappedToHisFantasyId.put(deserializeJsonObject(document.select("div#fantasy-content").text().trim()).playerId, playerEspnIdNotFantasyId);
+
+        EspnPlayerProfileJsonModel player = deserializeJsonObject(document.select("div#fantasy-content").text().trim());
+        if (player != null) {
+            playerEspnIdMappedToHisFantasyId.put(player.playerId, playerEspnIdNotFantasyId);
+        } else {
+            System.err.println(String.format("Failed to parse player fantasyId=[%d]", playerEspnIdNotFantasyId));
+        }
 
         return playerEspnIdMappedToHisFantasyId;
     }
