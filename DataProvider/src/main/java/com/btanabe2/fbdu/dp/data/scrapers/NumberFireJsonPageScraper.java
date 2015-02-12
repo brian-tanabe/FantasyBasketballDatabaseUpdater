@@ -59,7 +59,7 @@ public class NumberFireJsonPageScraper {
 
         for (int mapKeyIndex = 0; mapKeyIndex < projectionGroup.names().length(); mapKeyIndex++) {
             String keyString = projectionGroup.names().getString(mapKeyIndex);
-            String valueString = projectionGroup.getString(keyString);
+            String valueString = String.valueOf(projectionGroup.get(keyString));
 
             projectionMap.put(keyString, valueString);
         }
