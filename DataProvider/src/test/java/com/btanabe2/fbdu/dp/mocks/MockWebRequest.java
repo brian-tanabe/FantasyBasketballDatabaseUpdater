@@ -1,5 +1,6 @@
 package com.btanabe2.fbdu.dp.mocks;
 
+import com.btanabe2.fbdu.dp.fixtures.EspnRosterPageScraperFixture;
 import com.btanabe2.fbdu.dp.web.SecureWebRequest;
 import com.btanabe2.fbdu.dp.web.WebRequest;
 import com.btanabe2.fbdu.dp.web.auth.TestableCredentialProvider;
@@ -44,6 +45,10 @@ public class MockWebRequest {
 
     public static SecureWebRequest getPositionEligibilityProviderMockSecureWebRequest() throws IOException {
         return getMockSecureWebRequest(getPositionEligibilityProviderPagesMappedToTheirUrlsMap());
+    }
+
+    public static SecureWebRequest getEspnRosterPageScraperMockSecureWebRequest() throws IOException {
+        return getMockSecureWebRequest(EspnRosterPageScraperFixture.getEspnRosterPageScraperPagesMappedToTheirUrls());
     }
 
     private static WebRequest getMockWebRequest(Map<String, String> urlToPageStringMap) {

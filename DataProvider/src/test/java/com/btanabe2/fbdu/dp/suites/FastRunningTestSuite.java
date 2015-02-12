@@ -33,7 +33,8 @@ import org.junit.runners.Suite;
         NumberFireJsonPageScraperTests.class,
         NumberFireRankingsScraperTests.class,
         NumberFireRemainingSeasonProjectionsPageScraperTests.class,
-        PlayerProfileSportsVuScraperTests.class
+        PlayerProfileSportsVuScraperTests.class,
+        EspnRosterPageScraperTests.class
 })
 public class FastRunningTestSuite {
 }

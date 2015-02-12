@@ -13,7 +13,6 @@ public class WebConstants {
     ////////// ESPN: //////////
     public static final String ESPN_TEAMS_PAGE_URL = "http://espn.go.com/nba/teams";
     public static final String ESPN_FANTASY_BASKETBALL_HOMEPAGE = "http://games.espn.go.com/frontpage/basketball";
-
     ////////// BASKETBALL REFERENCE: //////////
     public static final String BASKETBALL_REFERENCE_TEAM_PAGE_URL = "http://www.basketball-reference.com/teams/";
     public static final String BASKETBALL_REFERENCE_STANDINGS_PAGE_URL = "http://www.basketball-reference.com/leagues/NBA_2015_standings.html";
@@ -47,6 +46,7 @@ public class WebConstants {
     public static final String BASKETBALL_REFERENCE_TOR_PAGE_URL = "http://www.basketball-reference.com/teams/TOR/";
     public static final String BASKETBALL_REFERENCE_UTA_PAGE_URL = "http://www.basketball-reference.com/teams/UTA/";
     public static final String BASKETBALL_REFERENCE_WAS_PAGE_URL = "http://www.basketball-reference.com/teams/WAS/";
+    ////////// NUMBERFIRE: //////////
     public static final String NUMBER_FIRE_SEASON_STATS_URL = "https://www.numberfire.com/nba/fantasy/season-stats";
     public static final String NUMBER_FIRE_DAILY_PROJECTION_URL = "https://www.numberfire.com/nba/fantasy/fantasy-basketball-projections";
     public static final String NUMBER_FIRE_YEARLY_PROJECTIONS_URL = "https://www.numberfire.com/nba/fantasy/yearly-projections";
@@ -54,10 +54,6 @@ public class WebConstants {
     public static final String NUMBER_FIRE_REMAINING_PROJECTIONS_GUARDS_URL = NUMBER_FIRE_REMAINING_PROJECTIONS_URL + "/guards";
     public static final String NUMBER_FIRE_REMAINING_PROJECTIONS_FORWARDS_URL = NUMBER_FIRE_REMAINING_PROJECTIONS_URL + "/forwards";
     public static final String NUMBER_FIRE_REMAINING_PROJECTIONS_CENTERS_URL = NUMBER_FIRE_REMAINING_PROJECTIONS_URL + "/centers";
-
-    public static String getPlayerInfoPageUrlFromSportsVu(int playerId) {
-        return String.format("http://stats.nba.com/stats/commonplayerinfo?PlayerID=%d", playerId);
-    }
 
     public static String getEspnLoginUrl(String username, String password) {
         return String.format("https://r.espn.go.com/members/login?count=0&SUBMIT=1&language=en&affiliateName=espn&regFormId=espn&username=%s&password=%s&appRedirect=https://r.espn.go.com/members/index", username, password);
@@ -68,5 +64,13 @@ public class WebConstants {
     // startIndex=50
     public static String getEspnPlayerRaterPageUrlForParameterizedLeagueIdAndTeamId(int leagueId, int teamId, int pageNumber) {
         return String.format("http://games.espn.go.com/fba/playerrater?leagueId=%d&teamId=%d&startIndex=%d", leagueId, teamId, pageNumber * 50);
+    }
+
+    public static String getEspnRosterPageUrlForParameterizedLeagueId(int leagueId) {
+        return String.format("http://games.espn.go.com/fba/leaguerosters?leagueId=%d", leagueId);
+    }
+
+    public static String getPlayerInfoPageUrlFromSportsVu(int playerId) {
+        return String.format("http://stats.nba.com/stats/commonplayerinfo?PlayerID=%d", playerId);
     }
 }
