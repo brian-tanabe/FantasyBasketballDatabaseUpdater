@@ -3,6 +3,7 @@ package com.btanabe2.fbdu.dp.data.providers;
 import com.btanabe2.fbdu.dp.data.scrapers.EspnTeamsRosterLinkScraper;
 import com.btanabe2.fbdu.dp.data.scrapers.workers.CallableEspnPlayerProfileLinkScraper;
 import com.btanabe2.fbdu.dp.data.scrapers.workers.CallableEspnProfilePageIdScraper;
+import com.btanabe2.fbdu.dp.system.WorkerPool;
 import com.btanabe2.fbdu.dp.web.SecureWebRequest;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ import static com.btanabe2.fbdu.dp.web.WebConstants.ESPN_TEAMS_PAGE_URL;
 /**
  * Created by Brian on 2/7/15.
  */
-public class EspnFantasyIdToStandardIdProvider {
+public class EspnFantasyIdToStandardIdProvider extends WorkerPool<String, CallableEspnPlayerProfileLinkScraper, String> {
     private SecureWebRequest webRequest;
 
     public EspnFantasyIdToStandardIdProvider(SecureWebRequest webRequest) {

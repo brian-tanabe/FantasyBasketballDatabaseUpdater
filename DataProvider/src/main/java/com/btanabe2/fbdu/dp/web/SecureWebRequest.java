@@ -24,17 +24,32 @@ public class SecureWebRequest extends WebRequest {
     private CookieStore cookieStore = new BasicCookieStore();
     private HttpClient client = HttpClientBuilder.create().build();
 
+    public SecureWebRequest(String loginUrl) throws IOException {
+        login(loginUrl);
+    }
+
+    @Deprecated
     public SecureWebRequest(){
         localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
     }
 
+    private void login(String loginUrl) throws IOException {
+        getLoginCookiesFromServer(loginUrl);
+    }
+
+    @Deprecated
     public SecureWebRequest login(CredentialProviderI credentialProvider) throws IOException {
         getLoginCookiesFromServer(credentialProvider);
         return this;
     }
 
+    @Deprecated
     private void getLoginCookiesFromServer(CredentialProviderI credentialProvider) throws IOException {
-        HttpPost post = new HttpPost(credentialProvider.getLoginUrl());
+        getLoginCookiesFromServer(credentialProvider.getLoginUrl());
+    }
+
+    private void getLoginCookiesFromServer(String loginUrl) throws IOException {
+        HttpPost post = new HttpPost(loginUrl);
 
         post.setHeader("Host", "r.espn.go.com");
         post.setHeader("User-Agent", WebConstants.USER_AGENT);
